@@ -1,0 +1,15 @@
+{
+  "name": "考研英语小作文 · 交互模板",
+  "short_name": "小作文",
+  "description": "27版小作文讲义全量拆解：书信 / 通知 / 纪要，点短语拼出 100 词。",
+  "version": "1.0.0",
+  "start_url": "./xiaozuowen.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f3ec",
+  "theme_color": "#f6f3ec",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
