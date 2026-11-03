@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>考研英语大作文 · 交互模板 v2.0.0</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#0f1115; --card:#171a21; --card2:#1d212a; --line:#2a303c; --line2:#39414f;
+  --fg:#e9edf4; --dim:#9aa5b8; --dim2:#6f7b8f;
+  --accent:#ffb454; --accent-bg:rgba(255,180,84,.13);
+  --blue:#7aa7ff; --blue-bg:rgba(122,167,255,.14);
+  --ok:#4ecf9a; --danger:#ff7b7b;
+  --radius:14px; --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(1200px 600px at 20% -10%,#1b2130 0%,transparent 60%),var(--bg);
+  color:var(--fg); font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  padding-bottom:90px; overflow-x:hidden;
+}
+button,select,input,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.wrap{max-width:1200px;margin:0 auto;padding:14px 14px 40px}
+header.top{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(15,17,21,.86);border-bottom:1px solid var(--line)}
+.bar{max-width:1200px;margin:0 auto;padding:8px 14px}
+.row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto;min-width:0}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,#ffb454,#ff7a45);color:#231400;
+  display:grid;place-items:center;font-weight:800;font-size:18px;flex:none;box-shadow:0 4px 14px rgba(255,150,60,.25)}
+.brand h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand p{margin:0;font-size:11px;color:var(--dim2)}
+.ver{display:inline-block;padding:1px 6px;border:1px solid var(--line2);border-radius:99px;font-size:10px;color:var(--accent);background:var(--accent-bg)}
+.bar-actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card2);color:var(--fg);padding:7px 11px;border-radius:10px;font-size:13px;
+  transition:.15s;white-space:nowrap}
+.btn:hover{border-color:var(--line2);background:#242a35}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:linear-gradient(145deg,#ffb454,#ff9a3c);color:#241500;border:none;font-weight:700}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--danger)}
+.row2{display:flex;gap:10px;align-items:flex-start;margin-top:8px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;flex:1 1 420px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);background:var(--card);padding:6px 10px;border-radius:99px;font-size:12.5px;color:var(--dim);white-space:nowrap}
+.chip.on{background:var(--accent-bg);border-color:rgba(255,180,84,.55);color:var(--accent);font-weight:600}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+select.sel{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:7px 9px;font-size:12.5px;max-width:230px}
+.sw{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--dim);border:1px solid var(--line);
+  padding:5px 9px;border-radius:99px;background:var(--card);user-select:none}
+.sw input{accent-color:var(--accent);margin:0}
+.sw.on{color:var(--fg);border-color:rgba(255,180,84,.5)}
+.layout{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media(min-width:1000px){.layout{grid-template-columns:300px minmax(0,1fr)} .side{position:sticky;top:120px;align-self:start;max-height:calc(100vh - 140px);overflow:auto}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.side h3,.ptitle{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim2);margin:0 0 10px}
+.field{margin-bottom:9px}
+.field label{display:block;font-size:11.5px;color:var(--dim);margin-bottom:3px}
+.field input,.field select{width:100%;background:#11151c;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.field .hint{font-size:10.5px;color:var(--dim2);margin-top:2px}
+.side-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.seg{display:flex;gap:4px;background:#11151c;border:1px solid var(--line);border-radius:9px;padding:3px;margin-bottom:10px}
+.seg button{flex:1;border:none;background:transparent;color:var(--dim);padding:5px 4px;border-radius:6px;font-size:12px}
+.seg button.on{background:var(--card2);color:var(--fg);font-weight:600}
+preview{display:block}
+.pblock{background:linear-gradient(180deg,#181c24,#151920);border:1px solid var(--line);border-radius:16px;padding:14px 14px 6px;margin-bottom:14px}
+.phead{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pnum{width:24px;height:24px;border-radius:8px;background:var(--accent-bg);color:var(--accent);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.phead h2{font-size:14px;margin:0;font-weight:700}
+.phead .tag{font-size:10.5px;color:var(--dim2);border:1px solid var(--line);padding:1px 6px;border-radius:99px}
+.phead .tools{margin-left:auto;display:flex;gap:6px}
+.mini{border:1px solid var(--line);background:transparent;color:var(--dim);font-size:11px;padding:3px 8px;border-radius:8px}
+.mini:hover{color:var(--fg);border-color:var(--line2)}
+.sent{border-top:1px dashed var(--line);padding:11px 0}
+.sent:first-of-type{border-top:none}
+.sent-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.sent-label{font-size:11.5px;color:var(--accent);font-weight:600;letter-spacing:.02em}
+.sent-sel{flex:1 1 160px;min-width:120px;background:#11151c;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:11.5px;color:var(--dim)}
+.sent-sel:hover{color:var(--fg)}
+.en{font-family:var(--serif);font-size:17.5px;line-height:1.75;letter-spacing:.1px;color:#f2f5fa;word-break:break-word}
+@media(max-width:600px){.en{font-size:16px;line-height:1.7}}
+.zh{font-size:12.5px;line-height:1.7;color:var(--dim);margin-top:5px;padding-left:9px;border-left:2px solid var(--line2)}
+.note{font-size:11.5px;color:#c9a15f;background:rgba(255,180,84,.06);border:1px solid rgba(255,180,84,.16);
+  border-radius:8px;padding:5px 8px;margin-top:6px;line-height:1.6}
+.note b{color:var(--accent)}
+.slot{display:inline;border:none;background:var(--accent-bg);color:var(--accent);border-radius:6px;padding:1px 5px;
+  margin:0 1px;font:inherit;font-family:var(--serif);border-bottom:1px dashed rgba(255,180,84,.6);line-height:1.5;transition:.12s}
+.slot:hover{background:rgba(255,180,84,.24)}
+.slot.filled{background:var(--blue-bg);color:#cfe0ff;border-bottom-color:rgba(122,167,255,.7)}
+.slot.filled:hover{background:rgba(122,167,255,.26)}
+.slot.empty{color:#e8c48c;opacity:.95}
+.slot.flash{outline:2px solid var(--accent);outline-offset:1px}
+.slotdemo{background:var(--blue-bg);color:#cfe0ff;border-bottom:1px dashed rgba(122,167,255,.7);border-radius:6px;padding:1px 5px}
+.hintbar{font-size:12px;color:var(--dim2);background:rgba(122,167,255,.06);border:1px solid var(--line);
+  border-radius:10px;padding:8px 11px;margin-top:12px;line-height:1.7}
+.empty-hint{text-align:center;color:var(--dim2);font-size:13px;padding:26px 10px}
+/* modal */
+#modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-end;justify-content:center;background:rgba(6,8,12,.72);backdrop-filter:blur(3px)}
+#modal.on{display:flex}
+.sheet{width:100%;max-width:720px;max-height:86vh;background:#141821;border:1px solid var(--line2);border-radius:18px 18px 0 0;
+  display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,.6);animation:up .18s ease-out}
+@keyframes up{from{transform:translateY(18px);opacity:.6}to{transform:translateY(0);opacity:1}}
+@media(min-width:760px){#modal{align-items:center}.sheet{border-radius:18px}}
+.sheet-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.sheet-head h4{margin:0;font-size:14px}
+.sheet-head .sub{font-size:11px;color:var(--dim2);margin-left:auto}
+.sheet-body{overflow:auto;padding:10px 12px 4px;flex:1}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card2);border-radius:10px;
+  padding:8px 10px;margin-bottom:7px;transition:.12s}
+.opt:hover{border-color:var(--line2);background:#232936}
+.opt.cur{border-color:var(--accent);background:var(--accent-bg)}
+.opt .oe{font-family:var(--serif);font-size:14.5px;color:#eef3fb;line-height:1.5}
+.opt .oz{font-size:11.5px;color:var(--dim);margin-top:2px}
+.opt .onote{font-size:10.5px;color:#b79763;margin-top:2px}
+.sheet-foot{padding:9px 12px calc(9px + env(safe-area-inset-bottom));border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.sheet-foot input[type=text]{flex:1 1 180px;min-width:120px;background:#0f131a;border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+.sheet-foot input[type=text]:focus{outline:none;border-color:var(--accent)}
+.numtoggle{display:flex;gap:2px;background:#0f131a;border:1px solid var(--line);border-radius:9px;padding:2px}
+.numtoggle button{border:none;background:transparent;color:var(--dim2);padding:5px 8px;border-radius:6px;font-size:11px}
+.numtoggle button.on{background:var(--card2);color:var(--fg)}
+#snapPanel{position:fixed;right:12px;top:112px;z-index:150;width:min(360px,calc(100vw - 24px));background:#161b24;
+  border:1px solid var(--line2);border-radius:14px;padding:10px;display:none;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+#snapPanel.on{display:block}
+.snap{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:9px;padding:7px 8px;margin-bottom:6px;font-size:11.5px}
+.snap b{font-size:12px}
+.snap button{margin-left:auto}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:300;opacity:0;transition:.22s;
+  background:#e9edf4;color:#161a22;padding:9px 16px;border-radius:99px;font-size:13px;font-weight:600;pointer-events:none;max-width:88vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#updateBar{display:none;background:linear-gradient(90deg,#2c2413,#3a2c12);border-bottom:1px solid #6b5426;color:#ffd79a;
+  font-size:12.5px;padding:7px 14px;text-align:center}
+#updateBar.on{display:block}
+#updateBar b{color:#ffcf87}
+.foot{margin-top:18px;color:var(--dim2);font-size:11px;line-height:1.8;text-align:center}
+.foot a{color:var(--dim)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--dim2);margin-top:8px}
+.stats b{color:var(--accent);font-weight:700}
+.warn{color:#ffb86b;font-size:11px;margin-top:6px;display:none}
+.warn.on{display:block}
+</style>
+</head>
+<body>
+<div id="updateBar">发现新版本 <b id="newVer">—</b>，当前显示的是旧缓存。<button class="mini" id="btnReload" style="margin-left:8px">立即刷新</button></div>
+<header class="top">
+  <div class="bar">
+    <div class="row1">
+      <div class="brand">
+        <div class="logo">作</div>
+        <div>
+          <h1>考研英语大作文 · 交互模板</h1>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.0.0</span> · 点短语即换</p>
+        </div>
+      </div>
+      <div class="bar-actions">
+        <button class="btn ghost" id="btnUndo" title="撤销">↶ 撤销</button>
+        <button class="btn ghost" id="btnRedo" title="重做">↷ 重做</button>
+        <button class="btn ghost" id="btnSnap">快照</button>
+        <button class="btn ghost danger" id="btnClear">清空</button>
+        <button class="btn primary" id="btnCopyAll">复制全文</button>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="chips" id="typeChips"></div>
+      <div class="controls">
+        <select class="sel" id="presetSel" title="真题预设"></select>
+        <label class="sw on"><input type="checkbox" id="tgZh" checked><span>中英对照</span></label>
+        <label class="sw"><input type="checkbox" id="tgLite"><span>考场精简</span></label>
+        <label class="sw on"><input type="checkbox" id="tgNote" checked><span>注释</span></label>
+        <label class="sw on"><input type="checkbox" id="tgGram" checked><span>自动语法</span></label>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="hintbar">用法：点句子里的<span class="slotdemo">彩色短语</span>换说法 → 左侧填题干词 → 每句上方下拉换整句方案。未填的槽位显示【标签】。</div>
+  <div class="layout">
+    <aside class="side">
+      <div class="card">
+        <h3>题干词 · 快速填写</h3>
+        <div class="seg" id="sideSeg">
+          <button data-tab="core" class="on">核心</button>
+          <button data-tab="data">数据</button>
+          <button data-tab="arg">论述</button>
+        </div>
+        <div id="slotForm"></div>
+        <div class="seg" style="margin-top:12px">
+          <button class="on" id="p3modeBtn1" data-mode="measure">第三段：措施</button>
+          <button id="p3modeBtn2" data-mode="trend">趋势预测</button>
+        </div>
+        <div class="field">
+          <label>原因连接词方案</label>
+          <select id="connSel"></select>
+        </div>
+        <div class="side-actions">
+          <button class="btn ghost" id="btnCopyP1" style="flex:1">复制第一段</button>
+          <button class="btn ghost" id="btnCopyP2" style="flex:1">复制第二段</button>
+        </div>
+        <div class="warn" id="verWarn"></div>
+      </div>
+    </aside>
+    <section id="preview"></section>
+  </div>
+  <div class="foot">
+    <div>版本 <b id="footVer">v2.0.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
+    <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
+    <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button></div>
+  </div>
+</main>
+<div id="snapPanel"></div>
+<div id="modal">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h4 id="mTitle">选择短语</h4>
+      <span class="sub" id="mSub"></span>
+      <button class="mini" id="mClose">关闭</button>
+    </div>
+    <div class="sheet-body" id="mBody"></div>
+    <div class="sheet-foot">
+      <input type="text" id="mInput" placeholder="也可手动输入…">
+      <div class="numtoggle" id="mNum">
+        <button data-num="sg" class="on">单数</button>
+        <button data-num="pl">复数</button>
+      </div>
+      <button class="btn" id="mApply">应用</button>
+      <button class="btn ghost danger" id="mClear">清除</button>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+<script>
+/* ============ 版本 ============ */
+const APP_VERSION = '2.0.0';
+const BUILD_DATE  = '2026-11-03';
+
+/* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
+const BANK = {};
+function B(id, label, hint, opts){ BANK[id] = {label:label, hint:hint, opts:opts}; }
+
+B("theme","主题词","题干里的写作对象（实体/现象/概念）",[
+  {en:"elderly-care robots",zh:"养老机器人",num:"pl",note:"26英一·科技+养老（双图表）"},
+  {en:"children's outdoor activities",zh:"儿童户外活动",num:"pl",note:"26英二·教育+健康（静态图）"},
+  {en:"labor practice courses",zh:"劳动实践课",num:"pl",note:"24英二·教育实践（静态图）"},
+  {en:"infrastructure construction",zh:"基础设施建设",num:"sg",note:"24英一·城市建设（图画+图表）"},
+  {en:"the health literacy level of Chinese residents",zh:"中国居民健康素养水平",num:"sg",note:"23英二·健康（动态单方向）"},
+  {en:"graduates' choices",zh:"毕业生选择",num:"pl",note:"19英二·就业（动态多方向）"},
+  {en:"the ownership of household appliances",zh:"家用电器拥有量",num:"sg",note:"25英一·消费（表格）"},
+  {en:"traditional culture",zh:"传统文化",num:"sg",note:"23英一·文化传承（图画）"},
+  {en:"environmental protection",zh:"环境保护",num:"sg",note:"11英一·环保（图画）"},
+  {en:"lifelong learning",zh:"终身学习",num:"sg",note:"意志品质/学习类通用"},
+  {en:"teamwork and cooperation",zh:"团队合作",num:"pl",note:"08/23英一·合作（图画）"},
+  {en:"the Internet",zh:"互联网",num:"sg",note:"09/15英一·网络（争议话题）"},
+  {en:"mobile phones",zh:"手机",num:"pl",note:"15英一·手机时代的聚会"},
+  {en:"the spirit of perseverance",zh:"坚持的精神",num:"sg",note:"19英一·意志品质"},
+  {en:"integrity and benevolence",zh:"诚信与仁慈",num:"pl",note:"大纲样题·文字作文"},
+  {en:"innovation",zh:"创新",num:"sg",note:"热点话题·科技类"},
+  {en:"reading",zh:"阅读",num:"sg",note:"17英一·读书"},
+  {en:"part-time jobs",zh:"兼职",num:"pl",note:"13英二·兼职（争议话题）"},
+  {en:"volunteer service",zh:"志愿服务",num:"sg",note:"公益/社会参与类"},
+  {en:"the express delivery industry",zh:"快递业",num:"sg",note:"22英二·快递（双图表）"},
+  {en:"urban parks",zh:"城市公园",num:"pl",note:"24英一·公园建设"},
+  {en:"the aging population",zh:"人口老龄化",num:"sg",note:"养老/社会类"},
+  {en:"smart devices",zh:"智能设备",num:"pl",note:"科技类通用"},
+  {en:"cultural exchange",zh:"文化交流",num:"sg",note:"文化类通用"},
+  {en:"consumers' perceptions of elderly-care robots",zh:"消费者对养老机器人的认知",num:"pl",note:"26英一·双图表"},
+  {en:"respondents' views on children's outdoor activities",zh:"受访者对儿童户外活动的看法",num:"pl",note:"26英二·静态图"},
+  {en:"students' gains from the labor practice course",zh:"劳动实践课的学生收获",num:"pl",note:"24英二·静态图"},
+  {en:"the leisure activities of the elderly",zh:"老年人的休闲活动",num:"pl",note:"25英二·静态图"},
+  {en:"employees' satisfaction",zh:"员工满意度",num:"sg",note:"12·静态例外"},
+  {en:"good habits",zh:"好习惯",num:"pl",note:"20英一·双图"},
+  {en:"filial piety",zh:"孝道",num:"sg",note:"05·养老"},
+  {en:"love and care",zh:"爱与关怀",num:"pl",note:"01·油灯"},
+  {en:"children's addiction to screens",zh:"儿童对屏幕的沉迷",num:"sg",note:"大纲样题2·文字"}
+]);
+
+B("actor","对象/某人","第二、三段里的“谁”",[
+  {en:"the public",zh:"公众",num:"sg",note:"最通用的泛指"},
+  {en:"the government",zh:"政府",num:"sg",note:"措施/重视类"},
+  {en:"parents",zh:"家长",num:"pl",note:"26英二·儿童户外活动"},
+  {en:"undergraduates",zh:"大学生",num:"pl",note:"校园/学习类"},
+  {en:"elderly residents",zh:"老年居民",num:"pl",note:"25英二·老人休闲"},
+  {en:"consumers",zh:"消费者",num:"pl",note:"26英一·养老机器人"},
+  {en:"urban residents",zh:"城市居民",num:"pl",note:"24英一·公园"},
+  {en:"rural residents",zh:"农村居民",num:"pl",note:"23英二·健康素养"},
+  {en:"teenagers and youngsters",zh:"青少年",num:"pl",note:"23英一·传统文化"},
+  {en:"enterprises",zh:"企业",num:"pl",note:"行业/措施类"},
+  {en:"schools",zh:"学校",num:"pl",note:"教育类措施"},
+  {en:"the whole society",zh:"全社会",num:"sg",note:"宏观拔高"},
+  {en:"children and adults",zh:"孩子和成人",num:"pl",note:"环保/意识类"},
+  {en:"experts",zh:"专家",num:"pl",note:"观点类"},
+  {en:"new media platforms",zh:"新媒体平台",num:"pl",note:"媒体呼吁角度"},
+  {en:"the departments concerned",zh:"有关部门",num:"pl",note:"措施/成就类"}
+]);
+
+B("aspect","某方面","第二段六大方面 + 第三段总结",[
+  {en:"personal growth",zh:"个人成长",note:"26英二命中·个人方面"},
+  {en:"physical and mental health",zh:"身心健康",note:"健康/运动类"},
+  {en:"all-round development",zh:"全面发展",note:"教育类"},
+  {en:"quality of life",zh:"生活质量",note:"26英一命中·个人方面"},
+  {en:"practical skills",zh:"实践技能",note:"24英二·劳动实践"},
+  {en:"critical thinking",zh:"批判性思维",note:"学习/教育类"},
+  {en:"observational skills",zh:"观察力",note:"26英二·户外活动"},
+  {en:"curiosity",zh:"好奇心",note:"儿童/探索类"},
+  {en:"parent-child interaction",zh:"亲子互动",note:"家庭类"},
+  {en:"social progress",zh:"社会进步",note:"社会方面万能"},
+  {en:"economic growth",zh:"经济增长",note:"经济方面"},
+  {en:"public services",zh:"公共服务",note:"政府/民生"},
+  {en:"elderly care services",zh:"养老服务",note:"26英一命中"},
+  {en:"cultural inheritance",zh:"文化传承",note:"23英一·传统文化"},
+  {en:"cultural confidence",zh:"文化自信",note:"文化拔高"},
+  {en:"environmental protection",zh:"环境保护",note:"11英一/绿色类"},
+  {en:"sustainable development",zh:"可持续发展",note:"自然方面核心"},
+  {en:"technological innovation",zh:"科技创新",note:"科技方面核心"},
+  {en:"employment promotion",zh:"促进就业",note:"社会/经济"},
+  {en:"education equity",zh:"教育公平",note:"教育政策"},
+  {en:"social harmony",zh:"社会和谐",note:"社会方面目标"},
+  {en:"the living environment",zh:"居住环境",note:"24英一·公园"},
+  {en:"communication efficiency",zh:"沟通效率",note:"交流方面"},
+  {en:"information sharing",zh:"信息共享",note:"互联网/媒体"},
+  {en:"public health",zh:"公共卫生",note:"健康政策"},
+  {en:"social cohesion",zh:"社会凝聚力",note:"社会目标"},
+  {en:"individual well-being",zh:"个人福祉",note:"个人方面目标"},
+  {en:"youth development",zh:"青年发展",note:"个人·社会发展"},
+  {en:"self-improvement",zh:"自我提升",note:"个人核心"},
+  {en:"a healthy lifestyle",zh:"健康生活方式",note:"个人·健康"},
+  {en:"psychological resilience",zh:"心理素质",note:"个人·健康"},
+  {en:"work-life balance",zh:"工作与生活平衡",note:"个人·健康"},
+  {en:"lifelong education and learning",zh:"终身教育与学习",note:"个人·学习"},
+  {en:"expanding our horizons",zh:"开拓眼界",note:"个人·学习"},
+  {en:"boosting self-confidence",zh:"提升自信",note:"个人·成长"},
+  {en:"embracing challenges",zh:"迎接挑战",note:"个人·成长"},
+  {en:"improving problem-solving ability",zh:"提高解决问题能力",note:"个人·学习"},
+  {en:"family bonding",zh:"家庭纽带",note:"个人·家庭"},
+  {en:"emotional companionship",zh:"情感陪伴",note:"个人·家庭"},
+  {en:"self-realization",zh:"自我实现",note:"个人·目标"},
+  {en:"a sense of well-being",zh:"幸福感",note:"个人·目标"},
+  {en:"cultural diversity",zh:"文化多样性",note:"文化方面"},
+  {en:"cultural soft power",zh:"文化软实力",note:"文化方面"},
+  {en:"rural revitalization",zh:"乡村振兴",note:"社会·经济"},
+  {en:"disposable income",zh:"可支配收入",note:"经济方面"},
+  {en:"green transformation",zh:"绿色转型",note:"自然方面"},
+  {en:"carbon emissions reduction",zh:"碳减排",note:"自然方面"},
+  {en:"waste classification and recycling",zh:"垃圾分类与回收",note:"自然方面"},
+  {en:"digital transformation",zh:"数字化转型",note:"科技方面"},
+  {en:"artificial intelligence",zh:"人工智能",note:"科技方面"},
+  {en:"smart city construction",zh:"智慧城市建设",note:"科技方面"}
+]);
+
+B("verb1","趋势动词","细节公式1：第一变量的变化",[
+  {en:"increased",zh:"上升",note:"中性增加"},
+  {en:"rose",zh:"上升",note:"最常用"},
+  {en:"climbed",zh:"攀升",note:"幅度较大"},
+  {en:"grew",zh:"增长",note:"规模增长"},
+  {en:"surged",zh:"激增",note:"急剧"},
+  {en:"soared",zh:"飙升",note:"急剧"},
+  {en:"decreased",zh:"下降",note:"中性减少"},
+  {en:"declined",zh:"下降",note:"正式"},
+  {en:"dropped",zh:"下降",note:"口语化一点"},
+  {en:"fell",zh:"下降",note:"最常用"}
+]);
+B("verb2","趋势动词2","细节公式1：第二变量（走向相反）",[
+  {en:"decreased",zh:"下降",note:"与第一变量相反"},
+  {en:"declined",zh:"下降",note:"正式"},
+  {en:"dropped",zh:"下降",note:"口语化"},
+  {en:"fell",zh:"下降",note:"最常用"},
+  {en:"increased",zh:"上升",note:"与第一变量相反"},
+  {en:"rose",zh:"上升",note:"最常用"},
+  {en:"climbed",zh:"攀升",note:"幅度较大"}
+]);
+B("adv1","程度副词","迅速 / 缓慢两档",[
+  {en:"sharply",zh:"急剧地",note:"迅速档·significantly 同义"},
+  {en:"markedly",zh:"显著地",note:"迅速档"},
+  {en:"notably",zh:"明显地",note:"迅速档"},
+  {en:"remarkably",zh:"显著地",note:"迅速档"},
+  {en:"significantly",zh:"显著地",note:"迅速档"},
+  {en:"dramatically",zh:"剧烈地",note:"迅速档"},
+  {en:"gradually",zh:"逐渐地",note:"缓慢档"},
+  {en:"steadily",zh:"稳步地",note:"缓慢档"},
+  {en:"slightly",zh:"小幅地",note:"缓慢档"},
+  {en:"modestly",zh:"温和地",note:"缓慢档"}
+]);
+
+B("actorShort","对象（短）","便于放进 which 从句",[
+  {en:"them",zh:"他们",num:"pl",note:"泛指人群"},
+  {en:"the elderly",zh:"老年人",num:"pl",note:"养老类"},
+  {en:"children",zh:"儿童",num:"pl",note:"教育类"},
+  {en:"students",zh:"学生",num:"pl",note:"校园类"},
+  {en:"citizens",zh:"市民",num:"pl",note:"城市类"},
+  {en:"consumers",zh:"消费者",num:"pl",note:"消费类"}
+]);
+
+/* —— 图画描述素材 —— */
+B("subject","主体","图画里最主要的人/物",[
+  {en:"a young man",zh:"一个年轻人",num:"sg",note:"2004·操场跑步"},
+  {en:"two girls",zh:"两位女生",num:"pl",note:"2022·听讲座（对话型）"},
+  {en:"an oil lamp",zh:"一盏油灯",num:"sg",note:"2001·油灯"},
+  {en:"several urban residents",zh:"几位城市居民",num:"pl",note:"2024英一·公园"},
+  {en:"the girl in the left picture",zh:"左图中的女孩",num:"sg",note:"2020·习惯（双图）"},
+  {en:"the boy in the right picture",zh:"右图中的男孩",num:"sg",note:"2020·习惯（双图）"},
+  {en:"a group of students",zh:"一群学生",num:"pl",note:"校园场景"},
+  {en:"an elderly couple",zh:"一对老夫妻",num:"pl",note:"养老/家庭场景"}
+]);
+B("env","环境","看不清环境时用万能环境",[
+  {en:"on the playground",zh:"在操场上",note:"2004·操场"},
+  {en:"in front of us",zh:"在我们面前",note:"万能环境"},
+  {en:"in the middle of the picture",zh:"在图画中间",note:"万能环境"},
+  {en:"in front of the notice board",zh:"在公告栏前",note:"2022·听讲座"},
+  {en:"in a park",zh:"在公园里",note:"2024英一·公园"},
+  {en:"on the sofa",zh:"在沙发上",note:"2020·习惯"},
+  {en:"beside the window",zh:"在窗边",note:"通用室内场景"}
+]);
+B("basicV","基本动作","主体的存在方式：站/坐/躺/跑/停留（自动配主谓一致）",[
+  {en:"run",zh:"跑",note:"运动场景"},
+  {en:"stand",zh:"站",note:"通用"},
+  {en:"sit",zh:"坐",note:"室内场景"},
+  {en:"lie",zh:"躺",note:"2020·习惯"},
+  {en:"stay",zh:"停留",note:"静物（2001油灯）"}
+]);
+B("mainV","主要动作","作者想突出的动作",[
+  {en:"rushing to the finishing line",zh:"冲向终点",note:"2004·操场"},
+  {en:"talking about campus lectures",zh:"谈论校园讲座",note:"2022·听讲座"},
+  {en:"lighting up the darkness",zh:"照亮黑暗",note:"2001·油灯"},
+  {en:"doing his homework",zh:"做作业",note:"2020·习惯"},
+  {en:"exercising",zh:"锻炼",note:"2024英一·公园"},
+  {en:"reading quietly",zh:"安静阅读",note:"2017·读书"}
+]);
+B("detail","细节","表情/心态，想不起来可不写",[
+  {en:"with a sweet smile on his face",zh:"脸上带着甜蜜的微笑",note:"通用正面"},
+  {en:"with a confident smile on his face",zh:"脸上带着自信的微笑",note:"2007·自信"},
+  {en:"with determination in his eyes",zh:"眼神中带着决心",note:"2019·坚持"},
+  {en:"with an excited expression on her face",zh:"脸上带着兴奋的表情",note:"2023·龙舟"},
+  {en:"with curiosity in his eyes",zh:"眼神中带着好奇",note:"2018·选课"},
+  {en:"with confusion on her face",zh:"脸上带着困惑",note:"2022·听讲座"},
+  {en:"with a worried look on his face",zh:"脸上带着担忧",note:"2020·习惯"},
+  {en:"with tears in her eyes",zh:"眼里含着泪水",note:"2005·养老"},
+  {en:"with a sweet smile on its face",zh:"脸上带着甜蜜的微笑（拟物）",note:"2001·油灯"},
+  {en:"with excited expressions on their faces",zh:"脸上带着兴奋的表情（复数）",note:"群体场景"},
+  {en:"with confident smiles on their faces",zh:"脸上带着自信的微笑（复数）",note:"群体场景"}
+]);
+B("adjPair","形容词并列","as well as 结构，拉长句子",[
+  {en:"active as well as vigorous",zh:"活跃又有精力",note:"正面·人物"},
+  {en:"confident as well as optimistic",zh:"自信又乐观",note:"正面·2007/2012"},
+  {en:"amiable as well as friendly",zh:"友好亲切",note:"正面·人物"},
+  {en:"passionate as well as aggressive",zh:"充满激情又进取",note:"正面·奋斗"},
+  {en:"lovely as well as cute",zh:"可爱",note:"正面·拟人/静物"},
+  {en:"graceful as well as elegant",zh:"优雅",note:"正面·人物"},
+  {en:"cruel as well as vicious",zh:"残忍又恶毒",note:"负面"},
+  {en:"negative as well as passive",zh:"消极又被动",note:"负面"},
+  {en:"disgraceful as well as dishonorable",zh:"不光彩又可耻",note:"负面"},
+  {en:"unconfident as well as pessimistic",zh:"不自信又悲观",note:"负面"}
+]);
+B("caption","图注/标题","图画中的文字，可翻可不翻",[
+  {en:"Love is a lamp. The darker the place, the brighter it shines",zh:"爱是一盏灯，地方越暗它越亮",note:"2001·油灯"},
+  {en:"Cultural hot pot, nutritious and delicious",zh:"文化火锅，既美味又营养",note:"2010·文化火锅"},
+  {en:"A helper in need is a friend indeed",zh:"患难见真情",note:"通用谚语型图注"}
+]);
+B("sayA","观点A（转述）","对话型图画左侧人物",[
+  {en:"campus lectures are irrelevant to her major and a waste of time",zh:"校园讲座与她的专业无关，是浪费时间",note:"2022·听讲座"},
+  {en:"the lecture will be beneficial nonetheless",zh:"讲座仍然会有所收获",note:"2022·听讲座"},
+  {en:"early completion will bring her relief",zh:"早点完成会让她轻松",note:"2020·习惯"},
+  {en:"hard work is the only way to success",zh:"努力是成功的唯一途径",note:"通用观点"}
+]);
+B("sayB","观点B（转述）","对话型图画右侧人物",[
+  {en:"attending such lectures is highly beneficial nonetheless",zh:"参加这类讲座仍然大有裨益",note:"2022·听讲座"},
+  {en:"the lecture is not related to our major, which is a waste of time",zh:"讲座与专业无关，是浪费时间",note:"2022·听讲座"},
+  {en:"he will not start until the deadline",zh:"他要等到最后期限才开始",note:"2020·习惯"},
+  {en:"relaxation is as important as diligence",zh:"放松和勤奋同样重要",note:"通用观点"}
+]);
+B("speakerA","说话人A","直述用",[
+  {en:"The girl on the left",zh:"左边的女孩",num:"sg",note:"2022·听讲座"},
+  {en:"The young man in the left picture",zh:"左图年轻人",num:"sg",note:"双图对话"}
+]);
+B("speakerB","说话人B","直述用",[
+  {en:"the girl on the right",zh:"右边的女孩",num:"sg",note:"2022·听讲座"},
+  {en:"the young woman in the right picture",zh:"右图年轻女子",num:"sg",note:"双图对话"}
+]);
+B("quoteA","直接引语A","直述版，需带引号",[
+  {en:"The lecture is not related to our major, which is a waste of time.",zh:"这个讲座和我们的专业无关，是浪费时间。",note:"2022·听讲座"},
+  {en:"I will feel relieved when I finish my work.",zh:"完成任务我就轻松了。",note:"2020·习惯"},
+  {en:"I will not start until the deadline.",zh:"我要等到最后期限才开始。",note:"2020·习惯"}
+]);
+B("quoteB","直接引语B","直述版，需带引号",[
+  {en:"It will be beneficial nonetheless.",zh:"但仍然会有所收获。",note:"2022·听讲座"},
+  {en:"I will not start until the deadline.",zh:"我要等到最后期限才开始。",note:"2020·习惯"},
+  {en:"Working early is a better habit.",zh:"早点动手是更好的习惯。",note:"2020·习惯"}
+]);
+B("leftSub","左图主体","双图描述",[
+  {en:"the girl in the left picture",zh:"左图中的女孩",num:"sg",note:"2020·习惯"},
+  {en:"several urban residents",zh:"几位城市居民",num:"pl",note:"2024英一·公园"},
+  {en:"a young man",zh:"一个年轻人",num:"sg",note:"通用"}
+]);
+B("rightSub","右图主体","双图描述",[
+  {en:"the boy in the right picture",zh:"右图中的男孩",num:"sg",note:"2020·习惯"},
+  {en:"a group of children",zh:"一群孩子",num:"pl",note:"儿童户外"}
+]);
+B("leftV","左图动作","双图描述",[
+  {en:"is fully focused on her homework",zh:"全神贯注做作业",note:"2020·习惯"},
+  {en:"are exercising in a park",zh:"在公园锻炼",note:"2024英一·公园"},
+  {en:"is reading quietly",zh:"安静阅读",note:"2017·读书"}
+]);
+B("rightV","右图动作","双图描述",[
+  {en:"is lying on the sofa",zh:"躺在沙发上",note:"2020·习惯"},
+  {en:"are playing outdoors",zh:"在户外玩耍",note:"26英二·户外"},
+  {en:"is playing with his phone",zh:"在玩手机",note:"15英一·手机"}
+]);
+B("leftExtra","左图补充","可选细节",[
+  {en:"thinking that she will feel relieved when she finishes her work",zh:"心想完成任务就会轻松",note:"2020·习惯·转述"},
+  {en:"with a sweet smile on her face",zh:"脸上带着微笑",note:"通用细节"},
+  {en:"saying that the new park is fantastic",zh:"说新公园很棒",note:"2024英一·公园"}
+]);
+B("rightExtra","右图补充","可选细节",[
+  {en:"telling himself that he will not start until the deadline",zh:"告诉自己要到截止日才开始",note:"2020·习惯·转述"},
+  {en:"with a worried look on his face",zh:"脸上带着担忧",note:"通用负面"},
+  {en:"addicted to the screen",zh:"沉迷屏幕",note:"15英一·手机"}
+]);
+
+/* —— 数据/图表槽位素材 —— */
+B("mult","倍数","公式3：倍数关系",[
+  {en:"twice",zh:"两倍",note:"2倍"},
+  {en:"three times",zh:"三倍",note:"3倍"},
+  {en:"four times",zh:"四倍",note:"4倍及以上"},
+  {en:"almost three times",zh:"几乎是三倍",note:"23英二原句"},
+  {en:"nearly twice",zh:"几乎两倍",note:"25英一原句"},
+  {en:"about 1.8 times",zh:"约1.8倍",note:"19英二原句"}
+]);
+B("trendWord","趋势名词","总结/预测用",[
+  {en:"trend",zh:"趋势",note:"图表类"},
+  {en:"distribution",zh:"分布",note:"静态图"},
+  {en:"phenomenon",zh:"现象",note:"社会现象"},
+  {en:"tendency",zh:"倾向",note:"态度类"}
+]);
+B("doX","做某事","动词短语，按题目替换",[
+  {en:"choose a healthy lifestyle",zh:"选择健康的生活方式",note:"23英二·健康"},
+  {en:"engage in outdoor activities",zh:"参加户外活动",note:"26英二·户外"},
+  {en:"pursue further study",zh:"继续深造",note:"19英二·升学"},
+  {en:"take part in labor practice courses",zh:"参加劳动实践课",note:"24英二"},
+  {en:"use elderly-care robots",zh:"使用养老机器人",note:"26英一"},
+  {en:"do volunteer work",zh:"做志愿服务",note:"公益类"},
+  {en:"read paper books",zh:"读纸质书",note:"17英一·读书"},
+  {en:"learn online",zh:"在线学习",note:"科技+教育"}
+]);
+B("nounGoal","追求的目标（名词）","倒装句用",[
+  {en:"a more convenient and intelligent lifestyle",zh:"更便捷智能的生活方式",note:"25英一·家电"},
+  {en:"a healthy and balanced life",zh:"健康平衡的生活",note:"健康类"},
+  {en:"high-quality development",zh:"高质量发展",note:"社会/经济"},
+  {en:"cultural confidence",zh:"文化自信",note:"文化类"},
+  {en:"a green and low-carbon future",zh:"绿色低碳未来",note:"环保类"}
+]);
+B("cond","条件从句","方案二：when they...",[
+  {en:"they are able",zh:"他们有条件时",note:"通用"},
+  {en:"they have free time",zh:"他们有闲暇时",note:"休闲类"},
+  {en:"they face pressure",zh:"他们面对压力时",note:"心理/健康"},
+  {en:"they are young",zh:"他们年轻时",note:"教育/成长"}
+]);
+B("many","many 的替换","第二段过渡句升级",[
+  {en:"innumerable",zh:"无数的",note:"书面"},
+  {en:"countless",zh:"数不清的",note:"书面"},
+  {en:"abundant",zh:"充足的",note:"正式"},
+  {en:"adequate",zh:"足够的",note:"正式"},
+  {en:"sufficient",zh:"充分的",note:"正式"},
+  {en:"a host of",zh:"大量的",note:"搭配复数"},
+  {en:"a variety of",zh:"各种各样的",note:"搭配复数"},
+  {en:"plenty of",zh:"许多",note:"通用"}
+]);
+B("reasonWord","reason 的替换","第二段过渡句升级",[
+  {en:"factor",zh:"因素",note:"单数"},
+  {en:"cause",zh:"原因",note:"单数"},
+  {en:"factors",zh:"因素",num:"pl",note:"复数"},
+  {en:"causes",zh:"原因",num:"pl",note:"复数"}
+]);
+B("explain","explain 的替换","第二段过渡句升级",[
+  {en:"contribute to",zh:"促成",note:"后接名词"},
+  {en:"give rise to",zh:"引起",note:"后接名词"},
+  {en:"account for",zh:"解释",note:"后接名词"}
+]);
+B("ideaWord","idea 的替换","第二段过渡句升级",[
+  {en:"standpoint",zh:"立场",note:"正式"},
+  {en:"perspective",zh:"视角",note:"常用"},
+  {en:"viewpoint",zh:"观点",note:"常用"},
+  {en:"opinion",zh:"看法",note:"最通用"}
+]);
+
+/* —— 第二段：举例/好处/措施 —— */
+B("egSubject","例子主体","方案一：身边的例子",[
+  {en:"my roommate, Kevin",zh:"我的室友凯文",num:"sg",note:"15/17/24英二原句"},
+  {en:"my hometown",zh:"我的家乡",num:"sg",note:"24英一原句"},
+  {en:"my grandfather",zh:"我的爷爷",num:"sg",note:"25英二原句"},
+  {en:"a nursing home in my city",zh:"我所在城市的一家养老院",num:"sg",note:"26英一原句"},
+  {en:"my neighbor's son",zh:"我邻居的儿子",num:"sg",note:"26英二原句"},
+  {en:"a community near my school",zh:"学校附近的一个社区",num:"sg",note:"通用社区例子"}
+]);
+B("egAppos","同位语","对例子主体的补充",[
+  {en:"a livable city",zh:"一座宜居城市",note:"24英一原句"},
+  {en:"a beautiful city",zh:"一座美丽的城市",note:"24英一范文"},
+  {en:"a hard-working student",zh:"一个勤奋的学生",note:"校园类"},
+  {en:"a young man full of curiosity",zh:"一个充满好奇的年轻人",note:"成长类"}
+]);
+B("egVerb","例子谓语短语","常用短语表",[
+  {en:"places a high priority on infrastructure construction",zh:"高度重视基础设施建设",note:"24英一原句"},
+  {en:"is committed to infrastructure construction",zh:"致力于基础设施建设",note:"24英一范文"},
+  {en:"was addicted to the Internet",zh:"沉溺于互联网",note:"15英一原句"},
+  {en:"is passionate about reading",zh:"热爱读书",note:"17英一原句"},
+  {en:"is enthusiastic about attending labor practice classes",zh:"热衷于参加劳动实践课",note:"24英二原句"},
+  {en:"is passionate about watching television and reading newspapers",zh:"热爱看电视和读报",note:"25英二原句"},
+  {en:"is committed to improving elderly care by introducing robots",zh:"致力于用机器人改善养老",note:"26英一原句"},
+  {en:"is passionate about outdoor activities",zh:"热爱户外活动",note:"26英二原句"},
+  {en:"is interested in classic literature",zh:"对古典文学感兴趣",note:"兴趣热爱类"},
+  {en:"is addicted to online games",zh:"沉迷网络游戏",note:"负面倦怠类"},
+  {en:"is tired of endless examinations",zh:"厌倦无休止的考试",note:"负面情绪"},
+  {en:"is occupied with part-time work",zh:"忙于兼职",note:"致力投入类"},
+  {en:"is indifferent to others' opinions",zh:"对他人看法漠不关心",note:"态度类"},
+  {en:"dedicates himself to volunteer work",zh:"致力于志愿服务",note:"致力投入类"},
+  {en:"is engaged in scientific research",zh:"从事科研",note:"致力投入类"},
+  {en:"values teamwork highly",zh:"高度重视团队合作",note:"高度重视类"}
+]);
+B("egBenefit","带来的好处","which 从句，参考六大方面",[
+  {en:"enables residents to relax and unwind at nearby parks",zh:"让居民能在附近公园放松",note:"24英一原句"},
+  {en:"made him fail the final exam",zh:"让他期末不及格",note:"15英一·负面"},
+  {en:"brings him exceptional writing skills",zh:"给他带来出色的写作能力",note:"17英一原句"},
+  {en:"helps him cultivate practical skills and a spirit of cooperation",zh:"培养实践技能和合作精神",note:"24英二原句"},
+  {en:"keeps him well informed about current affairs",zh:"让他紧跟时事",note:"25英二原句"},
+  {en:"helps reduce the risk of falls and accidents among the elderly",zh:"降低老人跌倒风险",note:"26英一原句"},
+  {en:"helps him develop sharp observation skills and a strong body",zh:"培养观察力和强壮身体",note:"26英二原句"},
+  {en:"broadens their horizons and enriches their experience",zh:"开阔眼界、丰富经验",note:"通用"}
+]);
+B("egTrans","结果衔接词","方案一第4步",[
+  {en:"During this period",zh:"在此期间",note:"原句用法"},
+  {en:"Consequently",zh:"因此",note:"因果"},
+  {en:"As a result",zh:"结果",note:"因果"},
+  {en:"Gradually",zh:"逐渐地",note:"过程"}
+]);
+B("egResult","例子结果","方案一第4步",[
+  {en:"citizen satisfaction has improved",zh:"市民满意度提高了",note:"24英一原句"},
+  {en:"he regretted everything he had done",zh:"他后悔所做的一切",note:"15英一原句"},
+  {en:"all of us admire his capacity",zh:"我们都很羡慕他的能力",note:"17英一原句"},
+  {en:"he earns the respect of our entire class",zh:"他赢得了全班的尊敬",note:"24英二原句"},
+  {en:"both the residents and their families have felt much more at ease",zh:"老人和家人都安心许多",note:"26英一原句"},
+  {en:"his parents have noticed his growing curiosity about nature",zh:"父母注意到他对自然的好奇心",note:"26英二原句"}
+]);
+B("benefitPlatform","平台/机会","方案二：provide them with...",[
+  {en:"provide them with a broader platform",zh:"提供一个更广阔的平台",note:"原句"},
+  {en:"present them with a unique chance",zh:"提供一个独特的机会",note:"讲义替换"},
+  {en:"create more opportunities for them",zh:"创造更多机会",note:"讲义替换"}
+]);
+B("benefitClause","which 从句结果","方案二：which may...",[
+  {en:"which may put them in a beneficial position in the future",zh:"让他们未来处于有利位置",note:"个人发展"},
+  {en:"which is likely to secure a competitive edge in the future",zh:"有望获得竞争优势",note:"竞争类"},
+  {en:"which is indispensable in their daily lives",zh:"日常生活中不可或缺",note:"生活类"},
+  {en:"which may relieve the pressure of aging on families and society",zh:"减轻家庭和社会养老压力",note:"养老类"},
+  {en:"which is closely related to their healthy growth",zh:"与健康成长密切相关",note:"儿童类"}
+]);
+B("clauseOpener","从句开头","方案三：拉长句子",[
+  {en:"It is widely believed that",zh:"人们普遍相信",note:"主语从句"},
+  {en:"It is generally agreed that",zh:"人们普遍认同",note:"主语从句"},
+  {en:"It is universally known that",zh:"众所周知",note:"主语从句"},
+  {en:"There is no doubt that",zh:"毫无疑问",note:"宾语/同位语"},
+  {en:"Nobody can deny that",zh:"没有人能否认",note:"宾语从句"},
+  {en:"An increasing number of people are beginning to realize that",zh:"越来越多的人开始意识到",note:"宾语从句"},
+  {en:"We cannot ignore the fact that",zh:"我们不能忽视",note:"同位语从句"},
+  {en:"Definitely no one can deny the fact that",zh:"当然没人能否认",note:"同位语从句"},
+  {en:"There is a growing recognition that",zh:"人们越来越认识到",note:"同位语从句"}
+]);
+B("rolePhrase","起关键作用","方案三：主题词 + 谓语短语",[
+  {en:"plays a crucial role in",zh:"在……中起关键作用",note:"最通用"},
+  {en:"plays a vital role in",zh:"起至关重要的作用",note:"同义升级"},
+  {en:"lays the foundation of",zh:"奠定……的基础",note:"建设类"},
+  {en:"is a driving force behind",zh:"是……的推动力",note:"经济/科技"},
+  {en:"is the cornerstone of",zh:"是……的基石",note:"价值类"},
+  {en:"acts as a catalyst for",zh:"充当……的催化剂",note:"促进类"},
+  {en:"contributes significantly to",zh:"极大促进",note:"万能"},
+  {en:"has a beneficial influence on",zh:"对……有积极影响",note:"万能"},
+  {en:"is inextricably linked to",zh:"与……密不可分",note:"关联类"},
+  {en:"may undermine",zh:"可能损害",note:"负面"},
+  {en:"poses a tremendous threat to",zh:"对……构成巨大威胁",note:"负面"}
+]);
+B("notonlyV1","not only 动词1","方案四：倒装前半句",[
+  {en:"increase",zh:"增加",note:"数量类"},
+  {en:"improve",zh:"改善",note:"质量类"},
+  {en:"enhance",zh:"提高",note:"能力类"},
+  {en:"promote",zh:"促进",note:"社会类"},
+  {en:"boost",zh:"提升",note:"信心/经济"},
+  {en:"cultivate",zh:"培养",note:"能力/习惯"},
+  {en:"facilitate",zh:"促进",note:"交流类"},
+  {en:"indicate",zh:"表明",note:"数据类"},
+  {en:"demonstrate",zh:"表明",note:"论点类"}
+]);
+B("notonlyV2","not only 动词2","enable sb. to do",[
+  {en:"broaden their horizons",zh:"开阔眼界",note:"教育类"},
+  {en:"strengthen their minds",zh:"增强心智",note:"成长类"},
+  {en:"inherit and develop traditional culture",zh:"传承发展传统文化",note:"23英一"},
+  {en:"exercise more regularly",zh:"更规律地锻炼",note:"健康类"},
+  {en:"relieve the burden on their families",zh:"减轻家庭负担",note:"养老类"},
+  {en:"develop their curiosity and observational skills",zh:"培养好奇心与观察力",note:"26英二"},
+  {en:"adapt to the digital era",zh:"适应数字时代",note:"科技类"}
+]);
+B("virtualActor","虚拟语气主语","方案五：个人/社会/国家三层",[
+  {en:"we",zh:"我们",num:"pl",note:"个人层面"},
+  {en:"the government",zh:"政府",num:"sg",note:"国家/政策层面"},
+  {en:"children",zh:"孩子们",num:"pl",note:"儿童类"},
+  {en:"everyone",zh:"每个人",num:"sg",note:"社会层面"}
+]);
+B("virtualResult","虚拟语气结果","方案五后半句",[
+  {en:"we would never become a better version of ourselves",zh:"我们永远不会成为更好的自己",note:"个人层面"},
+  {en:"our society would be confronted with an unpromising and fruitless future",zh:"社会将没有未来",note:"社会层面"},
+  {en:"our nation would permanently lag behind in the new era of rapid development",zh:"国家将永远落后",note:"国家层面"},
+  {en:"our society would become less compassionate and inclusive",zh:"社会将缺少同情与包容",note:"养老/关怀"},
+  {en:"they would never discover their true potential and strength",zh:"永远发现不了真正的潜力",note:"个人成长"}
+]);
+B("compareB","对比对象 B","方案六：Compared with B",[
+  {en:"simple lessons",zh:"简单的课程",note:"18英一原句"},
+  {en:"employment",zh:"就业",note:"19英二原句"},
+  {en:"commercial projects",zh:"商业项目",note:"24英一原句"},
+  {en:"traditional human care",zh:"传统人工照护",note:"26英一原句"},
+  {en:"indoor activities",zh:"室内活动",note:"26英二原句"}
+]);
+B("compareA","对比对象 A","方案六：A 是主要内容",[
+  {en:"difficult courses",zh:"有难度的课程",num:"pl",note:"18英一"},
+  {en:"pursuing further education",zh:"继续深造",num:"sg",note:"19英二"},
+  {en:"building more parks",zh:"建设更多公园",num:"sg",note:"24英一"},
+  {en:"elderly-care robots",zh:"养老机器人",num:"pl",note:"26英一"},
+  {en:"outdoor activities",zh:"户外活动",num:"pl",note:"26英二"}
+]);
+B("compareSmall","小方面（能力）","方案六：so as to 前",[
+  {en:"develop students' critical thinking skills",zh:"培养学生的批判性思维",note:"18英一"},
+  {en:"expand their horizons",zh:"开阔视野",note:"通用"},
+  {en:"significantly improve the living environment for residents",zh:"显著改善居民居住环境",note:"24英一"},
+  {en:"provide 24-hour assistance",zh:"提供24小时协助",note:"26英一"},
+  {en:"better cultivate children's curiosity and observational skills",zh:"更好培养好奇心与观察力",note:"26英二"}
+]);
+B("simileObj","比喻对象","方案七：明喻/暗喻",[
+  {en:"a lighthouse",zh:"灯塔",note:"心态/态度类"},
+  {en:"a compass",zh:"指南针",note:"思维/认知类"},
+  {en:"the key that unlocks the door to success",zh:"开启成功之门的钥匙",note:"万能暗喻"},
+  {en:"the engine that propels personal growth and social progress",zh:"推动成长与进步的引擎",note:"意志/行动类"},
+  {en:"the bridge between goals and accomplishments",zh:"连接目标与成就的桥梁",note:"合作/沟通类"},
+  {en:"the foundation upon which we build a sustainable future",zh:"可持续未来的基石",note:"品德/基础类"}
+]);
+B("simileTail","比喻后半句","方案七：补充说明",[
+  {en:"providing guidance in difficult times",zh:"在困难时提供指引",note:"lighthouse"},
+  {en:"helping us navigate through life's challenges",zh:"帮我们应对生活挑战",note:"compass"},
+  {en:"connecting people and bringing them closer",zh:"连接人们、拉近距离",note:"bridge"},
+  {en:"supporting long-term development",zh:"支撑长期发展",note:"foundation/engine"}
+]);
+B("govAction","政府作为","措施角度1",[
+  {en:"make strict laws to protect the environment",zh:"制定严格法律保护环境",note:"11英一原句"},
+  {en:"formulate industry-friendly policies to promote the development of the home appliance industry",zh:"制定家电行业友好政策",note:"25英一原句"},
+  {en:"allocate more funds to build more elderly activity centers",zh:"拨款建设老年活动中心",note:"25英二原句"},
+  {en:"formulate strict regulations to ensure the safety of elderly-care robots",zh:"制定严格法规保障机器人安全",note:"26英一原句"},
+  {en:"improve public facilities to provide a safer environment for children's outdoor activities",zh:"完善公共设施",note:"26英二原句"},
+  {en:"increase investment continuously",zh:"持续增加投入",note:"24英一原句"}
+]);
+B("awareness","意识（名词）","公民意识角度",[
+  {en:"environmental awareness",zh:"环保意识",note:"11英一"},
+  {en:"public consciousness of environmental protection",zh:"公众环保意识",note:"11英一"},
+  {en:"awareness of elderly care",zh:"养老意识",note:"养老类"},
+  {en:"awareness of healthy living",zh:"健康生活意识",note:"健康类"},
+  {en:"awareness of privacy protection",zh:"隐私保护意识",note:"科技类"}
+]);
+B("reservation","保留意见","部分同意时补充",[
+  {en:"the author may have overlooked the possible risks",zh:"作者可能忽视了潜在风险",note:"部分同意"},
+  {en:"this view needs to be adjusted to specific situations",zh:"这一观点需结合具体情况",note:"部分同意"},
+  {en:"overconfidence can also be harmful in some cases",zh:"过度自信有时也有害",note:"样题1"}
+]);
+B("authorView","作者观点","文字作文：改写观点",[
+  {en:"we are perceived as less biased and willing to tell the truth when we show uncertainty in a transparent way",zh:"坦诚表达不确定性时，我们显得更少偏见、更愿说真话",note:"样题1原句"},
+  {en:"we cannot blame the screens because children have lost the right to make sense of the world",zh:"不能怪屏幕，因为孩子失去了理解世界的机会",note:"样题2"},
+  {en:"communicating uncertainty and admitting mistakes can even be beneficial to trustworthiness",zh:"承认不确定与错误反而有助于可信度",note:"样题1"}
+]);
+B("optionPair","二选一","文字作文：whether to A or B",[
+  {en:"work in a big city",zh:"在大城市工作",note:"就业类"},
+  {en:"return to one's hometown",zh:"回家乡",note:"就业类"},
+  {en:"study online",zh:"线上学习",note:"教育类"},
+  {en:"attend classes in person",zh:"线下上课",note:"教育类"}
+]);
+B("p3modeWord","图表类型词","第三段趋势预测",[
+  {en:"the number of people who choose to pursue further study",zh:"选择深造的人数",note:"19英二"},
+  {en:"the number of families who own smart home appliances",zh:"拥有智能家电的家庭数",note:"25英一"},
+  {en:"the proportion of residents with adequate health literacy",zh:"具备健康素养的居民比例",note:"23英二"}
+]);
+
+/* ============ 第一段：图表作文 ============ */
+B("trans","过渡句","社会现象句的引导语",[
+  {en:"It is apparent from the statistics that",zh:"从统计数据可以明显看出",note:"最通用，23/25/26英二原句"},
+  {en:"These data lead us to the conclusion that",zh:"这些数据使我们得出这样的结论",note:"结论感强"},
+  {en:"Despite its apparent simplicity, the chart highlights the core information that",zh:"尽管看似简单，图表却突出了核心信息",note:"26英二原句"},
+  {en:"The chart clearly communicates its intended meaning:",zh:"图表清楚地传达了它的意图：",note:"冒号后接完整句"},
+  {en:"The chart appears to convey a message to the younger generation, reminding them that",zh:"图表似乎在提醒年轻一代",note:"面向年轻人"},
+  {en:"The purpose of the chart is to remind us that",zh:"图表的目的是提醒我们",note:"升级前的原句，保底用"}
+]);
+B("phenom","社会现象","五种方案，按题目选",[
+  {en:"{theme} has been developing rapidly in recent years.",zh:"{theme}近年来迅速发展。",note:"方案1·实体主题词，搭配 develop"},
+  {en:"Recent years have witnessed the rapid development of {theme}.",zh:"近年来见证了{theme}的迅速发展。",note:"方案1·时间作主语"},
+  {en:"{theme} has been improving rapidly in recent years.",zh:"{theme}近年来迅速提高。",note:"方案1·抽象主题词（水平/率/数量）"},
+  {en:"the majority of {actor} would choose to {doX} when {cond}.",zh:"大多数{actor}在{cond}时会选择{doX}。",note:"方案2·多数人选择"},
+  {en:"an increasing number of {actor} tend to {doX} when {cond}.",zh:"越来越多{actor}倾向于{doX}。",note:"方案2·人数递增"},
+  {en:"{theme} is becoming common among {actor} nowadays.",zh:"如今{theme}在{actor}中正变得普遍。",note:"方案3·普及型"},
+  {en:"{theme} has drawn growing attention from the public.",zh:"{theme}日益受到公众关注。",note:"方案4·态度型（26英一）"},
+  {en:"people attach importance to {theme}.",zh:"人们重视{theme}。",note:"方案4·重视型"},
+  {en:"this is a common phenomenon in modern society.",zh:"这是当今社会很常见的现象。",note:"方案5·万能，无需改"},
+  {en:"this phenomenon reflects a broader social trend.",zh:"这一现象反映了更广泛的社会趋势。",note:"方案5·万能拔高"}
+]);
+B("item1","图例1","图表中的第一条/第一项",[
+  {en:"the proportion entering the workforce",zh:"进入职场的比例",note:"19英二"},
+  {en:"the proportion pursuing further study",zh:"继续深造的比例",note:"19英二"},
+  {en:"the health literacy level",zh:"健康素养水平",note:"23英二"},
+  {en:"acquiring relevant knowledge",zh:"获得相关知识",note:"24英二"},
+  {en:"watching TV",zh:"看电视",note:"25英二"},
+  {en:"safety",zh:"安全",note:"26英一"},
+  {en:"satisfying curiosity",zh:"满足好奇心",note:"26英二"},
+  {en:"the ownership of air conditioners",zh:"空调拥有量",note:"25英一"}
+]);
+B("item2","图例2","图表中的第二条/第二项",[
+  {en:"the proportion pursuing further study",zh:"继续深造的比例",note:"19英二"},
+  {en:"the proportion starting a business",zh:"创业的比例",note:"19英二"},
+  {en:"improving practical skills",zh:"提高动手能力",note:"24英二"},
+  {en:"walking",zh:"散步",note:"25英二"},
+  {en:"price",zh:"价格",note:"26英一"},
+  {en:"developing observational skills",zh:"培养观察力",note:"26英二"},
+  {en:"the number of refrigerators",zh:"冰箱数量",note:"25英一"}
+]);
+B("item3","图例3","第三项",[
+  {en:"the proportion starting a business",zh:"创业的比例",note:"19英二"},
+  {en:"feeling comfortable",zh:"感觉心情舒畅",note:"24英二"},
+  {en:"gardening",zh:"养花",note:"25英二"},
+  {en:"rejecting these robots",zh:"不接受机器人",note:"26英一"},
+  {en:"strengthening physical fitness",zh:"强身健体",note:"26英二"}
+]);
+B("item4","图例4","第四项",[
+  {en:"enhancing cooperation capacity",zh:"增强合作能力",note:"24英二"},
+  {en:"reading",zh:"阅读",note:"25英二"},
+  {en:"fully accepting these robots",zh:"完全接受机器人",note:"26英一"},
+  {en:"enhancing parent-child interaction",zh:"增强亲子互动",note:"26英二"}
+]);
+B("item5","图例5","第五项（静态图五项时用）",[
+  {en:"playing chess",zh:"下棋",note:"25英二"},
+  {en:"partially accepting these robots",zh:"部分接受机器人",note:"26英一"}
+]);
+B("left","左图主题","双图表：左边画的是什么",[
+  {en:"the changes in express delivery volume from 2018 to 2020",zh:"2018至2020年快递业务量的变化",note:"22英二·动静结合"},
+  {en:"consumers' attitudes towards elderly-care robots",zh:"消费者对养老机器人的态度",note:"26英一·静静"},
+  {en:"the distribution of packaging disposal methods",zh:"包装处理方式的分布",note:"22英二"},
+  {en:"the trend of online shopping among urban residents",zh:"城市居民网购趋势",note:"通用动图"},
+  {en:"the proportions of students' gains",zh:"学生收获的占比",note:"24英二"}
+]);
+B("right","右图主题","双图表：右边画的是什么",[
+  {en:"the distribution of packaging disposal methods",zh:"包装处理方式的分布",note:"22英二"},
+  {en:"their major concerns about such robots",zh:"他们对这类机器人的主要担忧",note:"26英一"},
+  {en:"the changes in express delivery volume",zh:"快递业务量的变化",note:"22英二"},
+  {en:"the main reasons for their choices",zh:"他们选择的主要原因",note:"通用静图"},
+  {en:"the comparison between urban and rural areas",zh:"城乡对比",note:"通用"}
+]);
+B("chartSummary","图表总体描述","一图一表/图画+图表用",[
+  {en:"the number of parks in a certain city increased remarkably from 406 in 2020 to 670 in 2022",zh:"某市公园数量从2020年的406个显著增加到2022年的670个",note:"24英一原句"},
+  {en:"the proportion of residents with adequate health literacy rose steadily",zh:"具备健康素养的居民比例稳步上升",note:"23英二"},
+  {en:"the ownership of household appliances kept climbing",zh:"家用电器拥有量持续攀升",note:"25英一"}
+]);
+
+const V = function(n,en,zh,note){ return {n:n,en:en,zh:zh,note:note||""}; };
+const SEN = function(key,label,vs,optional){ return {key:key,label:label,vs:vs,optional:!!optional}; };
+
+const CHART_PHENOM = function(){
+  return [SEN("p1c","第3句 · 社会现象",[
+    V("过渡句 + 社会现象方案","{trans} {phenom}","{trans} {phenom}","先点过渡句再点方案；两句都可换，任意组合。")
+  ],true)];
+};
+
+const TYPES = [
+{
+  id:"chart_dyn1", label:"动态图·单方向", group:"图表", badge:"1个变量，持续升/降",
+  p1:[
+    SEN("p1a","第1句 · 总体描述",[
+      V("待选1 · Which 从句","The chart above illustrates the changes in {theme} from {y1} to {y2}, during which it rose steadily.","上方图表展示了{y1}至{y2}年间{theme}的变化，其在这一时期稳步上升。","主题词需为实体（行业/城市/国家/品牌）；若主题词是数据（水平/率/数量），改用待选4。"),
+      V("待选2 · 趋势作宾语","{theme} saw a steady rise from {y1} to {y2}, as illustrated in the chart.","如该图表所示，{theme}在{y1}至{y2}年间稳步上升。","最紧凑的一句，字数紧张时首选。"),
+      V("待选3 · 状语式","According to the data given in the chart, the number of {theme} climbed steadily from {y1} to {y2}.","根据图中数据，{theme}的数量在{y1}至{y2}年间稳步攀升。","the number of 可视情况换成 the level/rate/proportion of。"),
+      V("待选4 · 时间作主语","The period from {y1} to {y2} saw a steady rise in {theme}.","{y1}至{y2}期间，{theme}稳步上升。","主题词是水平/率/比例/数量时的首选。")
+    ]),
+    SEN("p1b","第2句 · 细节描述",[
+      V("公式1 · 两段式变化","{item1} increased {adv1} from {n1} in {y1} to {n2} in {y2}. In the next {span} years, it climbed {adv2}, from {n2} to {n3}.","{item1}从{y1}年的{n1}{adv1}增长到{y2}年的{n2}。在接下来的{span}年里，它{adv2}攀升，从{n2}升至{n3}。","23英二原句结构：两个阶段、两个副词，避免单调。"),
+      V("公式2 · 首尾对比","{item1} was {n1} in {y1}, compared with {n2} in {y2}, showing an increase of {delta}.","{item1}在{y1}年为{n1}，而{y2}年为{n2}，增长了{delta}。","增量记得带单位（percentage points / units）。"),
+      V("公式3 · 倍数","{item1} in {y2} was {mult} that in {y1}.","{y2}年的{item1}是{y1}年的{mult}。","2倍 twice，3倍 three times，以上用 four times。"),
+      V("组合矩阵 · 增长（快/慢）","{item1} increased {adv1} from {n1} in {y1} to {n2} in {y2}.","{item1}从{y1}年的{n1}{adv1}增长到{y2}年的{n2}。","四方向×快慢两档：增。"),
+      V("组合矩阵 · 减少（快/慢）","{item1} decreased {adv1} from {n1} in {y1} to {n2} in {y2}.","{item1}从{y1}年的{n1}{adv1}降至{y2}年的{n2}。","四方向×快慢两档：减。"),
+      V("组合矩阵 · 持平","The figure remained largely stable at {n1} between {y1} and {y2}.","该数值在{y1}至{y2}年间基本持平于{n1}。","also: stayed relatively flat at / stood at roughly"),
+      V("组合矩阵 · 波动","Overall, the figure fluctuated, climbing to a peak of {n2} before falling to {n1}.","总体来看，该数值起伏波动，升至{n2}的峰值后回落至{n1}。","波动型：vary / rise and fall / fluctuate"),
+      V("搭配 · 峰值","{item1} peaked at {n2} in {y2}.","{item1}在{y2}年达到{n2}的峰值。","peak at / reach a peak of / hit a record high"),
+      V("搭配 · 谷值","{item1} bottomed out at {n1} in {y1}.","{item1}在{y1}年跌至{n1}的低谷。","bottom out at / hit a trough / fall to a low"),
+      V("搭配 · 排序","{item1} ranks first, followed closely behind by {item2}.","{item1}居首位，{item2}紧随其后。","rank first / top the list / follow closely behind"),
+      V("搭配 · 约数","The figure stood at just over {n1}.","该数值略高于{n1}。","approximately / roughly / nearly / just over / just under")
+    ])
+  ].concat(CHART_PHENOM())
+},
+{
+  id:"chart_dynN", label:"动态图·多方向", group:"图表", badge:"多个变量走向不一",
+  p1:[
+    SEN("p1a","第1句 · 总体描述",[
+      V("待选1 · Among which 从句","The chart above illustrates the changes in {theme} from {y1} to {y2}, among which the rise in {item1} was the most striking.","上方图表展示了{y1}至{y2}年间{theme}的变化，其中{item1}的上升最为显著。","19英二原句结构。"),
+      V("待选2 · Divergent + with","{theme} experienced divergent trends from {y1} to {y2}, with {item1} rising most sharply.","{theme}在{y1}至{y2}年间经历了分化性的趋势，其中{item1}上升最为剧烈。","多变量走向不一。"),
+      V("待选3 · 状语 + 对比","As reflected in the chart, {theme} moved in opposite directions from {y1} to {y2}, {item1} rising while {item2} falling.","如图中数据所示，{theme}在{y1}至{y2}年间朝不同方向变化，{item1}上升而{item2}下降。","moved in opposite directions 可换 diverged。"),
+      V("待选4 · 双分词前置","{theme} moved in opposite directions from {y1} to {y2}, {item1} falling while {item2} rising.","{theme}在{y1}至{y2}年间朝不同方向变化，{item1}下降而{item2}上升。","19英二例句语序。")
+    ]),
+    SEN("p1b","第2句 · 细节描述",[
+      V("公式1 · 两变量相反","{item1} {v1} {adv1} from {n1} to {n2}. However, {item2} {v2} {adv2} from {n3} to {n4}.","{item1}从{n1}{adv1}{v1}至{n2}。然而，{item2}从{n3}{adv2}{v2}至{n4}。","19英二原句：decreased remarkably / climbed significantly。"),
+      V("公式1+ · 三变量三动词","The percentage of {item1} decreased remarkably from {n1} to {n2}. Meanwhile, the percentage of {item2} climbed significantly from {n3} to {n4}. Meanwhile, the percentage of {item3} rose slightly, from {n5} to {n6}.","选择{item1}的比例从{n1}显著下降到{n2}。与此同时，{item2}的比例从{n3}显著攀升至{n4}。与此同时，{item3}的比例从{n5}小幅升至{n6}。","三个数据用三种动词和副词。"),
+      V("公式2 · 首尾对比","{item1} was {n1} in {y1}, compared with {n2} in {y2}, showing an increase of {delta}.","{item1}在{y1}年为{n1}，而{y2}年为{n2}，增长了{delta}。","只讲一条线时用。"),
+      V("公式3 · 倍数","{item1} in {y2} was {mult} that in {y1}.","{y2}年的{item1}是{y1}年的{mult}。","同一变量跨年份的倍数。"),
+      V("公式3+ · 跨变量倍数","{item1} was about {mult} that of {item2} in {y2}.","{y2}年{item1}约为{item2}的{mult}。","改一改就用于同年不同变量。")
+    ])
+  ].concat(CHART_PHENOM())
+},
+{
+  id:"chart_stat", label:"静态图", group:"图表", badge:"占比 / 格局，无趋势",
+  p1:[
+    SEN("p1a","第1句 · 总体描述",[
+      V("待选1 · Distribution + with","The bar chart above presents the distribution of {theme} in {y1}, with {item1} accounting for the largest share.","上方柱状图呈现了{y1}年{theme}的分布，其中{item1}占比最高。","24英二原句；静态图无年份趋势。"),
+      V("待选2 · Dominance + with","The pie chart above highlights the dominance of {item1} in {theme}, with it overshadowing all other components.","上方图表突出了{item1}在{theme}中的主导地位，其远超其他各项。","仅当第一项断崖式领先时使用。"),
+      V("待选3 · Disparity + with","The chart above reveals a striking disparity in {theme}, with the proportions ranging from {low} to {high}.","上方图表揭示了{theme}中显著的差距，各项占比从{low}到{high}不等。","记住 3D：distribution / dominance / disparity。"),
+      V("待选4 · 无年份版","The chart above presents the distribution of {theme}, with {item1} accounting for the largest share.","上方图表呈现了{theme}的分布，其中{item1}占比最高。","题目没给年份时删掉 in 年份。")
+    ]),
+    SEN("p1b","第2句 · 细节描述",[
+      V("公式1 · 四项占比 + 排名","The percentages of {item1}, {item2}, {item3} and {item4} account for {n1}, {n2}, {n3} and {n4} respectively. Notably, {item1} tops the list, at {n1}, followed by {item2} at {n2}.","{item1}、{item2}、{item3}和{item4}的比例分别为{n1}、{n2}、{n3}和{n4}。值得注意的是，{item1}居首位，占{n1}；其次是{item2}，占{n2}。","主语是 percentages，谓语用复数 account。"),
+      V("公式1+ · 五项参与率","The participation rates in {item1}, {item2}, {item3}, {item4} and {item5} account for {n1}, {n2}, {n3}, {n4} and {n5} respectively.","{item1}、{item2}、{item3}、{item4}和{item5}的参与率分别为{n1}、{n2}、{n3}、{n4}和{n5}。","25英二原句（老人休闲）。"),
+      V("只写排名（省篇幅）","Notably, {item1} tops the list, at {n1}, followed by {item2} at {n2}.","值得注意的是，{item1}居首位，占{n1}；其次是{item2}，占{n2}。","与总体描述重复时只保留后半句。"),
+      V("公式2 · 静态倍数","{item1} in {y1} was {mult} that of {item2}.","{y1}年{item1}是{item2}的{mult}。","静态图倍数=同一年不同变量。"),
+      V("例外 · 2012 满意度","Half of the employees under 40 and half of those over 50 were uncertain about their satisfaction, while 64% of those aged 41-50 were dissatisfied.","40岁以下员工中有一半、50岁以上员工中有一半不清楚自己是否满意；而41至50岁员工中，64%表示不满意。","12年表格无趋势、成分太多，只能用 there be/对比。")
+    ])
+  ].concat(CHART_PHENOM())
+},
+{
+  id:"chart_dual", label:"双图表", group:"图表", badge:"静静 / 动静 / 动动",
+  p1:[
+    SEN("p1a","第1句 · 总体描述",[
+      V("待选1 · While 并列","The chart on the left illustrates {left}, while the chart on the right presents {right}.","左侧的图展示了{left}，而右侧的图呈现了{right}。","26英一原句结构；静静/动静/动动都通用。"),
+      V("待选2 · As for 另起一句","The pie chart above presents {left}. As for the chart on the right, it shows {right}.","上面的饼图呈现了{left}。至于右侧的图，它展示了{right}。","左图信息多时用，断句更清楚。"),
+      V("待选3 · 总分结构","The two charts present {theme}: the pie chart shows {left}, while the bar chart on the right lists {right}.","两幅图呈现了{theme}：饼图显示了{left}，而右侧的柱状图列出了{right}。","26英一原句；能抽象就抽象。")
+    ]),
+    SEN("p1b","第2句 · 细节描述",[
+      V("静态+静态","To be specific, the proportions of {item1}, {item2} and {item3} account for {n1}, {n2} and {n3} respectively. Notably, {item4} tops the list of {right}, at {n4}, followed by {item5} at {n5}.","具体而言，{item1}、{item2}和{item3}的比例分别为{n1}、{n2}和{n3}。值得注意的是，{item4}在{right}中居首位，占{n4}；其次是{item5}，占{n5}。","26英一原句（左饼图+右柱图）。"),
+      V("动态+静态","{item1} increased {adv1} from {n1} in {y1} to {n2} in {y2}. Meanwhile, the share of {item2} rose from {n3} to {n4}.","{item1}从{y1}年的{n1}{adv1}增至{y2}年的{n2}。与此同时，{item2}的份额从{n3}升至{n4}。","22英二·动静结合。"),
+      V("动态+动态","The number of {item1} rose {adv1} from {n1} to {n2} during {y1}-{y2}. Similarly, {item2} climbed from {n3} to {n4}.","{item1}的数量在{y1}至{y2}年间{adv1}从{n1}升至{n2}。同样，{item2}从{n3}攀升至{n4}。","动动结合；相似用 Similarly，对比用 However。")
+    ])
+  ].concat(CHART_PHENOM())
+},
+{
+  id:"chart_any", label:"万能图表", group:"图表", badge:"看不懂 / 时间紧 时保底",
+  p1:[
+    SEN("p1a","第1句 · 总体描述",[
+      V("待选1 · 有变化","Some remarkable changes in {theme} have taken place in the past few years.","在过去的几年中，{theme}发生了一些显著的变化。","万能场景·有变化。"),
+      V("待选2 · 变化名词","The chart above shows the variation in {theme} from {y1} to {y2}.","上述图表展示了{y1}至{y2}年间{theme}的变化。","万能场景·有变化。"),
+      V("待选3 · 占比变化","The proportions of {theme} had visible changes during the period from {y1} to {y2}.","{theme}的占比在{y1}至{y2}年间发生明显变化。","万能场景·有变化。"),
+      V("待选4 · 一眼看分布","The chart shows the distribution of {theme} at a glance, revealing a striking disparity among the options.","该图一目了然地展示了{theme}的分布，揭示了各项之间的巨大差异。","万能场景·有占比。"),
+      V("待选5 · 整体情况","The chart above presents {theme}, offering a clear picture of the overall situation.","上方图表呈现了{theme}，清晰地展示了整体情况。","万能场景·有占比。"),
+      V("待选6 · 信息型","The chart above provides information about {theme} from {y1} to {y2}.","上述图表提供了{y1}至{y2}年间关于{theme}的信息。","25英一表格原句；完全看不懂时用。")
+    ]),
+    SEN("p1b","第2句 · 细节描述",[
+      V("公式2 · 首尾对比","{item1} was {n1} in {y1}, compared with {n2} in {y2}, showing an increase of {delta}.","{item1}在{y1}年为{n1}，而{y2}年为{n2}，增长了{delta}。","任意动态图通用。"),
+      V("公式1 · 四项占比","The percentages of {item1}, {item2}, {item3} and {item4} account for {n1}, {n2}, {n3} and {n4} respectively.","{item1}、{item2}、{item3}和{item4}的比例分别为{n1}、{n2}、{n3}和{n4}。","任意静态图通用。"),
+      V("只写一句变化","{item1} increased {adv1} from {n1} to {n2} during the period from {y1} to {y2}.","{item1}在{y1}至{y2}年间{adv1}从{n1}增至{n2}。","时间紧时只写一条最明显的数据。")
+    ])
+  ].concat(CHART_PHENOM())
+}
+];
+
+/* ============ 第一段：图画作文 / 文字作文 ============ */
+B("benefitGoal","好处（to do）","方案二：platform to do sth.",[
+  {en:"develop themselves",zh:"发展自己",note:"08英一·合作"},
+  {en:"improve the comfort and competitiveness of cities",zh:"提升城市舒适度与竞争力",note:"24英一"},
+  {en:"follow current affairs",zh:"紧跟时事",note:"25英二"},
+  {en:"receive timely care",zh:"及时获得照护",note:"26英一"},
+  {en:"satisfy their curiosity and interact with nature",zh:"满足好奇心、亲近自然",note:"26英二"},
+  {en:"broaden their horizons",zh:"开阔眼界",note:"通用"}
+]);
+B("beliefVerb","认为（动词）","方案二替换",[
+  {en:"believe",zh:"认为",note:"最通用"},
+  {en:"maintain",zh:"坚持认为",note:"正式"},
+  {en:"hold the view",zh:"持有观点",note:"正式"},
+  {en:"are convinced",zh:"深信",note:"语气强"}
+]);
+
+TYPES.push(
+{
+  id:"pic_single", label:"图画·单图", group:"图画", badge:"非对话型：主体+环境+动作+细节",
+  p1:[
+    SEN("p1a","第1-2句 · 图画描述",[
+      V("公式 · 环境+动作+主体","As is symbolically depicted in the picture above, {subject} {basicV} {env}, {mainV}, {detail}.","如上图所示，{subject}在{env}{basicV}，{mainV}，{detail}。","讲义原句为倒装 on the playground runs a young man；此处用正常语序，主谓一致更稳。"),
+      V("升级 · 加 as well as 形容词","As is symbolically depicted in the picture above, {subject}, {adjPair}, {basicV} {env}, {mainV}, {detail}.","如上图所示，{subject}{adjPair}，在{env}{basicV}，{mainV}，{detail}。","形容词1 + as well as + 形容词2，用于拉长句子。"),
+      V("待选 · thought-provoking scene","The cartoon above presents us with a thought-provoking scene: {subject} {basicV} {env}, {mainV}, {detail}.","上面的漫画向我们呈现了一个发人深省的场景：{subject}在{env}{basicV}，{mainV}，{detail}。","单图通用。"),
+      V("待选 · Portrayed distinctively","Portrayed distinctively in the drawing above is a common scene: {subject} {basicV} {env}, {mainV}, {detail}.","画中清晰地描绘出一个常见的场景：{subject}在{env}{basicV}，{mainV}，{detail}。","强调“画面清晰”。"),
+      V("待选 · What is clearly conveyed","What is clearly conveyed in the picture is that {subject} {basicV} {env}, {mainV}, {detail}.","图片明确传达出：{subject}在{env}{basicV}，{mainV}，{detail}。","从句结构，正式。"),
+      V("待选 · familiar and thought-provoking","Depicted in the picture above is a scene that strikes us as both familiar and thought-provoking: {subject} {basicV} {env}, {mainV}, {detail}.","图中描绘的是一个既熟悉又发人深省的场景：{subject}在{env}{basicV}，{mainV}，{detail}。","适合社会现象类图画。"),
+      V("升级前 · As is shown","As is shown in the picture above, {subject} {basicV} {env}, {mainV}.","如上图所示，{subject}在{env}{basicV}，{mainV}。","脑海中的第一句，保底用；升级时换 shown→depicted/portrayed。")
+    ]),
+    SEN("p1b","图注（可选）",[
+      V("图注 · Below the drawing","Below the drawing, there is a caption which reads: “{caption}.”","图下方有一句说明文字：“{caption}。”","首段太短或标题不是主题词时补。"),
+      V("图注 · The caption beneath","The caption beneath the drawing reads: “{caption}.”","图下方的文字写道：“{caption}。”","同上，句式更短。"),
+      V("图注 · A profound statement","A profound statement is placed below the picture: “{caption}.”","图片下方写着一句深刻的话：“{caption}。”","同上。"),
+      {n:"不写图注", en:"", zh:"", note:"这张图不需要图注，直接留白。", skip:true}
+    ],true),
+    SEN("p1c","第3句 · 主题阐述",[
+      V("方案1 · 如此重要以至于","The primary intention of the drawing is to remind {actor} that {theme} is so indispensable that the subject deserves the highest level of attention and consideration.","这幅图的首要意图是提醒{actor}：{theme}如此不可或缺，值得最高程度的关注与考虑。","23英一·传统文化原句。"),
+      V("方案2 · 给予高度重视","Simple as the drawing is, it conveys a truth that the utmost importance ought to be attached to {theme} by {actor}.","图画虽然简单，却蕴含一个真理：{actor}应当高度重视{theme}。","11英一·环保原句。"),
+      V("方案2+ · 放在首位","Simple as the drawing is, it conveys a truth that {actor} should give the highest priority to {theme}.","图画虽然简单，却蕴含一个真理：{actor}应把{theme}放在首位。","同方案2换写法。"),
+      V("方案3 · 取得重大成就","Without a doubt, the drawing emphasizes the truth that great accomplishments have been made in {theme} by {actor}.","毫无疑问，图画强调了一个事实：{actor}在{theme}方面取得了巨大成就。","24英一·公园建设原句。"),
+      V("方案4 · 双重否定","The drawing conveys a clear message: at no time should {actor} underestimate the significance of {theme}.","这幅图传达了一个明确信息：{actor}任何时候都不应低估{theme}的重要性。","05·孝顺原句。"),
+      V("方案5 · 强调句型","The drawing, undoubtedly, highlights the core idea that it is {theme} that deserves greater attention.","毫无疑问，图画强调的核心观点是：{theme}必须得到更多重视。","创新等热点话题。"),
+      V("待选 · Simple as it is","Simple as the drawing is, it conveys a truth that {theme} is of vital importance to {aspect}.","图画虽简单，却传达了一个真理：{theme}对{aspect}至关重要。","保底句，主题词+某方面即可。")
+    ])
+  ]
+},
+{
+  id:"pic_dialog", label:"图画·对话", group:"图画", badge:"一句描述 + 两人对话（推荐转述）",
+  p1:[
+    SEN("p1a","第1-2句 · 图画+对话",[
+      V("公式 · 转述","As is symbolically depicted in the picture above, {subject} {basicV} {env}, {mainV}. One argues that {sayA}. By contrast, the other maintains that {sayB}.","如上图所示，{subject}在{env}{basicV}，{mainV}。一人认为{sayA}；相比之下，另一人坚持认为{sayB}。","推荐转述，避免直译显得低级。"),
+      V("公式 · 直述","As is symbolically depicted in the picture above, {subject} {basicV} {env}, {mainV}. {speakerA} says, “{quoteA}” By contrast, {speakerB} answers, “{quoteB}”","如上图所示，{subject}在{env}{basicV}，{mainV}。{speakerA}说：“{quoteA}”相比之下，{speakerB}回答：“{quoteB}”","直述要加引号，注意人物左右位置。"),
+      V("升级 · 补环境与基本动作","As is symbolically depicted in the picture above, {subject}, {env}, {basicV} {mainV}. {speakerA} argues that {sayA}. By contrast, {speakerB} maintains that {sayB}.","如上图所示，{subject}在{env}{basicV}，{mainV}。{speakerA}认为{sayA}；相比之下，{speakerB}坚持认为{sayB}。","句子偏短时补环境、补动作。")
+    ]),
+    SEN("p1b","图注（可选）",[
+      V("图注 · The caption beneath","The caption beneath the drawing reads: “{caption}.”","图下方的文字写道：“{caption}。”","对话型图画常配有标题。"),
+      V("图注 · Below the drawing","Below the drawing, there is a caption which reads: “{caption}.”","图下方有一句说明文字：“{caption}。”","同上。"),
+      {n:"不写图注", en:"", zh:"", note:"这张图不需要图注，直接留白。", skip:true}
+    ],true),
+    SEN("p1c","第3句 · 主题阐述",[
+      V("方案2 · 给予高度重视","Simple as the drawing is, it conveys a truth that the utmost importance ought to be attached to {theme} by {actor}.","图画虽然简单，却蕴含一个真理：{actor}应当高度重视{theme}。","22英一·听讲座可用。"),
+      V("方案1 · 如此重要以至于","The primary intention of the drawing is to remind {actor} that {theme} is so indispensable that the subject deserves the highest level of attention and consideration.","这幅图的首要意图是提醒{actor}：{theme}如此不可或缺，值得最高程度的关注与考虑。","通用。"),
+      V("方案5 · 强调句型","The drawing, undoubtedly, highlights the core idea that it is {theme} that deserves greater attention.","毫无疑问，图画强调的核心观点是：{theme}必须得到更多重视。","通用。")
+    ])
+  ]
+},
+{
+  id:"pic_double", label:"图画·双图", group:"图画", badge:"左图 + 对比连词 + 右图",
+  p1:[
+    SEN("p1a","第1-2句 · 双图描述",[
+      V("公式 · 左图/右图","The cartoons provide us with a thought-provoking scene: {leftSub} {leftV}, {leftExtra}. However, {rightSub} {rightV}, {rightExtra}.","漫画为我们呈现了一个发人深省的场景：{leftSub}{leftV}，{leftExtra}。然而，{rightSub}{rightV}，{rightExtra}。","20英一原句结构；对比用 However/By contrast，相似用 Similarly。"),
+      V("升级 · 补环境","The cartoons provide us with a thought-provoking scene: {leftSub}, in the left picture, {leftV}, {leftExtra}. However, {rightSub}, in the right picture, {rightV}, {rightExtra}.","漫画为我们呈现了一个发人深省的场景：左图中的{leftSub}{leftV}，{leftExtra}。然而，右图中的{rightSub}{rightV}，{rightExtra}。","句子短时补环境与基本动作。")
+    ]),
+    SEN("p1b","图注（可选）",[
+      V("图注 · Below the drawing","Below the drawing, there is a caption which reads: “{caption}.”","图下方有一句说明文字：“{caption}。”","双图有总标题时用。"),
+      V("图注 · The caption beneath","The caption beneath the drawing reads: “{caption}.”","图下方的文字写道：“{caption}。”","同上。"),
+      {n:"不写图注", en:"", zh:"", note:"这张图不需要图注，直接留白。", skip:true}
+    ],true),
+    SEN("p1c","第3句 · 主题阐述",[
+      V("方案1 · 如此重要以至于","The primary intention of the drawing is to remind {actor} that {theme} is so indispensable that the subject deserves the highest level of attention and consideration.","这幅图的首要意图是提醒{actor}：{theme}如此不可或缺，值得最高程度的关注与考虑。","15英一·手机/20英一·习惯。"),
+      V("方案4 · 双重否定","The drawing conveys a clear message: at no time should {actor} underestimate the significance of {theme}.","这幅图传达了一个明确信息：{actor}任何时候都不应低估{theme}的重要性。","负面现象类。"),
+      V("方案5 · 强调句型","The drawing, undoubtedly, highlights the core idea that it is {theme} that deserves greater attention.","毫无疑问，图画强调的核心观点是：{theme}必须得到更多重视。","通用。")
+    ])
+  ]
+},
+{
+  id:"pic_chart", label:"图画 + 图表", group:"图画", badge:"一图一表：图画描述 + 图表总体描述",
+  p1:[
+    SEN("p1a","第1-2句 · 图画+图表描述",[
+      V("公式 · 叠加","As is symbolically depicted in the picture above, {subject} {basicV} {env}, {mainV}, {detail}. Referring to the statistics in the chart, {chartSummary}.","如上图所示，{subject}在{env}{basicV}，{mainV}，{detail}。结合图表数据，{chartSummary}。","24英一原句：图画描述与图表总体描述简单叠加。"),
+      V("待选 · while 并列","The cartoon above depicts {subject} {basicV} {env}, {mainV}, while the chart below shows that {chartSummary}.","上面的漫画描绘了{subject}在{env}{basicV}，{mainV}，而下方的图表显示{chartSummary}。","一句装下两图，适合字数紧张。")
+    ]),
+    SEN("p1b","第3句 · 图表细节",[
+      V("公式1 · 四项占比","The percentages of {item1}, {item2}, {item3} and {item4} account for {n1}, {n2}, {n3} and {n4} respectively.","{item1}、{item2}、{item3}和{item4}的比例分别为{n1}、{n2}、{n3}和{n4}。","首段篇幅有限，细节可只写一句。"),
+      V("公式2 · 首尾对比","{item1} was {n1} in {y1}, compared with {n2} in {y2}, showing an increase of {delta}.","{item1}在{y1}年为{n1}，而{y2}年为{n2}，增长了{delta}。","动态图表用。")
+    ]),
+    SEN("p1c","第4句 · 主题阐述",[
+      V("方案3 · 取得重大成就","Without a doubt, the drawing and the chart emphasize the truth that great accomplishments have been made in {theme} by {actor}.","毫无疑问，图和表强调了一个事实：{actor}在{theme}方面取得了巨大成就。","24英一原句。"),
+      V("方案1 · 如此重要以至于","The drawing and the chart aim to remind us that {theme} is so indispensable that the subject deserves the highest level of attention and consideration.","图和表旨在提醒我们：{theme}如此不可或缺，值得最高程度的关注与考虑。","通用。"),
+      V("方案5 · 强调句型","The drawing and the chart, undoubtedly, highlight the core idea that it is {theme} that deserves greater attention.","毫无疑问，图和表强调的核心观点是：{theme}必须得到更多重视。","通用。")
+    ])
+  ]
+},
+{
+  id:"text_essay", label:"文字材料", group:"文字", badge:"文字改写 + 表明态度 + 通用二三段",
+  p1:[
+    SEN("p1a","第1句 · 文字改写（引出主题）",[
+      V("待选1 · 不可否认","It cannot be denied that {theme} plays a key role in people's work and life.","不可否认的是，{theme}在人们的工作和生活中扮演了重要角色。","不会改写时的保底句。"),
+      V("待选2 · 人们普遍认为","It is widely accepted that {theme}, a strong and positive life attitude, is the key element for individuals to achieve success.","人们普遍认为，{theme}——一种坚强积极的生活态度——是个人取得成功的关键因素。","态度/品质类。"),
+      V("待选3 · 引起广泛关注","Nowadays, it is well-known that the problem of {theme} has caused wide concern.","如今，众所周知，{theme}的问题已经引起广泛关注。","负面现象类。"),
+      V("待选4 · 普遍现象","With the rapid advancement of society and technology, {theme} has become a common phenomenon in our daily lives.","随着社会和技术的进步，{theme}已成为我们日常生活中普遍的现象。","26样题2原句。"),
+      V("待选5 · 二选一热议","Currently, whether to {optionA} or {optionB} has become a hot topic among people, especially among the young.","目前，是{optionA}还是{optionB}已成为人们特别是年轻人中的热门话题。","争议型文字材料。")
+    ]),
+    SEN("p1b","第2句 · 改写观点",[
+      V("待选1 · The author believes","The author believes that {authorView}.","作者认为，{authorView}。","最常用。"),
+      V("待选2 · Therefore holds","Therefore, the author holds that {authorView}.","因此，作者坚持认为，{authorView}。","承上。"),
+      V("待选3 · According to","According to the author, {authorView}.","根据作者的观点，{authorView}。","简洁。"),
+      V("待选4 · In the opinion of","In the opinion of the author, {authorView}.","在作者看来，{authorView}。","正式。")
+    ]),
+    SEN("p1c","第3句 · 表明态度",[
+      V("强烈同意","I fully agree with the author's viewpoint.","我完全同意作者的观点。","样题1必须同意。"),
+      V("强烈反对","I strongly disagree with the author's opinion.","我强烈反对作者的观点。","慎用，理由要好写。"),
+      V("部分同意","I share the author's view to a large extent, but I also believe that {reservation}.","我在很大程度上同意作者的观点，但我也认为{reservation}。","最容易写够字数。")
+    ])
+  ]
+}
+);
+
+/* ============ 第二段：原因分析 ============ */
+B("solA","方案二 · A（实施方/措施1）","对比论证里的“别人认为”",[
+  {en:"the government department concerned",zh:"有关部门",note:"环保例"},
+  {en:"setting rules based on scenic location",zh:"按景区位置制定规则",note:"措施型"},
+  {en:"building more elderly activity centers",zh:"建更多老年活动中心",note:"25英二"},
+  {en:"the government",zh:"政府",note:"通用"}
+]);
+B("solB","方案二 · B（主题词/措施2）","别与 D 完全重复",[
+  {en:"the protection of the environment",zh:"环境保护",note:"环保例"},
+  {en:"raising public awareness",zh:"提高公众意识",note:"措施型"},
+  {en:"family companionship",zh:"家庭陪伴",note:"25英二"},
+  {en:"regulating the elderly-care robot industry",zh:"监管养老机器人行业",note:"26英一"}
+]);
+B("solC","方案二 · C（你认为的实施方）","强调句型 it is C that",[
+  {en:"cultivating citizens' consciousness",zh:"培养公民意识",note:"环保例"},
+  {en:"technological advancement and strict safety standards",zh:"技术进步与严格安全标准",note:"26英一"},
+  {en:"promoting civic awareness",zh:"提升公民意识",note:"通用"}
+]);
+B("solD","方案二 · D（主题词，别与 B 相同）","protecting / ensuring ...",[
+  {en:"protecting the environment",zh:"保护环境",note:"环保例"},
+  {en:"gaining public trust",zh:"获得公众信任",note:"26英一"},
+  {en:"ensuring children's safety",zh:"保障儿童安全",note:"户外类"}
+]);
+
+BANK.adv2 = BANK.adv1;
+BANK.govAction2 = BANK.govAction;
+BANK.solA2 = BANK.solA;
+BANK.solB2 = BANK.solB;
+
+const REASONS = [
+  V("方案一 · 举例论证（个人路线）","For instance, {egSubject}, {egAppos}, {egVerb}, which {egBenefit}. {egTrans}, {egResult}.","例如，{egSubject}，{egAppos}，{egVerb}，这{egBenefit}。{egTrans}，{egResult}。","四步组装：引出例子→短语写现状→which 从句写好处→换角度写结果；更适用于个人与社会宏观层面。"),
+  V("方案二 · 宾从+定从（群众路线）","The majority of {actor} {beliefVerb} that {theme} will {benefitPlatform} to {benefitGoal}, {benefitClause}.","大多数{actor}{beliefVerb}，{theme}将{benefitPlatform}来{benefitGoal}，{benefitClause}。","加粗部分=主题词+好处，其余万年不变；which 从句逻辑必须与主题匹配。"),
+  V("方案三 · 从句+短语（拉长句子）","{clauseOpener} {theme} {rolePhrase} {aspect}.","{clauseOpener}{theme}{rolePhrase}{aspect}。","主语从句/宾语从句/同位语从句任选开头，重点在后面的短语。"),
+  V("方案三+ · 反过来写（某方面依赖主题词）","{clauseOpener} {aspect} is strongly dependent on {theme}.","{clauseOpener}{aspect}高度依赖{theme}。","注意谓语单复数；an increasing number of people are... 用复数。"),
+  V("方案四 · not only 倒装","Not only does {theme} {notonlyV1} {aspect}, but it also enables {actorShort} to {notonlyV2}.","{theme}不仅{notonlyV1}{aspect}，还使{actorShort}能够{notonlyV2}。","主语复数时 does→do、their 对应；倒装后动词用原形。"),
+  V("方案五 · 虚拟语气（个人层面）","If we ignored the importance of {theme}, we would never become a better version of ourselves.","如果我们忽视{theme}的重要性，我们就永远不会成为更好的自己。","主将从现→过去式；段尾警醒，建议放在原因三。"),
+  V("方案五 · 虚拟语气（社会层面）","If everyone failed to {doX}, our society would be confronted with an unpromising and fruitless future.","如果每个人都没能做到{doX}，我们的社会将没有未来。","扣帽子、上高度；别扣太狠。"),
+  V("方案五 · 虚拟语气（国家层面）","If we underestimated the importance of {theme}, our nation would permanently lag behind in the new era of rapid development.","如果我们低估{theme}的重要性，我们的国家将在快速发展的新时代永远落后。","国家层面；适合宏观主题。"),
+  V("方案六 · 对比论证（thereby）","Compared with {compareB}, {compareA} can {compareSmall}, thereby promoting {aspect}.","与{compareB}相比，{compareA}能够{compareSmall}，从而促进{aspect}。","没有对比就创造对比；A 主要内容，B 次要内容。"),
+  V("方案六+ · 对比论证（advantage lies in）","In contrast to {compareB}, the advantage of {compareA} lies in {aspect}.","与{compareB}相比，{compareA}的优势在于{aspect}。","同方案六换句式。"),
+  V("方案七 · 比喻句（明喻）","{theme} is as important as {simileObj}, {simileTail}.","{theme}就像{simileObj}一样重要，{simileTail}。","写不出来别硬套；建议背两句形成自己的比喻。"),
+  V("方案七+ · 比喻句（暗喻）","{theme} is {simileObj}.","{theme}是{simileObj}。","暗喻更高级，适合意志品质/合作/创新。"),
+  V("方案七++ · 比喻+插入语","{theme}, needless to say, is as important as {simileObj}, {simileTail}.","{theme}，毫无疑问，同{simileObj}一样重要，{simileTail}。","插入语插在主谓之间，用来拉长句子。")
+];
+
+const CONN_STYLES = [
+  {name:"Firstly / Secondly / Thirdly", c:["Firstly,","Secondly,","Thirdly,"]},
+  {name:"To begin with / What's more / Last but not least", c:["To begin with,","What's more,","Last but not least,"]},
+  {name:"To begin with / More importantly / Most importantly", c:["To begin with,","More importantly,","Most importantly,"]},
+  {name:"For one thing / For another（两句）", c:["For one thing,","For another,",""]},
+  {name:"First and foremost / Furthermore / Last but not least", c:["First and foremost,","Furthermore,","Last but not least,"]}
+];
+
+const RENAME = ["aspect","egSubject","egAppos","egVerb","egBenefit","egTrans","egResult","actor","doX","compareA","compareB","benefitGoal","benefitClause","solA","solB","solC","solD","simileObj","simileTail"];
+function cloneReasons(suffix, connTag){
+  return REASONS.map(function(v){
+    var en=v.en, zh=v.zh;
+    RENAME.forEach(function(k){
+      en = en.split("{"+k+"}").join("{"+k+suffix+"}");
+      zh = zh.split("{"+k+"}").join("{"+k+suffix+"}");
+    });
+    if(connTag){ en = "{"+connTag+"} " + en; zh = "{"+connTag+"} " + zh; }
+    return {n:v.n, en:en, zh:zh, note:v.note};
+  });
+}
+
+const P2 = [
+  SEN("p2a","第4句 · 过渡句",[
+    V("待选1 · Three key reasons","Three key reasons, from my perspective, account for this phenomenon.","在我看来，三个关键原因可以解释这一现象。","最常用，直接给出三点结构。"),
+    V("待选2 · 成因归结","From my perspective, the causes of {theme} can be summarized as three main aspects.","在我看来，{theme}的成因可以归结为三个主要方面。","主题词具体时用。"),
+    V("待选3 · Several factors","Several factors contribute to this phenomenon.","几个因素促成了这一现象。","最短。"),
+    V("待选4 · A variety of reasons","A variety of reasons can be cited to account for this phenomenon.","有很多原因可以用来解释这一现象。","书面。"),
+    V("待选5 · A combination","A combination of factors has contributed to the tendency reflected in this chart.","多种因素共同促成了这张图表所反映的趋势。","图表类专用。"),
+    V("升级前 · There are many reasons","There are {many} {reasonWord} to {explain} my {ideaWord}.","有很多原因可以解释我的观点。","升级前句型；many/reason/explain/idea 四个词都可点开替换。"),
+    V("争议话题 · pros and cons","Every situation has its pros and cons, and this issue is not exempt.","每种情况都有其利弊，这个问题也不例外。","09英一/13英二争议话题开头。"),
+    V("争议话题 · controversial","In fact, this issue remains controversial.","事实上，这个现象仍有争议。","争议话题开头。")
+  ]),
+  SEN("p2b","第5句 · 原因①",REASONS),
+  SEN("p2c","第6句 · 原因②",cloneReasons("2","c2")),
+  SEN("p2d","第7句 · 原因③",cloneReasons("3","c3"))
+];
+
+/* ============ 第三段 ============ */
+const P3_MEASURE = [
+  SEN("p3a","第8句 · 总结全文",[
+    V("公式1 · 得出结论","It is not difficult to draw the conclusion that enough attention must be paid to {theme} by ourselves and our community.","不难得出结论，我们个人和社会都必须对{theme}给予足够重视。","注意根据情况变换时态（has been paid）。"),
+    V("公式2 · bear in mind","We should bear in mind that {theme} is of great importance to {aspect}.","我们应牢记，{theme}对{aspect}非常重要。","特别适用于意志品质类。"),
+    V("公式3 · not an option","The discussion leads us to the realization that {theme} is not an option, but a necessity.","讨论使我们认识到，{theme}不是一种选择，而是一种必要。","文化传承/高质量生活原句。"),
+    V("公式4 · undeniable fact","We are faced with the undeniable fact that {theme} has become an integral part of our lives.","我们面临一个不可否认的事实：{theme}已成为我们生活中不可或缺的一部分。","09/15/20年原句。"),
+    V("倒装1 · By no means","By no means should we give up our efforts to {doX}.","我们决不能放弃{doX}的努力。","否定词倒装。"),
+    V("倒装2 · Under no circumstances","Under no circumstances should we cease our pursuit of {nounGoal}.","在任何情况下，我们都不应停止对{nounGoal}的追求。","25英一原句。"),
+    V("倒装3 · Never shall we","Never shall we give up our efforts to ensure the well-being of {actor}.","我们永远不会放弃为保障{actor}福祉而努力。","25英二原句。"),
+    V("倒装4 · On no account","On no account should we underestimate the profound impact of {theme} on {aspect}.","我们决不能低估{theme}对{aspect}的深远影响。","26英二原句。"),
+    V("方案三 · 万能1","It is evident that the {trendWord} reflected in the chart deserves our careful consideration.","很明显，图表反映的{trendWord}值得我们认真考虑。","万能，应急用。"),
+    V("方案三 · 万能2","There is no denying that further attention must be paid to the phenomenon mentioned above.","不可否认，对上述现象必须给予进一步关注。","万能。"),
+    V("方案三 · 万能3","Given the above analysis, it is not difficult to understand why this phenomenon has aroused widespread concern.","鉴于以上分析，不难理解这一现象为何引起广泛关注。","万能。")
+  ]),
+  SEN("p3b","第9句 · 具体措施①",[
+    V("角度1 · 政府作为","It is imperative for the authorities to {govAction}.","当局必须{govAction}。","五个角度之一：政府作为。"),
+    V("角度2 · 公民意识","We should also raise {awareness} among children and adults.","我们还应该在孩子和成人中增强{awareness}。","五个角度之二：公民意识。"),
+    V("角度3 · 个人行为","We should spare no pains to {doX} and make the world a better place.","我们应不遗余力地{doX}，让世界更美好。","spare no pains = make concerted efforts / take concrete steps。"),
+    V("角度4 · 媒体呼吁","New media platforms, ranging from short video apps to social media, should appeal to users to {doX}.","新媒体平台，从短视频到社交媒体，应呼吁用户{doX}。","五个角度之四：媒体呼吁。"),
+    V("角度5 · 家庭教育","Parents and teachers should set a good example for children in {aspect} through their own behavior.","家长和老师应通过自身行为在{aspect}方面为孩子树立榜样。","五个角度之五：家庭教育。"),
+    V("方案二 · 待选1（别人 vs 我）","When it comes to concrete solutions, some people hold that {solA} must take responsibility for {solB}. In fact, it is {solC} that plays a crucial role in {solD}.","在具体措施上，一些人认为{solA}必须为{solB}负责。事实上，{solC}在{solD}中起关键作用。","主题词、实施方、措施都短时才好用。"),
+    V("方案二 · 待选2（看似 vs 实则）","On the surface, {solA} seems to be a sound solution, but on careful consideration, we find that {solB} is a more reasonable and effective approach.","表面上，{solA}似乎是合理的方案，但仔细考虑后，{solB}才是更合理有效的办法。","26年两题都不太适合，字数偏多。")
+  ]),
+  SEN("p3c","第10句 · 具体措施②",[
+    V("角度1 · 政府作为","For another, it is imperative for the authorities to {govAction2}.","另一方面，当局必须{govAction2}。","用连接词与措施①并列。"),
+    V("角度2 · 企业责任","For another, enterprises ought to spare no pains to enhance product quality and reduce prices.","另一方面，企业应不遗余力提高质量、降低价格。","25英一原句。"),
+    V("角度3 · 媒体/学校","For another, new media platforms and schools should call on the public to {doX2}.","另一方面，新媒体平台和学校应呼吁公众{doX2}。","通用。"),
+    V("角度4 · 家庭陪伴","For another, parents should spend more time with their children and set a good example.","另一方面，家长应多陪伴孩子并树立榜样。","儿童/家庭类。"),
+    V("方案二 · 待选（同上句式）","On the surface, {solA2} seems to be a sound solution, but on careful consideration, we find that {solB2} is a more reasonable and effective approach.","表面上，{solA2}似乎是合理方案，但仔细考虑后，{solB2}才更合理有效。","与措施①形成对照。")
+  ],true),
+  SEN("p3d","第11句 · 畅想未来",[
+    V("待选1 · 和谐平衡","If these proposed measures are implemented, a harmonious balance between {A} and {B} will be within our reach.","如果这些措施得以实施，{A}与{B}之间的和谐平衡便触手可及。","A、B 根据主题词定。"),
+    V("待选2 · Only through","Only through the joint efforts of all people can we effectively {doX}.","只有通过所有人的共同努力，我们才能有效{doX}。","倒装，需小改以适配题目。"),
+    V("待选3 · In this way","In this way, hopefully, we may embrace a brighter and more promising future.","这样，我们才有希望拥抱更光明、更有希望的未来。","万能套话，不改。"),
+    V("待选4 · no better time","There is no better time than now for us to take collective and decisive action to address this pressing issue.","现在正是我们采取集体果断行动解决这一紧迫问题的最佳时机。","万能套话，字数多。")
+  ])
+];
+
+const P3_TREND = [
+  SEN("p3a","第8句 · 总结全文",P3_MEASURE[0].vs),
+  SEN("p3e","第9句 · 趋势预测",[
+    V("待选1 · 合理推断","Taking into account all the factors discussed above, we may reasonably conclude that, with the passage of time and the advancement of society, {p3modeWord} will continue to increase in the coming years.","综合考虑上述因素，我们可以合理推断：随着时代发展，{p3modeWord}在未来几年将持续增加。","25英一原句；动态图首选。"),
+    V("待选2 · 越来越多","For the reasons given above, we can predict that an increasing number of people will focus on {theme}, and this trend is likely to continue in the near future.","基于上述原因，我们可以预测，越来越多人会关注{theme}，这一趋势短期内将持续。","静态/态度型。"),
+    V("待选3 · 更大规模","Given the arguments above, the next few years will also witness larger-scale, faster-paced, and higher-quality development in {theme}.","鉴于上述论点，未来几年{theme}也将迎来更大规模、更快速度、更高质量的发展。","宏观/行业类。"),
+    V("待选4 · 必将持续","In conclusion, the phenomenon reflected in the chart is bound to continue, and it will keep exerting a positive influence on {aspect}.","总之，图表反映的现象必将持续，并将继续对{aspect}产生积极影响。","26英二原句（略显生硬）。"),
+    V("待选5 · 更加重要","In a word, as society keeps moving forward, {theme} is likely to gain even greater significance in the days to come.","总之，随着社会不断前进，{theme}在未来很可能更加重要。","26英一原句。")
+  ])
+];
+
+/* ============ 真题预设 ============ */
+const BASE = {
+  actor:"the public", aspect:"personal growth", aspect2:"quality of life", aspect3:"social progress",
+  compareB2:"employment", compareA2:"pursuing further education", compareSmall2:"expand their horizons",
+  compareB3:"indoor activities", compareA3:"outdoor activities", compareSmall3:"cultivate children's curiosity",
+  clauseOpener2:"It is widely believed that", clauseOpener3:"There is a growing recognition that",
+  egSubject2:"my grandfather", egAppos2:"a retired teacher", egVerb2:"is passionate about watching television and reading newspapers",
+  egBenefit2:"keeps him well informed about current affairs", egTrans2:"Consequently", egTrans3:"As a result", egResult2:"he feels much more connected to the world",
+  egSubject3:"a nursing home in my city", egAppos3:"a well-managed institution", egVerb3:"is committed to improving elderly care by introducing robots",
+  egBenefit3:"helps reduce the risk of falls and accidents among the elderly", egResult3:"both the residents and their families have felt much more at ease",
+  egSubject:"my roommate, Kevin", egAppos:"a hard-working student", egVerb:"is passionate about reading",
+  egBenefit:"brings him exceptional writing skills", egTrans:"During this period",
+  egResult:"all of us admire his capacity", doX3:"make full use of their time",
+  govAction:"increase investment continuously", govAction2:"improve public services",
+  awareness:"public awareness of the issue", doX:"do volunteer work", doX2:"live a healthier life",
+  solA:"the government", solB:"the protection of the environment", solC:"cultivating citizens' consciousness",
+  solD:"protecting the environment", solA2:"building more facilities", solB2:"raising public awareness",
+  compareB:"simple lessons", compareA:"difficult courses", compareSmall:"expand their horizons",
+  simileObj:"a lighthouse", simileTail:"providing guidance in difficult times",
+  notonlyV1:"improve", notonlyV2:"broaden their horizons", actorShort:"them",
+  benefitPlatform:"provide them with a broader platform", benefitGoal:"broaden their horizons",
+  benefitClause:"which may put them in a beneficial position in the future",
+  clauseOpener:"There is no doubt that", rolePhrase:"plays a crucial role in",
+  beliefVerb:"believe", nounGoal:"a healthy and balanced life", trendWord:"trend",
+  p3modeWord:"the number of people who choose to do so", optionA:"work in a big city", optionB:"return to one's hometown",
+  authorView:"", reservation:"the author may have overlooked the possible risks",
+  A:"personal development", B:"social progress", left:"the changes in a certain field",
+  right:"the distribution of related items", chartSummary:"the figure rose steadily over the period",
+  basicV:"stand", env:"in front of us", detail:"with a sweet smile on his face",
+  adjPair:"confident as well as optimistic", mainV:"talking about something important",
+  subject:"a young man", leftSub:"the girl in the left picture", rightSub:"the boy in the right picture",
+  leftV:"is fully focused on her homework", rightV:"is lying on the sofa",
+  leftExtra:"with a sweet smile on her face", rightExtra:"with a worried look on his face",
+  sayA:"campus lectures are irrelevant to her major and a waste of time",
+  sayB:"attending such lectures is highly beneficial nonetheless",
+  speakerA:"The girl on the left", speakerB:"the girl on the right",
+  quoteA:"The lecture is not related to our major, which is a waste of time.",
+  quoteB:"It will be beneficial nonetheless.", caption:"Love is a lamp. The darker the place, the brighter it shines",
+  trans:"It is apparent from the statistics that", phenom:"this is a common phenomenon in modern society.",
+  item1:"the first item", item2:"the second item", item3:"the third item", item4:"the fourth item", item5:"the fifth item",
+  n1:"30%", n2:"50%", n3:"20%", n4:"10%", n5:"8%", n6:"5%", low:"10%", high:"90%",
+  y1:"2015", y2:"2023", span:"five", delta:"20 percentage points", mult:"twice",
+  v1:"increased", v2:"decreased", adv1:"significantly", adv2:"gradually",
+  c1:"", c2:"", c3:"",
+  theme2:"this phenomenon", doX2:"live a healthier life"
+};
+
+function P(id,name,type,slots,picks){
+  return {id:id,name:name,type:type,slots:slots||{},picks:picks||{}};
+}
+
+const PRESETS = [
+  P("2023英二·居民健康素养","2023 英二 · 居民健康素养（动态单方向）","chart_dyn1",{
+    theme:"the health literacy level of Chinese residents", item1:"the health literacy level",
+    y1:"2012", y2:"2021", n1:"8.8%", n2:"11.58%", n3:"25.40%", span:"five",
+    adv1:"gradually", adv2:"remarkably", delta:"16.6 percentage points", mult:"almost three times",
+    actor:"the public", doX:"choose a healthy lifestyle", cond:"they are able",
+    aspect:"physical and mental health", aspect2:"quality of life", aspect3:"social progress",
+    trans:"It is apparent from the statistics that",
+    phenom:"{theme} has been improving rapidly in recent years.",
+    govAction:"increase investment in public health", awareness:"awareness of healthy living"
+  },{p1a:0,p1b:0,p1c:0,p2a:1,p2b:0,p2c:2,p2d:4,p3a:0,p3b:0,p3c:0,p3d:2}),
+
+  P("2019英二·毕业生选择","2019 英二 · 毕业生选择（动态多方向）","chart_dynN",{
+    theme:"graduates' choices", item1:"the proportion entering the workforce", item2:"the proportion pursuing further study",
+    item3:"the proportion starting a business", y1:"2013", y2:"2018", v1:"decreased", v2:"increased",
+    adv1:"remarkably", adv2:"significantly",
+    n1:"68.1%", n2:"60.7%", n3:"26.3%", n4:"34.0%", n5:"1.3%", n6:"2.6%",
+    delta:"7.7 percentage points", mult:"twice",
+    actor:"undergraduates", doX:"pursue further study", cond:"they are able",
+    aspect:"personal growth", aspect2:"critical thinking", aspect3:"social progress",
+    trans:"It is apparent from the statistics that",
+    phenom:"{theme} is becoming common among {actor} nowadays.",
+    govAction:"increase investment in higher education"
+  },{p1a:3,p1b:0,p1c:0,p2a:0,p2b:0,p2c:2,p2d:6,p3a:2,p3b:0,p3c:1,p3d:0}),
+
+  P("2024英二·劳动实践","2024 英二 · 劳动实践课收获（静态图）","chart_stat",{
+    theme:"students' gains from the labor practice course", item1:"acquiring relevant knowledge", item2:"improving practical skills",
+    item3:"feeling comfortable", item4:"enhancing cooperation capacity",
+    n1:"91.3%", n2:"84.8%", n3:"54.4%", n4:"32.6%", low:"32.6%", high:"91.3%", y1:"2023",
+    actor:"undergraduates", doX:"take part in labor practice courses", cond:"they are able",
+    aspect:"practical skills", aspect2:"personal growth", aspect3:"social progress",
+    trans:"These data lead us to the conclusion that",
+    phenom:"the majority of {actor} would choose to {doX} when {cond}.",
+    govAction:"improve the curriculum of labor practice", awareness:"awareness of hands-on practice"
+  },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:1,p2c:2,p2d:6,p3a:1,p3b:4,p3c:1,p3d:2}),
+
+  P("2026英一·养老机器人","2026 英一 · 养老机器人（双图表·静静）","chart_dual",{
+    theme:"elderly-care robots", left:"consumers' attitudes towards elderly-care robots",
+    right:"their major concerns about such robots",
+    item1:"fully accepting these robots", n1:"39.3%", item2:"partially accepting these robots", n2:"32.8%",
+    item3:"rejecting these robots", n3:"27.9%", item4:"safety", n4:"46.3%", item5:"price", n5:"24.9%", y1:"2026",
+    actor:"consumers", doX:"use elderly-care robots", cond:"they are able",
+    aspect:"elderly care services", aspect2:"quality of life", aspect3:"social progress",
+    trans:"It is apparent from the statistics that",
+    phenom:"{theme} has drawn growing attention from the public.",
+    govAction:"formulate strict regulations to ensure the safety of elderly-care robots",
+    govAction2:"improve product quality", awareness:"awareness of elderly care"
+  },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:1,p2c:2,p2d:4,p3a:2,p3b:0,p3c:0,p3d:0}),
+
+  P("2025英一·家电表格","2025 英一 · 家用电器拥有量（表格·动态）","chart_any",{
+    theme:"the ownership of household appliances", item1:"the ownership of air conditioners",
+    item2:"the number of refrigerators", y1:"2014", y2:"2023",
+    n1:"75.2 units", n2:"145.9 units", n3:"85.5 units", n4:"103.4 units",
+    delta:"70.7 units", mult:"nearly twice", adv1:"dramatically", adv2:"modestly",
+    actor:"residents", doX:"use smart home appliances", cond:"they are able",
+    aspect:"quality of life", aspect2:"economic growth", aspect3:"technological innovation",
+    trans:"It is apparent from the statistics that",
+    phenom:"{theme} has been developing rapidly in recent years.",
+    govAction:"formulate industry-friendly policies to promote the development of the home appliance industry",
+    govAction2:"enhance product quality and reduce commodity prices",
+    p3modeWord:"the number of families who own smart home appliances"
+  },{p1a:5,p1b:0,p1c:0,p2a:0,p2b:0,p2c:3,p2d:5,p3a:0,p3b:0,p3c:1,p3d:0}),
+
+  P("2025英二·老人休闲","2025 英二 · 老年人休闲活动（静态图）","chart_stat",{
+    theme:"the leisure activities of the elderly", item1:"watching TV", item2:"walking", item3:"gardening",
+    item4:"reading", item5:"playing chess",
+    n1:"90.8%", n2:"68.3%", n3:"34.7%", n4:"31.8%", n5:"18.4%", low:"18.4%", high:"90.8%", y1:"2023",
+    actor:"elderly residents", doX:"engage in accessible and low-intensity leisure activities", cond:"they have free time",
+    aspect:"physical and mental health", aspect2:"quality of life", aspect3:"social harmony",
+    trans:"It is apparent from the statistics that",
+    phenom:"the majority of {actor} would choose to {doX} when {cond}.",
+    govAction:"allocate more funds to build more elderly activity centers",
+    govAction2:"call on people to care for the elderly"
+  },{p1a:0,p1b:1,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:3,p3b:0,p3c:2,p3d:1}),
+
+  P("2026英二·户外活动","2026 英二 · 儿童户外活动（静态图）","chart_stat",{
+    theme:"respondents' views on children's outdoor activities", item1:"satisfying curiosity",
+    item2:"developing observational skills", item3:"strengthening physical fitness", item4:"enhancing parent-child interaction",
+    n1:"54.6%", n2:"54.5%", n3:"37.2%", n4:"33.2%", low:"33.2%", high:"54.6%", y1:"2026",
+    actor:"parents", doX:"engage in outdoor activities", cond:"they have free time",
+    aspect:"physical and mental health", aspect2:"curiosity", aspect3:"parent-child interaction",
+    trans:"Despite its apparent simplicity, the chart highlights the core information that",
+    phenom:"{theme} has drawn growing attention from the public.",
+    govAction:"improve public facilities to provide a safer environment for children's outdoor activities",
+    govAction2:"create more opportunities for children to participate in outdoor activities",
+    egSubject:"my neighbor's son", egVerb:"is passionate about outdoor activities",
+    egBenefit:"helps him develop sharp observation skills and a strong body",
+    egResult:"his parents have noticed his growing curiosity about nature"
+  },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:0,p3c:3,p3d:2}),
+
+  P("2022英二·快递与包装","2022 英二 · 快递量与包装处理（动静双图）","chart_dual",{
+    theme:"the express delivery industry", left:"the changes in express delivery volume from 2018 to 2020",
+    right:"the distribution of packaging disposal methods",
+    item1:"the express delivery volume", n1:"50 billion", n2:"83 billion", y1:"2018", y2:"2020",
+    item2:"recycling", n3:"50%", n4:"60%", item3:"reuse", n5:"20%",
+    adv1:"dramatically", adv2:"steadily",
+    actor:"the public", doX:"recycle packaging", cond:"they have free time",
+    aspect:"environmental protection", aspect2:"sustainable development", aspect3:"social progress",
+    trans:"It is apparent from the statistics that",
+    phenom:"{theme} has been developing rapidly in recent years.",
+    govAction:"improve the recycling system for express packaging"
+  },{p1a:0,p1b:1,p1c:0,p2a:4,p2b:1,p2c:2,p2d:6,p3a:2,p3b:0,p3c:0,p3d:2}),
+
+  P("2012·员工满意度","2012 · 员工满意度（静态图·例外）","chart_stat",{
+    theme:"employees' satisfaction", item1:"employees under 40", item2:"employees over 50",
+    item3:"employees aged 41-50", item4:"dissatisfied employees", n1:"50%", n2:"50%", n3:"64%", n4:"64%",
+    low:"50%", high:"64%", y1:"2012",
+    actor:"employees", doX:"improve their job satisfaction", cond:"they face pressure",
+    aspect:"quality of life", aspect2:"personal growth", aspect3:"social harmony",
+    trans:"These data lead us to the conclusion that",
+    phenom:"{theme} has drawn growing attention from the public.",
+    govAction:"improve working conditions and employee benefits"
+  },{p1a:0,p1b:4,p1c:0,p2a:0,p2b:1,p2c:2,p2d:4,p3a:1,p3b:0,p3c:2,p3d:2}),
+
+  P("2024英一·公园建设","2024 英一 · 公园建设（图画+图表）","pic_chart",{
+    theme:"infrastructure construction", subject:"several urban residents", basicV:"stand",
+    env:"in a park", mainV:"exercising", detail:"with confident smiles on their faces",
+    chartSummary:"the number of parks in a certain city increased remarkably from 406 in 2020 to 670 in 2022",
+    item1:"urban parks", n1:"406", n2:"670", y1:"2020", y2:"2022", delta:"264",
+    actor:"the government", doX:"build more public facilities", aspect:"the living environment",
+    aspect2:"physical and mental health", aspect3:"social progress",
+    egSubject:"my hometown", egAppos:"a livable city",
+    egVerb:"places a high priority on infrastructure construction",
+    egBenefit:"enables residents to relax and unwind at nearby parks", egResult:"citizen satisfaction has improved",
+    govAction:"increase investment continuously",
+    govAction2:"improve the quality of public spaces"
+  },{p1a:0,p1b:1,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:0,p3b:0,p3c:0,p3d:2}),
+
+  P("2023英一·龙舟","2023 英一 · 龙舟与传统文化（图画）","pic_single",{
+    theme:"traditional culture", subject:"several young people", basicV:"sit", env:"on the river",
+    mainV:"rowing in unison", detail:"with excited expressions on their faces",
+    env:"in a dragon boat on the river", caption:"A dragon boat race, a shared dream",
+    adjPair:"passionate as well as aggressive", aspect:"cultural inheritance",
+    aspect2:"teamwork and cooperation", aspect3:"cultural confidence",
+    actor:"teenagers and youngsters", doX:"take part in traditional cultural activities",
+    govAction:"organize cultural exchange exhibitions", awareness:"awareness of traditional culture"
+  },{p1a:0,p1b:0,p2a:0,p2b:1,p2c:2,p2d:4,p3a:2,p3b:0,p3c:2,p3d:2}),
+
+  P("2022英一·听讲座","2022 英一 · 听讲座（图画·对话）","pic_dialog",{
+    theme:"lifelong learning", subject:"two girls", basicV:"stand", env:"in front of the notice board",
+    mainV:"talking about campus lectures", detail:"with curiosity in his eyes",
+    sayA:"campus lectures are irrelevant to her major and a waste of time",
+    sayB:"attending such lectures is highly beneficial nonetheless",
+    speakerA:"The girl on the left", speakerB:"the girl on the right",
+    quoteA:"The lecture is not related to our major, which is a waste of time.",
+    quoteB:"It will be beneficial nonetheless.", caption:"A lecture worth attending",
+    aspect:"critical thinking", aspect2:"personal growth", aspect3:"academic knowledge",
+    actor:"undergraduates", doX:"attend more lectures", measure:""
+  },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:1,p2c:2,p2d:4,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("2020英一·习惯","2020 英一 · 习惯（双图）","pic_double",{
+    theme:"good habits", leftSub:"the girl in the left picture", leftV:"is fully focused on her homework",
+    leftExtra:"thinking that she will feel relieved when she finishes her work",
+    rightSub:"the boy in the right picture", rightV:"is lying on the sofa",
+    rightExtra:"telling himself that he will not start until the deadline",
+    aspect:"personal growth", aspect2:"self-discipline", aspect3:"social progress",
+    actor:"youngsters", doX:"form good habits", govAction:"improve the educational environment"
+  },{p1a:0,p1b:2,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("2010英一·文化火锅","2010 英一 · 文化火锅（图画·例外）","pic_single",{
+    theme:"cultural exchange", subject:"a hotpot", basicV:"stays", env:"in the middle of the picture",
+    mainV:"containing many cultural elements", detail:"with a sweet smile on its face",
+    caption:"Cultural hot pot, nutritious and delicious",
+    aspect:"cultural inheritance", aspect2:"cultural diversity", aspect3:"cultural confidence",
+    actor:"the whole society", doX:"embrace cultural diversity"
+  },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:1,p2c:2,p2d:2,p3a:2,p3b:4,p3c:2,p3d:2}),
+
+  P("2001·油灯","2001 · 油灯（图画·拟人）","pic_single",{
+    theme:"love and care", subject:"an oil lamp", basicV:"stays", env:"in front of us",
+    mainV:"lighting up the darkness", detail:"with a sweet smile on its face",
+    adjPair:"lovely as well as cute", caption:"Love is a lamp. The darker the place, the brighter it shines",
+    aspect:"social harmony", aspect2:"individual well-being", aspect3:"social progress",
+    actor:"the public", doX:"help those in need"
+  },{p1a:1,p1b:0,p1c:0,p2a:0,p2b:2,p2c:6,p2d:0,p3a:2,p3b:1,p3c:2,p3d:2}),
+
+  P("2004·操场跑步","2004 · 操场跑步（图画·非对话）","pic_single",{
+    theme:"the spirit of perseverance", subject:"a young man", basicV:"run", env:"on the playground",
+    mainV:"rushing to the finishing line", detail:"with a confident smile on his face",
+    adjPair:"active as well as vigorous", aspect:"personal growth", aspect2:"physical and mental health",
+    aspect3:"social progress", actor:"the young", doX:"embrace challenges",
+    govAction:"improve sports facilities in schools"
+  },{p1a:0,p1b:3,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("2017英一·读书","2017 英一 · 读书（图画）","pic_single",{
+    theme:"reading", subject:"a young man", basicV:"sit", env:"beside the window",
+    mainV:"reading quietly", detail:"with a confident smile on his face",
+    aspect:"critical thinking", aspect2:"personal growth", aspect3:"cultural confidence",
+    actor:"undergraduates", doX:"read more books",
+    egSubject:"my roommate, Kevin", egVerb:"is passionate about reading",
+    egBenefit:"brings him exceptional writing skills", egResult:"all of us admire his capacity"
+  },{p1a:0,p1b:3,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("2015英一·手机聚会","2015 英一 · 手机时代的聚会（双图）","pic_double",{
+    theme:"mobile phones", leftSub:"several young people", leftV:"are looking at their phones",
+    leftExtra:"ignoring each other", rightSub:"an elderly couple",
+    rightV:"are talking happily", rightExtra:"with a sweet smile on their faces",
+    aspect:"communication efficiency", aspect2:"parent-child interaction", aspect3:"social cohesion",
+    actor:"teenagers and youngsters", doX:"put down their phones",
+    govAction:"promote face-to-face communication"
+  },{p1a:0,p1b:2,p1c:0,p2a:0,p2b:2,p2c:3,p2d:6,p3a:2,p3b:0,p3c:2,p3d:2}),
+
+  P("2011英一·环保","2011 英一 · 环境保护（图画）","pic_single",{
+    theme:"environmental protection", subject:"a young man", basicV:"stand", env:"in front of us",
+    mainV:"planting a tree", detail:"with determination in his eyes",
+    aspect:"sustainable development", aspect2:"environmental awareness", aspect3:"social progress",
+    actor:"the public", doX:"protect the environment",
+    govAction:"make strict laws to protect the environment",
+    awareness:"environmental awareness", compareB:"commercial projects",
+    compareA:"building more parks", compareSmall:"significantly improve the living environment for residents"
+  },{p1a:0,p1b:3,p1c:1,p2a:0,p2b:2,p2c:2,p2d:7,p3a:7,p3b:0,p3c:2,p3d:2}),
+
+  P("2005·养老","2005 · 养老（双图）","pic_double",{
+    theme:"filial piety", leftSub:"an elderly couple", leftV:"are sitting alone at home",
+    leftExtra:"with a worried look on their faces", rightSub:"their children",
+    rightV:"are busy with work", rightExtra:"ignoring their parents",
+    aspect:"parent-child interaction", aspect2:"social harmony", aspect3:"personal growth",
+    actor:"the young", doX:"spend more time with their parents",
+    govAction:"improve elderly care services"
+  },{p1a:0,p1b:2,p1c:1,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:4,p3c:3,p3d:2}),
+
+  P("2009英一·网络的近与远","2009 英一 · 网络的近与远（争议话题）","pic_dialog",{
+    theme:"the Internet", subject:"two girls", basicV:"sit", env:"in front of us",
+    mainV:"talking about the Internet", detail:"with a confused look on her face",
+    sayA:"the Internet brings people closer than ever", sayB:"the Internet makes people feel more distant",
+    aspect:"communication efficiency", aspect2:"information sharing", aspect3:"social cohesion",
+    actor:"the public", doX:"use the Internet wisely",
+    govAction:"strengthen the regulation of online information"
+  },{p1a:0,p1b:2,p1c:0,p2a:6,p2b:2,p2c:3,p2d:4,p3a:2,p3b:0,p3c:2,p3d:2}),
+
+  P("2013英二·兼职","2013 英二 · 大学生兼职（静态图·争议）","chart_stat",{
+    theme:"part-time jobs", item1:"students with part-time jobs", item2:"students without part-time jobs",
+    item3:"students doing internships", item4:"students doing volunteer work",
+    n1:"60%", n2:"40%", n3:"30%", n4:"20%", low:"20%", high:"60%", y1:"2013",
+    actor:"undergraduates", doX:"take part-time jobs", cond:"they have free time",
+    aspect:"practical skills", aspect2:"personal growth", aspect3:"social progress",
+    trans:"It is apparent from the statistics that",
+    phenom:"{theme} is becoming common among {actor} nowadays.",
+    govAction:"improve career guidance for students"
+  },{p1a:0,p1b:0,p1c:0,p2a:7,p2b:4,p2c:2,p2d:6,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("大纲样题1·诚信","大纲样题一 · 诚信与仁慈（文字材料）","text_essay",{
+    theme:"integrity and benevolence",
+    authorView:"we are perceived as less biased and willing to tell the truth when we show uncertainty in a transparent way",
+    aspect:"social cohesion", aspect2:"personal growth", aspect3:"trust",
+    actor:"the public", doX:"be honest and transparent", reservation:"the author may have overlooked the possible risks",
+    govAction:"build a more trustful social environment"
+  },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:1,p2c:2,p2d:2,p3a:0,p3b:1,p3c:2,p3d:2}),
+
+  P("大纲样题2·屏幕","大纲样题二 · 屏幕与儿童（文字材料）","text_essay",{
+    theme:"children's addiction to screens",
+    authorView:"we cannot blame the screens because children have lost the right to make sense of the world",
+    aspect:"parent-child interaction", aspect2:"observational skills", aspect3:"social progress",
+    actor:"parents", doX:"spend more time with their children", reservation:"the author may have overlooked the possible risks",
+    govAction:"provide more public spaces for children"
+  },{p1a:3,p1b:0,p1c:2,p2a:0,p2b:2,p2c:2,p2d:4,p3a:1,p3b:4,p3c:3,p3d:2}),
+
+  P("2023英一·合作","2023 英一 · 合作（图画·双图）","pic_double",{
+    theme:"teamwork and cooperation", leftSub:"a group of students", leftV:"are working together",
+    leftExtra:"with confident smiles on their faces", rightSub:"a single student",
+    rightV:"is struggling alone", rightExtra:"with a worried look on his face",
+    aspect:"personal growth", aspect2:"social progress", aspect3:"communication efficiency",
+    actor:"youngsters", doX:"cooperate with others", govAction:"encourage team-based learning"
+  },{p1a:0,p1b:2,p1c:0,p2a:0,p2b:1,p2c:2,p2d:2,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("2008英一·合作","2008 英一 · 合作（图画）","pic_single",{
+    theme:"teamwork and cooperation", subject:"two young men", basicV:"stand", env:"in front of us",
+    mainV:"helping an elderly man cross the road", detail:"with a warm smile on his face",
+    adjPair:"amiable as well as friendly", aspect:"social harmony", aspect2:"personal growth",
+    aspect3:"communication efficiency", actor:"the public", doX:"help those in need",
+    govAction:"encourage volunteer service in communities"
+  },{p1a:0,p1b:3,p1c:0,p2a:0,p2b:1,p2c:2,p2d:4,p3a:2,p3b:0,p3c:2,p3d:2}),
+
+  P("2018英一·选课","2018 英一 · 选课（图画）","pic_single",{
+    theme:"making sensible choices", subject:"a student", basicV:"stand", env:"in front of the notice board",
+    mainV:"choosing courses carefully", detail:"with curiosity in his eyes",
+    aspect:"personal growth", aspect2:"critical thinking", aspect3:"all-round development",
+    actor:"undergraduates", doX:"make informed choices",
+    govAction:"provide better course guidance"
+  },{p1a:0,p1b:3,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:4,p3c:2,p3d:2}),
+
+  P("2021英一·坚持","2021 英一 · 坚持（图画）","pic_single",{
+    theme:"the spirit of perseverance", subject:"a young man", basicV:"stand", env:"on the top of a mountain",
+    mainV:"looking into the distance", detail:"with determination in his eyes",
+    adjPair:"confident as well as optimistic", aspect:"personal growth", aspect2:"physical and mental health",
+    aspect3:"social progress", actor:"youngsters", doX:"embrace challenges",
+    govAction:"create a supportive environment for the young"
+  },{p1a:1,p1b:3,p1c:0,p2a:0,p2b:0,p2c:2,p2d:8,p3a:1,p3b:4,p3c:2,p3d:2})
+];
+
+/* ============ 运行状态 ============ */
+const LS_KEY = "xrz-essay-state-v2";
+const LS_SNAP = "xrz-essay-snaps-v2";
+const AUTO = {c1:1,c2:2,c3:3};
+const LABELS = {
+  y1:"起始年份", y2:"结束年份", n1:"数值1", n2:"数值2", n3:"数值3", n4:"数值4", n5:"数值5", n6:"数值6",
+  span:"年数", delta:"增量（带单位）", low:"最低值", high:"最高值", mult:"倍数",
+  A:"A（主题/正面项）", B:"B（对照项）", D:"D（主题词2）", item1:"图例1", item2:"图例2", item3:"图例3",
+  item4:"图例4", item5:"图例5", left:"左图主题", right:"右图主题", chartSummary:"图表总体描述",
+  subject:"图画主体", env:"环境", basicV:"基本动作", mainV:"主要动作", detail:"细节", adjPair:"形容词并列",
+  caption:"图注文字", sayA:"观点A", sayB:"观点B", speakerA:"说话人A", speakerB:"说话人B",
+  quoteA:"引语A", quoteB:"引语B", leftSub:"左图主体", rightSub:"右图主体", leftV:"左图动作",
+  rightV:"右图动作", leftExtra:"左图补充", rightExtra:"右图补充", authorView:"作者观点",
+  optionA:"选择1", optionB:"选择2", reservation:"保留意见", p3modeWord:"预测对象"
+};
+const TYPE_MAP = {};
+TYPES.forEach(function(t){ TYPE_MAP[t.id] = t; });
+
+function slotLabel(id){ return (BANK[id] && BANK[id].label) || LABELS[id] || id; }
+function slotOpts(id){ return (BANK[id] && BANK[id].opts) || []; }
+function zhFor(id, value){
+  var opts = slotOpts(id);
+  for(var i=0;i<opts.length;i++){ if(opts[i].en === value) return opts[i].zh; }
+  for(var k in BANK){
+    var arr = BANK[k].opts;
+    for(var j=0;j<arr.length;j++){ if(arr[j].en === value) return arr[j].zh; }
+  }
+  return value;
+}
+
+function emptyState(){
+  return {type:"chart_dyn1", slots:{}, picks:{}, conn:0, p3mode:"measure",
+          toggles:{zh:true, lite:false, note:true, gram:true}};
+}
+var state = emptyState();
+var undoStack = [], redoStack = [], snapshots = [];
+var modalSlot = null;
+var saveTimer = null;
+
+/* ============ 存取 ============ */
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function persist(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){}
+}
+function persistSnaps(){
+  try{ localStorage.setItem(LS_SNAP, JSON.stringify(snapshots.slice(0,8))); }catch(e){}
+}
+function loadAll(){
+  try{
+    var raw = localStorage.getItem(LS_KEY);
+    if(raw){
+      var s = JSON.parse(raw);
+      if(s && TYPE_MAP[s.type]){
+        var base = emptyState();
+        state = {type:s.type, slots:s.slots||{}, picks:s.picks||{}, conn:s.conn||0,
+                 p3mode:s.p3mode||"measure", toggles:base.toggles};
+        if(s.toggles) for(var k in s.toggles) state.toggles[k] = !!s.toggles[k];
+      }
+    }
+    var sn = localStorage.getItem(LS_SNAP);
+    if(sn) snapshots = JSON.parse(sn) || [];
+  }catch(e){}
+}
+function pushHistory(){
+  undoStack.push(JSON.stringify(state));
+  if(undoStack.length > 40) undoStack.shift();
+  redoStack.length = 0;
+}
+function snapshot(label){
+  snapshots.unshift({ts:Date.now(), label:label, state:JSON.stringify(state)});
+  snapshots = snapshots.slice(0,8);
+  persistSnaps();
+  renderSnapPanel();
+}
+
+/* ============ 取值 ============ */
+function getSlot(id){
+  var s = state.slots[id];
+  return (s && typeof s.v === "string" && s.v.length) ? s : null;
+}
+function findOpt(id, en){
+  var arr = slotOpts(id);
+  for(var i=0;i<arr.length;i++){ if(arr[i].en === en) return arr[i]; }
+  for(var k in BANK){
+    var a = BANK[k].opts;
+    for(var j=0;j<a.length;j++){ if(a[j].en === en) return a[j]; }
+  }
+  return null;
+}
+function setSlot(id, v, zh, num){
+  if(!v){ delete state.slots[id]; return; }
+  var o = findOpt(id, v);
+  state.slots[id] = {v:v, zh:(zh|| (o && o.zh) || zhFor(id,v)), num:(num || (o && o.num) || "")};
+}
+function autoText(id, mode){
+  var style = CONN_STYLES[state.conn] || CONN_STYLES[0];
+  var idx = AUTO[id];
+  if(mode === "zh"){
+    var map = {c1:"首先，",c2:"其次，",c3:"最后，"};
+    return (style.c[idx-1] ? map[id] : "");
+  }
+  return style.c[idx-1] || "";
+}
+function expand(raw, mode, depth){
+  if(depth > 4) return raw;
+  return String(raw).replace(/\{([A-Za-z0-9_]+)\}/g, function(m, key){
+    return slotText(key, mode, depth+1);
+  });
+}
+function slotText(id, mode, depth){
+  if(AUTO[id]) return autoText(id, mode);
+  var st = getSlot(id);
+  if(!st) return "【" + slotLabel(id) + "】";
+  var raw = (mode === "zh") ? (st.zh || st.v) : st.v;
+  if(raw.indexOf("{") >= 0 && (depth||0) < 4){
+    var sub = segmentsOf(raw, mode, {nested:true, depth:(depth||0)+1});
+    return sub.map(function(x){ return x.s; }).join("").replace(/\s+/g, " ");
+  }
+  return raw;
+}
+
+/* ============ 语法引擎 ============ */
+var VERB_PAIRS = {
+  "is":"are","was":"were","has":"have","does":"do","plays":"play","accounts":"account","tops":"top",
+  "shows":"show","provides":"provide","remains":"remain","constitutes":"constitute","indicates":"indicate",
+  "demonstrates":"demonstrate","enables":"enable","helps":"help","lies":"lie","deserves":"deserve",
+  "acts":"act","serves":"serve","brings":"bring","poses":"pose","contributes":"contribute",
+  "improves":"improve","enhances":"enhance","increases":"increase","promotes":"promote","relieves":"relieve",
+  "cultivates":"cultivate","boosts":"boost","offers":"offer","creates":"create","reflects":"reflect",
+  "reveals":"reveal","presents":"present","illustrates":"illustrate","depicts":"depict","means":"mean",
+  "tends":"tend","becomes":"become","wins":"win","relies":"rely","applies":"apply","carries":"carry",
+  "runs":"run","stands":"stand","sits":"sit","stays":"stay","keeps":"keep","makes":"make","takes":"take"
+};
+var PLURAL_TO_SG = {};
+Object.keys(VERB_PAIRS).forEach(function(k){ PLURAL_TO_SG[VERB_PAIRS[k]] = k; });
+var BASE_TO_SG = {run:"runs",stand:"stands",sit:"sits",stay:"stays",improve:"improves",increase:"increases",
+  provide:"provides",enable:"enables",help:"helps",play:"plays",show:"shows",remain:"remains",create:"creates"};
+
+function toPluralVerb(v){
+  var low = v.toLowerCase();
+  if(VERB_PAIRS[low]) return matchCase(v, VERB_PAIRS[low]);
+  return v;
+}
+function toSingularVerb(v){
+  var low = v.toLowerCase();
+  if(PLURAL_TO_SG[low]) return matchCase(v, PLURAL_TO_SG[low]);
+  if(BASE_TO_SG[low]) return matchCase(v, BASE_TO_SG[low]);
+  return v;
+}
+function matchCase(src, out){
+  if(src[0] === src[0].toUpperCase()) return out.charAt(0).toUpperCase() + out.slice(1);
+  return out;
+}
+
+function applyAgreement(segs){
+  for(var i=0;i<segs.length-1;i++){
+    var a = segs[i], b = segs[i+1];
+    if(a.t === "slot" && b.t === "text"){
+      var m = b.s.match(/^(\s+)([A-Za-z]+)/);
+      var prevText = (i > 0 && segs[i-1].t === "text") ? segs[i-1].s : "";
+      var afterAux = /\b(does|do|did|is|are|was|were|has|have|had|can|could|will|would|should|may|might|must)\s+$/i.test(prevText);
+      if(m && a.filled && !afterAux){
+        var verb = m[2];
+        var num = a.num;
+        if(!num){
+          var st = getSlot(a.id);
+          num = st && st.num;
+        }
+        if(num === "pl"){
+          var pv = toPluralVerb(verb);
+          if(pv !== verb) b.s = m[1] + pv + b.s.slice(m[0].length);
+        }else if(num === "sg"){
+          var sv = toSingularVerb(verb);
+          if(sv !== verb) b.s = m[1] + sv + b.s.slice(m[0].length);
+        }
+      }
+    }
+    if(a.t === "slot" && b.t === "text" && /^\s+$/.test(b.s) && segs[i+2] && segs[i+2].t === "slot" && segs[i+2].filled && a.filled){
+      var numN = a.num || (getSlot(a.id) && getSlot(a.id).num);
+      var pre = (i > 0 && segs[i-1].t === "text") ? segs[i-1].s : "";
+      var auxBefore = /\b(does|do|did|is|are|was|were|has|have|had|can|could|will|would|should|may|might|must)\s*$/i.test(pre);
+      var vm = segs[i+2].s.match(/^([A-Za-z]+)/);
+      if(vm && !auxBefore){
+        var v2 = vm[1], nv = v2;
+        if(numN === "pl") nv = toPluralVerb(v2);
+        else if(numN === "sg") nv = toSingularVerb(v2);
+        if(nv !== v2) segs[i+2].s = nv + segs[i+2].s.slice(v2.length);
+      }
+    }
+    if(a.t === "text" && b.t === "slot" && b.filled){
+      var tail = a.s.match(/\b(does|is|has|was)\s+$/);
+      var num2 = b.num || (getSlot(b.id) && getSlot(b.id).num);
+      if(tail && num2 === "pl"){
+        var rep = {does:"do", is:"are", has:"have", was:"were"}[tail[1]];
+        a.s = a.s.replace(/\b(does|is|has|was)(\s+)$/, rep + "$2");
+      }
+    }
+  }
+}
+
+var LOWER_AFTER_COMMA = {the:1,a:1,an:1,this:1,these:1,those:1,it:1,they:1,we:1,people:1,many:1,most:1,for:1,not:1,in:1,if:1,compared:1,
+  some:1,such:1,there:1,parents:1,children:1,students:1,residents:1,consumers:1,experts:1,
+  enterprises:1,schools:1,undergraduates:1,citizens:1,employees:1,youngsters:1,public:1,government:1,
+  every:1,each:1,our:1,their:1,his:1,her:1};
+
+function applyCaps(segs){
+  var cap = true;
+  for(var i=0;i<segs.length;i++){
+    var seg = segs[i];
+    if(seg.t === "slot"){
+      if(cap && seg.filled && seg.s.length){
+        seg.s = seg.s.charAt(0).toUpperCase() + seg.s.slice(1);
+      }
+      cap = false;
+      continue;
+    }
+    var s = seg.s, out = "";
+    for(var j=0;j<s.length;j++){
+      var ch = s[j];
+      if(cap && /[A-Za-z]/.test(ch)){ out += ch.toUpperCase(); cap = false; continue; }
+      out += ch;
+      if(/[.!?]/.test(ch)){
+        var nx = s[j+1];
+        if(nx === undefined || nx === " " || nx === "\n"){ cap = true; }
+        if(nx !== undefined && /[0-9]/.test(nx)) cap = false;
+      } else if(ch === ":" && (s[j+1] === " " || s[j+1] === undefined)){
+        cap = true;
+      }
+    }
+    seg.s = out;
+  }
+}
+function applyCommaLower(segs){
+  for(var i=0;i<segs.length;i++){
+    if(segs[i].t !== "text") continue;
+    segs[i].s = segs[i].s.replace(/,\s+([A-Z])([a-z]+)/g, function(m, a, rest){
+      var w = (a + rest).toLowerCase();
+      return LOWER_AFTER_COMMA[w] ? (", " + w) : m;
+    });
+    if(!/,\s*$/.test(segs[i].s)) continue;
+    var j = i+1;
+    while(j < segs.length && segs[j].t === "text" && /^\s*$/.test(segs[j].s)) j++;
+    if(j >= segs.length) continue;
+    var seg = segs[j];
+    if(seg.t === "slot" && seg.filled){
+      seg.s = seg.s.replace(/^([A-Z])([a-z]+)/, function(m, a, rest){
+        var w = (a + rest).toLowerCase();
+        return LOWER_AFTER_COMMA[w] ? w : m;
+      });
+    }else if(seg.t === "text"){
+      seg.s = seg.s.replace(/^(\s*)([A-Z])([a-z]+)/, function(m, sp, a, rest){
+        var w = (a + rest).toLowerCase();
+        return LOWER_AFTER_COMMA[w] ? (sp + w) : m;
+      });
+    }
+  }
+}
+
+/* 中文自然拼：去掉英文句前的连接词空格 */
+function segmentsOf(tpl, mode, opts){
+  opts = opts || {};
+  var depth = opts.depth || 0;
+  var out = [], parts = String(tpl).split(/(\{[A-Za-z0-9_]+\})/);
+  for(var i=0;i<parts.length;i++){
+    var part = parts[i];
+    if(!part) continue;
+    var m = part.match(/^\{([A-Za-z0-9_]+)\}$/);
+    if(m){
+      var id = m[1];
+      if(AUTO[id]){ var at = autoText(id, mode); if(at) out.push({t:"text", s:at}); continue; }
+      var st = getSlot(id);
+      var txt = st ? slotText(id, mode, depth) : "【" + slotLabel(id) + "】";
+      out.push({t:"slot", id:id, s:txt, filled:!!st, num:(st && st.num) || ""});
+    }else{
+      out.push({t:"text", s:part});
+    }
+  }
+  if(state.toggles.gram){
+    applyAgreement(out);
+    if(!opts.nested) applyCaps(out);
+    applyCommaLower(out);
+  }
+  // 清理空槽位带来的多余标点/空格
+  for(var k=0;k<out.length;k++){
+    if(out[k].t === "text"){
+      out[k].s = out[k].s.replace(/,\s*,/g, ",").replace(/\(\s*\)/g, "").replace(/\s{2,}/g, " ");
+    }
+  }
+  return out;
+}
+
+function plainOf(segs){
+  var s = "";
+  segs.forEach(function(x){ s += x.s; });
+  return s.replace(/\s+/g, " ").replace(/\s+([,.!?:;])/g, "$1").trim();
+}
+
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+/* ============ 组段 ============ */
+function paragraphsOf(){
+  var t = TYPE_MAP[state.type] || TYPES[0];
+  var p1 = {key:"p1", n:1, title:"第一段", tag:"描述 + 现象 / 主题", sents:t.p1.slice()};
+  var p2 = {key:"p2", n:2, title:"第二段", tag:"过渡 + 原因", sents:P2.slice()};
+  var p3 = state.p3mode === "trend"
+    ? {key:"p3", n:3, title:"第三段", tag:"总结 + 趋势预测", sents:P3_TREND.slice()}
+    : {key:"p3", n:3, title:"第三段", tag:"总结 + 措施 + 畅想", sents:P3_MEASURE.slice()};
+  var arr = [p1,p2,p3];
+  if(state.toggles.lite){
+    arr.forEach(function(p){
+      p.sents = p.sents.filter(function(s){
+        if(s.optional) return false;
+        if(p.key === "p2" && s.key === "p2d") return false;
+        if(p.key === "p3" && s.key === "p3c") return false;
+        return true;
+      });
+    });
+  }
+  return arr;
+}
+function variantOf(sent){
+  var i = state.picks[sent.key];
+  if(typeof i !== "number" || i < 0 || i >= sent.vs.length) i = 0;
+  return sent.vs[i];
+}
+function pickOf(sent){
+  var i = state.picks[sent.key];
+  return (typeof i === "number" && i >= 0 && i < sent.vs.length) ? i : 0;
+}
+
+/* ============ 渲染 ============ */
+function renderChips(){
+  var box = document.getElementById("typeChips");
+  box.innerHTML = "";
+  TYPES.forEach(function(t){
+    var b = document.createElement("button");
+    b.className = "chip" + (t.id === state.type ? " on" : "");
+    b.textContent = t.label;
+    b.title = t.badge || "";
+    b.onclick = function(){
+      if(state.type === t.id) return;
+      pushHistory();
+      state.type = t.id;
+      state.picks = {};
+      persist(); renderAll();
+      toast("已切换到 " + t.label);
+    };
+    box.appendChild(b);
+  });
+}
+function renderPresets(){
+  var sel = document.getElementById("presetSel");
+  var cur = sel.value;
+  sel.innerHTML = '<option value="">— 载入真题预设 —</option>';
+  var groups = {};
+  PRESETS.forEach(function(p){
+    var g = TYPE_MAP[p.type] ? TYPE_MAP[p.type].group : "其他";
+    if(!groups[g]){ groups[g] = document.createElement("optgroup"); groups[g].label = g; sel.appendChild(groups[g]); }
+    var o = document.createElement("option");
+    o.value = p.id; o.textContent = p.name;
+    groups[g].appendChild(o);
+  });
+  sel.value = cur || "";
+  sel.onchange = function(){
+    var p = null;
+    PRESETS.forEach(function(x){ if(x.id === sel.value) p = x; });
+    if(!p) return;
+    snapshot("切换前 · " + (TYPE_MAP[state.type] ? TYPE_MAP[state.type].label : ""));
+    pushHistory();
+    applyPreset(p);
+    persist(); renderAll();
+    toast("已载入：" + p.name);
+  };
+}
+function applyPreset(p){
+  var s = emptyState();
+  s.type = p.type;
+  var merged = {};
+  for(var k in BASE) merged[k] = BASE[k];
+  for(var k2 in p.slots) merged[k2] = p.slots[k2];
+  for(var k3 in merged){
+    var v = merged[k3];
+    if(v === "" || v === null || v === undefined) continue;
+    var opt = findOpt(k3, v);
+    s.slots[k3] = {v:v, zh:(opt && opt.zh) || zhFor(k3, v), num:(opt && opt.num) || ""};
+  }
+  for(var k4 in p.picks) s.picks[k4] = p.picks[k4];
+  state = s;
+}
+function renderSidebar(){
+  var form = document.getElementById("slotForm");
+  var tab = form.getAttribute("data-tab") || "core";
+  var groups = {
+    core:[["theme","主题词"],["actor","对象/某人"],["aspect","某方面"]],
+    data:[["y1","起始年"],["y2","结束年"],["item1","图例1"],["item2","图例2"],["n1","数值1"],["n2","数值2"],["delta","增量"]],
+    arg:[["aspect2","某方面②"],["aspect3","某方面③"],["doX","做某事"],["govAction","政府措施"],["awareness","意识"]]
+  };
+  var list = groups[tab] || groups.core;
+  var html = "";
+  list.forEach(function(pair){
+    var id = pair[0];
+    var st = state.slots[id];
+    var val = st ? st.v : "";
+    html += '<div class="field"><label>' + esc(pair[1]) + ' <span style="color:var(--dim2)">' + esc(slotLabel(id)) + '</span></label>' +
+            '<input type="text" data-quick="' + id + '" value="' + esc(val) + '" placeholder="' + esc(slotLabel(id)) + '">';
+    if(BANK[id] && BANK[id].hint) html += '<div class="hint">' + esc(BANK[id].hint) + '</div>';
+    html += '</div>';
+  });
+  form.innerHTML = html;
+  Array.prototype.forEach.call(form.querySelectorAll("input[data-quick]"), function(inp){
+    inp.oninput = function(){
+      var id = inp.getAttribute("data-quick");
+      var v = inp.value.trim();
+      if(v) setSlot(id, v, zhFor(id, v)); else delete state.slots[id];
+      persist(); renderPreview();
+    };
+  });
+  var seg = document.getElementById("sideSeg");
+  Array.prototype.forEach.call(seg.querySelectorAll("button"), function(b){
+    b.className = (b.getAttribute("data-tab") === tab) ? "on" : "";
+  });
+  var csel = document.getElementById("connSel");
+  csel.innerHTML = "";
+  CONN_STYLES.forEach(function(c, i){
+    var o = document.createElement("option"); o.value = i; o.textContent = c.name; csel.appendChild(o);
+  });
+  csel.value = state.conn;
+  csel.onchange = function(){ pushHistory(); state.conn = parseInt(csel.value,10)||0; persist(); renderPreview(); };
+  document.getElementById("p3modeBtn1").className = state.p3mode === "measure" ? "on" : "";
+  document.getElementById("p3modeBtn2").className = state.p3mode === "trend" ? "on" : "";
+}
+
+function renderPreview(){
+  var box = document.getElementById("preview");
+  var paras = paragraphsOf();
+  var html = "", totalWords = 0;
+  paras.forEach(function(p){
+    var inner = "", pWords = 0;
+    p.sents.forEach(function(sent){
+      var idx = pickOf(sent);
+      var varnt = sent.vs[idx];
+      if(varnt.skip) return;
+      var segsEn = segmentsOf(varnt.en, "en");
+      var segsZh = segmentsOf(varnt.zh, "zh");
+      var en = plainOf(segsEn), zh = plainOf(segsZh);
+      pWords += en.split(/\s+/).filter(Boolean).length;
+      inner += '<div class="sent" data-sent="' + sent.key + '">' +
+        '<div class="sent-head"><span class="sent-label">' + esc(sent.label) + '</span>' +
+        '<select class="sent-sel" data-pick="' + sent.key + '">' +
+          sent.vs.map(function(v, i){
+            return '<option value="' + i + '"' + (i === idx ? ' selected' : '') + '>' + esc(v.n) + '</option>';
+          }).join("") +
+        '</select></div>' +
+        '<div class="en">' + htmlOf(segsEn) + '</div>' +
+        (state.toggles.zh ? '<div class="zh">' + htmlOf(segsZh) + '</div>' : '') +
+        (state.toggles.note && varnt.note ? '<div class="note"><b>注</b> ' + esc(varnt.note) + '</div>' : '') +
+        '</div>';
+    });
+    totalWords += pWords;
+    html += '<div class="pblock">' +
+      '<div class="phead"><span class="pnum">' + p.n + '</span><h2>' + p.title + '</h2>' +
+      '<span class="tag">' + esc(p.tag) + '</span>' +
+      '<div class="tools"><span class="tag">' + pWords + ' words</span>' +
+      '<button class="mini" data-copy-p="' + p.key + '">复制本段</button></div></div>' +
+      inner + '</div>';
+  });
+  html += '<div class="stats"><span>全文 <b>' + totalWords + '</b> words</span>' +
+          '<span>题型 <b>' + TYPES.length + '</b></span><span>预设 <b>' + PRESETS.length + '</b></span>' +
+          '<span>句子方案 <b>' + countVariants() + '</b></span>' +
+          '<span>词库短语 <b>' + countOptions() + '</b></span></div>';
+  box.innerHTML = html;
+
+  Array.prototype.forEach.call(box.querySelectorAll("select[data-pick]"), function(sel){
+    sel.onchange = function(){
+      pushHistory();
+      state.picks[sel.getAttribute("data-pick")] = parseInt(sel.value,10) || 0;
+      persist(); renderPreview();
+    };
+  });
+  Array.prototype.forEach.call(box.querySelectorAll("button[data-copy-p]"), function(b){
+    b.onclick = function(){
+      var key = b.getAttribute("data-copy-p");
+      var p = paragraphsOf().filter(function(x){ return x.key === key; })[0];
+      copyText(paragraphText(p));
+      toast("已复制" + p.title);
+    };
+  });
+}
+function htmlOf(segs){
+  var out = "";
+  segs.forEach(function(seg){
+    if(seg.t === "text"){ out += esc(seg.s); }
+    else{
+      out += '<button class="slot ' + (seg.filled ? "filled" : "empty") + '" data-slot="' + seg.id + '">' + esc(seg.s) + '</button>';
+    }
+  });
+  return out;
+}
+function paragraphText(p){
+  return p.sents.filter(function(s){ return !variantOf(s).skip; })
+    .map(function(s){ return plainOf(segmentsOf(variantOf(s).en, "en")); }).join(" ");
+}
+function countVariants(){
+  var n = 0;
+  TYPES.forEach(function(t){ t.p1.forEach(function(s){ n += s.vs.length; }); });
+  P2.forEach(function(s){ n += s.vs.length; });
+  P3_MEASURE.forEach(function(s){ n += s.vs.length; });
+  P3_TREND.forEach(function(s){ n += s.vs.length; });
+  return n;
+}
+function countOptions(){
+  var n = 0;
+  for(var k in BANK) n += BANK[k].opts.length;
+  return n;
+}
+
+/* ============ 槽位弹窗 ============ */
+function openSlot(id){
+  modalSlot = id;
+  var m = document.getElementById("modal");
+  document.getElementById("mTitle").textContent = "【" + slotLabel(id) + "】";
+  var hint = (BANK[id] && BANK[id].hint) || "该槽位没有预置短语，直接输入即可";
+  document.getElementById("mSub").textContent = hint;
+  var body = document.getElementById("mBody");
+  var cur = getSlot(id);
+  var opts = slotOpts(id);
+  var html = "";
+  if(!opts.length){
+    html = '<div class="empty-hint">没有内置选项，直接在下方输入框填写，例如：<br>the health literacy level</div>';
+  }
+  opts.forEach(function(o, i){
+    var cls = (cur && cur.v === o.en) ? "opt cur" : "opt";
+    html += '<button class="' + cls + '" data-opt="' + i + '"><div class="oe">' + esc(o.en || "（空）") + '</div>' +
+            '<div class="oz">' + esc(o.zh || "") + '</div>' +
+            (o.note ? '<div class="onote">适用：' + esc(o.note) + '</div>' : '') + '</button>';
+  });
+  body.innerHTML = html;
+  var input = document.getElementById("mInput");
+  input.value = cur ? cur.v : "";
+  document.getElementById("mNum").querySelectorAll("button").forEach(function(b){
+    b.className = (cur && cur.num === b.getAttribute("data-num")) ? "on" : (b.getAttribute("data-num") === "sg" && (!cur || !cur.num) ? "on" : "");
+  });
+  Array.prototype.forEach.call(body.querySelectorAll("button[data-opt]"), function(b){
+    b.onclick = function(){
+      var o = opts[parseInt(b.getAttribute("data-opt"),10)];
+      pushHistory();
+      setSlot(id, o.en, o.zh, o.num || "");
+      persist(); renderPreview(); renderSidebar(); closeModal();
+      flashSlot(id);
+    };
+  });
+  m.classList.add("on");
+  setTimeout(function(){ try{ input.focus(); }catch(e){} }, 80);
+}
+function closeModal(){ document.getElementById("modal").classList.remove("on"); modalSlot = null; }
+function flashSlot(id){
+  var el = document.querySelector('.slot[data-slot="' + id + '"]');
+  if(el){ el.classList.add("flash"); setTimeout(function(){ el.classList.remove("flash"); }, 700); }
+}
+function applyModalInput(){
+  if(!modalSlot) return;
+  var v = document.getElementById("mInput").value.trim();
+  var numBtn = document.getElementById("mNum").querySelector("button.on");
+  var num = numBtn ? numBtn.getAttribute("data-num") : "";
+  pushHistory();
+  if(v){ setSlot(modalSlot, v, "", num); } else { delete state.slots[modalSlot]; }
+  persist(); renderPreview(); renderSidebar(); closeModal();
+}
+
+/* ============ 工具 ============ */
+var toastTimer = null;
+function toast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("on"); }, 1600);
+}
+function copyText(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function fallbackCopy(text){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* ============ 版本 / 更新 ============ */
+function compareVer(a, b){
+  var x = a.split(".").map(Number), y = b.split(".").map(Number);
+  for(var i=0;i<3;i++){ if((x[i]||0) !== (y[i]||0)) return (x[i]||0) - (y[i]||0); }
+  return 0;
+}
+function repoInfo(){
+  var h = location.hostname || "";
+  if(!/github\.io$/.test(h)) return null;
+  var owner = h.split(".")[0];
+  var parts = (location.pathname || "/").split("/").filter(Boolean);
+  if(!parts.length) return null;
+  var repo = parts[0];
+  var rest = parts.slice(1).join("/") || "index.html";
+  return {owner:owner, repo:repo, path:rest, branch:"main"};
+}
+function checkUpdate(silent){
+  if(typeof fetch !== "function"){ if(!silent) toast("当前浏览器不支持自动检查更新"); return; }
+  var info = repoInfo();
+  if(!info){ if(!silent) toast("本地打开，跳过在线检查"); return; }
+  var url = "https://raw.githubusercontent.com/" + info.owner + "/" + info.repo + "/" + info.branch + "/" + info.path + "?t=" + Date.now();
+  fetch(url, {cache:"no-store"}).then(function(r){ return r.ok ? r.text() : ""; }).then(function(txt){
+    var m = txt.match(/APP_VERSION\s*=\s*'([0-9.]+)'/);
+    if(m && compareVer(m[1], APP_VERSION) > 0){
+      document.getElementById("newVer").textContent = "v" + m[1] + "（当前 v" + APP_VERSION + "）";
+      document.getElementById("updateBar").classList.add("on");
+    } else if(!silent){ toast("已是最新版本 v" + APP_VERSION); }
+  }).catch(function(){ if(!silent) toast("检查更新失败（网络）"); });
+}
+function forceReload(){
+  var u = location.pathname + "?v=" + Date.now();
+  location.replace(u);
+}
+
+/* ============ 初始化 ============ */
+function renderAll(){
+  renderChips(); renderPresets(); renderSidebar(); renderPreview();
+  document.getElementById("verChip").textContent = "v" + APP_VERSION;
+  document.getElementById("footVer").textContent = "v" + APP_VERSION;
+}
+function bindUI(){
+  document.getElementById("tgZh").onchange = function(e){ state.toggles.zh = e.target.checked; persist(); renderPreview(); };
+  document.getElementById("tgLite").onchange = function(e){ state.toggles.lite = e.target.checked; persist(); renderPreview(); };
+  document.getElementById("tgNote").onchange = function(e){ state.toggles.note = e.target.checked; persist(); renderPreview(); };
+  document.getElementById("tgGram").onchange = function(e){ state.toggles.gram = e.target.checked; persist(); renderPreview(); };
+  Array.prototype.forEach.call(document.querySelectorAll("#sideSeg button"), function(b){
+    b.onclick = function(){ document.getElementById("slotForm").setAttribute("data-tab", b.getAttribute("data-tab")); renderSidebar(); };
+  });
+  document.getElementById("p3modeBtn1").onclick = function(){ pushHistory(); state.p3mode = "measure"; persist(); renderSidebar(); renderPreview(); };
+  document.getElementById("p3modeBtn2").onclick = function(){ pushHistory(); state.p3mode = "trend"; persist(); renderSidebar(); renderPreview(); };
+  document.getElementById("btnUndo").onclick = function(){
+    if(!undoStack.length){ toast("没有可撤销的操作"); return; }
+    redoStack.push(JSON.stringify(state));
+    state = JSON.parse(undoStack.pop());
+    persist(); renderAll(); toast("已撤销");
+  };
+  document.getElementById("btnRedo").onclick = function(){
+    if(!redoStack.length){ toast("没有可重做的操作"); return; }
+    undoStack.push(JSON.stringify(state));
+    state = JSON.parse(redoStack.pop());
+    persist(); renderAll(); toast("已重做");
+  };
+  document.getElementById("btnSnap").onclick = function(){
+    var panel = document.getElementById("snapPanel");
+    panel.classList.toggle("on");
+    renderSnapPanel();
+  };
+  document.getElementById("btnClear").onclick = function(){
+    snapshot("清空前 · " + (TYPE_MAP[state.type] ? TYPE_MAP[state.type].label : ""));
+    pushHistory();
+    state = emptyState();
+    persist(); renderAll(); toast("已清空，可撤销");
+  };
+  document.getElementById("btnCopyAll").onclick = function(){
+    var txt = paragraphsOf().map(function(p){
+      return p.title + "\n" + paragraphText(p);
+    }).join("\n\n");
+    copyText(txt); toast("全文 " + txt.split(/\s+/).length + " 词，已复制");
+  };
+  document.getElementById("btnCopyP1").onclick = function(){
+    var p = paragraphsOf()[0]; copyText(paragraphText(p)); toast("已复制第一段");
+  };
+  document.getElementById("btnCopyP2").onclick = function(){
+    var p = paragraphsOf()[1]; copyText(paragraphText(p)); toast("已复制第二段");
+  };
+  document.getElementById("mClose").onclick = closeModal;
+  document.getElementById("mApply").onclick = applyModalInput;
+  document.getElementById("mClear").onclick = function(){
+    if(!modalSlot) return;
+    pushHistory(); delete state.slots[modalSlot];
+    persist(); renderPreview(); renderSidebar(); closeModal();
+  };
+  document.getElementById("mInput").onkeydown = function(e){ if(e.key === "Enter") applyModalInput(); };
+  document.getElementById("mNum").onclick = function(e){
+    var b = e.target.closest ? e.target.closest("button") : null;
+    if(!b) return;
+    this.querySelectorAll("button").forEach(function(x){ x.className = ""; });
+    b.className = "on";
+    if(modalSlot && getSlot(modalSlot)){
+      state.slots[modalSlot].num = b.getAttribute("data-num");
+      persist(); renderPreview();
+    }
+  };
+  document.getElementById("modal").onclick = function(e){ if(e.target === this) closeModal(); };
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeModal(); });
+  document.getElementById("preview").onclick = function(e){
+    var b = e.target.closest ? e.target.closest(".slot") : null;
+    if(b){ openSlot(b.getAttribute("data-slot")); }
+  };
+  document.getElementById("btnForce").onclick = forceReload;
+  document.getElementById("btnReload").onclick = forceReload;
+}
+function renderSnapPanel(){
+  var panel = document.getElementById("snapPanel");
+  if(!snapshots.length){ panel.innerHTML = '<div class="empty-hint">还没有快照。<br>切换预设或清空时会自动存。</div>'; return; }
+  var html = '<div style="font-size:12px;color:var(--dim2);margin-bottom:6px">快照（最多 8 个，点击恢复）</div>';
+  snapshots.forEach(function(s, i){
+    var d = new Date(s.ts);
+    var time = (d.getMonth()+1) + "月" + d.getDate() + "日 " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+    html += '<div class="snap"><div><b>' + esc(s.label) + '</b><br><span style="color:var(--dim2)">' + time + '</span></div>' +
+            '<button class="mini" data-restore="' + i + '">恢复</button></div>';
+  });
+  panel.innerHTML = html;
+  Array.prototype.forEach.call(panel.querySelectorAll("button[data-restore]"), function(b){
+    b.onclick = function(){
+      var idx = parseInt(b.getAttribute("data-restore"),10);
+      var s = snapshots[idx];
+      if(!s) return;
+      snapshot("恢复前 · 当前");
+      pushHistory();
+      try{ state = JSON.parse(s.state); }catch(e){ return; }
+      persist(); renderAll(); toast("已恢复快照");
+    };
+  });
+}
+
+function boot(){
+  loadAll();
+  bindUI();
+  renderAll();
+  setTimeout(function(){ checkUpdate(true); }, 1800);
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "visible") checkUpdate(true);
+  });
+}
+if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+else boot();
+</script>
+</body>
+</html>
