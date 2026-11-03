@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f3ec">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>考研英语小作文 · 交互模板 v1.0.0</title>
+<link rel="manifest" href="manifest-xzw.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#f6f3ec; --card:#ffffff; --card2:#f1ede4; --line:#e3ddd1; --line2:#cdc4b5;
+  --fg:#20242b; --dim:#5b6472; --dim2:#8b929d;
+  --accent:#b25f16; --accent-bg:rgba(178,95,22,.10);
+  --blue:#2c66c4; --blue-bg:rgba(44,102,196,.10);
+  --ok:#1c8a5f; --danger:#c0392b;
+  --radius:14px; --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(1200px 700px at 18% -12%,#fffdf7 0%,transparent 62%),var(--bg);
+  color:var(--fg); font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  padding-bottom:90px; overflow-x:hidden;
+}
+button,select,input,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.wrap{max-width:1200px;margin:0 auto;padding:14px 14px 40px}
+header.top{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(253,251,246,.92);border-bottom:1px solid var(--line)}
+.bar{max-width:1200px;margin:0 auto;padding:8px 14px}
+.row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto;min-width:0}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,#d4822a,#a9550f);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:18px;flex:none;box-shadow:0 4px 14px rgba(150,80,20,.18)}
+.brand h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand p{margin:0;font-size:11px;color:var(--dim2)}
+.ver{display:inline-block;padding:1px 6px;border:1px solid var(--line2);border-radius:99px;font-size:10px;color:var(--accent);background:var(--accent-bg)}
+.bar-actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card2);color:var(--fg);padding:7px 11px;border-radius:10px;font-size:13px;
+  transition:.15s;white-space:nowrap}
+.btn:hover{border-color:var(--line2);background:#f4efe6}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:linear-gradient(145deg,#c4711f,#a75712);color:#fff;border:none;font-weight:700;box-shadow:0 3px 10px rgba(150,80,20,.18)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--danger)}
+.row2{display:flex;gap:10px;align-items:flex-start;margin-top:8px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;flex:1 1 420px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);background:var(--card);padding:6px 10px;border-radius:99px;font-size:12.5px;color:var(--dim);white-space:nowrap}
+.chip.on{background:var(--accent-bg);border-color:rgba(178,95,22,.45);color:var(--accent);font-weight:600}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+select.sel{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:7px 9px;font-size:12.5px;max-width:230px}
+.sw{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--dim);border:1px solid var(--line);
+  padding:5px 9px;border-radius:99px;background:var(--card);user-select:none}
+.sw input{accent-color:var(--accent);margin:0}
+.sw.on{color:var(--fg);border-color:rgba(178,95,22,.45)}
+.layout{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media(min-width:1000px){.layout{grid-template-columns:300px minmax(0,1fr)} .side{position:sticky;top:120px;align-self:start;max-height:calc(100vh - 140px);overflow:auto}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.side h3,.ptitle{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim2);margin:0 0 10px}
+.field{margin-bottom:9px}
+.field label{display:block;font-size:11.5px;color:var(--dim);margin-bottom:3px}
+.field input,.field select{width:100%;background:#fffdfa;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.field .hint{font-size:10.5px;color:var(--dim2);margin-top:2px}
+.side-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.seg{display:flex;gap:4px;background:#f7f3ea;border:1px solid var(--line);border-radius:9px;padding:3px;margin-bottom:10px}
+.seg button{flex:1;border:none;background:transparent;color:var(--dim);padding:5px 4px;border-radius:6px;font-size:12px}
+.seg button.on{background:var(--card2);color:var(--fg);font-weight:600}
+preview{display:block}
+.pblock{background:linear-gradient(180deg,#ffffff,#fdfaf4);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(60,45,20,.04);padding:14px 14px 6px;margin-bottom:14px}
+.phead{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pnum{width:24px;height:24px;border-radius:8px;background:var(--accent-bg);color:var(--accent);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.phead h2{font-size:14px;margin:0;font-weight:700}
+.phead .tag{font-size:10.5px;color:var(--dim2);border:1px solid var(--line);padding:1px 6px;border-radius:99px}
+.phead .tools{margin-left:auto;display:flex;gap:6px}
+.mini{border:1px solid var(--line);background:transparent;color:var(--dim);font-size:11px;padding:3px 8px;border-radius:8px}
+.mini:hover{color:var(--fg);border-color:var(--line2)}
+.sent{border-top:1px dashed var(--line);padding:11px 0}
+.sent:first-of-type{border-top:none}
+.sent-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.sent-label{font-size:11.5px;color:var(--accent);font-weight:600;letter-spacing:.02em}
+.sent-sel{flex:1 1 160px;min-width:120px;background:#fffdfa;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:11.5px;color:var(--dim)}
+.sent-sel:hover{color:var(--fg)}
+.en{font-family:var(--serif);font-size:17.5px;line-height:1.75;letter-spacing:.1px;color:#1c2128;word-break:break-word}
+@media(max-width:600px){.en{font-size:16px;line-height:1.7}}
+.zh{font-size:12.5px;line-height:1.7;color:var(--dim);margin-top:5px;padding-left:9px;border-left:2px solid var(--line2)}
+.note{font-size:11.5px;color:#8a5a12;background:rgba(178,95,22,.06);border:1px solid rgba(178,95,22,.18);
+  border-radius:8px;padding:5px 8px;margin-top:6px;line-height:1.6}
+.note b{color:var(--accent)}
+.slot{display:inline;border:none;background:var(--accent-bg);color:var(--accent);border-radius:6px;padding:1px 5px;
+  margin:0 1px;font:inherit;font-family:var(--serif);border-bottom:1px dashed rgba(178,95,22,.45);line-height:1.5;transition:.12s}
+.slot:hover{background:rgba(178,95,22,.15)}
+.slot.filled{background:var(--blue-bg);color:#1f4f9e;border-bottom-color:rgba(44,102,196,.45)}
+.slot.filled:hover{background:rgba(44,102,196,.18)}
+.slot.empty{color:#96661c;opacity:1}
+.slot.flash{outline:2px solid var(--accent);outline-offset:1px}
+.slotdemo{background:var(--blue-bg);color:#1f4f9e;border-bottom:1px dashed rgba(44,102,196,.45);border-radius:6px;padding:1px 5px}
+.hintbar{font-size:12px;color:var(--dim);background:rgba(44,102,196,.05);border:1px solid var(--line);
+  border-radius:10px;padding:8px 11px;margin-top:12px;line-height:1.7}
+.fmtline{font-family:var(--serif);font-size:16.5px;line-height:1.95;color:#1c2128;margin:2px 0}
+.fmtline.big{font-size:20px;font-weight:700;letter-spacing:.12em;text-align:center;margin:10px 0 12px}
+.fmtline.big:first-child{margin-top:0}
+.fmtlabel{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:11.5px;color:var(--dim);letter-spacing:.03em}
+.empty-hint{text-align:center;color:var(--dim2);font-size:13px;padding:26px 10px}
+/* modal */
+#modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-end;justify-content:center;background:rgba(48,42,32,.42);backdrop-filter:blur(3px)}
+#modal.on{display:flex}
+.sheet{width:100%;max-width:720px;max-height:86vh;background:#fffdfa;border:1px solid var(--line2);border-radius:18px 18px 0 0;
+  display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(60,45,20,.18);animation:up .18s ease-out}
+@keyframes up{from{transform:translateY(18px);opacity:.6}to{transform:translateY(0);opacity:1}}
+@media(min-width:760px){#modal{align-items:center}.sheet{border-radius:18px}}
+.sheet-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.sheet-head h4{margin:0;font-size:14px}
+.sheet-head .sub{font-size:11px;color:var(--dim2);margin-left:auto}
+.sheet-body{overflow:auto;padding:10px 12px 4px;flex:1}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card2);border-radius:10px;
+  padding:8px 10px;margin-bottom:7px;transition:.12s}
+.opt:hover{border-color:var(--line2);background:#f6f1e8}
+.opt.cur{border-color:var(--accent);background:var(--accent-bg)}
+.opt .oe{font-family:var(--serif);font-size:14.5px;color:#1f2328;line-height:1.5}
+.opt .oz{font-size:11.5px;color:var(--dim);margin-top:2px}
+.opt .onote{font-size:10.5px;color:#8a5a12;margin-top:2px}
+.sheet-foot{padding:9px 12px calc(9px + env(safe-area-inset-bottom));border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.sheet-foot input[type=text]{flex:1 1 180px;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+.sheet-foot input[type=text]:focus{outline:none;border-color:var(--accent)}
+.numtoggle{display:flex;gap:2px;background:#f7f3ea;border:1px solid var(--line);border-radius:9px;padding:2px}
+.numtoggle button{border:none;background:transparent;color:var(--dim2);padding:5px 8px;border-radius:6px;font-size:11px}
+.numtoggle button.on{background:var(--card2);color:var(--fg)}
+#snapPanel{position:fixed;right:12px;top:112px;z-index:150;width:min(360px,calc(100vw - 24px));background:#fffdfa;
+  border:1px solid var(--line2);border-radius:14px;padding:10px;display:none;box-shadow:0 14px 40px rgba(60,45,20,.16)}
+#snapPanel.on{display:block}
+.snap{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:9px;padding:7px 8px;margin-bottom:6px;font-size:11.5px}
+.snap b{font-size:12px}
+.snap button{margin-left:auto}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:300;opacity:0;transition:.22s;
+  background:#2b3038;color:#fff;padding:9px 16px;border-radius:99px;font-size:13px;font-weight:600;pointer-events:none;max-width:88vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#updateBar{display:none;background:linear-gradient(90deg,#fff3d4,#ffe9bd);border-bottom:1px solid #e6c98d;color:#7a4a06;
+  font-size:12.5px;padding:7px 14px;text-align:center}
+#updateBar.on{display:block}
+#updateBar b{color:#8a5209}
+.foot{margin-top:18px;color:var(--dim2);font-size:11px;line-height:1.8;text-align:center}
+.foot a{color:var(--dim)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--dim2);margin-top:8px}
+.stats b{color:var(--accent);font-weight:700}
+.warn{color:#9a5a00;font-size:11px;margin-top:6px;display:none}
+.warn.on{display:block}
+</style>
+</head>
+<body>
+<div id="updateBar">发现新版本 <b id="newVer">—</b>，当前显示的是旧缓存。<button class="mini" id="btnReload" style="margin-left:8px">立即刷新</button></div>
+<header class="top">
+  <div class="bar">
+    <div class="row1">
+      <div class="brand">
+        <div class="logo">小</div>
+        <div>
+          <h1>考研英语小作文 · 交互模板</h1>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.0.0</span> · 书信 / 通知 / 纪要</p>
+        </div>
+      </div>
+      <div class="bar-actions">
+        <button class="btn ghost" id="btnUndo" title="撤销">↶ 撤销</button>
+        <button class="btn ghost" id="btnRedo" title="重做">↷ 重做</button>
+        <button class="btn ghost" id="btnSnap">快照</button>
+        <button class="btn ghost danger" id="btnClear">清空</button>
+        <button class="btn primary" id="btnCopyAll">复制全文</button>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="chips" id="typeChips"></div>
+      <div class="controls">
+        <select class="sel" id="presetSel" title="真题预设"></select>
+        <label class="sw on"><input type="checkbox" id="tgZh" checked><span>中英对照</span></label>
+        <label class="sw"><input type="checkbox" id="tgLite"><span>考场精简</span></label>
+        <label class="sw on"><input type="checkbox" id="tgNote" checked><span>注释</span></label>
+        <label class="sw on"><input type="checkbox" id="tgGram" checked><span>自动语法</span></label>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="hintbar">用法：先选题型（回复信 / 主动信 / 公务信 / 通知 / 纪要）→ 填题干词 → 点<span class="slotdemo">彩色短语</span>换句。称呼和落款是格式行，也能点。</div>
+  <div class="layout">
+    <aside class="side">
+      <div class="card">
+        <h3>题干词 · 快速填写</h3>
+        <div class="seg" id="sideSeg">
+          <button data-tab="core" class="on">核心</button>
+          <button data-tab="data">时间地点</button>
+          <button data-tab="arg">结尾</button>
+        </div>
+        <div id="slotForm"></div>
+        <div class="field">
+          <label>分点连接词方案</label>
+          <select id="connSel"></select>
+        </div>
+        <div class="side-actions">
+          <button class="btn ghost" id="btnCopyP1" style="flex:1">复制第一段</button>
+          <button class="btn ghost" id="btnCopyP2" style="flex:1">复制第二段</button>
+        </div>
+        <div class="warn" id="verWarn"></div>
+      </div>
+    </aside>
+    <section id="preview"></section>
+  </div>
+  <div class="foot">
+    <div>版本 <b id="footVer">v1.0.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
+    <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
+    <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
+  </div>
+</main>
+<div id="snapPanel"></div>
+<div id="modal">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h4 id="mTitle">选择短语</h4>
+      <span class="sub" id="mSub"></span>
+      <button class="mini" id="mClose">关闭</button>
+    </div>
+    <div class="sheet-body" id="mBody"></div>
+    <div class="sheet-foot">
+      <input type="text" id="mInput" placeholder="也可手动输入…">
+      <div class="numtoggle" id="mNum">
+        <button data-num="sg" class="on">单数</button>
+        <button data-num="pl">复数</button>
+      </div>
+      <button class="btn" id="mApply">应用</button>
+      <button class="btn ghost danger" id="mClear">清除</button>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+<script>
+/* ============ 版本 ============ */
+const APP_VERSION = '1.0.0';
+const BUILD_DATE  = '2026-11-03';
+
+/* ============ 小作文词库 ============ */
+const BANK = {};
+function B(id,label,hint,opts){ BANK[id]={label:label,hint:hint,opts:opts}; }
+
+B("salutation","称呼","按收信人身份选，书信第一行",[
+  {en:"Dear Mr. Lee,",zh:"尊敬的李先生：",note:"只知道姓·男"},
+  {en:"Dear Ms. Lee,",zh:"尊敬的李女士：",note:"只知道姓·女"},
+  {en:"Dear Paul,",zh:"亲爱的保罗：",note:"只知道名"},
+  {en:"Dear John,",zh:"亲爱的约翰：",note:"只知道名"},
+  {en:"Dear Manager,",zh:"尊敬的经理：",note:"只知道职位"},
+  {en:"Dear President,",zh:"尊敬的主席/校长：",note:"只知道职位"},
+  {en:"Dear Editor,",zh:"尊敬的编辑：",note:"投书报社"},
+  {en:"Dear Professor,",zh:"尊敬的教授：",note:"只知道职位"},
+  {en:"Dear Professor Smith,",zh:"尊敬的史密斯教授：",note:"22英一原题"},
+  {en:"Dear Sir or Madam,",zh:"尊敬的先生或女士：",note:"啥也不知道"},
+  {en:"Dear Friends,",zh:"亲爱的朋友们：",note:"告示/群体"},
+  {en:"Dear David,",zh:"亲爱的大卫：",note:"23英二原题"}
+]);
+
+B("event","事件/事由","题干里的那件事",[
+  {en:"the innovative craft-making exhibition",zh:"创新手工艺展",note:"25英一"},
+  {en:"the play based on a classic Chinese novel",zh:"改编自中国古典小说的话剧",note:"25英二"},
+  {en:"the exhibition of Chinese family letters",zh:"中国家书展",note:"26英一"},
+  {en:"the video of your family's trip in China",zh:"你家人中国行的视频",note:"26英二"},
+  {en:"the art exhibition",zh:"艺术展",note:"23英二"},
+  {en:"the International Innovation Contest",zh:"国际创新大赛",note:"22英一"},
+  {en:"the campus food festival",zh:"校园美食节",note:"22英二"},
+  {en:"the singing contest",zh:"歌唱比赛",note:"20英一"},
+  {en:"the cultural exchange program",zh:"文化交流项目",note:"10英二"},
+  {en:"the “Aiding Rural Primary School” project",zh:"帮扶乡村小学项目",note:"19英一"},
+  {en:"the library service",zh:"图书馆服务",note:"07·建议信"}
+]);
+
+B("activity","活动名称","通知/邀请里反复出现",[
+  {en:"the singing contest",zh:"歌唱比赛",note:"20英一"},
+  {en:"the campus food festival",zh:"校园美食节",note:"22英二"},
+  {en:"the innovative craft-making exhibition",zh:"创新手工艺展",note:"25英一"},
+  {en:"the art exhibition",zh:"艺术展",note:"23英二"},
+  {en:"the volunteer recruitment",zh:"志愿者招募",note:"23英一"},
+  {en:"the international innovation contest",zh:"国际创新大赛",note:"22英一"},
+  {en:"the English corner",zh:"英语角",note:"通用"},
+  {en:"the career fair",zh:"招聘会",note:"通用"},
+  {en:"the charity sale",zh:"慈善义卖",note:"通用"},
+  {en:"the graduation ceremony",zh:"毕业典礼",note:"通用"}
+]);
+
+B("place","地点","活动/会议在哪办",[
+  {en:"the student activity center",zh:"学生活动中心",note:"最常用"},
+  {en:"the playground",zh:"操场",note:"20/22年"},
+  {en:"the assembly hall",zh:"大礼堂",note:"20英一"},
+  {en:"the library",zh:"图书馆",note:"07·建议信"},
+  {en:"the conference center",zh:"会议中心",note:"通用"},
+  {en:"the multimedia room",zh:"多媒体室",note:"通用"},
+  {en:"the gymnasium",zh:"体育馆",note:"通用"},
+  {en:"the dining hall",zh:"食堂",note:"美食节"},
+  {en:"the online platform",zh:"线上平台",note:"线上活动"},
+  {en:"A111, conference room",zh:"A111会议室",note:"纪要格式"}
+]);
+
+B("time","时间点","几点开始",[
+  {en:"8:00 a.m.",zh:"上午8点",note:"上午场"},
+  {en:"3:00 p.m.",zh:"下午3点",note:"下午场"},
+  {en:"5:00 p.m.",zh:"下午5点",note:"傍晚场"},
+  {en:"7:00 p.m.",zh:"晚上7点",note:"晚间场"},
+  {en:"from 7:00 to 8:00 p.m.",zh:"晚上7点到8点",note:"时段"}
+]);
+
+B("date","日期","几月几号",[
+  {en:"December 20, 2025",zh:"2025年12月20日",note:"通用"},
+  {en:"Sunday, December 19th",zh:"12月19日周日",note:"讲义例句"},
+  {en:"Sunday, December 31st",zh:"12月31日周日",note:"22年例句"},
+  {en:"next Saturday",zh:"下周六",note:"不确定日期时"}
+]);
+
+B("theme","主题","活动/会议的主题词",[
+  {en:"innovation",zh:"创新",note:"科技/比赛"},
+  {en:"traditional Chinese culture",zh:"中国传统文化",note:"文化类"},
+  {en:"campus life",zh:"校园生活",note:"通用"},
+  {en:"environmental protection",zh:"环境保护",note:"公益类"},
+  {en:"physical fitness",zh:"体育锻炼",note:"23英一"},
+  {en:"family values",zh:"家风",note:"26英一"},
+  {en:"food culture",zh:"饮食文化",note:"22英二"},
+  {en:"volunteer service",zh:"志愿服务",note:"公益类"}
+]);
+
+B("purpose","目的","活动想达到什么",[
+  {en:"arouse students' enthusiasm for innovation",zh:"激发学生的创新热情",note:"22英一例句"},
+  {en:"celebrate the upcoming New Year",zh:"庆祝即将到来的新年",note:"20英一例句"},
+  {en:"enrich students' extracurricular life",zh:"丰富学生课外生活",note:"通用"},
+  {en:"promote traditional Chinese culture",zh:"弘扬中国传统文化",note:"文化类"},
+  {en:"raise students' environmental awareness",zh:"提高学生环保意识",note:"公益类"},
+  {en:"help students relieve stress",zh:"帮学生缓解压力",note:"健康类"}
+]);
+
+B("audience","参加对象","谁能来/谁被邀请",[
+  {en:"students of all grades",zh:"各年级学生",note:"20英一"},
+  {en:"both domestic and international students",zh:"国内外学生",note:"22英二"},
+  {en:"all the members of our club",zh:"全体社团成员",note:"社团类"},
+  {en:"students and faculty members",zh:"师生",note:"通用"},
+  {en:"all freshmen",zh:"全体大一新生",note:"纪要·参会人"}
+]);
+
+B("benefit","好处","画饼用",[
+  {en:"broaden your horizons",zh:"开阔眼界",note:"万能"},
+  {en:"enrich your campus life",zh:"丰富校园生活",note:"万能"},
+  {en:"improve your communication skills",zh:"提升沟通能力",note:"能力类"},
+  {en:"gain valuable experience",zh:"获得宝贵经验",note:"经历类"},
+  {en:"make more like-minded friends",zh:"结识志同道合的朋友",note:"社交类"},
+  {en:"relieve stress after a long day of study",zh:"缓解学习压力",note:"健康类"}
+]);
+
+B("intent","来信意图（动词短语）","I am writing to ...",[
+  {en:"express my gratitude for your generous help",zh:"感谢您的慷慨帮助",note:"感谢信"},
+  {en:"apologize for the delay in my reply",zh:"为回复迟缓道歉",note:"道歉信"},
+  {en:"suggest some improvements to the library service",zh:"对图书馆服务提建议",note:"建议信"},
+  {en:"invite you to attend the art exhibition",zh:"邀请您参加艺术展",note:"邀请信"},
+  {en:"tell you more about these precious letters",zh:"多讲讲这些珍贵的家书",note:"26英一原句"},
+  {en:"share my feelings about the video",zh:"分享我对视频的感受",note:"26英二原句"},
+  {en:"provide further details about the plan",zh:"提供计划的更多细节",note:"25英一原句"},
+  {en:"recommend the art exhibition to you",zh:"向你推荐艺术展",note:"23英二原句"},
+  {en:"inquire about the schedule of the contest",zh:"咨询比赛日程",note:"询问信"},
+  {en:"apply for the position of volunteer",zh:"申请志愿者岗位",note:"申请信"},
+  {en:"complain about the noise in the reading room",zh:"投诉阅览室噪音",note:"投诉信"},
+  {en:"inform you that the meeting has been rescheduled",zh:"通知会议改期",note:"通知类"},
+  {en:"introduce the food festival to you",zh:"向你介绍美食节",note:"介绍信"},
+  {en:"remind you of the deadline for registration",zh:"提醒报名截止",note:"提醒信"}
+]);
+
+B("noun","意图名词","过渡句里的 my ...",[
+  {en:"suggestion",zh:"建议",note:"建议信"},
+  {en:"complaint",zh:"投诉",note:"投诉信"},
+  {en:"invitation",zh:"邀请",note:"邀请信"},
+  {en:"gratitude",zh:"感谢",note:"感谢信"},
+  {en:"apology",zh:"道歉",note:"道歉信"},
+  {en:"application",zh:"申请",note:"申请信"},
+  {en:"recommendation",zh:"推荐",note:"推荐信"},
+  {en:"request",zh:"请求",note:"请求信"},
+  {en:"inquiry",zh:"询问",note:"询问信"},
+  {en:"resignation",zh:"辞职",note:"辞职信"}
+]);
+
+B("dept","院系","自我介绍用",[
+  {en:"the Art Department",zh:"艺术系",note:"22英一原句"},
+  {en:"the Department of Computer Science",zh:"计算机系",note:"通用"},
+  {en:"the Department of Mechanical Engineering",zh:"机械工程系",note:"通用"},
+  {en:"the School of Foreign Languages",zh:"外国语学院",note:"通用"}
+]);
+
+B("major","专业","自我介绍用",[
+  {en:"Art",zh:"艺术",note:"22英一"},
+  {en:"Computer Science",zh:"计算机",note:"通用"},
+  {en:"Mechanical Engineering",zh:"机械工程",note:"通用"},
+  {en:"English",zh:"英语",note:"通用"}
+]);
+
+B("org","身份/组织","As a member of ...",[
+  {en:"the Student Union",zh:"学生会",note:"22英一"},
+  {en:"the Volunteers' Association",zh:"志愿者协会",note:"公益类"},
+  {en:"the English Club",zh:"英语社团",note:"社团类"},
+  {en:"the Organizing Committee",zh:"组委会",note:"活动类"}
+]);
+
+B("email","报名邮箱","通知结尾用",[
+  {en:"123456@qq.com",zh:"123456@qq.com",note:"讲义原例"},
+  {en:"studentunion@university.edu.cn",zh:"studentunion@university.edu.cn",note:"学校邮箱"}
+]);
+
+B("sign","署名","右下角落款",[
+  {en:"Li Ming",zh:"李明",note:"英一通用"},
+  {en:"Zhang Wei",zh:"张伟",note:"英二通用"}
+]);
+
+B("recommend","推荐对象","推荐信/介绍景点书籍",[
+  {en:"the art exhibition",zh:"艺术展",note:"23英二"},
+  {en:"Hong village",zh:"宏村",note:"24英二"},
+  {en:"the book The Old Man and the Sea",zh:"《老人与海》",note:"讲义例"},
+  {en:"the science museum",zh:"科技馆",note:"通用"},
+  {en:"the campus food festival",zh:"校园美食节",note:"22英二"},
+  {en:"the online course",zh:"线上课程",note:"通用"}
+]);
+
+B("author","作者/人物","推荐书、介绍名人",[
+  {en:"Hemingway",zh:"海明威",note:"《老人与海》"},
+  {en:"Shen Kuo",zh:"沈括",note:"23句·名人"},
+  {en:"a famous Chinese writer",zh:"一位中国著名作家",note:"通用"},
+  {en:"Professor Smith",zh:"史密斯教授",note:"23英一"}
+]);
+
+B("quality","品质","感谢信里夸对方",[
+  {en:"hospitality",zh:"热情款待",note:"10英二"},
+  {en:"unselfish assistance",zh:"无私帮助",note:"通用"},
+  {en:"patient guidance",zh:"耐心指导",note:"学习类"},
+  {en:"timely support",zh:"及时支持",note:"工作类"}
+]);
+
+B("do","做某事","通用句里的动作",[
+  {en:"improve our service",zh:"改进我们的服务",note:"建议类"},
+  {en:"study more efficiently",zh:"更高效地学习",note:"学习类"},
+  {en:"organize the activity smoothly",zh:"顺利组织活动",note:"活动类"},
+  {en:"solve this problem",zh:"解决这个问题",note:"通用"},
+  {en:"communicate with each other",zh:"互相交流",note:"交流类"},
+  {en:"take part in the contest",zh:"参加比赛",note:"比赛类"}
+]);
+
+B("do2","做某事2","so that I can ...",[
+  {en:"make better preparations",zh:"做更好的准备",note:"活动类"},
+  {en:"finish the report on time",zh:"按时完成报告",note:"工作类"},
+  {en:"improve my writing skills",zh:"提高写作能力",note:"学习类"},
+  {en:"enjoy the exhibition fully",zh:"充分欣赏展览",note:"参观类"}
+]);
+
+B("thing","某物/某事","通用句里的名词",[
+  {en:"a new database",zh:"一个新数据库",note:"07·图书馆"},
+  {en:"more reading rooms",zh:"更多阅览室",note:"图书馆类"},
+  {en:"a detailed schedule",zh:"一份详细日程",note:"活动类"},
+  {en:"professional guidance",zh:"专业指导",note:"学习/工作"},
+  {en:"a quiet study environment",zh:"安静的学习环境",note:"校园类"},
+  {en:"more volunteers",zh:"更多志愿者",note:"公益类"}
+]);
+
+B("fact","事实","Given the fact that ...",[
+  {en:"the library is always crowded",zh:"图书馆总是很拥挤",note:"07·图书馆"},
+  {en:"the deadline is approaching",zh:"截止日期临近",note:"活动类"},
+  {en:"many students lack practical experience",zh:"很多学生缺乏实践经验",note:"教育类"},
+  {en:"the current service is far from satisfactory",zh:"目前的服务远不能令人满意",note:"投诉类"}
+]);
+
+B("field","领域","经验/能力用",[
+  {en:"innovation",zh:"创新",note:"比赛类"},
+  {en:"scientific research",zh:"科研",note:"学术类"},
+  {en:"volunteer service",zh:"志愿服务",note:"公益类"},
+  {en:"campus sports",zh:"校园体育",note:"23英一"},
+  {en:"cross-cultural communication",zh:"跨文化交流",note:"文化类"},
+  {en:"teamwork",zh:"团队合作",note:"通用"}
+]);
+
+B("act1","环节1","流程句用",[
+  {en:"singing contests",zh:"歌唱比赛",note:"20英一"},
+  {en:"cooking contests",zh:"烹饪比赛",note:"22英二"},
+  {en:"robot competitions",zh:"机器人比赛",note:"22英一"},
+  {en:"speech contests",zh:"演讲比赛",note:"通用"},
+  {en:"group discussions",zh:"小组讨论",note:"通用"},
+  {en:"hands-on workshops",zh:"动手工作坊",note:"25英一"}
+]);
+
+B("act2","环节2","流程句用",[
+  {en:"debate competitions",zh:"辩论赛",note:"通用"},
+  {en:"food shows",zh:"美食展示",note:"22英二"},
+  {en:"aircraft competitions",zh:"航模比赛",note:"22英一"},
+  {en:"cultural performances",zh:"文化表演",note:"文化类"},
+  {en:"networking sessions",zh:"交流环节",note:"通用"},
+  {en:"awards presentations",zh:"颁奖环节",note:"通用"}
+]);
+
+B("host","主持人","纪要第一句",[
+  {en:"the chairman",zh:"主席",note:"会议类"},
+  {en:"the host",zh:"主持人",note:"通用"},
+  {en:"Professor Smith",zh:"史密斯教授",note:"学术类"},
+  {en:"the student representative",zh:"学生代表",note:"学生会议"}
+]);
+
+B("objective","会议目的","纪要表头",[
+  {en:"To review last week's activity",zh:"回顾上周活动",note:"回顾型"},
+  {en:"To plan the upcoming charity sale",zh:"筹划即将到来的义卖",note:"计划型"},
+  {en:"To discuss campus safety",zh:"讨论校园安全",note:"议题型"},
+  {en:"To summarize the volunteer work",zh:"总结志愿工作",note:"总结型"}
+]);
+
+const V = function(k,n,en,zh,note,g){ return {k:k,n:n,en:en,zh:zh,note:note||"",g:g||""}; };
+const SEN = function(key,label,vs,optional){ return {key:key,label:label,vs:vs,optional:!!optional}; };
+const FMT = function(o){ return o; };
+
+/* —— 第一段：书信 —— */
+const BG_REPLY = [
+  V("bg1","积极·感谢来信","Thanks for your email. I am very glad to hear that you are interested in {event}.","谢谢你的来信。很高兴得知{event}。","对方来信是分享/询问时用；2025英一原句。"),
+  V("bg2","积极·感谢分享","Thanks for sharing {event} with me. I truly enjoyed it.","感谢你与我分享{event}，我真的很喜欢。","2026英二原句，可加一句拉长：it was really wonderful."),
+  V("bg3","积极·收到来信","I was delighted to receive your email about {event}.","很高兴收到你关于{event}的来信。","正式一点。"),
+  V("bg4","消极·抱歉得知","I am sorry to hear about {event}.","很抱歉得知{event}。","对方来信是坏消息时用。"),
+  V("bg5","消极·主动道歉","I must apologize for the inconvenience I have caused.","我必须为我造成的不便道歉。","道歉信开头。"),
+  V("bg6","消极·理解担忧","I understand your concern about {event}.","我理解您对{event}的担忧。","投诉回复用。"),
+  V("bg7","通用寒暄·展信佳","I hope this letter finds you well and everything goes smoothly with you.","展信佳，祝你一切顺利。","不知道写什么时的保底句。"),
+  V("bg8","通用寒暄·荣幸","It was a great pleasure to receive your email.","收到您的来信，我深感愉快。","通用。"),
+  V("bg9","通用寒暄·问候","Allow me to extend my warmest greetings to you.","请允许我向您致以最诚挚的问候。","正式。")
+];
+
+const INTENT = [
+  V("in1","I am writing to","I am writing to {intent}.","我写信是为了{intent}。","最通用；intent 槽里全是动词短语。"),
+  V("in2","in order to","I am writing this letter in order to {intent}.","我写这封信是为了{intent}。","比 in1 正式。"),
+  V("in3","The purpose","The purpose of this letter is to {intent}.","本信旨在{intent}。","严肃场景用。"),
+  V("in4","with the intention","I am writing with the intention of expressing my {noun}.","我写此信意在表达我的{noun}。","名词版，适合感谢/道歉/投诉。"),
+  V("in5","邀请专用","It is my honor to invite you to {event}.","我很荣幸邀请您参加{event}。","邀请信专用开头。"),
+  V("in6","通知专用","It gives me immense pleasure to inform you that {event} will be held in our university.","我很荣幸地通知您，{event}将在我校举行。","通知/告知类。"),
+  V("in7","身份融入","As a member of {org}, I am writing to {intent}.","作为{org}的一员，我写信是为了{intent}。","公务信可把自我介绍并入。")
+];
+
+const BG_ACTIVE = [
+  V("ab1","活动信息","{activity} will be held in {place} on {date}.","{activity}将于{date}在{place}举行。","主动信补背景。"),
+  V("ab2","邀请口吻","{org} is now organizing {activity}, and we sincerely hope you can join us.","{org}正在筹办{activity}，我们诚挚希望您能参加。","邀请信。"),
+  V("ab3","分享口吻","I am pleased to share with you the details of {event}.","我很高兴与你分享{event}的细节。","介绍信。"),
+  V("ab4","介绍口吻","This letter is intended to give you a brief introduction to {event}.","这封信旨在向你简要介绍{event}。","介绍信。")
+];
+
+const SELF_INTRO = [
+  V("si1","院系版","I am a student from {dept} at a university.","我是某大学{dept}的一名学生。","2022英一原句。"),
+  V("si2","专业版","I am an undergraduate at a university, majoring in {major}.","我是某大学本科生，专业是{major}。","题干没给身份时默认学生。"),
+  V("si3","在读版","I am currently pursuing a degree in {major} at a university.","我目前在某大学攻读{major}学位。","正式。"),
+  V("si4","身份+目的","As a member of {org}, I am writing to {intent}.","作为{org}的一员，我写信是为了{intent}。","一句话解决自我介绍和目的。"),
+  V("si5","身份+通知","As a student in {dept}, it is my honor to inform you that {event} will be held in our university.","作为{dept}的学生，我很荣幸通知您{event}将在我校举行。","2022英一改写。")
+];
+
+/* —— 第二段 —— */
+const TRANS = [
+  V("t1","两个因素","There are at least two factors accounting for my {noun}.","至少有两个因素可以解释我的{noun}。","建议/投诉类。"),
+  V("t2","首要原因","The primary reasons for my {noun} are as follows.","我{noun}的主要原因如下。","正式。"),
+  V("t3","原因如下","The reasons for my {noun} are outlined below.","我的{noun}的理由列在下面。","正式。"),
+  V("t4","详情如下","The details can be listed as follows.","详情可列举如下。","最通用，任何信件都能用。"),
+  V("t5","回答提问","As for the questions you raised, here are my answers.","关于你提出的问题，以下是我的回答。","回复询问信。"),
+  V("t6","逐一回答","Let me answer your questions one by one.","让我逐一回答你的问题。","回复询问信。"),
+  V("t7","要点如下","The relevant details are as follows.","相关细节如下。","通知/介绍类。")
+];
+
+const POINTS = [
+  /* 活动基本信息 */
+  V("a1","基本信息·活动","{activity} will be held in {place} at {time} on {date}.","{activity}将于{date}{time}在{place}举行。","交代时间地点事件；会议类把 activity 设成 meeting。","活动基本信息"),
+  V("a2","基本信息·我校主办","Our university will host {activity} in {place} on {date}.","我校将于{date}在{place}举办{activity}。","同上。","活动基本信息"),
+  V("a3","基本信息·日程","{activity} is scheduled to take place in {place} on {date} from {time}.","{activity}定于{date}{time}在{place}举行。","同上。","活动基本信息"),
+  V("a4","基本信息·正式","On {date}, {activity} will be held in {place}, commencing at {time}.","{date}，{activity}将在{place}举行，于{time}开始。","正式。","活动基本信息"),
+  /* 主题目的 */
+  V("b1","主题","The theme of {activity} is {theme}.","{activity}的主题是{theme}。","点题。","主题目的"),
+  V("b2","目的","The purpose of {activity} is to {purpose}.","{activity}的目的是{purpose}。","最常用。","主题目的"),
+  V("b3","深入讨论","This event aims to facilitate an in-depth discussion on {theme}.","本次{activity}旨在促进关于{theme}的深入讨论。","会议/论坛。","主题目的"),
+  V("b4","主题引号","This event is held under the theme of “{theme}”.","本次活动在“{theme}”的主题下举行。","需要引号时用。","主题目的"),
+  V("b5","分词升级","Centered on the theme of {theme}, the event aims to {purpose}.","以{theme}为主题，活动旨在{purpose}。","过去分词做状语，拉长句子。","主题目的"),
+  /* 参与范围 */
+  V("c1","广泛参与","The event is anticipated to attract wide participation from both students and faculty members.","预计该活动将吸引师生广泛参与。","通用。","参与范围"),
+  V("c2","各年级","Students of all grades are eligible to enter the competition, including both domestic and international students.","所有年级学生都有资格参赛，包括国内外学生。","2020英一原句。","参与范围"),
+  V("c3","领军人物","We have invited leading figures from various sectors, including eminent scholars, renowned entrepreneurs, and senior media representatives.","我们邀请了各行业领军人物，包括杰出学者、知名企业家和资深媒体代表。","规格高的活动。","参与范围"),
+  V("c4","贵宾","This event is expected to bring together a host of distinguished guests, including leading experts and scholars in the field.","本次活动预计汇聚众多贵宾，包括业内顶尖专家学者。","学术活动。","参与范围"),
+  /* 流程环节 */
+  V("d1","有趣活动","Interesting activities such as {act1} and {act2} will be held to arouse students' enthusiasm for {theme}.","将举办{act1}、{act2}等有趣活动，激发学生对{theme}的热情。","2022英一/英二原句。","流程环节"),
+  V("d2","团队挑战","Participants will be divided into teams for a collaborative challenge, designed to foster teamwork and creative problem-solving.","参与者将分组进行协作挑战，旨在培养团队精神与创造性解决问题能力。","团建/比赛。","流程环节"),
+  V("d3","全流程","The event will commence with an opening ceremony, followed by a series of workshops and a keynote speech, and will conclude with a discussion session.","活动以开幕式开始，随后是工作坊和主题演讲，最后以讨论环节收尾。","环节多时用。","流程环节"),
+  V("d4","流程简版","Following the opening ceremony, the event will feature a keynote speech, workshops, and a concluding discussion session for participant interaction.","开幕式后，活动将包含主题演讲、工作坊和互动讨论环节。","同上，句式更短。","流程环节"),
+  /* 奖品收获 */
+  V("e1","难忘经历","This will be a memorable and rewarding experience and the prizes and souvenirs will be very valuable.","这将是一段难忘而有收获的经历，奖品和纪念品都很珍贵。","画饼。","奖品收获"),
+  V("e2","奖励设置","To encourage more students to join, the top three winners will receive trophies and certificates, and all shortlisted participants will be awarded bonus points.","为鼓励更多学生参加，前三名将获证书奖杯，入围者获得加分。","2020英一原句。","奖品收获"),
+  V("e3","结识同好","During the event, you will have the opportunity to meet like-minded individuals, engage in interesting activities, and enjoy a great time together.","活动期间你有机会结识志同道合的人，一起参与有趣活动。","社交类。","奖品收获"),
+  V("e4","贡献+经验","This activity will allow you to contribute to the development of our university while gaining valuable experience in {field}.","本次活动让你为学校发展做贡献，同时获得{field}方面的宝贵经验。","志愿/项目类。","奖品收获"),
+  V("e5","开阔视野","This activity offers a precious opportunity to {benefit}.","本次活动提供了{benefit}的宝贵机会。","与大作文六大方面结合。","奖品收获"),
+  /* 推荐对象 */
+  V("f1","景点","Located in {place}, {recommend} is one of the most popular scenic spots in the world.","{recommend}位于{place}，是世界上最受欢迎的景点之一。","推荐地点。","推荐对象"),
+  V("f2","书籍电影","Written by {author}, {recommend} is one of the most popular books in the world.","{recommend}由{author}所著，是世界上最受欢迎的书之一。","推荐书。","推荐对象"),
+  V("f3","名人","{author} was an outstanding scientist during the Northern Song Dynasty, who made remarkable achievements in many fields.","{author}是北宋时期杰出的科学家，在许多领域取得卓越成就。","介绍名人。","推荐对象"),
+  V("f4","活动","Planned by the Student Union, the activity is one of the most popular events in our university.","该活动由学生会策划，是我校最受欢迎的活动之一。","推荐活动。","推荐对象"),
+  V("f5","对比推荐","While I understand that {A} has advantages in {field}, I believe {recommend} will provide you with a more profound and thought-provoking experience.","虽然我知道{A}在{field}方面有优势，但我相信{recommend}会带来更深刻的体验。","二选一题型。","推荐对象"),
+  V("f6","强烈推荐","I would highly recommend {recommend} for its exceptional {quality} and remarkable {field}.","我强烈推荐{recommend}，因为它有卓越的{quality}和非凡的{field}。","2023英二改写。","推荐对象"),
+  V("f7","独特体验","What makes {recommend} highly recommendable is the unique experience it offers, which includes {detail}.","{recommend}值得推荐之处在于它提供的独特体验，其中包括{detail}。","2023英二原句。","推荐对象"),
+  /* 能力展示 */
+  V("h1","表现出色","Over the past few years, I have consistently excelled in my role, which is evidenced by the awards and recognition I have received.","过去几年我一直表现出色，所获奖项和认可就是证明。","自荐/求职。","能力展示"),
+  V("h2","自律韧性","I am a highly self-motivated and resilient individual, capable of maintaining focus and productivity in fast-paced environments.","我高度自律且有韧性，能在快节奏环境中保持专注和高效。","自荐。","能力展示"),
+  V("h3","协作能力","I thrive in collaborative settings and have often been the one to facilitate communication and integrate diverse viewpoints in the team.","我擅长协作，常在团队中促进沟通、整合不同观点。","团队类。","能力展示"),
+  V("h4","职责要求","The selected candidates will assist in conducting surveys, collecting and analyzing data on {field}. Moreover, the candidates should be enthusiastic about {field} and have sound organization and communication skills.","入选者将协助{field}的调查与数据分析，并对{field}有热情，具备组织沟通能力。","招募/招聘。","能力展示"),
+  V("h5","岗位要求","The role requires the ability to analyze complex problems, develop practical solutions, and execute them effectively.","该职位要求具备分析复杂问题、制定可行方案并有效执行的能力。","招聘。","能力展示"),
+  V("h6","候选人要求","The candidates should be enthusiastic about {field} and have sound organization, communication and planning skills.","候选人应对{field}有热情，并具备良好的组织、沟通和策划能力。","招募。","能力展示"),
+  V("h7","无需经验","No previous experience is required, for we will provide full training and guidance.","无需经验，我们会提供完整培训与指导。","万能兜底。","能力展示"),
+  /* 感谢道歉 */
+  V("i1","感谢帮助","I am extremely grateful to you for your unselfish assistance during the period of {event}.","非常感谢你在{event}期间给予的无私帮助。","2010英二原句。","感谢道歉"),
+  V("i2","正是你","It is your {quality} that enabled me to {do}.","正是你的{quality}让我能够{do}。","强调句。","感谢道歉"),
+  V("i3","没有你·进步","Without your generous help, I would not have made such great progress in {field}.","没有你的帮助，我不会在{field}上取得这么大进步。","虚拟语气。","感谢道歉"),
+  V("i4","没有你·经历","Without your generous help, I would not have had such a wonderful experience.","没有你的帮助，我不会拥有如此美妙的经历。","2010英二原句。","感谢道歉"),
+  V("i5","没有你·后果","Without your timely help, I'm afraid the consequences would have been truly serious.","没有你的及时帮助，后果恐怕会很严重。","道歉/感谢。","感谢道歉"),
+  V("i6","期待指导","All of us desire to improve our ability under your professional guidance.","我们都希望在您的专业指导下提升能力。","邀请信也能拍。","感谢道歉"),
+  V("i7","弥补","To make up for it, I am ready to immediately correct the mistake.","为弥补过失，我准备立即纠正错误。","道歉信。","感谢道歉"),
+  V("i8","保证","I assure you that I have learned a valuable lesson from this and will take concrete steps to ensure it does not happen again.","我保证已吸取教训，并将采取具体措施避免再发生。","道歉信。","感谢道歉"),
+  /* 通用 */
+  V("j1","急需","We are badly in need of {thing}, which can help us {do}.","我们急需{thing}，它能帮我们{do}。","2007原句。","通用万能"),
+  V("j2","由于","Due to {thing}, it is inconvenient for us to {do}.","由于{thing}，我们{do}很不方便。","投诉/建议。","通用万能"),
+  V("j3","请求","I wonder if you can {do} so that I can {do2}.","不知您能否{do}，以便我{do2}。","请求/建议。","通用万能"),
+  V("j4","改进","We could have more opportunities to {do} if you improve {thing}.","如果您改进{thing}，我们就有更多机会{do}。","建议信。","通用万能"),
+  V("j5","明智","It is advisable to {do}, which can really help you {do2}.","{do}是明智的，这能真正帮你{do2}。","建议信。","通用万能"),
+  V("j6","鉴于事实","Given the fact that {fact}, it would be wise for us to {do}.","鉴于{fact}，我们{do}才是明智的。","建议信。","通用万能"),
+  V("j7","创造力","{thing} provides a unique opportunity to let you explore your creativity.","{thing}提供了一个让你探索创造力的独特机会。","2023英二原句。","通用万能"),
+  V("j8","关键","Everyone agrees that your {thing} is the key to the satisfactory outcome.","大家都认为你的{thing}是取得满意结果的关键。","感谢/请求。","通用万能"),
+  V("j9","体验文化","{thing} allows you to experience different cultures and social customs.","{thing}能让你体验不同的文化和社会习俗。","推荐/邀请。","通用万能"),
+  V("j10","向您学习","I am confident that the students will not only have the opportunity to learn from you, but also to draw inspiration from your example.","我相信学生们不仅有机会向您学习，还能从您的榜样中汲取灵感。","邀请教授。","通用万能"),
+  /* 通知提醒 */
+  V("k1","提前安排","Please arrange your time in advance and attend the activity on time.","请提前安排好时间，准时参加活动。","通知第二段尾。","通知提醒"),
+  V("k2","遵守秩序","During the activity, please abide by the on-site order and follow the arrangements of the staff.","活动期间请遵守现场秩序，听从工作人员安排。","通知第二段尾。","通知提醒"),
+  V("k3","积极配合","In order to ensure the smooth progress of the activity, please actively cooperate and jointly create a good atmosphere.","为确保活动顺利进行，请大家积极配合，共同营造良好氛围。","通知第二段尾。","通知提醒")
+];
+
+/* —— 第三段 —— */
+const END_FEEL = [
+  V("ef1","感谢考虑","I would like to express my gratitude for your kind consideration of my {noun}.","感谢您对我{noun}的考虑。","建议/申请。"),
+  V("ef2","致歉","Please accept my sincere apology for any inconvenience that I have caused.","给您带来的不便，请接受我诚挚的歉意。","道歉信。"),
+  V("ef3","祝旅途愉快","I hope all the members will enjoy the journey.","希望所有成员旅途愉快。","活动类。"),
+  V("ef4","欢迎联系","For more information about the activity, please do not hesitate to contact me.","如需了解更多活动信息，请随时联系我。","通用。"),
+  V("ef5","期待接受邀请","We would appreciate it very much if you could accept our invitation.","如果您能接受邀请，我们将不胜感激。","邀请信。"),
+  V("ef6","期待参与","We hope for your active participation and make this event a grand success.","期待您的积极参与，共同使活动圆满成功。","通知/活动。"),
+  V("ef7","莅临","It would be our great honor if you could grace the occasion with your presence.","如您能莅临，我们将倍感荣幸。","正式邀请。"),
+  V("ef8","问候家人","Please give my best regards to your family.","请代我向你的家人问好。","私人信件。")
+];
+
+const END_REPLY = [
+  V("er1","期待回复·正式","I would be grateful if you could reply at your earliest convenience.","如您能尽早回复，我将不胜感激。","通用。"),
+  V("er2","感谢及时回复","Your prompt reply will be highly appreciated.","非常感谢您的及时回复。","通用。"),
+  V("er3","期待来信","I am looking forward to hearing from you soon.","期待很快收到你的来信。","最常用。"),
+  V("er4","期待早复","I am looking forward to your early reply.","期待早日回复。","正式。")
+];
+
+/* —— 通知 —— */
+const NOTICE_OPEN = [
+  V("no1","高兴通知","It is a pleasure to inform everyone that {activity} will be held in our university.","很高兴通知大家，我校将举办{activity}。","最通用。"),
+  V("no2","宣布","We are pleased to announce that {activity} will be held in our university.","我们很高兴地宣布，我校将举办{activity}。","正式。"),
+  V("no3","吸引注意","Attention all students interested in {theme} on campus!","校园里所有对{theme}感兴趣的同学请注意！","告示体。"),
+  V("no4","丰富生活","To enrich students' extracurricular life and improve communication among club members, our club will host a wonderful activity.","为丰富课外生活、增进社团交流，我们社团将举办一场精彩活动。","社团通知。")
+];
+const NOTICE_AIM = [
+  V("na1","介绍细节","This notice is intended to introduce some details of {activity}.","本通知旨在介绍{activity}的一些细节。","通用。"),
+  V("na2","介绍活动","This notice serves the purpose of introducing some of the activities.","本通知旨在介绍部分活动。","通用。"),
+  V("na3","通知如下","The relevant matters are hereby notified as follows.","现将相关事宜通知如下。","正式。"),
+  V("na4","以下事项","The following are the notifications of the relevant matters.","以下是有关事项的通知。","正式。")
+];
+const TRANS_NOTICE = [
+  V("tn1","详情如下","The details can be listed as follows.","详情列举如下。","通用。"),
+  V("tn2","分点如下","The relevant details are as follows.","相关细节如下。","通用。"),
+  V("tn3","首要的是","First and foremost, the activity will take place as scheduled.","首先，活动将如期举行。","承接连接词。")
+];
+const NOTICE_END = [
+  V("ne1","欢迎报名","Welcome to join us. If you are interested in this activity, please do not hesitate to email us at {email}.","欢迎加入我们。如对活动感兴趣，请发邮件至{email}报名。","通用。"),
+  V("ne2","理想机会","If you are passionate about {theme}, this is an ideal opportunity for you! To apply, please email us at {email}.","如果你对{theme}充满热情，这是理想机会！报名请发邮件至{email}。","招募。"),
+  V("ne3","扫码报名","We look forward to your active participation and believe this activity will bring you an unforgettable experience! Please scan the QR code below to sign up.","期待大家积极参与，相信会带来难忘体验！请扫描下方二维码报名。","现场海报。"),
+  V("ne4","行动起来","Put it into practice! If you are interested in {theme}, this will be a memorable experience for you.","快行动起来！如果你对{theme}感兴趣，这将是一次难忘的经历。","有感染力。"),
+  V("ne5","期待参与","We hope for your active participation and make this event a grand success.","期待您的积极参与，共同使活动圆满成功。","正式。"),
+  V("ne6","欢迎联系","For more information, please do not hesitate to contact me.","如需了解更多信息，请随时联系我。","通用。")
+];
+const NOTICE_REMIND = [
+  V("nr1","准时参加","Please arrange your time in advance and attend the activity on time.","请提前安排时间，准时参加。","字数不够时补。"),
+  V("nr2","遵守秩序","During the activity, please abide by the on-site order and follow the arrangements of the staff.","活动期间请遵守现场秩序，听从工作人员安排。","同上。"),
+  V("nr3","积极配合","In order to ensure the smooth progress of the activity, please actively cooperate and jointly create a good atmosphere.","为确保活动顺利进行，请积极配合，营造良好氛围。","同上。")
+];
+
+/* —— 纪要 —— */
+const MIN_OPEN = [
+  V("mo1","欢迎+介绍目的","The meeting commenced with a warm welcome from {host}, followed by an introduction to the purpose of gathering.","{host}首先对大家表示欢迎，随后介绍了会议目的。","纪要第一句。"),
+  V("mo2","致辞+意义","{host} delivered welcoming remarks, and provided a brief overview of the significance of {theme}.","{host}致欢迎辞，并简要介绍{theme}的意义。","正式。")
+];
+const MIN_AIM = [
+  V("ma1","回顾","The meeting aimed to briefly review the activity held last week.","会议旨在简要回顾上周的活动。","回顾型。"),
+  V("ma2","计划","The meeting aimed to make a plan for the activity to be held next week.","会议旨在为下周活动制定计划。","计划型。"),
+  V("ma3","讨论问题","The meeting aimed to discuss the problem of {theme} and find some suitable solutions.","会议旨在讨论{theme}问题并寻找解决方案。","议题型。"),
+  V("ma4","讨论+参与","The meeting aimed to discuss the problem of {theme} and find some suitable solutions. Many {audience} participated in the discussion.","会议旨在讨论{theme}问题并寻找方案，许多{audience}参与了讨论。","加一句参与情况。")
+];
+const MIN_SPEAK = [
+  V("ms1","主席认为","The chairman expressed the opinion that enough attention must be paid to {theme}.","主席认为必须对{theme}给予足够重视。","讲义原句。"),
+  V("ms2","专家认为","Experts believe that {theme} deserves greater attention.","专家认为{theme}值得更多关注。","通用。"),
+  V("ms3","详细发言","A detailed presentation was delivered by {host}, highlighting the mission, vision, and achievements of {theme}.","{host}做了详细发言，强调{theme}的使命、愿景与成就。","正式。"),
+  V("ms4","多数人认为","The majority of {audience} think that more efforts should be made to promote {theme}.","多数{audience}认为应付出更多努力推动{theme}。","通用。")
+];
+const MIN_AGREE = [
+  V("mg1","赞成","The majority of those attendees were in favour of the statement.","大多数参会者赞成这一表述。","通用。"),
+  V("mg2","互动讨论","Participants engaged in an interactive discussion to address the challenges they faced during the activity.","参会者进行了互动讨论，解决活动中遇到的挑战。","有问题要解决时用。")
+];
+const MIN_DECIDE = [
+  V("md1","同意举办","The meeting agreed to hold {activity}.","会议同意举办{activity}。","通用。"),
+  V("md2","具体措施","As a concrete measure, the meeting decided to {do}.","作为具体措施，会议决定{do}。","通用。"),
+  V("md3","致谢收尾","The meeting concluded with a vote of thanks extended to all participants for their active involvement.","会议最后向所有参会者的积极参与致谢。","正式收尾。")
+];
+const MIN_NEXT = [
+  V("mn1","下次会议","The date and location of the next meeting will be announced via email to all participants.","下次会议的日期和地点将通过邮件通知所有参会者。","仅周期性会议可写。")
+];
+
+const LETTER_P2 = function(){
+  return [
+    SEN("p2s1","过渡句",TRANS),
+    SEN("p2s2","分点①",POINTS),
+    SEN("p2s3","分点②",POINTS),
+    SEN("p2s4","分点③（可选）",POINTS,true)
+  ];
+};
+const LETTER_P3 = function(){
+  return [
+    SEN("p3s1","表示情感",END_FEEL),
+    SEN("p3s2","期待回信",END_REPLY)
+  ];
+};
+const LETTER_FMT_P1 = function(){ return [FMT({label:"", slot:"salutation"})]; };
+const LETTER_FMT_P3 = function(){ return [FMT({text:"Yours sincerely,"}), FMT({label:"", slot:"sign"})]; };
+
+const TYPES = [
+{
+  id:"reply", label:"回复信", group:"书信", badge:"被动：对方先来信，收件人认识你",
+  paras:[
+    {n:1, title:"第一段", tag:"称呼 + 背景 + 意图", fmt:LETTER_FMT_P1(), sents:[
+      SEN("p1s1","第1句 · 背景提要",BG_REPLY),
+      SEN("p1s2","第2句 · 来信意图",INTENT)
+    ]},
+    {n:2, title:"第二段", tag:"过渡 + 分点", sents:LETTER_P2()},
+    {n:3, title:"第三段", tag:"情感 + 期待 + 落款", fmt:LETTER_FMT_P3(), fmtPos:"bottom", sents:LETTER_P3()}
+  ]
+},
+{
+  id:"active", label:"主动信", group:"书信", badge:"邀请 / 建议 / 投诉 / 推荐",
+  paras:[
+    {n:1, title:"第一段", tag:"称呼 + 目的（+背景）", fmt:LETTER_FMT_P1(), sents:[
+      SEN("p1s1","第1句 · 写信目的",INTENT),
+      SEN("p1s2","第2句 · 背景补充（可选）",BG_ACTIVE,true)
+    ]},
+    {n:2, title:"第二段", tag:"过渡 + 分点", sents:LETTER_P2()},
+    {n:3, title:"第三段", tag:"情感 + 期待 + 落款", fmt:LETTER_FMT_P3(), fmtPos:"bottom", sents:LETTER_P3()}
+  ]
+},
+{
+  id:"official", label:"公务信", group:"书信", badge:"对方不认识你：自我介绍 + 目的",
+  paras:[
+    {n:1, title:"第一段", tag:"称呼 + 自我介绍 + 目的", fmt:LETTER_FMT_P1(), sents:[
+      SEN("p1s1","第1句 · 自我介绍",SELF_INTRO),
+      SEN("p1s2","第2句 · 写信目的",INTENT)
+    ]},
+    {n:2, title:"第二段", tag:"过渡 + 分点", sents:LETTER_P2()},
+    {n:3, title:"第三段", tag:"情感 + 期待 + 落款", fmt:LETTER_FMT_P3(), fmtPos:"bottom", sents:LETTER_P3()}
+  ]
+},
+{
+  id:"notice", label:"通知 / 告示", group:"通知", badge:"Notice：标题 + 概况 + 分点 + 报名",
+  paras:[
+    {n:1, title:"第一段", tag:"标题 + 概况 + 目的", fmt:[FMT({text:"Notice", big:true})], sents:[
+      SEN("p1s1","第1句 · 通知概况",NOTICE_OPEN),
+      SEN("p1s2","第2句 · 通知目的",NOTICE_AIM)
+    ]},
+    {n:2, title:"第二段", tag:"具体内容", sents:[
+      SEN("p2s1","过渡句",TRANS_NOTICE),
+      SEN("p2s2","分点①",POINTS),
+      SEN("p2s3","分点②",POINTS),
+      SEN("p2s4","分点③（可选）",POINTS,true)
+    ]},
+    {n:3, title:"第三段", tag:"号召 + 报名 + 署名日期", sents:[
+      SEN("p3s1","发出邀请 / 报名方式",NOTICE_END),
+      SEN("p3s2","提醒事项（可选）",NOTICE_REMIND,true)
+    ], fmt:[FMT({label:"", slot:"sign"}), FMT({label:"", slot:"date"})], fmtPos:"bottom"}
+  ]
+},
+{
+  id:"minutes", label:"会议纪要", group:"纪要", badge:"Minutes：表头 + 六句 + 记录人",
+  paras:[
+    {n:1, title:"表头", tag:"日期 / 时间 / 地点 / 目的 / 参会人", sents:[], fmt:[
+      FMT({text:"Minutes of Meeting", big:true}),
+      FMT({label:"Date", slot:"date"}),
+      FMT({label:"Time", slot:"time"}),
+      FMT({label:"Location", slot:"place"}),
+      FMT({label:"Objective", slot:"objective"}),
+      FMT({label:"Attendees", slot:"audience"})
+    ]},
+    {n:2, title:"第二段", tag:"导入 + 目的 + 发言 + 决定", sents:[
+      SEN("p2s1","第1句 · 导入",MIN_OPEN),
+      SEN("p2s2","第2句 · 会议目的",MIN_AIM),
+      SEN("p2s3","第3句 · 大佬发言",MIN_SPEAK),
+      SEN("p2s4","第4句 · 与会者赞同",MIN_AGREE),
+      SEN("p2s5","第5句 · 最终决定",MIN_DECIDE),
+      SEN("p2s6","第6句 · 下次会议（可选）",MIN_NEXT,true)
+    ]},
+    {n:3, title:"落款", tag:"记录人 + 日期", sents:[], fmt:[
+      FMT({label:"Recorded by", slot:"sign"}),
+      FMT({label:"", slot:"date"})
+    ], fmtPos:"bottom"}
+  ]
+}
+];
+
+/* ============ 预设 ============ */
+const BASE = {
+  salutation:"Dear Professor Smith,", event:"the International Innovation Contest",
+  activity:"the international innovation contest", place:"the student activity center",
+  time:"8:00 a.m.", date:"December 20, 2025", theme:"innovation",
+  purpose:"arouse students' enthusiasm for innovation", audience:"students of all grades",
+  benefit:"broaden your horizons", intent:"express my gratitude for your generous help",
+  noun:"suggestion", dept:"the Art Department", major:"Art", org:"the Student Union",
+  email:"123456@qq.com", sign:"Li Ming", recommend:"the art exhibition", author:"Hemingway",
+  quality:"unselfish assistance", do:"improve our service", do2:"make better preparations",
+  thing:"a detailed schedule", fact:"the library is always crowded", field:"innovation",
+  act1:"singing contests", act2:"debate competitions", objective:"To plan the upcoming charity sale",
+  detail:"an art performance", A:"the other exhibition"
+};
+function P(id,name,type,slots,picks){ return {id:id,name:name,type:type,slots:slots||{},picks:picks||{}}; }
+
+const PRESETS = [
+  P("2025英一·手工展答复","2025 英一 · 创新手工展（回复信）","reply",{
+    salutation:"Dear Paul,", event:"the innovative craft-making exhibition",
+    activity:"the innovative craft-making exhibition", theme:"innovation",
+    purpose:"introduce the exhibition and invite you to join us", audience:"students of all grades",
+    intent:"provide further details about the plan", noun:"invitation",
+    do:"organize the exhibition smoothly", do2:"make better preparations",
+    thing:"a detailed schedule", field:"innovation"
+  },{p1s1:"bg1",p1s2:"in2",p2s1:"t4",p2s2:"a1",p2s3:"c1",p2s4:"e1",p3s1:"ef4",p3s2:"er3"}),
+
+  P("2025英二·话剧邀请","2025 英二 · 话剧邀请（主动信）","active",{
+    salutation:"Dear John,", event:"the play based on a classic Chinese novel",
+    activity:"the play", theme:"traditional Chinese culture", purpose:"explore creativity together",
+    intent:"invite you to join our short play", noun:"invitation",
+    do:"rehearse together", do2:"play the role well", field:"traditional Chinese culture"
+  },{p1s1:"in5",p1s2:"ab2",p2s1:"t4",p2s2:"b1",p2s3:"c1",p2s4:"e5",p3s1:"ef5",p3s2:"er3"}),
+
+  P("2026英一·家书展","2026 英一 · 中国家书展（回复信）","reply",{
+    salutation:"Dear John,", event:"the exhibition of Chinese family letters",
+    activity:"the family letter exhibition", theme:"family values",
+    purpose:"pass down family values and love", intent:"tell you more about these precious letters",
+    noun:"reply", audience:"students of all grades", benefit:"understand the wisdom of our elders",
+    place:"the student activity center", date:"next Saturday"
+  },{p1s1:"bg1",p1s2:"in1",p2s1:"t4",p2s2:"b1",p2s3:"e5",p2s4:"c2",p3s1:"ef4",p3s2:"er3"}),
+
+  P("2026英二·家庭视频","2026 英二 · 家庭旅行视频（回复信）","reply",{
+    salutation:"Dear Jane,", event:"the video of your family's trip in China",
+    activity:"the video", theme:"family values", intent:"share my feelings about the video",
+    noun:"reply", benefit:"experience the happiness of your family trip",
+    do:"tell me more about your trip", do2:"visit the same places with my parents"
+  },{p1s1:"bg2",p1s2:"in1",p2s1:"t4",p2s2:"e5",p2s3:"j9",p2s4:"j3",p3s1:"ef8",p3s2:"er3"}),
+
+  P("2023英二·艺术展建议","2023 英二 · 艺术展（建议/推荐信）","active",{
+    salutation:"Dear David,", event:"the art exhibition", activity:"the art exhibition",
+    theme:"art", purpose:"help you make the choice", intent:"recommend the art exhibition to you",
+    noun:"recommendation", recommend:"the art exhibition", detail:"an art performance",
+    A:"the other exhibition", field:"art", thing:"the art exhibition"
+  },{p1s1:"in1",p1s2:"ab4",p2s1:"t4",p2s2:"f7",p2s3:"j7",p2s4:"j9",p3s1:"ef5",p3s2:"er3"}),
+
+  P("2022英一·创新大赛","2022 英一 · 国际创新大赛（公务信）","official",{
+    salutation:"Dear Professor Smith,", event:"the International Innovation Contest",
+    activity:"the international innovation contest", theme:"innovation",
+    purpose:"arouse students' enthusiasm for innovation", dept:"the Art Department",
+    major:"Art", org:"the Student Union", place:"the playground", time:"3:00 p.m.",
+    date:"Sunday, December 31st", act1:"robot competitions", act2:"aircraft competitions",
+    intent:"invite you to participate in the contest with your team", noun:"invitation",
+    field:"innovation", benefit:"broaden students' horizons"
+  },{p1s1:"si1",p1s2:"in5",p2s1:"t4",p2s2:"a1",p2s3:"d1",p2s4:"e1",p3s1:"ef5",p3s2:"er1"}),
+
+  P("2022英二·美食节","2022 英二 · 校园美食节（邀请信）","active",{
+    salutation:"Dear Friends,", event:"the campus food festival", activity:"the food festival",
+    theme:"food culture", purpose:"help students experience different food cultures",
+    intent:"introduce the food festival to you", noun:"invitation",
+    place:"the playground", time:"5:00 p.m.", date:"Sunday, December 31st",
+    act1:"cooking contests", act2:"food shows", benefit:"experience different food cultures"
+  },{p1s1:"in1",p1s2:"ab4",p2s1:"t4",p2s2:"a1",p2s3:"d1",p2s4:"c2",p3s1:"ef6",p3s2:"er3"}),
+
+  P("2022英二·美食节告示","2022 英二 · 美食节（告示写法）","notice",{
+    salutation:"", activity:"the campus food festival", theme:"food culture",
+    purpose:"help students experience different food cultures",
+    place:"the playground", time:"5:00 p.m.", date:"Sunday, December 31st",
+    act1:"cooking contests", act2:"food shows", email:"studentunion@university.edu.cn",
+    sign:"Li Ming"
+  },{p1s1:"no1",p1s2:"na1",p2s1:-1,p2s2:"a1",p2s3:"d1",p2s4:"c2",p3s1:"ne1",p3s2:"nr1"}),
+
+  P("2020英一·歌唱比赛通知","2020 英一 · 歌唱比赛（通知）","notice",{
+    salutation:"", activity:"the singing contest", theme:"singing",
+    purpose:"celebrate the upcoming New Year", place:"the assembly hall",
+    time:"8:00 a.m.", date:"Friday", audience:"students of all grades",
+    email:"studentunion@university.edu.cn", sign:"Li Ming"
+  },{p1s1:"no3",p1s2:"na3",p2s1:-1,p2s2:"a4",p2s3:"c2",p2s4:"e2",p3s1:"ne1",p3s2:"nr3"}),
+
+  P("2023英一·志愿者招募","2023 英一 · 志愿者招募（通知）","notice",{
+    salutation:"", activity:"the volunteer recruitment", theme:"campus sports",
+    purpose:"support the campus sports meeting", place:"the student activity center",
+    time:"8:00 a.m.", date:"next Saturday", audience:"students of all grades",
+    field:"campus sports", email:"studentunion@university.edu.cn", sign:"Li Ming",
+    do:"organize the sports meeting smoothly"
+  },{p1s1:"no1",p1s2:"na3",p2s1:-1,p2s2:"h6",p2s3:"e4",p2s4:"k1",p3s1:"ne2",p3s2:"nr1"}),
+
+  P("2010英二·感谢+邀请","2010 英二 · 感谢并邀请来华（主动信）","active",{
+    salutation:"Dear Mr. Smith,", event:"the cultural exchange program",
+    theme:"traditional Chinese culture", intent:"express my gratitude for your generous help",
+    noun:"gratitude", quality:"unselfish assistance", field:"cross-cultural communication",
+    do:"learn more about Chinese culture", do2:"experience the charm of Chinese culture",
+    recommend:"China"
+  },{p1s1:"in1",p1s2:"ab3",p2s1:"t4",p2s2:"i1",p2s3:"i4",p2s4:"j3",p3s1:"ef5",p3s2:"er3"}),
+
+  P("2019英一·援助乡村小学","2019 英一 · 帮扶乡村小学（回复信）","reply",{
+    salutation:"Dear Sir or Madam,", event:"the “Aiding Rural Primary School” project",
+    activity:"the “Aiding Rural Primary School” project", theme:"volunteer service",
+    purpose:"provide a platform for people who want to spread love",
+    intent:"answer your questions about the project", noun:"reply",
+    thing:"more volunteers", do:"teach English there", do2:"help the children",
+    field:"volunteer service", benefit:"receive a good education"
+  },{p1s1:"bg1",p1s2:"in1",p2s1:"t5",p2s2:"b2",p2s3:"j1",p2s4:"j3",p3s1:"ef1",p3s2:"er1"}),
+
+  P("2007·图书馆建议","2007 · 图书馆建议 / 投诉（主动信）","active",{
+    salutation:"Dear Manager,", event:"the library service", activity:"the library service",
+    theme:"a quiet study environment", intent:"suggest some improvements to the library service",
+    noun:"suggestion", thing:"a new database", do:"acquire the latest knowledge",
+    do2:"study more efficiently", fact:"the library is always crowded",
+    place:"the library", field:"scientific research"
+  },{p1s1:"in1",p1s2:"ab4",p2s1:"t1",p2s2:"j1",p2s3:"j2",p2s4:"j3",p3s1:"ef1",p3s2:"er1"}),
+
+  P("2024英一·建议信","2024 英一 · 给朋友的建议（主动信）","active",{
+    salutation:"Dear John,", event:"your presentation on the scientist",
+    theme:"the scientist's life and achievements", intent:"suggest some improvements",
+    noun:"suggestion", thing:"some interesting stories", do:"catch your audience's attention",
+    do2:"make the presentation more vivid", field:"scientific research"
+  },{p1s1:"in1",p1s2:"ab4",p2s1:"t4",p2s2:"j5",p2s3:"j6",p2s4:"j3",p3s1:"ef1",p3s2:"er3"}),
+
+  P("2024英二·宏村建议","2024 英二 · 宏村调研建议（主动信）","active",{
+    salutation:"Dear Professor Smith,", event:"the research on Hong village",
+    theme:"ancient building protection", intent:"suggest some improvements",
+    noun:"suggestion", recommend:"Hong village", place:"Anhui",
+    thing:"some research", do:"gather detailed information", do2:"acquire official data",
+    field:"cultural protection"
+  },{p1s1:"in1",p1s2:"ab4",p2s1:"t4",p2s2:"f1",p2s3:"j1",p2s4:"j3",p3s1:"ef1",p3s2:"er1"}),
+
+  P("纪要·学生会例会","示例 · 学生会例会纪要（纪要）","minutes",{
+    date:"December 23, 2023", time:"From 10:00 a.m. to 11:30 a.m.",
+    place:"A111, conference room", objective:"To review last week's activity",
+    audience:"all freshmen", theme:"volunteer service", host:"the chairman",
+    activity:"the volunteer service activity", do:"improve the arrangement of the activity",
+    sign:"Li Ming"
+  },{p2s1:"mo1",p2s2:"ma1",p2s3:"ms1",p2s4:"mg1",p2s5:"md1",p2s6:"mn1"})
+];
+
+/* ============ 小作文运行状态 ============ */
+const LS_KEY = "xrz-xzw-state-v1";
+const LS_SNAP = "xrz-xzw-snaps-v1";
+const LABELS = {
+  sign:"署名", date:"日期", time:"时间", place:"地点", email:"邮箱",
+  objective:"会议目的", audience:"参加对象", host:"主持人", act1:"环节1", act2:"环节2",
+  detail:"具体环节", A:"对比对象", field:"领域", fact:"事实", thing:"某物/某事",
+  do:"做某事", do2:"做某事2", quality:"品质", noun:"意图名词", intent:"来信意图"
+};
+const TYPE_MAP = {};
+TYPES.forEach(function(t){ TYPE_MAP[t.id] = t; });
+
+const CONN_STYLES = [
+  {name:"Firstly / Moreover / In the end", c:["Firstly,", "Moreover,", "In the end,"]},
+  {name:"First and foremost / In addition / Last but not least", c:["First and foremost,", "In addition,", "Last but not least,"]},
+  {name:"To begin with / What's more / Finally", c:["To begin with,", "What's more,", "Finally,"]},
+  {name:"For one thing / For another（两句）", c:["For one thing,", "For another,", ""]},
+  {name:"In the first place / In the second place / In the third place", c:["In the first place,", "In the second place,", "In the third place,"]}
+];
+
+function slotLabel(id){
+  if(BANK[id] && BANK[id].label) return BANK[id].label;
+  if(LABELS[id]) return LABELS[id];
+  var base = String(id).replace(/\d+$/, "");
+  if(base !== id){
+    var mark = id.slice(base.length) === "2" ? "②" : id.slice(base.length) === "3" ? "③" : "";
+    if(BANK[base] && BANK[base].label) return BANK[base].label + mark;
+    if(LABELS[base]) return LABELS[base] + mark;
+  }
+  return id;
+}
+function slotOpts(id){ return (BANK[id] && BANK[id].opts) || []; }
+function findOpt(id, en){
+  var arr = slotOpts(id);
+  for(var i=0;i<arr.length;i++){ if(arr[i].en === en) return arr[i]; }
+  for(var k in BANK){
+    var a = BANK[k].opts;
+    for(var j=0;j<a.length;j++){ if(a[j].en === en) return a[j]; }
+  }
+  return null;
+}
+function zhFor(id, value){
+  var o = findOpt(id, value);
+  return o ? o.zh : value;
+}
+
+function emptyState(){
+  return {type:"reply", slots:{}, picks:{}, conn:0,
+          toggles:{zh:true, lite:false, note:true, gram:true}};
+}
+var state = emptyState();
+var undoStack = [], redoStack = [], snapshots = [];
+var modalSlot = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
+function persistSnaps(){ try{ localStorage.setItem(LS_SNAP, JSON.stringify(snapshots.slice(0,8))); }catch(e){} }
+function loadAll(){
+  try{
+    var raw = localStorage.getItem(LS_KEY);
+    if(raw){
+      var s = JSON.parse(raw);
+      if(s && TYPE_MAP[s.type]){
+        var base = emptyState();
+        state = {type:s.type, slots:s.slots||{}, picks:s.picks||{}, conn:s.conn||0, toggles:base.toggles};
+        if(s.toggles) for(var k in s.toggles) state.toggles[k] = !!s.toggles[k];
+      }
+    }
+    var sn = localStorage.getItem(LS_SNAP);
+    if(sn) snapshots = JSON.parse(sn) || [];
+  }catch(e){}
+}
+function pushHistory(){
+  undoStack.push(JSON.stringify(state));
+  if(undoStack.length > 40) undoStack.shift();
+  redoStack.length = 0;
+}
+function snapshot(label){
+  snapshots.unshift({ts:Date.now(), label:label, state:JSON.stringify(state)});
+  snapshots = snapshots.slice(0,8);
+  persistSnaps();
+  renderSnapPanel();
+}
+
+function getSlot(id){ var s = state.slots[id]; return (s && typeof s.v === "string" && s.v.length) ? s : null; }
+function setSlot(id, v, zh, num){
+  if(!v){ delete state.slots[id]; return; }
+  var o = findOpt(id, v);
+  state.slots[id] = {v:v, zh:(zh || (o && o.zh) || zhFor(id, v)), num:(num || (o && o.num) || "")};
+}
+function autoText(id, mode){
+  var style = CONN_STYLES[state.conn] || CONN_STYLES[0];
+  var idx = {c1:0,c2:1,c3:2}[id];
+  if(mode === "zh"){
+    var map = ["首先，","其次，","最后，"];
+    return style.c[idx] ? map[idx] : "";
+  }
+  return style.c[idx] || "";
+}
+function slotText(id, mode, depth){
+  if(id === "c1" || id === "c2" || id === "c3") return autoText(id, mode);
+  var st = getSlot(id);
+  if(!st) return "【" + slotLabel(id) + "】";
+  var raw = (mode === "zh") ? (st.zh || st.v) : st.v;
+  if(raw.indexOf("{") >= 0 && (depth||0) < 4){
+    var sub = segmentsOf(raw, mode, {nested:true, depth:(depth||0)+1});
+    return sub.map(function(x){ return x.s; }).join("").replace(/\s+/g, " ");
+  }
+  return raw;
+}
+
+/* ============ 语法 ============ */
+var VERB_PAIRS = {
+  "is":"are","was":"were","has":"have","does":"do","plays":"play","accounts":"account","tops":"top",
+  "shows":"show","provides":"provide","remains":"remain","offers":"offer","helps":"help","lies":"lie",
+  "deserves":"deserve","allows":"allow","enables":"enable","brings":"bring","makes":"make"
+};
+var PLURAL_TO_SG = {};
+Object.keys(VERB_PAIRS).forEach(function(k){ PLURAL_TO_SG[VERB_PAIRS[k]] = k; });
+var BASE_TO_SG = {provide:"provides",offer:"offers",help:"helps",allow:"allows",enable:"enables",
+  bring:"brings",make:"makes",improve:"improves",increase:"increases",remain:"remains"};
+function toPluralVerb(v){ var low=v.toLowerCase(); return VERB_PAIRS[low] ? matchCase(v, VERB_PAIRS[low]) : v; }
+function toSingularVerb(v){
+  var low=v.toLowerCase();
+  if(PLURAL_TO_SG[low]) return matchCase(v, PLURAL_TO_SG[low]);
+  if(BASE_TO_SG[low]) return matchCase(v, BASE_TO_SG[low]);
+  return v;
+}
+function matchCase(src,out){ return (src[0]===src[0].toUpperCase()) ? out.charAt(0).toUpperCase()+out.slice(1) : out; }
+
+function applyAgreement(segs){
+  for(var i=0;i<segs.length-1;i++){
+    var a=segs[i], b=segs[i+1];
+    if(a.t==="slot" && b.t==="text"){
+      var m=b.s.match(/^(\s+)([A-Za-z]+)/);
+      var prev=(i>0 && segs[i-1].t==="text")?segs[i-1].s:"";
+      var aux=/\b(does|do|did|is|are|was|were|has|have|had|can|could|will|would|should|may|might|must)\s+$/i.test(prev);
+      if(m && a.filled && !aux){
+        var num=a.num || (getSlot(a.id)&&getSlot(a.id).num);
+        var verb=m[2], nv=verb;
+        if(num==="pl") nv=toPluralVerb(verb);
+        else if(num==="sg") nv=toSingularVerb(verb);
+        if(nv!==verb) b.s=m[1]+nv+b.s.slice(m[0].length);
+      }
+    }
+    if(a.t==="text" && b.t==="slot" && b.filled){
+      var tail=a.s.match(/\b(does|is|has|was)\s+$/);
+      var n2=b.num || (getSlot(b.id)&&getSlot(b.id).num);
+      if(tail && n2==="pl"){
+        var rep={does:"do",is:"are",has:"have",was:"were"}[tail[1]];
+        a.s=a.s.replace(/\b(does|is|has|was)(\s+)$/, rep+"$2");
+      }
+    }
+  }
+}
+var LOWER_AFTER_COMMA = {the:1,a:1,an:1,this:1,these:1,those:1,it:1,they:1,we:1,people:1,many:1,most:1,
+  some:1,such:1,there:1,for:1,not:1,in:1,on:1,at:1,if:1,students:1,participants:1,all:1,every:1,
+  during:1,due:1,what:1,interesting:1,located:1,written:1,given:1,without:1,thanks:1,thank:1,
+  please:1,no:1,to:1,our:1,your:1,my:1,his:1,her:1,their:1,as:1,with:1,by:1,after:1,before:1,
+  when:1,where:1,which:1,who:1,that:1,while:1,although:1,though:1,compared:1,according:1,
+  more:1,both:1,each:1,over:1,beyond:1,through:1,so:1,only:1,just:1,even:1,still:1,
+  therefore:1,thus:1,besides:1,furthermore:1,meanwhile:1,instead:1,despite:1,because:1,since:1};
+function applyCaps(segs){
+  var cap=true;
+  for(var i=0;i<segs.length;i++){
+    var seg=segs[i];
+    if(seg.t==="slot"){
+      if(cap && seg.filled && seg.s.length) seg.s=seg.s.charAt(0).toUpperCase()+seg.s.slice(1);
+      cap=false; continue;
+    }
+    var s=seg.s,out="";
+    for(var j=0;j<s.length;j++){
+      var ch=s[j];
+      if(cap && /[A-Za-z]/.test(ch)){ out+=ch.toUpperCase(); cap=false; continue; }
+      out+=ch;
+      if(/[.!?]/.test(ch)){
+        var nx=s[j+1];
+        if(nx===undefined||nx===" "||nx==="\n") cap=true;
+        if(nx!==undefined && /[0-9]/.test(nx)) cap=false;
+      } else if(ch===":" && (s[j+1]===" "||s[j+1]===undefined)) cap=true;
+    }
+    seg.s=out;
+  }
+}
+function applyCommaLower(segs){
+  for(var i=0;i<segs.length;i++){
+    if(segs[i].t!=="text") continue;
+    segs[i].s=segs[i].s.replace(/,\s+([A-Z])([a-z]+)/g,function(m,a,rest){
+      var w=(a+rest).toLowerCase(); return LOWER_AFTER_COMMA[w]?(", "+w):m;
+    });
+    if(!/,\s*$/.test(segs[i].s)) continue;
+    var j=i+1;
+    while(j<segs.length && segs[j].t==="text" && /^\s*$/.test(segs[j].s)) j++;
+    if(j>=segs.length) continue;
+    var seg=segs[j];
+    if(seg.t==="slot" && seg.filled){
+      seg.s=seg.s.replace(/^([A-Z])([a-z]+)/,function(m,a,rest){
+        var w=(a+rest).toLowerCase(); return LOWER_AFTER_COMMA[w]?w:m;
+      });
+    }else if(seg.t==="text"){
+      seg.s=seg.s.replace(/^(\s*)([A-Z])([a-z]+)/,function(m,sp,a,rest){
+        var w=(a+rest).toLowerCase(); return LOWER_AFTER_COMMA[w]?(sp+w):m;
+      });
+    }
+  }
+}
+function segmentsOf(tpl, mode, opts){
+  opts=opts||{};
+  var depth=opts.depth||0;
+  var out=[], parts=String(tpl).split(/(\{[A-Za-z0-9_]+\})/);
+  for(var i=0;i<parts.length;i++){
+    var part=parts[i];
+    if(!part) continue;
+    var m=part.match(/^\{([A-Za-z0-9_]+)\}$/);
+    if(m){
+      var id=m[1];
+      if(id==="c1"||id==="c2"||id==="c3"){
+        var at=autoText(id,mode);
+        if(at) out.push({t:"text",s:at});
+        continue;
+      }
+      var st=getSlot(id);
+      var txt=st?slotText(id,mode,depth):"【"+slotLabel(id)+"】";
+      out.push({t:"slot",id:id,s:txt,filled:!!st,num:(st&&st.num)||""});
+    }else{
+      out.push({t:"text",s:part});
+    }
+  }
+  if(state.toggles.gram){
+    applyAgreement(out);
+    if(!opts.nested) applyCaps(out);
+    applyCommaLower(out);
+  }
+  if(mode==="zh"){
+    for(var z=0;z<out.length;z++){
+      out[z].s=out[z].s.replace(/\s+([，。；：、！？])/g,"$1").replace(/([，。；：、！？])\s+/g,"$1");
+    }
+    for(var z2=1;z2<out.length-1;z2++){
+      if(out[z2].t==="text" && /^\s+$/.test(out[z2].s)){
+        var pv=out[z2-1].s, nx=out[z2+1].s;
+        if(/[，。；：、！？]$/.test(pv)||/^[，。；：、！？]/.test(nx)) out[z2].s="";
+      }
+    }
+  }
+  for(var k=0;k<out.length;k++){
+    if(out[k].t==="text") out[k].s=out[k].s.replace(/,\s*,/g,",").replace(/\s{2,}/g," ");
+  }
+  if(out.length >= 2){
+    var lastSeg = out[out.length-1], prevSeg = out[out.length-2];
+    if(lastSeg.t === "text" && /^\.+$/.test(lastSeg.s.trim()) && /\.$/.test(prevSeg.s)){
+      lastSeg.s = "";
+    }
+  }
+  return out;
+}
+function plainOf(segs){
+  var s="";
+  segs.forEach(function(x){ s+=x.s; });
+  s = s.replace(/\s+/g," ").replace(/\s+([,.!?:;])/g,"$1").trim();
+  s = s.replace(/\.\.$/g, ".").replace(/\s\./g, ".");
+  return s;
+}
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+/* ============ 组段 ============ */
+function paragraphsOf(){
+  var t=TYPE_MAP[state.type]||TYPES[0];
+  var arr=clone(t.paras);
+  if(state.toggles.lite){
+    arr.forEach(function(p){ p.sents=p.sents.filter(function(s){ return !s.optional; }); });
+  }
+  return arr;
+}
+function variantOf(sent){
+  var key=state.picks[sent.key];
+  if(key === -1) return null;
+  if(typeof key === "string"){
+    for(var i=0;i<sent.vs.length;i++){ if(sent.vs[i].k===key) return sent.vs[i]; }
+  }
+  if(typeof key === "number" && sent.vs[key]) return sent.vs[key];
+  return sent.vs[0];
+}
+function pickIndex(sent){
+  var key=state.picks[sent.key];
+  if(key === -1) return -1;
+  if(typeof key === "string"){
+    for(var i=0;i<sent.vs.length;i++){ if(sent.vs[i].k===key) return i; }
+  }
+  if(typeof key === "number" && sent.vs[key]) return key;
+  return 0;
+}
+function connIndexFor(key){
+  if(state.type === "minutes") return 0;
+  if(key === "p2s2") return 1;
+  if(key === "p2s3") return 2;
+  if(key === "p2s4") return 3;
+  return 0;
+}
+
+/* ============ 渲染 ============ */
+function renderChips(){
+  var box=document.getElementById("typeChips");
+  box.innerHTML="";
+  TYPES.forEach(function(t){
+    var b=document.createElement("button");
+    b.className="chip"+(t.id===state.type?" on":"");
+    b.textContent=t.label;
+    b.title=t.badge||"";
+    b.onclick=function(){
+      if(state.type===t.id) return;
+      pushHistory(); state.type=t.id; state.picks={}; persist(); renderAll();
+      toast("已切换到 "+t.label);
+    };
+    box.appendChild(b);
+  });
+}
+function renderPresets(){
+  var sel=document.getElementById("presetSel");
+  var cur=sel.value;
+  sel.innerHTML='<option value="">— 载入真题预设 —</option>';
+  var groups={};
+  PRESETS.forEach(function(p){
+    var g=TYPE_MAP[p.type]?TYPE_MAP[p.type].group:"其他";
+    if(!groups[g]){ groups[g]=document.createElement("optgroup"); groups[g].label=g; sel.appendChild(groups[g]); }
+    var o=document.createElement("option"); o.value=p.id; o.textContent=p.name;
+    groups[g].appendChild(o);
+  });
+  sel.value=cur||"";
+  sel.onchange=function(){
+    var p=null;
+    PRESETS.forEach(function(x){ if(x.id===sel.value) p=x; });
+    if(!p) return;
+    snapshot("切换前 · "+(TYPE_MAP[state.type]?TYPE_MAP[state.type].label:""));
+    pushHistory(); applyPreset(p); persist(); renderAll();
+    toast("已载入："+p.name);
+  };
+}
+function applyPreset(p){
+  var s=emptyState();
+  s.type=p.type;
+  var merged={};
+  for(var k in BASE) merged[k]=BASE[k];
+  for(var k2 in p.slots) merged[k2]=p.slots[k2];
+  for(var k3 in merged){
+    var v=merged[k3];
+    if(v===""||v===null||v===undefined) continue;
+    var o=findOpt(k3,v);
+    s.slots[k3]={v:v,zh:(o&&o.zh)||zhFor(k3,v),num:(o&&o.num)||""};
+  }
+  for(var k4 in p.picks) s.picks[k4]=p.picks[k4];
+  state=s;
+}
+function renderSidebar(){
+  var form=document.getElementById("slotForm");
+  var tab=form.getAttribute("data-tab")||"core";
+  var groups={
+    core:[["salutation","称呼"],["event","事件/事由"],["activity","活动名称"]],
+    data:[["place","地点"],["time","时间"],["date","日期"],["theme","主题"]],
+    arg:[["intent","来信意图"],["purpose","目的"],["sign","署名"],["email","报名邮箱"]]
+  };
+  var list=groups[tab]||groups.core;
+  var html="";
+  list.forEach(function(pair){
+    var id=pair[0], st=state.slots[id], val=st?st.v:"";
+    html+='<div class="field"><label>'+esc(pair[1])+' <span style="color:var(--dim2)">'+esc(slotLabel(id))+'</span></label>'+
+          '<input type="text" data-quick="'+id+'" value="'+esc(val)+'" placeholder="'+esc(slotLabel(id))+'">';
+    if(BANK[id]&&BANK[id].hint) html+='<div class="hint">'+esc(BANK[id].hint)+'</div>';
+    html+='</div>';
+  });
+  form.innerHTML=html;
+  Array.prototype.forEach.call(form.querySelectorAll("input[data-quick]"),function(inp){
+    inp.oninput=function(){
+      var id=inp.getAttribute("data-quick"), v=inp.value.trim();
+      if(v) setSlot(id,v,zhFor(id,v)); else delete state.slots[id];
+      persist(); renderPreview();
+    };
+  });
+  var seg=document.getElementById("sideSeg");
+  Array.prototype.forEach.call(seg.querySelectorAll("button"),function(b){
+    b.className=(b.getAttribute("data-tab")===tab)?"on":"";
+  });
+  var csel=document.getElementById("connSel");
+  csel.innerHTML="";
+  CONN_STYLES.forEach(function(c,i){
+    var o=document.createElement("option"); o.value=i; o.textContent=c.name; csel.appendChild(o);
+  });
+  csel.value=state.conn;
+  csel.onchange=function(){ pushHistory(); state.conn=parseInt(csel.value,10)||0; persist(); renderPreview(); };
+}
+function fmtSegments(fmt){
+  var out=[];
+  fmt.forEach(function(f){
+    if(f.text){ out.push({t:"fmt", text:f.text, big:!!f.big}); return; }
+    var segs=segmentsOf("{"+f.slot+"}", "en");
+    var zhSegs=segmentsOf("{"+f.slot+"}", "zh");
+    out.push({t:"fmtSlot", label:f.label||"", slot:f.slot, segs:segs, zhSegs:zhSegs, text:plainOf(segs)});
+  });
+  return out;
+}
+function fmtHTML(items){
+  return items.map(function(it){
+    if(it.t==="fmt") return '<div class="fmtline'+(it.big?" big":"")+'">'+esc(it.text)+'</div>';
+    return '<div class="fmtline"><span class="fmtlabel">'+(it.label?esc(it.label)+": ":"")+'</span>'+htmlOf(it.segs)+'</div>';
+  }).join("");
+}
+function fmtText(items){
+  return items.map(function(it){
+    return it.t==="fmt" ? it.text : ((it.label?it.label+": ":"")+it.text);
+  }).join("\n");
+}
+function fmtZH(items){
+  return items.map(function(it){
+    return it.t==="fmt" ? it.text : ((it.label?it.label+": ":"")+plainOf(it.zhSegs));
+  }).join("\n");
+}
+
+function renderPreview(){
+  var box=document.getElementById("preview");
+  var paras=paragraphsOf();
+  var html="", totalWords=0, filled=0;
+  for(var kk in state.slots){ if(state.slots[kk]&&state.slots[kk].v) filled++; }
+  if(!filled){
+    html+='<div class="hintbar" style="margin:0 0 12px">还没有填任何内容：先在上方选一个<b>真题预设</b>，或直接点下面的【标签】逐词填。</div>';
+  }
+  paras.forEach(function(p){
+    var inner="", pWords=0;
+    var fmtHTMLStr = (p.fmt && p.fmt.length) ? fmtHTML(fmtSegments(p.fmt)) : "";
+    if(p.fmtPos !== "bottom") inner += fmtHTMLStr;
+    p.sents.forEach(function(sent){
+      var idx=pickIndex(sent), varnt=variantOf(sent);
+      if(!varnt) return;
+      var cidx=connIndexFor(sent.key);
+      var tplEn = (cidx? "{c"+cidx+"} " : "") + varnt.en;
+      var tplZh = (cidx? "{c"+cidx+"} " : "") + varnt.zh;
+      var segsEn=segmentsOf(tplEn,"en"), segsZh=segmentsOf(tplZh,"zh");
+      var en=plainOf(segsEn), zh=plainOf(segsZh);
+      pWords+=en.split(/\s+/).filter(Boolean).length;
+      var groupsSeen=[], optsHTML='<option value="-1"'+(idx===-1?" selected":"")+'>— 不写这一句 —</option>';
+      sent.vs.forEach(function(v,i){
+        if(v.g && groupsSeen.indexOf(v.g)<0){
+          if(groupsSeen.length) optsHTML+='</optgroup>';
+          optsHTML+='<optgroup label="'+esc(v.g)+'">'; groupsSeen.push(v.g);
+        }
+        optsHTML+='<option value="'+i+'"'+(i===idx?" selected":"")+'>'+esc(v.n)+'</option>';
+      });
+      if(groupsSeen.length) optsHTML+='</optgroup>';
+      inner+='<div class="sent" data-sent="'+sent.key+'">'+
+        '<div class="sent-head"><span class="sent-label">'+esc(sent.label)+'</span>'+
+        '<select class="sent-sel" data-pick="'+sent.key+'">'+optsHTML+'</select></div>'+
+        '<div class="en">'+htmlOf(segsEn)+'</div>'+
+        (state.toggles.zh?'<div class="zh">'+htmlOf(segsZh)+'</div>':'')+
+        (state.toggles.note&&varnt.note?'<div class="note"><b>注</b> '+esc(varnt.note)+'</div>':'')+
+        '</div>';
+    });
+    if(p.fmtPos === "bottom") inner += fmtHTMLStr;
+    totalWords+=pWords;
+    html+='<div class="pblock">'+
+      '<div class="phead"><span class="pnum">'+p.n+'</span><h2>'+p.title+'</h2>'+
+      '<span class="tag">'+esc(p.tag)+'</span>'+
+      '<div class="tools"><span class="tag">'+pWords+' words</span>'+
+      '<button class="mini" data-copy-p="'+p.n+'">复制本段</button></div></div>'+
+      inner+'</div>';
+  });
+  var target = state.type==="notice"||state.type==="minutes" ? "100 词左右" : "100 词左右";
+  html+='<div class="stats"><span>全文 <b>'+totalWords+'</b> words</span><span>目标 '+target+'</span>'+
+        '<span>题型 <b>'+TYPES.length+'</b></span><span>预设 <b>'+PRESETS.length+'</b></span>'+
+        '<span>句子方案 <b>'+countVariants()+'</b></span>'+
+        '<span>词库短语 <b>'+countOptions()+'</b></span></div>';
+  box.innerHTML=html;
+
+  Array.prototype.forEach.call(box.querySelectorAll("select[data-pick]"),function(sel){
+    sel.onchange=function(){
+      pushHistory();
+      var raw=parseInt(sel.value,10);
+      state.picks[sel.getAttribute("data-pick")]=(isNaN(raw)?0:raw);
+      persist(); renderPreview();
+    };
+  });
+  Array.prototype.forEach.call(box.querySelectorAll("button[data-copy-p]"),function(b){
+    b.onclick=function(){
+      var n=b.getAttribute("data-copy-p");
+      var p=paragraphsOf().filter(function(x){ return String(x.n)===n; })[0];
+      copyText(paragraphText(p)); toast("已复制"+p.title);
+    };
+  });
+}
+function htmlOf(segs){
+  var out="";
+  segs.forEach(function(seg){
+    if(seg.t==="text") out+=esc(seg.s);
+    else out+='<button class="slot '+(seg.filled?"filled":"empty")+'" data-slot="'+seg.id+'">'+esc(seg.s)+'</button>';
+  });
+  return out;
+}
+function paragraphText(p){
+  var parts=[];
+  var ft = (p.fmt && p.fmt.length) ? fmtText(fmtSegments(p.fmt)) : "";
+  if(ft && p.fmtPos !== "bottom") parts.push(ft);
+  p.sents.forEach(function(s){
+    var vv=variantOf(s);
+    if(!vv) return;
+    var cidx=connIndexFor(s.key);
+    var tpl=(cidx?"{c"+cidx+"} ":"")+vv.en;
+    parts.push(plainOf(segmentsOf(tpl,"en")));
+  });
+  if(ft && p.fmtPos === "bottom") parts.push(ft);
+  return parts.join("\n");
+}
+function countVariants(){
+  var seen={}, n=0;
+  TYPES.forEach(function(t){ t.paras.forEach(function(p){ p.sents.forEach(function(s){ if(!seen[s.key]){ seen[s.key]=1; n+=s.vs.length; } }); }); });
+  return n;
+}
+function countOptions(){
+  var n=0; for(var k in BANK) n+=BANK[k].opts.length; return n;
+}
+
+/* ============ 弹窗 ============ */
+function openSlot(id){
+  modalSlot=id;
+  document.getElementById("mTitle").textContent="【"+slotLabel(id)+"】";
+  var hint=(BANK[id]&&BANK[id].hint)||"该槽位没有预置短语，直接输入即可";
+  document.getElementById("mSub").textContent=hint;
+  var body=document.getElementById("mBody");
+  var cur=getSlot(id), opts=slotOpts(id), html="";
+  if(!opts.length) html='<div class="empty-hint">没有内置选项，直接在下方输入框填写。</div>';
+  opts.forEach(function(o,i){
+    var cls=(cur&&cur.v===o.en)?"opt cur":"opt";
+    html+='<button class="'+cls+'" data-opt="'+i+'"><div class="oe">'+esc(o.en||"（空）")+'</div>'+
+          '<div class="oz">'+esc(o.zh||"")+'</div>'+
+          (o.note?'<div class="onote">适用：'+esc(o.note)+'</div>':'')+'</button>';
+  });
+  body.innerHTML=html;
+  var input=document.getElementById("mInput");
+  input.value=cur?cur.v:"";
+  document.getElementById("mNum").querySelectorAll("button").forEach(function(b){
+    b.className=(cur&&cur.num===b.getAttribute("data-num"))?"on":(b.getAttribute("data-num")==="sg"&&(!cur||!cur.num)?"on":"");
+  });
+  Array.prototype.forEach.call(body.querySelectorAll("button[data-opt]"),function(b){
+    b.onclick=function(){
+      var o=opts[parseInt(b.getAttribute("data-opt"),10)];
+      pushHistory(); setSlot(id,o.en,o.zh,o.num||""); persist(); renderPreview(); renderSidebar(); closeModal();
+      flashSlot(id);
+    };
+  });
+  document.getElementById("modal").classList.add("on");
+  setTimeout(function(){ try{ input.focus(); }catch(e){} },80);
+}
+function closeModal(){ document.getElementById("modal").classList.remove("on"); modalSlot=null; }
+function flashSlot(id){
+  var el=document.querySelector('.slot[data-slot="'+id+'"]');
+  if(el){ el.classList.add("flash"); setTimeout(function(){ el.classList.remove("flash"); },700); }
+}
+function applyModalInput(){
+  if(!modalSlot) return;
+  var v=document.getElementById("mInput").value.trim();
+  var nb=document.getElementById("mNum").querySelector("button.on");
+  var num=nb?nb.getAttribute("data-num"):"";
+  pushHistory();
+  if(v) setSlot(modalSlot,v,"",num); else delete state.slots[modalSlot];
+  persist(); renderPreview(); renderSidebar(); closeModal();
+}
+
+var toastTimer=null;
+function toast(msg){
+  var t=document.getElementById("toast");
+  t.textContent=msg; t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){ t.classList.remove("on"); },1600);
+}
+function copyText(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  }else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  var ta=document.createElement("textarea");
+  ta.value=text; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* ============ 版本 ============ */
+function compareVer(a,b){
+  var x=a.split(".").map(Number), y=b.split(".").map(Number);
+  for(var i=0;i<3;i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)-(y[i]||0); }
+  return 0;
+}
+function repoInfo(){
+  var h=location.hostname||"";
+  if(!/github\.io$/.test(h)) return null;
+  var owner=h.split(".")[0], parts=(location.pathname||"/").split("/").filter(Boolean);
+  if(!parts.length) return null;
+  return {owner:owner, repo:parts[0], path:parts.slice(1).join("/")||"index.html", branch:"main"};
+}
+function checkUpdate(silent){
+  if(typeof fetch!=="function"){ if(!silent) toast("当前浏览器不支持自动检查更新"); return; }
+  var info=repoInfo();
+  if(!info){ if(!silent) toast("本地打开，跳过在线检查"); return; }
+  var url="https://raw.githubusercontent.com/"+info.owner+"/"+info.repo+"/"+info.branch+"/"+info.path+"?t="+Date.now();
+  fetch(url,{cache:"no-store"}).then(function(r){ return r.ok?r.text():""; }).then(function(txt){
+    var m=txt.match(/APP_VERSION\s*=\s*'([0-9.]+)'/);
+    if(m && compareVer(m[1],APP_VERSION)>0){
+      document.getElementById("newVer").textContent="v"+m[1]+"（当前 v"+APP_VERSION+"）";
+      document.getElementById("updateBar").classList.add("on");
+    }else if(!silent) toast("已是最新版本 v"+APP_VERSION);
+  }).catch(function(){ if(!silent) toast("检查更新失败（网络）"); });
+}
+function forceReload(){ location.replace(location.pathname+"?v="+Date.now()); }
+
+/* ============ 初始化 ============ */
+function renderAll(){
+  renderChips(); renderPresets(); renderSidebar(); renderPreview();
+  document.getElementById("verChip").textContent="v"+APP_VERSION;
+  document.getElementById("footVer").textContent="v"+APP_VERSION;
+}
+function bindUI(){
+  document.getElementById("tgZh").onchange=function(e){ state.toggles.zh=e.target.checked; persist(); renderPreview(); };
+  document.getElementById("tgLite").onchange=function(e){ state.toggles.lite=e.target.checked; persist(); renderPreview(); };
+  document.getElementById("tgNote").onchange=function(e){ state.toggles.note=e.target.checked; persist(); renderPreview(); };
+  document.getElementById("tgGram").onchange=function(e){ state.toggles.gram=e.target.checked; persist(); renderPreview(); };
+  Array.prototype.forEach.call(document.querySelectorAll("#sideSeg button"),function(b){
+    b.onclick=function(){ document.getElementById("slotForm").setAttribute("data-tab",b.getAttribute("data-tab")); renderSidebar(); };
+  });
+  document.getElementById("btnUndo").onclick=function(){
+    if(!undoStack.length){ toast("没有可撤销的操作"); return; }
+    redoStack.push(JSON.stringify(state)); state=JSON.parse(undoStack.pop());
+    persist(); renderAll(); toast("已撤销");
+  };
+  document.getElementById("btnRedo").onclick=function(){
+    if(!redoStack.length){ toast("没有可重做的操作"); return; }
+    undoStack.push(JSON.stringify(state)); state=JSON.parse(redoStack.pop());
+    persist(); renderAll(); toast("已重做");
+  };
+  document.getElementById("btnSnap").onclick=function(){
+    document.getElementById("snapPanel").classList.toggle("on"); renderSnapPanel();
+  };
+  document.getElementById("btnClear").onclick=function(){
+    snapshot("清空前 · "+(TYPE_MAP[state.type]?TYPE_MAP[state.type].label:""));
+    pushHistory(); state=emptyState(); persist(); renderAll(); toast("已清空，可撤销");
+  };
+  document.getElementById("btnCopyAll").onclick=function(){
+    var txt=paragraphsOf().map(function(p){ return paragraphText(p); }).join("\n\n");
+    copyText(txt); toast("全文 "+txt.split(/\s+/).filter(Boolean).length+" 词，已复制");
+  };
+  document.getElementById("btnCopyP1").onclick=function(){
+    var p=paragraphsOf()[0]; copyText(paragraphText(p)); toast("已复制第一段");
+  };
+  document.getElementById("btnCopyP2").onclick=function(){
+    var p=paragraphsOf()[1]; copyText(paragraphText(p)); toast("已复制第二段");
+  };
+  document.getElementById("mClose").onclick=closeModal;
+  document.getElementById("mApply").onclick=applyModalInput;
+  document.getElementById("mClear").onclick=function(){
+    if(!modalSlot) return;
+    pushHistory(); delete state.slots[modalSlot]; persist(); renderPreview(); renderSidebar(); closeModal();
+  };
+  document.getElementById("mInput").onkeydown=function(e){ if(e.key==="Enter") applyModalInput(); };
+  document.getElementById("mNum").onclick=function(e){
+    var b=e.target.closest?e.target.closest("button"):null;
+    if(!b) return;
+    this.querySelectorAll("button").forEach(function(x){ x.className=""; });
+    b.className="on";
+  };
+  document.getElementById("modal").onclick=function(e){ if(e.target===this) closeModal(); };
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeModal(); });
+  document.getElementById("preview").onclick=function(e){
+    var b=e.target.closest?e.target.closest(".slot"):null;
+    if(b) openSlot(b.getAttribute("data-slot"));
+  };
+  document.getElementById("btnForce").onclick=forceReload;
+  document.getElementById("btnReload").onclick=forceReload;
+}
+function renderSnapPanel(){
+  var panel=document.getElementById("snapPanel");
+  if(!snapshots.length){ panel.innerHTML='<div class="empty-hint">还没有快照。<br>切换预设或清空时会自动存。</div>'; return; }
+  var html='<div style="font-size:12px;color:var(--dim2);margin-bottom:6px">快照（最多 8 个，点击恢复）</div>';
+  snapshots.forEach(function(s,i){
+    var d=new Date(s.ts);
+    var time=(d.getMonth()+1)+"月"+d.getDate()+"日 "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+    html+='<div class="snap"><div><b>'+esc(s.label)+'</b><br><span style="color:var(--dim2)">'+time+'</span></div>'+
+          '<button class="mini" data-restore="'+i+'">恢复</button></div>';
+  });
+  panel.innerHTML=html;
+  Array.prototype.forEach.call(panel.querySelectorAll("button[data-restore]"),function(b){
+    b.onclick=function(){
+      var idx=parseInt(b.getAttribute("data-restore"),10), s=snapshots[idx];
+      if(!s) return;
+      snapshot("恢复前 · 当前"); pushHistory();
+      try{ state=JSON.parse(s.state); }catch(e){ return; }
+      persist(); renderAll(); toast("已恢复快照");
+    };
+  });
+}
+function boot(){
+  loadAll(); bindUI(); renderAll();
+  setTimeout(function(){ checkUpdate(true); },1800);
+  document.addEventListener("visibilitychange",function(){
+    if(document.visibilityState==="visible") checkUpdate(true);
+  });
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
+else boot();
+</script>
+</body>
+</html>
