@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.1.0</title>
+<title>考研英语大作文 · 交互模板 v2.1.1</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -158,7 +158,7 @@ preview{display:block}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.1.0</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.1.1</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -211,7 +211,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.1.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.1.1</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button></div>
   </div>
@@ -239,7 +239,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.1.0';
+const APP_VERSION = '2.1.1';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -546,7 +546,8 @@ B("doX","做某事","动词短语，按题目替换",[
   {en:"use elderly-care robots",zh:"使用养老机器人",note:"26英一"},
   {en:"do volunteer work",zh:"做志愿服务",note:"公益类"},
   {en:"read paper books",zh:"读纸质书",note:"17英一·读书"},
-  {en:"learn online",zh:"在线学习",note:"科技+教育"}
+  {en:"learn online",zh:"在线学习",note:"科技+教育"},
+  {en:"make full use of their time",zh:"充分利用时间",note:"通用"}
 ]);
 B("nounGoal","追求的目标（名词）","倒装句用",[
   {en:"a more convenient and intelligent lifestyle",zh:"更便捷智能的生活方式",note:"25英一·家电"},
@@ -602,7 +603,9 @@ B("egAppos","同位语","对例子主体的补充",[
   {en:"a livable city",zh:"一座宜居城市",note:"24英一原句"},
   {en:"a beautiful city",zh:"一座美丽的城市",note:"24英一范文"},
   {en:"a hard-working student",zh:"一个勤奋的学生",note:"校园类"},
-  {en:"a young man full of curiosity",zh:"一个充满好奇的年轻人",note:"成长类"}
+  {en:"a young man full of curiosity",zh:"一个充满好奇的年轻人",note:"成长类"},
+  {en:"a retired teacher",zh:"一位退休教师",note:"老年/生活类"},
+  {en:"a well-managed institution",zh:"一家管理良好的机构",note:"机构类"}
 ]);
 B("egVerb","例子谓语短语","常用短语表",[
   {en:"places a high priority on infrastructure construction",zh:"高度重视基础设施建设",note:"24英一原句"},
@@ -644,7 +647,8 @@ B("egResult","例子结果","方案一第4步",[
   {en:"all of us admire his capacity",zh:"我们都很羡慕他的能力",note:"17英一原句"},
   {en:"he earns the respect of our entire class",zh:"他赢得了全班的尊敬",note:"24英二原句"},
   {en:"both the residents and their families have felt much more at ease",zh:"老人和家人都安心许多",note:"26英一原句"},
-  {en:"his parents have noticed his growing curiosity about nature",zh:"父母注意到他对自然的好奇心",note:"26英二原句"}
+  {en:"his parents have noticed his growing curiosity about nature",zh:"父母注意到他对自然的好奇心",note:"26英二原句"},
+  {en:"he feels much more connected to the world",zh:"他感到与世界的联系更紧密",note:"通用"}
 ]);
 B("benefitPlatform","平台/机会","方案二：provide them with...",[
   {en:"provide them with a broader platform",zh:"提供一个更广阔的平台",note:"原句"},
@@ -727,14 +731,17 @@ B("compareA","对比对象 A","方案六：A 是主要内容",[
   {en:"pursuing further education",zh:"继续深造",num:"sg",note:"19英二"},
   {en:"building more parks",zh:"建设更多公园",num:"sg",note:"24英一"},
   {en:"elderly-care robots",zh:"养老机器人",num:"pl",note:"26英一"},
-  {en:"outdoor activities",zh:"户外活动",num:"pl",note:"26英二"}
+  {en:"outdoor activities",zh:"户外活动",num:"pl",note:"26英二"},
+  {en:"pursuing further education",zh:"继续深造",num:"sg",note:"19英二"}
 ]);
 B("compareSmall","小方面（能力）","方案六：so as to 前",[
   {en:"develop students' critical thinking skills",zh:"培养学生的批判性思维",note:"18英一"},
   {en:"expand their horizons",zh:"开阔视野",note:"通用"},
   {en:"significantly improve the living environment for residents",zh:"显著改善居民居住环境",note:"24英一"},
   {en:"provide 24-hour assistance",zh:"提供24小时协助",note:"26英一"},
-  {en:"better cultivate children's curiosity and observational skills",zh:"更好培养好奇心与观察力",note:"26英二"}
+  {en:"better cultivate children's curiosity and observational skills",zh:"更好培养好奇心与观察力",note:"26英二"},
+  {en:"expand their horizons",zh:"开阔视野",note:"通用"},
+  {en:"cultivate children's curiosity",zh:"培养孩子的好奇心",note:"儿童类"}
 ]);
 B("simileObj","比喻对象","方案七：明喻/暗喻",[
   {en:"a lighthouse",zh:"灯塔",note:"心态/态度类"},
@@ -756,7 +763,8 @@ B("govAction","政府作为","措施角度1",[
   {en:"allocate more funds to build more elderly activity centers",zh:"拨款建设老年活动中心",note:"25英二原句"},
   {en:"formulate strict regulations to ensure the safety of elderly-care robots",zh:"制定严格法规保障机器人安全",note:"26英一原句"},
   {en:"improve public facilities to provide a safer environment for children's outdoor activities",zh:"完善公共设施",note:"26英二原句"},
-  {en:"increase investment continuously",zh:"持续增加投入",note:"24英一原句"}
+  {en:"increase investment continuously",zh:"持续增加投入",note:"24英一原句"},
+  {en:"improve public services",zh:"改善公共服务",note:"通用"}
 ]);
 B("awareness","意识（名词）","公民意识角度",[
   {en:"environmental awareness",zh:"环保意识",note:"11英一"},
@@ -863,6 +871,9 @@ B("chartSummary","图表总体描述","一图一表/图画+图表用",[
   {en:"the proportion of residents with adequate health literacy rose steadily",zh:"具备健康素养的居民比例稳步上升",note:"23英二"},
   {en:"the ownership of household appliances kept climbing",zh:"家用电器拥有量持续攀升",note:"25英一"}
 ]);
+
+BANK.v1 = BANK.verb1;
+BANK.v2 = BANK.verb2;
 
 const V = function(n,en,zh,note){ return {n:n,en:en,zh:zh,note:note||""}; };
 const SEN = function(key,label,vs,optional){ return {key:key,label:label,vs:vs,optional:!!optional}; };
@@ -1154,6 +1165,7 @@ const RENAME = ["aspect","egSubject","egAppos","egVerb","egBenefit","egTrans","e
 function cloneReasons(suffix, connTag){
   return REASONS.map(function(v){
     var en=v.en, zh=v.zh;
+    if(connTag && en.indexOf("For instance, ") === 0){ en = en.slice(14); zh = zh.replace(/^例如，/, ""); }
     RENAME.forEach(function(k){
       en = en.split("{"+k+"}").join("{"+k+suffix+"}");
       zh = zh.split("{"+k+"}").join("{"+k+suffix+"}");
@@ -1587,7 +1599,17 @@ const LABELS = {
 const TYPE_MAP = {};
 TYPES.forEach(function(t){ TYPE_MAP[t.id] = t; });
 
-function slotLabel(id){ return (BANK[id] && BANK[id].label) || LABELS[id] || id; }
+function slotLabel(id){
+  if(BANK[id] && BANK[id].label) return BANK[id].label;
+  if(LABELS[id]) return LABELS[id];
+  var base = String(id).replace(/\d+$/, "");
+  if(base !== id){
+    var mark = id.slice(base.length) === "2" ? "②" : id.slice(base.length) === "3" ? "③" : "";
+    if(BANK[base] && BANK[base].label) return BANK[base].label + mark;
+    if(LABELS[base]) return LABELS[base] + mark;
+  }
+  return id;
+}
 function slotOpts(id){ return (BANK[id] && BANK[id].opts) || []; }
 function zhFor(id, value){
   var opts = slotOpts(id);
@@ -1600,7 +1622,7 @@ function zhFor(id, value){
 }
 
 function emptyState(){
-  return {type:"chart_dyn1", slots:{}, picks:{}, conn:0, p3mode:"measure",
+  return {type:"chart_dyn1", slots:{}, picks:{p2b:0, p2c:2, p2d:6}, conn:0, p3mode:"measure",
           toggles:{zh:true, lite:false, note:true, gram:true}};
 }
 var state = emptyState();
@@ -1851,6 +1873,18 @@ function segmentsOf(tpl, mode, opts){
     if(!opts.nested) applyCaps(out);
     applyCommaLower(out);
   }
+  // 中文行：去掉中文标点周围的空格
+  if(mode === "zh"){
+    for(var z=0;z<out.length;z++){
+      out[z].s = out[z].s.replace(/\s+([，。；：、！？])/g, "$1").replace(/([，。；：、！？])\s+/g, "$1");
+    }
+    for(var z2=1;z2<out.length-1;z2++){
+      if(out[z2].t === "text" && /^\s+$/.test(out[z2].s)){
+        var pv = out[z2-1].s, nx = out[z2+1].s;
+        if(/[，。；：、！？]$/.test(pv) || /^[，。；：、！？]/.test(nx)) out[z2].s = "";
+      }
+    }
+  }
   // 清理空槽位带来的多余标点/空格
   for(var k=0;k<out.length;k++){
     if(out[k].t === "text"){
@@ -1914,7 +1948,7 @@ function renderChips(){
       if(state.type === t.id) return;
       pushHistory();
       state.type = t.id;
-      state.picks = {};
+      state.picks = {p2b:0, p2c:2, p2d:6};
       persist(); renderAll();
       toast("已切换到 " + t.label);
     };
@@ -2007,6 +2041,11 @@ function renderPreview(){
   var box = document.getElementById("preview");
   var paras = paragraphsOf();
   var html = "", totalWords = 0;
+  var filled = 0;
+  for(var kk in state.slots){ if(state.slots[kk] && state.slots[kk].v) filled++; }
+  if(!filled){
+    html += '<div class="hintbar" style="margin:0 0 12px">还没有填任何内容：先在上方选一个<b>真题预设</b>，或直接点下面的【标签】逐词填。所有彩色标签点开都有词库。</div>';
+  }
   paras.forEach(function(p){
     var inner = "", pWords = 0;
     p.sents.forEach(function(sent){
