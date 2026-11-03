@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.1.0</title>
+<title>考研英语小作文 · 交互模板 v1.2.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -17,7 +17,7 @@
   --accent:#b25f16; --accent-bg:rgba(178,95,22,.10);
   --blue:#2c66c4; --blue-bg:rgba(44,102,196,.10);
   --ok:#1c8a5f; --danger:#c0392b;
-  --radius:14px; --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+  --fs:1; --radius:14px; --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -69,7 +69,7 @@ html[data-ui="desktop"] .side{position:sticky;top:120px;align-self:start;max-hei
 html[data-ui="desktop"] .chips{flex-wrap:wrap;overflow:visible}
 html[data-ui="mobile"] .wrap{max-width:560px}
 html[data-ui="mobile"] .side{position:static;max-height:none;overflow:visible}
-html[data-ui="mobile"] .en{font-size:16px;line-height:1.7}
+html[data-ui="mobile"] .en{font-size:calc(16px * var(--fs));line-height:1.7}
 html[data-ui="mobile"] .pblock{padding:12px 12px 4px}
 html[data-ui="mobile"] .bar{padding:8px 10px}
 html[data-ui="mobile"] .btn{padding:6px 9px;font-size:12.5px}
@@ -102,9 +102,9 @@ preview{display:block}
 .sent-label{font-size:11.5px;color:var(--accent);font-weight:600;letter-spacing:.02em}
 .sent-sel{flex:1 1 160px;min-width:120px;background:#fffdfa;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:11.5px;color:var(--dim)}
 .sent-sel:hover{color:var(--fg)}
-.en{font-family:var(--serif);font-size:17.5px;line-height:1.75;letter-spacing:.1px;color:#1c2128;word-break:break-word}
-@media(max-width:600px){.en{font-size:16px;line-height:1.7}}
-.zh{font-size:12.5px;line-height:1.7;color:var(--dim);margin-top:5px;padding-left:9px;border-left:2px solid var(--line2)}
+.en{font-family:var(--serif);font-size:calc(17.5px * var(--fs));line-height:1.75;letter-spacing:.1px;color:#1c2128;word-break:break-word}
+@media(max-width:600px){.en{font-size:calc(16px * var(--fs));line-height:1.7}}
+.zh{font-size:calc(12.5px * var(--fs));line-height:1.7;color:var(--dim);margin-top:5px;padding-left:9px;border-left:2px solid var(--line2)}
 .note{font-size:11.5px;color:#8a5a12;background:rgba(178,95,22,.06);border:1px solid rgba(178,95,22,.18);
   border-radius:8px;padding:5px 8px;margin-top:6px;line-height:1.6}
 .note b{color:var(--accent)}
@@ -118,8 +118,8 @@ preview{display:block}
 .slotdemo{background:var(--blue-bg);color:#1f4f9e;border-bottom:1px dashed rgba(44,102,196,.45);border-radius:6px;padding:1px 5px}
 .hintbar{font-size:12px;color:var(--dim);background:rgba(44,102,196,.05);border:1px solid var(--line);
   border-radius:10px;padding:8px 11px;margin-top:12px;line-height:1.7}
-.fmtline{font-family:var(--serif);font-size:16.5px;line-height:1.95;color:#1c2128;margin:2px 0}
-.fmtline.big{font-size:20px;font-weight:700;letter-spacing:.12em;text-align:center;margin:10px 0 12px}
+.fmtline{font-family:var(--serif);font-size:calc(16.5px * var(--fs));line-height:1.95;color:#1c2128;margin:2px 0}
+.fmtline.big{font-size:calc(20px * var(--fs));font-weight:700;letter-spacing:.12em;text-align:center;margin:10px 0 12px}
 .fmtline.big:first-child{margin-top:0}
 .fmtlabel{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
   font-size:11.5px;color:var(--dim);letter-spacing:.03em}
@@ -165,6 +165,11 @@ preview{display:block}
 .foot a{color:var(--dim)}
 .stats{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--dim2);margin-top:8px}
 .stats b{color:var(--accent);font-weight:700}
+.fontctl{display:inline-flex;align-items:center;gap:1px;border:1px solid var(--line);border-radius:99px;
+  background:var(--card);padding:2px 4px}
+.fontctl button{border:none;background:transparent;color:var(--dim);font-size:12px;padding:3px 7px;border-radius:99px;font-weight:700}
+.fontctl button:hover{background:var(--card2);color:var(--fg)}
+.fontctl span{font-size:11px;color:var(--dim2);min-width:36px;text-align:center;cursor:pointer;user-select:none}
 .warn{color:#9a5a00;font-size:11px;margin-top:6px;display:none}
 .warn.on{display:block}
 </style>
@@ -178,7 +183,7 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.1.0</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.2.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -198,6 +203,11 @@ preview{display:block}
         <label class="sw"><input type="checkbox" id="tgLite"><span>考场精简</span></label>
         <label class="sw on"><input type="checkbox" id="tgNote" checked><span>注释</span></label>
         <label class="sw on"><input type="checkbox" id="tgGram" checked><span>自动语法</span></label>
+        <div class="fontctl" title="调整正文字号（点百分比可复位）">
+          <button id="fsMinus" aria-label="缩小字号">A−</button>
+          <span id="fsVal">100%</span>
+          <button id="fsPlus" aria-label="放大字号">A＋</button>
+        </div>
       </div>
     </div>
   </div>
@@ -228,7 +238,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.1.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.2.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
   </div>
@@ -256,7 +266,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.1.0';
+const APP_VERSION = '1.2.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -1612,6 +1622,38 @@ function cycleUI(){
   toast(msg);
 }
 
+
+/* ============ 字号 ============ */
+var FS_KEY = "xrz-font-scale";
+var FS_STEPS = [0.85, 1, 1.15, 1.3, 1.5];
+var fsIndex = 1;
+function applyFS(){
+  var v = FS_STEPS[fsIndex];
+  document.documentElement.style.setProperty("--fs", String(v));
+  var el = document.getElementById("fsVal");
+  if(el) el.textContent = Math.round(v * 100) + "%";
+}
+function loadFS(){
+  var raw = null;
+  try{ raw = localStorage.getItem(FS_KEY); }catch(e){}
+  var v = parseFloat(raw);
+  var i = FS_STEPS.indexOf(v);
+  fsIndex = i >= 0 ? i : 1;
+  applyFS();
+}
+function stepFS(d){
+  fsIndex = Math.max(0, Math.min(FS_STEPS.length - 1, fsIndex + d));
+  try{ localStorage.setItem(FS_KEY, String(FS_STEPS[fsIndex])); }catch(e){}
+  applyFS();
+  toast("正文字号 " + Math.round(FS_STEPS[fsIndex] * 100) + "%");
+}
+function resetFS(){
+  fsIndex = 1;
+  try{ localStorage.setItem(FS_KEY, "1"); }catch(e){}
+  applyFS();
+  toast("正文字号已复位 100%");
+}
+
 /* ============ 初始化 ============ */
 function renderAll(){
   renderChips(); renderPresets(); renderSidebar(); renderPreview();
@@ -1673,6 +1715,9 @@ function bindUI(){
     if(b) openSlot(b.getAttribute("data-slot"));
   };
   document.getElementById("btnUI").onclick=cycleUI;
+  document.getElementById("fsMinus").onclick = function(){ stepFS(-1); };
+  document.getElementById("fsPlus").onclick = function(){ stepFS(1); };
+  document.getElementById("fsVal").onclick = resetFS;
   document.getElementById("btnForce").onclick=forceReload;
   document.getElementById("btnReload").onclick=forceReload;
 }
@@ -1698,7 +1743,8 @@ function renderSnapPanel(){
   });
 }
 function boot(){
-  loadUI(); loadAll(); bindUI(); renderAll();
+  loadUI();
+  loadFS(); loadAll(); bindUI(); renderAll();
   setTimeout(function(){ checkUpdate(true); },1800);
   document.addEventListener("visibilitychange",function(){
     if(document.visibilityState==="visible") checkUpdate(true);
