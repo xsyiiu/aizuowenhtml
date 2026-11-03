@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.0.0</title>
+<title>考研英语小作文 · 交互模板 v1.1.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -60,7 +60,22 @@ select.sel{background:var(--card2);border:1px solid var(--line);border-radius:10
 .sw input{accent-color:var(--accent);margin:0}
 .sw.on{color:var(--fg);border-color:rgba(178,95,22,.45)}
 .layout{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
-@media(min-width:1000px){.layout{grid-template-columns:300px minmax(0,1fr)} .side{position:sticky;top:120px;align-self:start;max-height:calc(100vh - 140px);overflow:auto}}
+@media(min-width:1000px){
+  html[data-ui="auto"] .layout{grid-template-columns:300px minmax(0,1fr)}
+  html[data-ui="auto"] .side{position:sticky;top:120px;align-self:start;max-height:calc(100vh - 140px);overflow:auto}
+}
+html[data-ui="desktop"] .layout{grid-template-columns:minmax(220px,300px) minmax(0,1fr)}
+html[data-ui="desktop"] .side{position:sticky;top:120px;align-self:start;max-height:calc(100vh - 140px);overflow:auto}
+html[data-ui="desktop"] .chips{flex-wrap:wrap;overflow:visible}
+html[data-ui="mobile"] .wrap{max-width:560px}
+html[data-ui="mobile"] .side{position:static;max-height:none;overflow:visible}
+html[data-ui="mobile"] .en{font-size:16px;line-height:1.7}
+html[data-ui="mobile"] .pblock{padding:12px 12px 4px}
+html[data-ui="mobile"] .bar{padding:8px 10px}
+html[data-ui="mobile"] .btn{padding:6px 9px;font-size:12.5px}
+html[data-ui="mobile"] .brand h1{font-size:14px}
+html[data-ui="mobile"] .controls{width:100%}
+html[data-ui="mobile"] .chips{flex:1 1 100%}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
 .side h3,.ptitle{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim2);margin:0 0 10px}
 .field{margin-bottom:9px}
@@ -163,10 +178,11 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.0.0</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.1.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
+        <button class="btn ghost" id="btnUI" title="切换界面：自动 / 手机 / 电脑">界面：自动</button>
         <button class="btn ghost" id="btnUndo" title="撤销">↶ 撤销</button>
         <button class="btn ghost" id="btnRedo" title="重做">↷ 重做</button>
         <button class="btn ghost" id="btnSnap">快照</button>
@@ -212,7 +228,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.0.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.1.0</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
   </div>
@@ -240,7 +256,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.1.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -1570,6 +1586,32 @@ function checkUpdate(silent){
 }
 function forceReload(){ location.replace(location.pathname+"?v="+Date.now()); }
 
+
+/* ============ 界面模式 ============ */
+var UI_KEY = "xrz-ui-mode";
+function applyUI(mode){
+  document.documentElement.setAttribute("data-ui", mode);
+  var b = document.getElementById("btnUI");
+  var map = {auto:"界面：自动", mobile:"界面：手机", desktop:"界面：电脑"};
+  if(b) b.textContent = map[mode] || map.auto;
+}
+function loadUI(){
+  var m = "auto";
+  try{ m = localStorage.getItem(UI_KEY) || "auto"; }catch(e){}
+  if(["auto","mobile","desktop"].indexOf(m) < 0) m = "auto";
+  applyUI(m);
+}
+function cycleUI(){
+  var order = ["auto","mobile","desktop"];
+  var cur = document.documentElement.getAttribute("data-ui") || "auto";
+  var next = order[(order.indexOf(cur)+1) % 3];
+  try{ localStorage.setItem(UI_KEY, next); }catch(e){}
+  applyUI(next);
+  var msg = {auto:"界面：跟随屏幕宽度", mobile:"界面：手机版（单栏窄屏）", desktop:"界面：电脑版（左侧栏 + 正文）"}[next];
+  if(next === "desktop" && window.innerWidth < 760) msg += "，屏幕较窄建议横屏";
+  toast(msg);
+}
+
 /* ============ 初始化 ============ */
 function renderAll(){
   renderChips(); renderPresets(); renderSidebar(); renderPreview();
@@ -1630,6 +1672,7 @@ function bindUI(){
     var b=e.target.closest?e.target.closest(".slot"):null;
     if(b) openSlot(b.getAttribute("data-slot"));
   };
+  document.getElementById("btnUI").onclick=cycleUI;
   document.getElementById("btnForce").onclick=forceReload;
   document.getElementById("btnReload").onclick=forceReload;
 }
@@ -1655,7 +1698,7 @@ function renderSnapPanel(){
   });
 }
 function boot(){
-  loadAll(); bindUI(); renderAll();
+  loadUI(); loadAll(); bindUI(); renderAll();
   setTimeout(function(){ checkUpdate(true); },1800);
   document.addEventListener("visibilitychange",function(){
     if(document.visibilityState==="visible") checkUpdate(true);
