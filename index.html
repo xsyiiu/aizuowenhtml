@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.4.1</title>
+<title>考研英语大作文 · 交互模板 v2.5.0</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -127,15 +127,19 @@ preview{display:block}
 .qhead .qclose{margin-left:auto;border:none;background:transparent;color:var(--dim);font-size:calc(16px * var(--fs));
   line-height:1;padding:2px 7px;border-radius:6px;font-family:inherit}
 .qhead .qclose:hover{background:rgba(0,0,0,.06);color:var(--fg)}
-.qbody{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin-top:8px;
-  font-size:calc(12.5px * var(--fs));line-height:1.75}
-.qbody dt{color:var(--dim2);white-space:nowrap;font-weight:600}
-.qbody dd{margin:0;color:var(--fg)}
-.qbody dd.en{color:#1f4f9e}
+.qbody{margin-top:8px;font-size:calc(12.5px * var(--fs));line-height:1.75}
+.qsrc{white-space:pre-wrap;background:#fff;border:1px solid #ece0c8;border-left:3px solid #c9a86a;border-radius:8px;
+  padding:8px 10px;margin-bottom:8px;color:#22262d;line-height:1.8;font-size:calc(12.5px * var(--fs))}
+.qnote{margin:0 0 8px;color:#7a5c22;background:rgba(178,95,22,.06);border-radius:8px;padding:6px 10px;
+  font-size:calc(12px * var(--fs));line-height:1.7}
+.qrow{display:flex;gap:10px;padding:2px 0}
+.qk{color:var(--dim2);font-weight:600;white-space:nowrap;flex:0 0 auto}
+.qv{flex:1 1 auto;color:var(--fg);word-break:break-word}
+.qv.en{color:#1f4f9e}
 .qfoot{margin-top:8px;padding-top:7px;border-top:1px dashed #e6d7ba;font-size:calc(11px * var(--fs));color:var(--dim2);line-height:1.65}
 @media (max-width:600px){
-  .qbody{grid-template-columns:1fr;gap:1px}
-  .qbody dt{margin-top:5px}
+  .qrow{display:block}
+  .qk{margin-top:5px}
 }
 /* modal */
 #modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-end;justify-content:center;background:rgba(48,42,32,.42);backdrop-filter:blur(3px)}
@@ -196,7 +200,7 @@ preview{display:block}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.4.1</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.5.0</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -228,7 +232,7 @@ preview{display:block}
 <main class="wrap">
   <div class="qpanel" id="qPanel">
     <div class="qhead"><span id="qTitle">本题题目</span><button class="qclose" id="qClose" aria-label="收起题目卡">×</button></div>
-    <dl class="qbody" id="qBody"></dl>
+    <div class="qbody" id="qBody"></div>
     <div class="qfoot" id="qFoot"></div>
   </div>
   <div class="hintbar">用法：点句子里的<span class="slotdemo">彩色短语</span>换说法 → 左侧填题干词 → 每句上方下拉换整句方案。未填的槽位显示【标签】。</div>
@@ -260,7 +264,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.4.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.5.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./xiaozuowen.html" style="color:var(--dim)">小作文 →</a></div>
   </div>
@@ -288,7 +292,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.4.1';
+const APP_VERSION = '2.5.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -1630,6 +1634,34 @@ const PRESETS = [
   },{p1a:1,p1b:3,p1c:0,p2a:0,p2b:0,p2c:2,p2d:8,p3a:1,p3b:4,p3c:2,p3d:2})
 ];
 
+/* ============ 真题题干（据讲义附带《考研英语作文真题题目汇总》PDF 整理，2026年11月6日） ============ */
+const QUESTIONS = {
+  "2001·油灯": "46. Directions:\nAmong all the worthy feelings of mankind, love is probably the noblest, but everyone has his/her own understanding of it.\nThere has been a discussion recently on the issue in a newspaper. Write an essay to the newspaper to\n1) show your understanding of the symbolic meaning of the picture below.\n2) give a specific example, and\n3) give your suggestion as to the best way to show love.\n（图中文字：爱心是一盏灯，在越黑暗的地方越明亮）",
+  "2004·操场跑步": "46. Directions:\nStudy the following drawing carefully and write an essay in which you should\n1. describe the drawing,\n2. interpret its meaning, and support your view with examples.\nYou should write about 200 words neatly on ANSWER SHEET 2. (20 points)\n（图中文字：终点又是新起点）",
+  "2005·养老": "52. Directions:\nWrite an essay of 160-200 words based on the following drawing. In your essay, you should first describe the drawing, then interpret its meaning, and give your comment on it.\nYou should write neatly on ANSWER SHEET 2. (20 points)\n（图中标注：大儿子 / 二儿子 / 三儿子 / 小女儿，中间是“老父亲”；标题：养老“足球赛”）",
+  "2008英一·合作": "52. Directions:\nWrite an essay of 160-200 words based on the following drawing. In your essay, you should\n1) describe the drawing briefly,\n2) explain its intended meaning, and then\n3) give your comments.\nYou should write neatly on ANSWER SHEET 2. (20 points)\n（图中文字：你一条腿，我一条腿；你我一起，走南闯北。）",
+  "2009英一·网络的近与远": "52. Directions:\nWrite an essay of 160-200 words based on the following drawing. In your essay, you should\n1) describe the drawing briefly,\n2) explain its intended meaning, and then\n3) give your comments.\nYou should write neatly on ANSWER SHEET 2. (20 points)\n（图中文字：网络的“近”与“远”）",
+  "2010英一·文化火锅": "52. Directions:\nWrite an essay of 160-200 words based on the following drawing. In your essay, you should\n1) describe the drawing briefly,\n2) explain its intended meaning, and then\n3) give your comments.\nYou should write neatly on ANSWER SHEET 2. (20 points)\n（图中文字：文化“火锅”，既美味又营养）",
+  "2011英一·环保": "52. Directions:\nWrite an essay of 160-200 words based on the following drawing. In your essay, you should\n1) describe the drawing briefly,\n2) explain its intended meaning, and then\n3) give your comments.\nYou should write neatly on ANSWER SHEET 2. (20 points)\n（图中文字：旅程之“余”）",
+  "2012·员工满意度": "48. Directions:\nWrite an essay based on the following table. In your writing, you should\n1) describe the table, and\n2) give your comments.\nYou should write at least 150 words.\nWrite your essay on ANSWER SHEET 2. (15 points)\n（表名：某公司员工工作满意度调查）",
+  "2013英二·兼职": "48. Directions:\nWrite an essay based on the following chart. In your writing, you should\n1) interpret the chart, and\n2) give your comments.\nYou should write about 150 words on the ANSWER SHEET. (15 points)\n（图：某高校学生兼职情况；纵轴：人数百分比）",
+  "2015英一·手机聚会": "52. Directions:\nWrite an essay of 160-200 words based on the following picture. In your essay, you should\n1) describe the picture briefly,\n2) interpret its intended meaning, and\n3) give your comments.\nYou should write neatly on ANSWER SHEET. (20 points)\n（图中文字：手机时代的聚会）",
+  "2017英一·读书": "52. Directions:\nWrite an essay of 160-200 words based on the following pictures. In your essay, you should\n1) describe the pictures briefly,\n2) interpret the meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（左图气泡：我有这么多书；右图气泡：我争取今年读完 20 本书；标题：“有书”与“读书”）",
+  "2018英一·选课": "52. Directions:\nWrite an essay of 160-200 words based on the picture below. In your essay, you should\n1) describe the picture briefly,\n2) interpret the meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（图中：选课系统；左气泡：知识新、重创新、有难度；右气泡：给分高、易通过、作业少；标题：选课进行时）",
+  "2020英一·习惯": "52. Directions:\nWrite an essay of 160-200 words based on the picture below. In your essay, you should\n1) describe the picture briefly,\n2) interpret the implied meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（左图气泡：尽早完成才放心；右图气泡：不到最后不动手；标题：习惯）",
+  "2021英一·坚持": "52. Directions:\nWrite an essay of 160-200 words based on the following picture. In your essay, you should\n1) describe the picture briefly,\n2) interpret its intended meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（图中对话：孩子说“爸爸，好多同学觉得学唱戏不好玩”；父亲说“你自己不是喜欢吗？那就够了”）",
+  "2022英一·听讲座": "52. Directions:\nWrite an essay of 160-200 words based on the picture below. In your essay, you should\n1) describe the picture briefly,\n2) interpret the implied meaning, and\n3) give your comments.\nWrite your answer on the ANSWER SHEET. (20 points)\n（图中：公告栏“校园讲座”；左边女生：不是我们专业的，听了也没多大用；右边女生：听听总会有好处）",
+  "2023英一·龙舟": "52. Directions:\nWrite an essay of 160—200 words based on the picture below. In your essay, you should\n1) describe the picture briefly,\n2) interpret the implied meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（图中：龙舟比赛，岸边一位老人说“真好啊，传统文化越来越热了”）",
+  "2023英二·居民健康素养": "48. Directions:\nWrite an essay based on the chart below. In your writing, you should\n1) interpret the chart, and\n2) give your comments.\nYou should write about 150 words on the ANSWER SHEET. (15 points)\n（图名：2012—2021年我国居民健康素养水平）",
+  "2024英一·公园建设": "52. Directions:\nWrite an essay based on the picture and the chart below. In your essay, you should\n1) describe the picture and the chart briefly,\n2) interpret the implied meaning, and\n3) give your comments.\nWrite your answer in 160-200 words on the ANSWER SHEET. (20 points)\n（图：市民健身区，气泡“家门口新建的小公园真不错！”；柱状图：某市近三年公园数量（单位：座）2020 年 406、2021 年 532、2022 年 670）",
+  "2024英二·劳动实践": "48. Directions:\nWrite an essay based on the chart below. In your essay, you should\n1) describe and interpret the chart, and\n2) give your comments.\nWrite your answer in about 150 words on the ANSWER SHEET. (15 points)\n（图名：某高校劳动实践课学生主要收获调查）",
+  "2025英一·家电表格": "52. Directions:\nWrite an essay of 160-200 based on the following table. In your essay, you should\n1) describe the table briefly,\n2) explain its intended meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（表名：近年来全国居民平均每百户年末主要耐用消费品拥有量；表头：年份 / 空调(台) / 洗衣机(台) / 电冰箱(台)）",
+  "2025英二·老人休闲": "48. Directions:\nWrite an essay based on the chart below. In your essay, you should\n1) describe and interpret the chart, and\n2) give your comments.\nWrite your answer in about 150 words on the ANSWER SHEET. (15 points)\n（图名：某社区老年人主要日常休闲活动调查）",
+  "2026英一·养老机器人": "52. Directions:\nWrite an essay based on the charts below. In your essay, you should\n1) describe the drawing briefly,\n2) interpret the charts, and\n3) give your comments.\nWrite your answer in 160-200 words on the ANSWER SHEET. (20 points)\n（图名：一项关于养老机器人的消费者接受度和首要关注点的调查）",
+  "2026英二·户外活动": "48. Directions:\nWrite an essay based on the chart below. In your essay, you should\n1) describe and interpret the chart, and\n2) give your comments.\nWrite your answer in about 150 words on the ANSWER SHEET. (15 points)\n（图名：某项关于儿童户外活动看法的调查）",
+  "2019英二·毕业生选择": "48. Directions:\nWrite an essay based on the chart below. In your writing, you should\n1) interpret the chart, and\n2) give your comments.\nYou should write about 150 words on the ANSWER SHEET. (15 points)\n（图名：某高校 2013 年和 2018 年本科毕业生去向统计）",
+  "2022英二·快递与包装": "48. Directions:\nWrite an essay based on the chart below. In your writing, you should\n1) interpret the chart, and\n2) give your comments.\nYou should write about 150 words on the ANSWER SHEET. (15 points)\n（图名：2018-2020 年我国快递业务量变化情况（单位：10 亿件））",
+};
 /* ============ 运行状态 ============ */
 const LS_KEY = "xrz-essay-state-v2";
 const LS_SNAP = "xrz-essay-snaps-v2";
@@ -2048,14 +2080,28 @@ function presetBrief(p){
 }
 function showQPanel(p){
   if(!p) return;
-  var body = document.getElementById("qBody");
-  document.getElementById("qTitle").textContent = "本题题目 · " + p.name;
-  body.innerHTML = presetBrief(p).map(function(r){
+  var q = p.q || ((typeof QUESTIONS !== "undefined" && QUESTIONS[p.id]) || "");
+  var qMain = q, qNote = "";
+  if(q){
+    var ls = q.split("\n");
+    while(ls.length && /^（.*）$/.test(ls[ls.length - 1].trim())){
+      qNote = ls.pop().trim() + (qNote ? " " + qNote : "");
+    }
+    qMain = ls.join("\n");
+  }
+  document.getElementById("qTitle").textContent = "本题 · " + p.name;
+  var rows = presetBrief(p).filter(function(r){ return r[0] !== "题型"; });
+  var html = "";
+  if(qMain) html += '<div class="qsrc">' + esc(qMain) + '</div>';
+  if(qNote) html += '<div class="qnote">' + esc(qNote) + '</div>';
+  html += rows.map(function(r){
     var en = /[A-Za-z]{3}/.test(r[1]) && /^[\x00-\x7F\s]*$/.test(r[1]);
-    return "<dt>" + esc(r[0]) + "</dt><dd" + (en ? ' class="en"' : "") + ">" + esc(r[1]) + "</dd>";
+    return '<div class="qrow"><span class="qk">' + esc(r[0]) + '</span><span class="qv' + (en ? " en" : "") + '">' + esc(r[1]) + '</span></div>';
   }).join("");
-  document.getElementById("qFoot").textContent =
-    "讲义里没有收录这道真题的题干原文，以上是按预设数据整理的题目要点（【助手补】）；把题干原文给我就能换成原文。";
+  document.getElementById("qBody").innerHTML = html;
+  document.getElementById("qFoot").textContent = q
+    ? "题干来自讲义附带的《考研英语作文真题题目汇总》，2026年11月6日整理；下方数据行按预设槽位自动汇总。"
+    : "这道预设没有对应真题（讲义改编或大纲样题），下方是按预设数据整理的题目要点（【助手补】）。";
   document.getElementById("qPanel").classList.add("on");
 }
 function hideQPanel(){ document.getElementById("qPanel").classList.remove("on"); }
