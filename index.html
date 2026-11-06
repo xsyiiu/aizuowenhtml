@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.5.1</title>
+<title>考研英语大作文 · 交互模板 v2.6.0</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -136,6 +136,16 @@ preview{display:block}
 .qk{color:var(--dim2);font-weight:600;white-space:nowrap;flex:0 0 auto}
 .qv{flex:1 1 auto;color:var(--fg);word-break:break-word}
 .qv.en{color:#1f4f9e}
+.qimgs{margin:0 0 8px}
+.qimgwrap{display:block;margin:0 0 8px;border:1px solid #ece0c8;border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
+.qimg{display:block;width:100%;height:auto}
+.qtoggle{border:1px solid var(--line);background:var(--card);color:var(--dim);border-radius:99px;
+  padding:3px 10px;font-size:calc(11.5px * var(--fs));margin:0 0 8px;font-family:inherit;cursor:pointer}
+.qtoggle:hover{color:var(--fg);border-color:var(--line2)}
+#qv{position:fixed;inset:0;z-index:400;background:rgba(20,18,14,.95);display:none;overflow:auto;padding:10px}
+#qv.on{display:block}
+#qv img{display:block;margin:0 auto;border-radius:6px;max-width:none}
+#qv .qvhint{position:fixed;left:0;right:0;bottom:8px;text-align:center;color:#e6ddcb;font-size:12px;opacity:.8}
 .qfoot{margin-top:8px;padding-top:7px;border-top:1px dashed #e6d7ba;font-size:calc(11px * var(--fs));color:var(--dim2);line-height:1.65}
 @media (max-width:600px){
   .qrow{display:block}
@@ -200,7 +210,7 @@ preview{display:block}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.5.1</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.6.0</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -264,7 +274,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.5.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.6.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./xiaozuowen.html" style="color:var(--dim)">小作文 →</a></div>
   </div>
@@ -292,7 +302,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.5.1';
+const APP_VERSION = '2.6.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -1631,6 +1641,34 @@ const PRESETS = [
 ];
 
 /* ============ 真题题干（据讲义附带《考研英语作文真题题目汇总》PDF 整理，2026年11月6日） ============ */
+/* 题目原图（qs/*.webp） */
+const IMGQ = {
+  "2001·油灯": ["qs/y2001a.webp"],
+  "2004·操场跑步": ["qs/y2004a.webp"],
+  "2005·养老": ["qs/y2005a.webp"],
+  "2008英一·合作": ["qs/y2008a.webp"],
+  "2009英一·网络的近与远": ["qs/y2009a.webp"],
+  "2010英一·文化火锅": ["qs/y2010a.webp"],
+  "2011英一·环保": ["qs/y2011a.webp"],
+  "2012·员工满意度": ["qs/y2012b.webp"],
+  "2013英二·兼职": ["qs/y2013b.webp"],
+  "2015英一·手机聚会": ["qs/y2015a.webp"],
+  "2017英一·读书": ["qs/y2017a.webp"],
+  "2018英一·选课": ["qs/y2018a.webp"],
+  "2020英一·习惯": ["qs/y2020a.webp"],
+  "2021英一·坚持": ["qs/y2021a.webp"],
+  "2022英一·听讲座": ["qs/y2022a.webp", "qs/y2022a_2.webp"],
+  "2023英一·龙舟": ["qs/y2023a.webp"],
+  "2023英二·居民健康素养": ["qs/y2023b.webp"],
+  "2024英一·公园建设": ["qs/y2024a.webp"],
+  "2024英二·劳动实践": ["qs/y2024b.webp"],
+  "2025英一·家电表格": ["qs/y2025a.webp"],
+  "2025英二·老人休闲": ["qs/y2025b.webp"],
+  "2026英一·养老机器人": ["qs/y2026a.webp"],
+  "2026英二·户外活动": ["qs/y2026b.webp"],
+  "2019英二·毕业生选择": ["qs/y2019b.webp"],
+  "2022英二·快递与包装": ["qs/y2022b.webp"],
+};
 const QUESTIONS = {
   "2001·油灯": "46. Directions:\nAmong all the worthy feelings of mankind, love is probably the noblest, but everyone has his/her own understanding of it.\nThere has been a discussion recently on the issue in a newspaper. Write an essay to the newspaper to\n1) show your understanding of the symbolic meaning of the picture below.\n2) give a specific example, and\n3) give your suggestion as to the best way to show love.\n（图中文字：爱心是一盏灯，在越黑暗的地方越明亮）",
   "2004·操场跑步": "46. Directions:\nStudy the following drawing carefully and write an essay in which you should\n1. describe the drawing,\n2. interpret its meaning, and support your view with examples.\nYou should write about 200 words neatly on ANSWER SHEET 2. (20 points)\n（图中文字：终点又是新起点）",
@@ -2033,6 +2071,13 @@ function renderChips(){
     box.appendChild(b);
   });
 }
+function openQView(src){
+  var v = document.getElementById("qv");
+  if(!v) return;
+  document.getElementById("qvimg").src = src;
+  v.classList.add("on");
+}
+
 /* ============ 题目卡（预设对应题目） ============ */
 function qv(v){ return (v === undefined || v === null || v === "") ? "" : String(v); }
 function briefData(s){
@@ -2088,13 +2133,31 @@ function showQPanel(p){
   document.getElementById("qTitle").textContent = "本题 · " + p.name;
   var rows = presetBrief(p).filter(function(r){ return r[0] !== "题型"; });
   var html = "";
-  if(qMain) html += '<div class="qsrc">' + esc(qMain) + '</div>';
+  var imgs = (typeof IMGQ !== "undefined" && IMGQ[p.id]) || [];
+  if(imgs.length){
+    html += '<div class="qimgs">' + imgs.map(function(f){
+      return '<a class="qimgwrap" data-zoom="' + f + '" href="' + f + '" target="_blank" rel="noopener"><img class="qimg" src="' + f + '" loading="lazy" alt="题目原图"></a>';
+    }).join("") + '</div>';
+  }
+  if(qMain){
+    html += '<button class="qtoggle" id="qToggle">' + (imgs.length ? "看文字版" : "看题干文字") + '</button>';
+    html += '<div class="qsrc" id="qsrc"' + (imgs.length ? ' style="display:none"' : '') + '>' + esc(qMain) + '</div>';
+  }
   if(qNote) html += '<div class="qnote">' + esc(qNote) + '</div>';
   html += rows.map(function(r){
     var en = /[A-Za-z]{3}/.test(r[1]) && /^[\x00-\x7F\s]*$/.test(r[1]);
     return '<div class="qrow"><span class="qk">' + esc(r[0]) + '</span><span class="qv' + (en ? " en" : "") + '">' + esc(r[1]) + '</span></div>';
   }).join("");
   document.getElementById("qBody").innerHTML = html;
+  var tg = document.getElementById("qToggle");
+  if(tg) tg.onclick = function(){
+    var box = document.getElementById("qsrc"), open = box.style.display === "none";
+    box.style.display = open ? "block" : "none";
+    tg.textContent = open ? "收起文字" : (imgs.length ? "看文字版" : "看题干文字");
+  };
+  Array.prototype.forEach.call(document.querySelectorAll("#qBody .qimgwrap"), function(a){
+    a.onclick = function(e){ e.preventDefault(); openQView(a.getAttribute("data-zoom")); };
+  });
   document.getElementById("qFoot").textContent = q
     ? "题干来自讲义附带的《考研英语作文真题题目汇总》，2026年11月6日整理；下方数据行按预设槽位自动汇总。"
     : "这道预设没有对应真题（讲义改编或大纲样题），下方是按预设数据整理的题目要点（【助手补】）。";
@@ -2565,5 +2628,6 @@ function boot(){
 if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();
 </script>
+<div id="qv" onclick="this.classList.remove('on')"><img id="qvimg" alt="题目原图"><div class="qvhint">点任意处关闭</div></div>
 </body>
 </html>
