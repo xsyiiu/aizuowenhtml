@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.9.0</title>
+<title>考研英语大作文 · 交互模板 v2.9.1</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -299,7 +299,7 @@ header.top.fold .hdr-btns{margin-top:4px}
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
           <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换小作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.0</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.1</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -364,7 +364,7 @@ header.top.fold .hdr-btns{margin-top:4px}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.9.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.9.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     
   </div>
@@ -392,7 +392,7 @@ header.top.fold .hdr-btns{margin-top:4px}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.9.0';
+const APP_VERSION = '2.9.1';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -2794,9 +2794,10 @@ var SYS_PAGE = "big";
 var SYS_SWITCH = "./xiaozuowen.html";
 var SYS_SWITCH_LABEL = "切换小作文";
 var CHANGELOG = [
- {"v": "2.9.0", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠"]},
+ {"v": "2.9.1", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因"]},
+ {"v": "2.9.1", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠"]},
  {
-  "v": "2.9.0",
+  "v": "2.9.1",
   "d": "2026年11月6日",
   "items": [
    "题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住",
@@ -2808,7 +2809,7 @@ var CHANGELOG = [
   ]
  },
  {
-  "v": "2.9.0",
+  "v": "2.9.1",
   "d": "2026年11月6日",
   "items": [
    "词库弹窗自动压住题目浮窗，不再挡住选项"
@@ -2998,7 +2999,7 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
   html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
   html += '<h4 id="sysAboutAnchor">关于</h4>';
-  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.0</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
+  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.1</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
   html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
   html += '</div></div>';
   html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
@@ -3164,9 +3165,10 @@ function openUpdateDialog(v){
   var t = document.getElementById("updTitle");
   if(t) t.textContent = "发现新版本 v" + v;
   if(body){
+    var pre = (updInfo.notes && updInfo.found === v) ? updInfo.notes : logNotes(v);
     body.innerHTML = '<div class="log-d">当前版本 v' + APP_VERSION + '，可更新到 v' + v + '。更新会重新加载页面，本机草稿不会丢。</div>' +
-      '<ul class="log-li" id="updNotes">' + logNotes(v).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul>';
-    remoteNotes(v, function(items){
+      '<ul class="log-li" id="updNotes">' + pre.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul>';
+    if(!(updInfo.notes && updInfo.found === v)) remoteNotes(v, function(items){
       var box = document.getElementById("updNotes");
       if(items && items.length && box){
         box.innerHTML = items.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("");
@@ -3184,6 +3186,16 @@ function sysCheck(silent){
     var m = txt.match(/APP_VERSION\s*=\s*'([0-9.]+)'/);
     if(!m){ if(!silent) toast("检查失败：没有读到版本号"); return; }
     var v = m[1];
+    /* 新版本的更新说明直接从这个远端文件里取，避免再多请求一次 changelog.json */
+    try{
+      var cm = txt.match(/var CHANGELOG = (\[[\s\S]*?\]);\s*/);
+      if(cm){
+        var arr = JSON.parse(cm[1]);
+        for(var ci = 0; ci < arr.length; ci++){
+          if(arr[ci] && arr[ci].v === v){ updInfo.notes = arr[ci].items || null; break; }
+        }
+      }
+    }catch(e){}
     if(compareVer(v, APP_VERSION) > 0){
       updInfo.found = v;
       try{ localStorage.setItem("xrz-upd-found-v1", JSON.stringify(v)); }catch(e){}
@@ -3231,8 +3243,8 @@ function initSys(){
 /* ===== 附加：持久化存储 · 屏幕常亮 · 顶栏折叠 · 建议栏 ===== */
 var WAKE_KEY = "xrz-wake", FOLD_KEY = "xrz-headfold";
 var BOARD_KEY = "xrz-board-local-v1", BOARD_NAME_KEY = "xrz-board-name";
-var BOARD_MODE = "local";            /* local | remote */
-var BOARD_CFG = {url:"", key:""};    /* 接好共享存储后填这里 */
+var BOARD_MODE = "remote";           /* local | remote */
+var BOARD_CFG = {url:"https://orymunhsevoitmhoona.supabase.co", key:"sb_publishable_syTQSEgArFrx1YXcydaTtw_gUItMNuQ"};
 var wakeSentinel = null, wakeWanted = false, boardCache = [];
 
 /* ---- 持久化存储 ---- */
@@ -3319,13 +3331,27 @@ function boardReadLocal(){
 function boardWriteLocal(arr){
   try{ localStorage.setItem(BOARD_KEY, JSON.stringify(arr.slice(0, 100))); }catch(e){}
 }
+function boardHeaders(extra){
+  var h = extra || {};
+  h["apikey"] = BOARD_CFG.key;
+  if(/^eyJ/.test(BOARD_CFG.key)) h["Authorization"] = "Bearer " + BOARD_CFG.key;
+  return h;
+}
+function boardErr(msg){
+  var st = document.getElementById("boardState");
+  if(st){ st.textContent = "连不上共享存储：" + msg + "（先显示本机记录）"; st.style.color = "#b3261e"; }
+}
 function boardLoad(cb){
   if(BOARD_MODE === "remote" && BOARD_CFG.url){
+    if(typeof fetch !== "function"){ boardErr("浏览器不支持 fetch"); boardCache = boardReadLocal(); cb(boardCache, false); return; }
     var u = BOARD_CFG.url.replace(/\/$/, "") + "/rest/v1/board?select=name,text,at&order=at.desc&limit=100";
-    fetch(u, {headers:{apikey:BOARD_CFG.key, Authorization:"Bearer " + BOARD_CFG.key}})
-      .then(function(r){ return r.ok ? r.json() : null; })
+    fetch(u, {headers:boardHeaders()})
+      .then(function(r){
+        if(!r.ok) return r.text().then(function(t){ throw new Error("HTTP " + r.status + " " + t.slice(0,120)); });
+        return r.json();
+      })
       .then(function(j){ if(Array.isArray(j)){ boardCache = j; cb(boardCache, true); } else { boardCache = boardReadLocal(); cb(boardCache, false); } })
-      .catch(function(){ boardCache = boardReadLocal(); cb(boardCache, false); });
+      .catch(function(e){ boardErr((e && e.message) ? e.message : "网络错误"); boardCache = boardReadLocal(); cb(boardCache, false); });
   } else {
     boardCache = boardReadLocal();
     cb(boardCache, false);
@@ -3336,9 +3362,12 @@ function boardAdd(name, text, done){
   if(BOARD_MODE === "remote" && BOARD_CFG.url){
     fetch(BOARD_CFG.url.replace(/\/$/, "") + "/rest/v1/board", {
       method:"POST",
-      headers:{"Content-Type":"application/json", apikey:BOARD_CFG.key, Authorization:"Bearer " + BOARD_CFG.key, Prefer:"return=minimal"},
+      headers:boardHeaders({"Content-Type":"application/json", Prefer:"return=minimal"}),
       body:JSON.stringify(post)
-    }).then(function(r){ done(r.ok); }).catch(function(){ done(false); });
+    }).then(function(r){
+      if(r.ok) return done(true);
+      return r.text().then(function(t){ toast("发布失败：" + r.status + " " + t.slice(0,80)); done(false); });
+    }).catch(function(){ toast("发布失败：网络不通"); done(false); });
   } else {
     var arr = boardReadLocal();
     post.at = new Date().toISOString();
@@ -3399,6 +3428,35 @@ function boardSubmit(){
     toast(BOARD_MODE === "remote" ? "已发布" : "已记在本机（还没接共享存储）");
   });
 }
+function boardDiag(){
+  var st = document.getElementById("boardState");
+  if(!st) return;
+  st.style.color = "";
+  st.textContent = "自检中…";
+  var base = BOARD_CFG.url.replace(/\/$/, "");
+  var okRead = "?", okWrite = "?", okDeny = "?";
+  fetch(base + "/rest/v1/board?select=id&limit=1", {headers:boardHeaders()})
+    .then(function(r){ okRead = r.ok ? "读 OK" : "读失败 " + r.status; return ""; })
+    .catch(function(){ okRead = "读失败（网络）"; return ""; })
+    .then(function(){
+      return fetch(base + "/rest/v1/board", {method:"POST", headers:boardHeaders({"Content-Type":"application/json", Prefer:"return=minimal"}),
+        body:JSON.stringify({name:"自检", text:"这条是自检写入，可删", at:new Date().toISOString()})})
+        .then(function(r){ okWrite = r.ok ? "写 OK" : "写失败 " + r.status; })
+        .catch(function(){ okWrite = "写失败（网络）"; });
+    })
+    .then(function(){
+      return fetch(base + "/rest/v1/board?name=eq.自检", {method:"DELETE", headers:boardHeaders()})
+        .then(function(r){ okDeny = r.ok ? "删除被允许（危险）" : "删除被拒（正常）"; })
+        .catch(function(){ okDeny = "删除请求失败"; });
+    })
+    .then(function(){
+      st.style.color = "";
+      st.textContent = "自检：" + okRead + " · " + okWrite + " · " + okDeny;
+      renderBoard();
+    })
+    .catch(function(){ st.textContent = "自检失败"; });
+}
+
 function buildBoard(){
   if(document.getElementById("boardModal")) return;
   var html = '<div class="sys-modal" id="boardModal"><div class="sys-card">' +
@@ -3410,6 +3468,7 @@ function buildBoard(){
       '<div style="display:flex;gap:8px;align-items:center;margin-top:8px">' +
         '<button class="sys-btn primary" type="button" id="boardPostBtn">发布</button>' +
         '<button class="sys-btn" type="button" id="boardReload">刷新</button>' +
+        '<button class="sys-btn" type="button" id="boardDiag">自检</button>' +
       '</div>' +
       '<div id="boardList" style="margin-top:12px"></div>' +
     '</div>' +
@@ -3420,6 +3479,7 @@ function buildBoard(){
   while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
   document.getElementById("boardPostBtn").onclick = boardSubmit;
   document.getElementById("boardReload").onclick = renderBoard;
+  document.getElementById("boardDiag").onclick = boardDiag;
   document.querySelector('[data-close="boardModal"]').onclick = function(){ document.getElementById("boardModal").classList.remove("on"); };
   document.getElementById("boardModal").addEventListener("click", function(e){ if(e.target === this) this.classList.remove("on"); });
   refreshBoardBadge();
