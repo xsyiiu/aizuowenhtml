@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.7.0</title>
+<title>考研英语小作文 · 交互模板 v1.8.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -271,6 +271,27 @@ preview{display:block}
 .log-li{list-style:none;padding:0;margin:0 0 10px}
 .log-li li{position:relative;padding-left:14px;color:var(--dim);margin:2px 0}
 .log-li li:before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--line2)}
+/* ===== 顶栏折叠 ===== */
+header.top.fold .row2, header.top.fold .bar-actions{display:none}
+header.top.fold .bar{padding-top:6px;padding-bottom:6px}
+header.top.fold h1{font-size:calc(13.5px * var(--fs));margin:0}
+header.top.fold .logo{width:26px;height:26px;font-size:calc(13px * var(--fs))}
+header.top.fold .hdr-btns{margin-top:4px}
+/* ===== 常亮 / 建议栏 ===== */
+.hbtn.on{background:var(--accent-bg);border-color:rgba(178,95,22,.45);color:var(--accent);font-weight:700}
+.badge{display:inline-block;min-width:16px;padding:0 4px;margin-left:4px;border-radius:99px;background:var(--accent);
+  color:#fff;font-size:calc(10px * var(--fs));line-height:16px;text-align:center;vertical-align:1px}
+.board-name{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:9px;padding:7px 10px;
+  font-size:calc(12.5px * var(--fs));font-family:inherit;background:#fff;margin-bottom:6px}
+.board-text{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:9px;padding:8px 10px;
+  font-size:calc(12.5px * var(--fs));font-family:inherit;background:#fff;min-height:76px;resize:vertical}
+.board-name:focus,.board-text:focus{outline:none;border-color:var(--accent)}
+.board-tip{color:var(--dim2);font-size:calc(11px * var(--fs));line-height:1.6;margin:6px 0 0}
+.post{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;background:#fff}
+.post .ph{display:flex;align-items:center;gap:8px;font-size:calc(11.5px * var(--fs));color:var(--dim2)}
+.post .pn{font-weight:700;color:var(--accent)}
+.post .pt{margin-top:4px;font-size:calc(12.5px * var(--fs));line-height:1.7;color:var(--fg);white-space:pre-wrap;word-break:break-word}
+.board-state{font-size:calc(11px * var(--fs));color:var(--dim2);margin:0 0 8px}
 </style>
 </head>
 <body>
@@ -282,8 +303,8 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换大作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button></div>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.7.0</span> · 书信 / 通知 / 纪要</p>
+          <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换大作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.8.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -344,7 +365,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.7.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.8.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     
   </div>
@@ -372,7 +393,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.7.0';
+const APP_VERSION = '1.8.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -2047,8 +2068,9 @@ var SYS_PAGE = "small";
 var SYS_SWITCH = "./";
 var SYS_SWITCH_LABEL = "切换大作文";
 var CHANGELOG = [
+ {"v": "1.8.0", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式）", "新增「常亮」按钮：背诵时屏幕不自动锁", "新增「收起顶栏」开关", "申请持久化存储，设置里可查看状态", "设置面板补：本机存储、屏幕常亮、顶栏折叠"]},
  {
-  "v": "1.7.0",
+  "v": "1.8.0",
   "d": "2026年11月6日",
   "items": [
    "题目卡不再铺图，改成可拖动、可缩放的浮窗",
@@ -2059,7 +2081,7 @@ var CHANGELOG = [
   ]
  },
  {
-  "v": "1.7.0",
+  "v": "1.8.0",
   "d": "2026年11月6日",
   "items": [
    "词库弹窗自动压住题目浮窗"
@@ -2248,8 +2270,8 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">导出备份<span class="sub">草稿 + 星标 + 设置，存成 JSON 文件</span></div><button class="sys-btn" type="button" id="sysExport">导出</button></div>';
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
   html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
-  html += '<h4>关于</h4>';
-  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v1.7.0</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
+  html += '<h4 id="sysAboutAnchor">关于</h4>';
+  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v1.8.0</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
   html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
   html += '</div></div>';
   html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
@@ -2479,9 +2501,245 @@ function initSys(){
   setTimeout(function(){ sysCheck(true); }, 2500);
 }
 
+/* ===== 附加：持久化存储 · 屏幕常亮 · 顶栏折叠 · 建议栏 ===== */
+var WAKE_KEY = "xrz-wake", FOLD_KEY = "xrz-headfold";
+var BOARD_KEY = "xrz-board-local-v1", BOARD_NAME_KEY = "xrz-board-name";
+var BOARD_MODE = "local";            /* local | remote */
+var BOARD_CFG = {url:"", key:""};    /* 接好共享存储后填这里 */
+var wakeSentinel = null, wakeWanted = false, boardCache = [];
+
+/* ---- 持久化存储 ---- */
+function sysStorageInfo(){
+  var out = {persist:null, usage:"", text:""};
+  if(!navigator.storage || !navigator.storage.persisted) return out;
+  return navigator.storage.persisted().then(function(ok){
+    out.persist = ok;
+    if(navigator.storage.estimate){
+      return navigator.storage.estimate().then(function(e){
+        if(e && e.usage){ out.usage = (e.usage / 1048576).toFixed(1) + " MB"; }
+        out.text = ok ? "已持久化" : "未持久化";
+        return out;
+      });
+    }
+    out.text = ok ? "已持久化" : "未持久化";
+    return out;
+  }).catch(function(){ return out; });
+}
+function sysAskPersist(){
+  if(!navigator.storage || !navigator.storage.persist){ toast("这个浏览器不支持持久化存储"); return; }
+  navigator.storage.persist().then(function(ok){
+    toast(ok ? "已持久化：浏览器不会轻易清掉你的草稿" : "浏览器暂未批准（多用几次再试）");
+    refreshStorageRow();
+  }).catch(function(){ toast("申请失败"); });
+}
+function refreshStorageRow(){
+  var el = document.getElementById("sysStorageText");
+  if(!el) return;
+  sysStorageInfo().then(function(i){
+    if(!i || !i.text){ el.textContent = (navigator.storage ? "查询失败" : "这个浏览器不支持"); return; }
+    el.textContent = i.text + (i.usage ? " · 已用 " + i.usage : "");
+  });
+}
+
+/* ---- 屏幕常亮 ---- */
+function wakeSupported(){ return ("wakeLock" in navigator); }
+function applyWakeUI(){
+  var b = document.getElementById("btnWake");
+  if(!b) return;
+  b.textContent = "常亮：" + (wakeWanted ? "开" : "关");
+  b.className = "hbtn" + (wakeWanted ? " on" : "");
+}
+function wakeOn(){
+  if(!wakeSupported()){ toast("这个浏览器不支持屏幕常亮（iOS Safari 不行）"); wakeWanted = false; applyWakeUI(); return; }
+  navigator.wakeLock.request("screen").then(function(s){
+    wakeSentinel = s;
+    wakeWanted = true;
+    try{ localStorage.setItem(WAKE_KEY, "1"); }catch(e){}
+    applyWakeUI();
+    toast("屏幕常亮已开启");
+    s.addEventListener("release", function(){ if(wakeSentinel === s) wakeSentinel = null; });
+  }).catch(function(){ toast("开启失败（可能被系统省电模式拦了）"); wakeWanted = false; applyWakeUI(); });
+}
+function wakeOff(){
+  wakeWanted = false;
+  try{ localStorage.setItem(WAKE_KEY, "0"); }catch(e){}
+  if(wakeSentinel && wakeSentinel.release){ wakeSentinel.release(); }
+  wakeSentinel = null;
+  applyWakeUI();
+  toast("屏幕常亮已关闭");
+}
+function toggleWake(){ if(wakeWanted){ wakeOff(); } else { wakeOn(); } }
+
+/* ---- 顶栏折叠 ---- */
+function applyFold(fold){
+  var h = document.querySelector("header.top");
+  if(!h) return;
+  h.classList.toggle("fold", !!fold);
+  var b = document.getElementById("btnFold");
+  if(b) b.textContent = fold ? "展开顶栏" : "收起顶栏";
+  try{ localStorage.setItem(FOLD_KEY, fold ? "1" : "0"); }catch(e){}
+}
+function toggleFold(){
+  var h = document.querySelector("header.top");
+  var now = h.classList.contains("fold");
+  applyFold(!now);
+}
+
+/* ---- 建议栏 ---- */
+function boardReadLocal(){
+  try{ var a = JSON.parse(localStorage.getItem(BOARD_KEY) || "[]"); return Array.isArray(a) ? a : []; }catch(e){ return []; }
+}
+function boardWriteLocal(arr){
+  try{ localStorage.setItem(BOARD_KEY, JSON.stringify(arr.slice(0, 100))); }catch(e){}
+}
+function boardLoad(cb){
+  if(BOARD_MODE === "remote" && BOARD_CFG.url){
+    var u = BOARD_CFG.url.replace(/\/$/, "") + "/rest/v1/board?select=name,text,at&order=at.desc&limit=100";
+    fetch(u, {headers:{apikey:BOARD_CFG.key, Authorization:"Bearer " + BOARD_CFG.key}})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if(Array.isArray(j)){ boardCache = j; cb(boardCache, true); } else { boardCache = boardReadLocal(); cb(boardCache, false); } })
+      .catch(function(){ boardCache = boardReadLocal(); cb(boardCache, false); });
+  } else {
+    boardCache = boardReadLocal();
+    cb(boardCache, false);
+  }
+}
+function boardAdd(name, text, done){
+  var post = {name:name, text:text, at:new Date().toISOString()};
+  if(BOARD_MODE === "remote" && BOARD_CFG.url){
+    fetch(BOARD_CFG.url.replace(/\/$/, "") + "/rest/v1/board", {
+      method:"POST",
+      headers:{"Content-Type":"application/json", apikey:BOARD_CFG.key, Authorization:"Bearer " + BOARD_CFG.key, Prefer:"return=minimal"},
+      body:JSON.stringify(post)
+    }).then(function(r){ done(r.ok); }).catch(function(){ done(false); });
+  } else {
+    var arr = boardReadLocal();
+    post.at = new Date().toISOString();
+    arr.unshift(post);
+    boardWriteLocal(arr);
+    done(true);
+  }
+}
+function boardCount(){ return boardReadLocal().length; }
+function refreshBoardBadge(){
+  var b = document.getElementById("boardBadge");
+  if(!b) return;
+  var n = BOARD_MODE === "remote" ? boardCache.length : boardReadLocal().length;
+  b.textContent = n ? String(n) : "";
+  b.style.display = n ? "" : "none";
+}
+function renderBoard(){
+  var list = document.getElementById("boardList");
+  var st = document.getElementById("boardState");
+  if(!list) return;
+  if(st){
+    st.textContent = BOARD_MODE === "remote"
+      ? "共享中：所有人都能看，发帖不用登录"
+      : "当前只存在这台设备上（还没接共享存储）——同学的建议不会自动汇总到这里。";
+  }
+  boardLoad(function(arr){
+    if(!arr.length){ list.innerHTML = '<div class="empty-hint" style="padding:18px 6px">还没有建议，来写第一条。</div>'; refreshBoardBadge(); return; }
+    list.innerHTML = arr.map(function(p){
+      var d = "";
+      try{ d = new Date(p.at); d = (d.getMonth()+1) + "月" + d.getDate() + "日 " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0"); }catch(e){}
+      return '<div class="post"><div class="ph"><span class="pn">' + esc(p.name || "匿名") + '</span><span>' + esc(d) + '</span></div>' +
+        '<div class="pt">' + esc(p.text || "") + '</div></div>';
+    }).join("");
+    refreshBoardBadge();
+  });
+}
+function openBoard(){
+  var m = document.getElementById("boardModal");
+  if(!m) return;
+  var nameEl = document.getElementById("boardName");
+  if(nameEl && !nameEl.value){ try{ nameEl.value = localStorage.getItem(BOARD_NAME_KEY) || ""; }catch(e){} }
+  m.classList.add("on");
+  renderBoard();
+}
+function boardSubmit(){
+  var nameEl = document.getElementById("boardName"), textEl = document.getElementById("boardText"), btn = document.getElementById("boardPostBtn");
+  var name = (nameEl.value || "").trim(), text = (textEl.value || "").trim();
+  if(!name){ toast("先给自己起个名字（随便写，方便大家认）"); nameEl.focus(); return; }
+  if(!text){ toast("写点什么再发"); textEl.focus(); return; }
+  if(text.length > 800) text = text.slice(0, 800);
+  try{ localStorage.setItem(BOARD_NAME_KEY, name); }catch(e){}
+  btn.disabled = true; btn.textContent = "发送中…";
+  boardAdd(name, text, function(ok){
+    btn.disabled = false; btn.textContent = "发布";
+    if(!ok){ toast("发送失败，检查网络后再试"); return; }
+    textEl.value = "";
+    renderBoard();
+    toast(BOARD_MODE === "remote" ? "已发布" : "已记在本机（还没接共享存储）");
+  });
+}
+function buildBoard(){
+  if(document.getElementById("boardModal")) return;
+  var html = '<div class="sys-modal" id="boardModal"><div class="sys-card">' +
+    '<div class="ch">建议栏<button type="button" data-close="boardModal">×</button></div>' +
+    '<div class="cb">' +
+      '<p class="board-state" id="boardState"></p>' +
+      '<input class="board-name" id="boardName" maxlength="16" placeholder="你的名字（不用登录，写个代号就行）">' +
+      '<textarea class="board-text" id="boardText" maxlength="800" placeholder="想加什么功能、哪里不好用、发现什么错误……直接写"></textarea>' +
+      '<div style="display:flex;gap:8px;align-items:center;margin-top:8px">' +
+        '<button class="sys-btn primary" type="button" id="boardPostBtn">发布</button>' +
+        '<button class="sys-btn" type="button" id="boardReload">刷新</button>' +
+      '</div>' +
+      '<div id="boardList" style="margin-top:12px"></div>' +
+    '</div>' +
+    '<div class="cf"><button class="sys-btn" type="button" data-close="boardModal">关闭</button></div>' +
+  '</div></div>';
+  var wrap = document.createElement("div");
+  wrap.innerHTML = html;
+  while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
+  document.getElementById("boardPostBtn").onclick = boardSubmit;
+  document.getElementById("boardReload").onclick = renderBoard;
+  document.querySelector('[data-close="boardModal"]').onclick = function(){ document.getElementById("boardModal").classList.remove("on"); };
+  document.getElementById("boardModal").addEventListener("click", function(e){ if(e.target === this) this.classList.remove("on"); });
+  refreshBoardBadge();
+}
+
+/* ---- 初始化 ---- */
+function initExtra(){
+  /* 持久化存储：开机顺手申请一次 */
+  try{ sysAskPersist(); }catch(e){}
+  /* 常亮 */
+  try{ wakeWanted = localStorage.getItem(WAKE_KEY) === "1"; }catch(e){}
+  applyWakeUI();
+  var wb = document.getElementById("btnWake");
+  if(wb) wb.onclick = toggleWake;
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "visible" && wakeWanted && !wakeSentinel && wakeSupported()){
+      navigator.wakeLock.request("screen").then(function(s){ wakeSentinel = s; }).catch(function(){});
+    }
+  });
+  /* 折叠 */
+  var folded = false;
+  try{ folded = localStorage.getItem(FOLD_KEY) === "1"; }catch(e){}
+  applyFold(folded);
+  var fb = document.getElementById("btnFold");
+  if(fb) fb.onclick = toggleFold;
+  /* 建议栏 */
+  buildBoard();
+  var bb = document.getElementById("btnBoard");
+  if(bb) bb.onclick = openBoard;
+  refreshBoardBadge();
+  /* 设置里补两行 */
+  var host = document.getElementById("sysAboutAnchor");
+  if(host){
+    host.insertAdjacentHTML("beforebegin",
+      '<div class="sys-row"><div class="lbl">本机存储<span class="sub" id="sysStorageText">查询中…</span></div><button class="sys-btn" type="button" id="sysPersistBtn">申请持久化</button></div>' +
+      '<div class="sys-row"><div class="lbl">屏幕常亮<span class="sub">背诵时不自动锁屏</span></div><button class="sys-btn" type="button" id="sysWakeBtn">切换</button></div>' +
+      '<div class="sys-row"><div class="lbl">顶栏折叠<span class="sub">收起题型条与开关，腾出屏幕</span></div><button class="sys-btn" type="button" id="sysFoldBtn">切换</button></div>');
+    document.getElementById("sysPersistBtn").onclick = sysAskPersist;
+    document.getElementById("sysWakeBtn").onclick = toggleWake;
+    document.getElementById("sysFoldBtn").onclick = toggleFold;
+  }
+  try{ refreshStorageRow(); }catch(e){}
+}
+
 function boot(){
   loadUI();
-  loadFS(); loadAll(); bindUI(); renderAll(); initSys();
+  loadFS(); loadAll(); bindUI(); renderAll(); initSys(); initExtra();
   setTimeout(function(){ sysCheck(true); },1800);
   document.addEventListener("visibilitychange",function(){
     if(document.visibilityState==="visible") sysCheck(true);
