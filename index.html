@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.3.2</title>
+<title>考研英语大作文 · 交互模板 v2.4.0</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -119,6 +119,24 @@ preview{display:block}
 .hintbar{font-size:calc(12px * var(--fs));color:var(--dim);background:rgba(44,102,196,.05);border:1px solid var(--line);
   border-radius:10px;padding:8px 11px;margin-top:12px;line-height:1.7}
 .empty-hint{text-align:center;color:var(--dim2);font-size:calc(13px * var(--fs));padding:26px 10px}
+/* 题目卡 */
+#qPanel{display:none;margin-top:12px;background:#fffdf7;border:1px solid #e6d7ba;border-left:4px solid var(--accent);
+  border-radius:12px;padding:10px 12px;box-shadow:0 2px 10px rgba(120,90,40,.05)}
+#qPanel.on{display:block}
+.qhead{display:flex;align-items:center;gap:8px;font-size:calc(12.5px * var(--fs));font-weight:700;color:var(--accent)}
+.qhead .qclose{margin-left:auto;border:none;background:transparent;color:var(--dim);font-size:calc(16px * var(--fs));
+  line-height:1;padding:2px 7px;border-radius:6px;font-family:inherit}
+.qhead .qclose:hover{background:rgba(0,0,0,.06);color:var(--fg)}
+.qbody{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin-top:8px;
+  font-size:calc(12.5px * var(--fs));line-height:1.75}
+.qbody dt{color:var(--dim2);white-space:nowrap;font-weight:600}
+.qbody dd{margin:0;color:var(--fg)}
+.qbody dd.en{color:#1f4f9e}
+.qfoot{margin-top:8px;padding-top:7px;border-top:1px dashed #e6d7ba;font-size:calc(11px * var(--fs));color:var(--dim2);line-height:1.65}
+@media (max-width:600px){
+  .qbody{grid-template-columns:1fr;gap:1px}
+  .qbody dt{margin-top:5px}
+}
 /* modal */
 #modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-end;justify-content:center;background:rgba(48,42,32,.42);backdrop-filter:blur(3px)}
 #modal.on{display:flex}
@@ -178,7 +196,7 @@ preview{display:block}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.3.2</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.4.0</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -208,6 +226,11 @@ preview{display:block}
   </div>
 </header>
 <main class="wrap">
+  <div class="qpanel" id="qPanel">
+    <div class="qhead"><span id="qTitle">本题题目</span><button class="qclose" id="qClose" aria-label="收起题目卡">×</button></div>
+    <dl class="qbody" id="qBody"></dl>
+    <div class="qfoot" id="qFoot"></div>
+  </div>
   <div class="hintbar">用法：点句子里的<span class="slotdemo">彩色短语</span>换说法 → 左侧填题干词 → 每句上方下拉换整句方案。未填的槽位显示【标签】。</div>
   <div class="layout">
     <aside class="side">
@@ -237,7 +260,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.3.2</b> · 构建 2026-11-03 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.4.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./xiaozuowen.html" style="color:var(--dim)">小作文 →</a></div>
   </div>
@@ -265,7 +288,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.3.2';
+const APP_VERSION = '2.4.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -1975,12 +1998,68 @@ function renderChips(){
       pushHistory();
       state.type = t.id;
       state.picks = {p2b:0, p2c:2, p2d:6};
+      hideQPanel();
       persist(); renderAll();
       toast("已切换到 " + t.label);
     };
     box.appendChild(b);
   });
 }
+/* ============ 题目卡（预设对应题目） ============ */
+function qv(v){ return (v === undefined || v === null || v === "") ? "" : String(v); }
+function briefData(s){
+  var items = [], nums = [];
+  for(var i = 1; i <= 6; i++){
+    if(s["item" + i]) items.push(s["item" + i]);
+    if(s["n" + i]) nums.push(s["n" + i]);
+  }
+  if(!nums.length) return "";
+  if(items.length === nums.length){
+    return items.map(function(it, k){ return it + " " + nums[k]; }).join("；");
+  }
+  return "数值：" + nums.join("；");
+}
+function presetBrief(p){
+  var s = p.slots || {}, rows = [];
+  var T = TYPE_MAP[p.type] || {};
+  rows.push(["题型", (T.label || p.type) + (T.group ? "（" + T.group + "）" : "")]);
+  if(s.y1 || s.y2) rows.push(["年份", [s.y1, s.y2].filter(Boolean).join(" — ")]);
+  if(s.theme) rows.push(["主题词", qv(s.theme)]);
+  if(s.left) rows.push(["图一", qv(s.left)]);
+  if(s.right) rows.push(["图二", qv(s.right)]);
+  if(s.chartSummary) rows.push(["图表概况", qv(s.chartSummary)]);
+  var d = briefData(s);
+  if(d) rows.push(["数据", d]);
+  if(s.subject) rows.push(["画面主体", [s.subject, s.basicV, s.env].filter(Boolean).join(" ")]);
+  if(s.mainV) rows.push(["动作细节", [s.mainV, s.detail].filter(Boolean).join("，")]);
+  if(s.leftSub) rows.push(["左图", [s.leftSub, s.leftV, s.leftExtra].filter(Boolean).join("，")]);
+  if(s.rightSub) rows.push(["右图", [s.rightSub, s.rightV, s.rightExtra].filter(Boolean).join("，")]);
+  if(s.quoteA || s.quoteB) rows.push(["对话", [s.quoteA, s.quoteB].filter(Boolean).join(" / ")]);
+  if(s.caption) rows.push(["配文", qv(s.caption)]);
+  if(s.authorView) rows.push(["材料观点", qv(s.authorView)]);
+  var t = p.type;
+  var req = t.indexOf("chart") === 0
+    ? "以图表为据：描述图表 → 原因 / 含义分析 → 给出评论；英一 160—200 词，英二 150 词以上。"
+    : (t.indexOf("pic") === 0
+      ? "描述图画（含配文）→ 阐释寓意 → 举例 / 说明 → 给出评论；160—200 词。"
+      : "改写材料 → 表明态度（是否同意、在多大程度上同意）→ 论证并举例 → 结论；160—200 词。");
+  rows.push(["写作要求", req]);
+  return rows;
+}
+function showQPanel(p){
+  if(!p) return;
+  var body = document.getElementById("qBody");
+  document.getElementById("qTitle").textContent = "本题题目 · " + p.name;
+  body.innerHTML = presetBrief(p).map(function(r){
+    var en = /[A-Za-z]{3}/.test(r[1]) && /^[\x00-\x7F\s]*$/.test(r[1]);
+    return "<dt>" + esc(r[0]) + "</dt><dd" + (en ? ' class="en"' : "") + ">" + esc(r[1]) + "</dd>";
+  }).join("");
+  document.getElementById("qFoot").textContent =
+    "讲义里没有收录这道真题的题干原文，以上是按预设数据整理的题目要点（【助手补】）；把题干原文给我就能换成原文。";
+  document.getElementById("qPanel").classList.add("on");
+}
+function hideQPanel(){ document.getElementById("qPanel").classList.remove("on"); }
+
 function renderPresets(){
   var sel = document.getElementById("presetSel");
   var cur = sel.value;
@@ -2002,6 +2081,7 @@ function renderPresets(){
     pushHistory();
     applyPreset(p);
     persist(); renderAll();
+    showQPanel(p);
     toast("已载入：" + p.name);
   };
 }
@@ -2188,7 +2268,7 @@ function openSlot(id){
     };
   });
   m.classList.add("on");
-  setTimeout(function(){ try{ input.focus(); }catch(e){} }, 80);
+  /* 不自动聚焦输入框：避免一打开就弹键盘，点选项可直接选，想自己输入再点输入框 */
 }
 function closeModal(){ document.getElementById("modal").classList.remove("on"); modalSlot = null; }
 function flashSlot(id){
@@ -2357,6 +2437,7 @@ function bindUI(){
     state = emptyState();
     persist(); renderAll(); toast("已清空，可撤销");
   };
+  document.getElementById("qClose").onclick = hideQPanel;
   document.getElementById("btnCopyAll").onclick = function(){
     var txt = paragraphsOf().map(function(p){
       return p.title + "\n" + paragraphText(p);
