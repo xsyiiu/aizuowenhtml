@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.6.1</title>
+<title>考研英语小作文 · 交互模板 v1.7.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -155,8 +155,9 @@ preview{display:block}
 .fhead button:hover{background:rgba(0,0,0,.07);color:var(--fg)}
 .fbody{flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;padding:6px;background:#fff}
 .fbody .fimg{display:block;width:100%;height:auto;border-radius:4px;margin-bottom:6px;cursor:zoom-in}
-.fresize{position:absolute;right:0;bottom:0;width:22px;height:22px;cursor:nwse-resize;touch-action:none;
-  background:linear-gradient(135deg,transparent 50%,rgba(150,120,70,.45) 50%);border-bottom-right-radius:12px}
+.fresize{position:absolute;right:0;bottom:0;width:46px;height:46px;cursor:nwse-resize;touch-action:none}
+.fresize:after{content:"";position:absolute;right:5px;bottom:5px;width:18px;height:18px;border-radius:0 0 8px 0;
+  background:linear-gradient(135deg,transparent 50%,rgba(150,120,70,.55) 50%)}
 .qimgs{margin:0 0 8px}
 .qimgwrap{display:block;margin:0 0 8px;border:1px solid #ece0c8;border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
 .qimg{display:block;width:100%;height:auto}
@@ -220,10 +221,60 @@ preview{display:block}
 .fontctl span{font-size:calc(11px * var(--fs));color:var(--dim2);min-width:36px;text-align:center;cursor:pointer;user-select:none}
 .warn{color:#9a5a00;font-size:calc(11px * var(--fs));margin-top:6px;display:none}
 .warn.on{display:block}
+/* ===== 头部小按钮 ===== */
+.hdr-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.hbtn{position:relative;border:1px solid var(--line);background:#fffdfa;color:var(--dim);border-radius:99px;
+  padding:3px 10px;font-size:calc(11.5px * var(--fs));font-family:inherit;cursor:pointer;white-space:nowrap}
+.hbtn:hover{color:var(--fg);border-color:var(--line2)}
+.hbtn .rdot{display:none;position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;
+  background:#e0432c;box-shadow:0 0 0 2px #fff}
+.hbtn .rdot.on{display:block}
+/* ===== 星标 ===== */
+.star-btn{border:none;background:transparent;color:#c9c2b4;font-size:calc(15px * var(--fs));line-height:1;
+  padding:2px 5px;cursor:pointer;font-family:inherit;border-radius:6px;flex:0 0 auto}
+.star-btn.on{color:#d99a00}
+.star-btn:hover{background:rgba(0,0,0,.05)}
+/* ===== 抽屉 / 弹窗 ===== */
+.sys-mask{position:fixed;inset:0;z-index:500;background:rgba(40,34,26,.35);display:none}
+.sys-mask.on{display:block}
+.sys-drawer{position:fixed;z-index:501;top:0;right:0;bottom:0;width:min(400px,92vw);background:#fffdf8;border-left:1px solid var(--line2);
+  transform:translateX(102%);transition:transform .22s ease;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(60,45,20,.16)}
+.sys-drawer.on{transform:none}
+.sys-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.sys-head b{font-size:calc(14px * var(--fs))}
+.sys-head button{margin-left:auto;border:none;background:transparent;font-size:calc(18px * var(--fs));color:var(--dim);cursor:pointer;padding:0 6px;font-family:inherit}
+.sys-body{flex:1 1 auto;overflow:auto;padding:4px 14px 40px}
+.sys-body h4{margin:16px 0 6px;font-size:calc(11.5px * var(--fs));letter-spacing:.08em;color:var(--dim2)}
+.sys-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.sys-row .lbl{flex:1 1 auto;font-size:calc(13px * var(--fs));color:var(--fg)}
+.sys-row .sub{display:block;color:var(--dim2);font-size:calc(11px * var(--fs));margin-top:2px;line-height:1.5}
+.sys-seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:#fff}
+.sys-seg button{border:none;background:transparent;padding:4px 9px;font-size:calc(11.5px * var(--fs));color:var(--dim);font-family:inherit;cursor:pointer}
+.sys-seg button.on{background:var(--accent-bg);color:var(--accent);font-weight:700}
+.sys-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:calc(12px * var(--fs));color:var(--fg);font-family:inherit;cursor:pointer}
+.sys-btn:hover{border-color:var(--line2)}
+.sys-btn.danger{color:#b3261e;border-color:rgba(179,38,30,.35)}
+.sys-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.star-item{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;background:#fff}
+.star-item .se{font-family:var(--serif);font-size:calc(12.5px * var(--fs));line-height:1.6;color:#1c2128;word-break:break-word}
+.star-item .sz{color:var(--dim2);font-size:calc(11.5px * var(--fs));margin-top:4px}
+.star-item .sbar{display:flex;gap:6px;margin-top:6px}
+.sys-modal{position:fixed;inset:0;z-index:520;display:none;align-items:center;justify-content:center;background:rgba(40,34,26,.45);padding:16px}
+.sys-modal.on{display:flex}
+.sys-card{background:#fffdf8;border-radius:14px;max-width:520px;width:100%;max-height:82vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(40,30,10,.3)}
+.sys-card .ch{display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:calc(14px * var(--fs))}
+.sys-card .ch button{margin-left:auto;border:none;background:transparent;font-size:calc(18px * var(--fs));color:var(--dim);cursor:pointer;font-family:inherit}
+.sys-card .cb{overflow:auto;padding:12px 16px;font-size:calc(12.5px * var(--fs));line-height:1.75;color:var(--fg)}
+.sys-card .cf{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid var(--line);justify-content:flex-end}
+.log-v{font-weight:700;margin:14px 0 2px}
+.log-d{color:var(--dim2);font-size:calc(11px * var(--fs));margin-bottom:6px}
+.log-li{list-style:none;padding:0;margin:0 0 10px}
+.log-li li{position:relative;padding-left:14px;color:var(--dim);margin:2px 0}
+.log-li li:before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--line2)}
 </style>
 </head>
 <body>
-<div id="updateBar">发现新版本 <b id="newVer">—</b>，当前显示的是旧缓存。<button class="mini" id="btnReload" style="margin-left:8px">立即刷新</button></div>
+
 <header class="top">
   <div class="bar">
     <div class="row1">
@@ -231,7 +282,8 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.6.1</span> · 书信 / 通知 / 纪要</p>
+          <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换大作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button></div>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.7.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -241,6 +293,7 @@ preview{display:block}
         <button class="btn ghost" id="btnSnap">快照</button>
         <button class="btn ghost danger" id="btnClear">清空</button>
         <button class="btn primary" id="btnCopyAll">复制全文</button>
+        <button class="btn ghost" id="btnSettings" title="设置 / 更新日志 / 备份">设置</button>
       </div>
     </div>
     <div class="row2">
@@ -291,9 +344,9 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.6.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.7.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
-    <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
+    
   </div>
 </main>
 <div id="snapPanel"></div>
@@ -319,7 +372,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.6.1';
+const APP_VERSION = '1.7.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -1532,7 +1585,7 @@ function showQPanel(p){
   document.getElementById("qBody").innerHTML=html;
   var fb=document.getElementById("qFloatBtn");
   if(fb) fb.onclick=function(){ openFloat(imgs); };
-  if(imgs.length) openFloat(imgs); else closeFloat();
+  if(imgs.length){ if(sysSet.autoFloat !== false) openFloat(imgs); } else closeFloat();
   document.getElementById("qFoot").textContent = q
     ? "题干来自讲义附带的《考研英语作文真题题目汇总》，2026年11月6日整理；下方各行按预设槽位自动汇总。"
     : "这道预设没有对应真题（讲义改编或大纲样题），下方是按预设数据整理的题目要点（【助手补】）。";
@@ -1673,7 +1726,7 @@ function renderPreview(){
       if(groupsSeen.length) optsHTML+='</optgroup>';
       inner+='<div class="sent" data-sent="'+sent.key+'">'+
         '<div class="sent-head"><span class="sent-label">'+esc(sent.label)+'</span>'+
-        '<select class="sent-sel" data-pick="'+sent.key+'">'+optsHTML+'</select></div>'+
+        '<select class="sent-sel" data-pick="'+sent.key+'" data-vhashes="'+esc(JSON.stringify([""].concat(sent.vs.map(function(v,vi){ regVar(v); return vHash(v.en); }))))+'">'+optsHTML+'</select></div>'+
         '<div class="en">'+htmlOf(segsEn)+'</div>'+
         (state.toggles.zh?'<div class="zh">'+htmlOf(segsZh)+'</div>':'')+
         (state.toggles.note&&varnt.note?'<div class="note"><b>注</b> '+esc(varnt.note)+'</div>':'')+
@@ -1823,7 +1876,7 @@ function repoInfo(){
   if(!parts.length) return null;
   return {owner:owner, repo:parts[0], path:parts.slice(1).join("/")||"index.html", branch:"main"};
 }
-function checkUpdate(silent){
+function checkUpdateLegacy(silent){
   if(typeof fetch!=="function"){ if(!silent) toast("当前浏览器不支持自动检查更新"); return; }
   var info=repoInfo();
   if(!info){ if(!silent) toast("本地打开，跳过在线检查"); return; }
@@ -1965,8 +2018,8 @@ function bindUI(){
   document.getElementById("fsMinus").onclick = function(){ stepFS(-1); };
   document.getElementById("fsPlus").onclick = function(){ stepFS(1); };
   document.getElementById("fsVal").onclick = resetFS;
-  document.getElementById("btnForce").onclick=forceReload;
-  document.getElementById("btnReload").onclick=forceReload;
+  var _bf=document.getElementById("btnForce"); if(_bf) _bf.onclick=forceReload;
+  var _br=document.getElementById("btnReload"); if(_br) _br.onclick=forceReload;
 }
 function renderSnapPanel(){
   var panel=document.getElementById("snapPanel");
@@ -1989,12 +2042,449 @@ function renderSnapPanel(){
     };
   });
 }
+/* ===== 系统层：设置 · 星标 · 更新日志 · 检查更新 ===== */
+var SYS_PAGE = "small";
+var SYS_SWITCH = "./";
+var SYS_SWITCH_LABEL = "切换大作文";
+var CHANGELOG = [
+ {
+  "v": "1.7.0",
+  "d": "2026年11月6日",
+  "items": [
+   "题目卡不再铺图，改成可拖动、可缩放的浮窗",
+   "新增句子星标与收藏夹",
+   "新增设置面板（界面、字号、显示开关、浮窗、数据备份）",
+   "新增更新日志与「检查更新」按钮（带小红点）",
+   "切换大/小作文按钮移到标题旁"
+  ]
+ },
+ {
+  "v": "1.7.0",
+  "d": "2026年11月6日",
+  "items": [
+   "词库弹窗自动压住题目浮窗"
+  ]
+ },
+ {
+  "v": "1.6.0",
+  "d": "2026年11月6日",
+  "items": [
+   "题目原图改为浮窗（拖动 / 缩放 / 全屏）"
+  ]
+ },
+ {
+  "v": "1.5.0",
+  "d": "2026年11月6日",
+  "items": [
+   "题目卡显示真题原图（15 条预设）"
+  ]
+ },
+ {
+  "v": "1.4.1",
+  "d": "2026年11月6日",
+  "items": [
+   "按真题校正：2026英二收信人改 Jack、2010英二署名改 Zhang Wei、2019英一项目名复数"
+  ]
+ },
+ {
+  "v": "1.4.0",
+  "d": "2026年11月6日",
+  "items": [
+   "内置真题题干原文（15/16 条）"
+  ]
+ },
+ {
+  "v": "1.3.1",
+  "d": "2026年11月6日",
+  "items": [
+   "点标签不再自动弹出键盘"
+  ]
+ },
+ {
+  "v": "1.3.0",
+  "d": "2026年11月6日",
+  "items": [
+   "新增预设对应的题目卡"
+  ]
+ },
+ {
+  "v": "1.2.2",
+  "d": "2026年11月3日",
+  "items": [
+   "字号全站生效",
+   "白天配色"
+  ]
+ },
+ {
+  "v": "1.1.0",
+  "d": "2026年11月3日",
+  "items": [
+   "小作文页面上线：5 题型 / 16 套预设"
+  ]
+ }
+];
+var STAR_KEY = "xrz-stars-v1", SET_KEY = "xrz-settings-v1", UPD_KEY = "xrz-upd-v1";
+var stars = {}, sysSet = {autoFloat:true, alpha:1}, updInfo = {ignored:"", found:""};
+var VARTEXT = {};
+
+function sysJson(k, def){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(e){ return def; } }
+function sysStore(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+function vHash(s){ var h = 5381, i; s = String(s || ""); for(i = 0; i < s.length; i++){ h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; } return h.toString(36); }
+function regVar(v){ if(v && v.en) VARTEXT[vHash(v.en)] = {en:v.en, zh:v.zh || ""}; }
+
+function sysLoad(){
+  var s = sysJson(STAR_KEY, null); if(s && typeof s === "object") stars = s;
+  var t = sysJson(SET_KEY, null);
+  if(t && typeof t === "object"){
+    sysSet.autoFloat = t.autoFloat !== false;
+    sysSet.alpha = (typeof t.alpha === "number" && t.alpha >= 0.4 && t.alpha <= 1) ? t.alpha : 1;
+  }
+  var u = sysJson(UPD_KEY, null); if(u && typeof u === "object") updInfo.ignored = u.ignored || "";
+  var f = sysJson("xrz-upd-found-v1", null); if(f && typeof f === "string") updInfo.found = f;
+}
+function sysSaveSet(){ sysStore(SET_KEY, {autoFloat:sysSet.autoFloat, alpha:sysSet.alpha}); }
+function starCount(){ var n = 0, k; for(k in stars) n++; return n; }
+
+/* ---- 星标 ---- */
+function decorateStars(){
+  var sels = document.querySelectorAll(".sent-sel[data-vhashes]");
+  Array.prototype.forEach.call(sels, function(sel){
+    var hs = [];
+    try{ hs = JSON.parse(sel.getAttribute("data-vhashes")) || []; }catch(e){ hs = []; }
+    Array.prototype.forEach.call(sel.options, function(op, i){
+      var base = op.getAttribute("data-base");
+      if(base === null){ base = op.textContent.replace(/^★\s*/, ""); op.setAttribute("data-base", base); }
+      var h = hs[i] || "";
+      op.textContent = (h && stars[h]) ? "★ " + base : base;
+    });
+    var idx = parseInt(sel.value, 10);
+    var cur = (isNaN(idx) || idx < 0) ? "" : (hs[idx] || "");
+    var head = sel.parentNode;
+    var btn = head.querySelector(".star-btn");
+    if(!btn){
+      btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "star-btn";
+      btn.title = "收藏这句";
+      btn.onclick = function(){
+        var h = btn.getAttribute("data-h");
+        if(!h) return;
+        if(stars[h]){ delete stars[h]; }
+        else { var t = VARTEXT[h] || {en:"", zh:""}; stars[h] = {en:t.en, zh:t.zh, at:Date.now()}; }
+        sysStore(STAR_KEY, stars);
+        decorateStars(); renderStarList();
+        toast(stars[h] ? "已收藏这句" : "已取消收藏");
+      };
+      head.appendChild(btn);
+    }
+    if(!cur){ btn.style.display = "none"; return; }
+    btn.style.display = "";
+    btn.setAttribute("data-h", cur);
+    btn.className = "star-btn" + (stars[cur] ? " on" : "");
+    btn.textContent = stars[cur] ? "★" : "☆";
+  });
+  var c = document.getElementById("starCount");
+  if(c) c.textContent = starCount();
+}
+
+function renderStarList(){
+  var box = document.getElementById("starList");
+  if(!box) return;
+  var arr = [];
+  for(var k in stars) arr.push({h:k, en:stars[k].en || "", zh:stars[k].zh || "", at:stars[k].at || 0});
+  arr.sort(function(a, b){ return b.at - a.at; });
+  if(!arr.length){ box.innerHTML = '<div class="empty-hint" style="padding:20px 6px">还没有收藏。每句方案右边有一颗 ☆，点一下就收藏了。</div>'; return; }
+  box.innerHTML = arr.map(function(o){
+    return '<div class="star-item"><div class="se">' + esc(o.en) + '</div>' +
+      (o.zh ? '<div class="sz">' + esc(o.zh) + '</div>' : '') +
+      '<div class="sbar"><button class="sys-btn" data-goto="' + o.h + '">在文中定位</button>' +
+      '<button class="sys-btn danger" data-unstar="' + o.h + '">取消收藏</button></div></div>';
+  }).join("");
+  Array.prototype.forEach.call(box.querySelectorAll("[data-goto]"), function(b){
+    b.onclick = function(){ sysGotoStar(b.getAttribute("data-goto")); };
+  });
+  Array.prototype.forEach.call(box.querySelectorAll("[data-unstar]"), function(b){
+    b.onclick = function(){
+      delete stars[b.getAttribute("data-unstar")];
+      sysStore(STAR_KEY, stars); renderStarList(); decorateStars(); toast("已取消收藏");
+    };
+  });
+}
+function sysGotoStar(h){
+  var sel = document.querySelector('.sent-sel[data-vhashes*="' + h + '"]');
+  if(!sel){ toast("这句在当前题型里，换个预设或题型再找"); return; }
+  var sent = sel.closest(".sent") || sel;
+  sent.scrollIntoView({behavior:"smooth", block:"center"});
+  sent.classList.add("flash");
+  setTimeout(function(){ sent.classList.remove("flash"); }, 1200);
+  closeSys();
+}
+
+/* ---- 浮窗透明度 ---- */
+function applyFloatAlpha(){
+  var f = document.getElementById("float");
+  if(f) f.style.opacity = String(sysSet.alpha || 1);
+}
+
+/* ---- 设置抽屉 ---- */
+function buildSysDom(){
+  if(document.getElementById("sysDrawer")) return;
+  var html = '';
+  html += '<div class="sys-mask" id="sysMask"></div>';
+  html += '<div class="sys-drawer" id="sysDrawer"><div class="sys-head"><b>设置</b><button type="button" id="sysClose">×</button></div><div class="sys-body">';
+  html += '<h4>显示</h4>';
+  html += '<div class="sys-row"><div class="lbl">界面模式<span class="sub">自动跟随屏幕宽度 / 强制手机单栏 / 强制电脑双栏</span></div><div class="sys-seg" id="sysUI"><button data-ui="auto">自动</button><button data-ui="mobile">手机</button><button data-ui="desktop">电脑</button></div></div>';
+  html += '<div class="sys-row"><div class="lbl">字号<span class="sub">全站文字一起放大，85%–300%</span></div><div class="sys-seg"><button type="button" id="sysFsMinus">A−</button><button type="button" id="sysFsVal" style="min-width:52px">100%</button><button type="button" id="sysFsPlus">A＋</button></div></div>';
+  html += '<div class="sys-row"><div class="lbl">中英对照</div><label class="sw" id="sysZhWrap"><input type="checkbox" id="sysZh"><span>显示中文</span></label></div>';
+  html += '<div class="sys-row"><div class="lbl">考场精简<span class="sub">隐藏可省句，只留主干</span></div><label class="sw"><input type="checkbox" id="sysLite"><span>精简</span></label></div>';
+  html += '<div class="sys-row"><div class="lbl">注释<span class="sub">句子下方的选用说明</span></div><label class="sw"><input type="checkbox" id="sysNote"><span>显示</span></label></div>';
+  html += '<div class="sys-row"><div class="lbl">自动语法<span class="sub">主谓一致、句首大写、逗号后小写</span></div><label class="sw"><input type="checkbox" id="sysGram"><span>启用</span></label></div>';
+  html += '<h4>题目浮窗</h4>';
+  html += '<div class="sys-row"><div class="lbl">选预设时自动打开</div><label class="sw"><input type="checkbox" id="sysAutoFloat"><span>自动</span></label></div>';
+  html += '<div class="sys-row"><div class="lbl">透明度<span class="sub">调低后能透过浮窗看到正文</span></div><input type="range" id="sysAlpha" min="40" max="100" step="5" style="width:120px"></div>';
+  html += '<h4>我的收藏</h4>';
+  html += '<div class="sys-row"><div class="lbl">已收藏句子<span class="sub" id="starCount">0</span></div><button class="sys-btn" type="button" id="sysOpenStars">打开收藏夹</button></div>';
+  html += '<h4>数据</h4>';
+  html += '<div class="sys-row"><div class="lbl">导出备份<span class="sub">草稿 + 星标 + 设置，存成 JSON 文件</span></div><button class="sys-btn" type="button" id="sysExport">导出</button></div>';
+  html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
+  html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
+  html += '<h4>关于</h4>';
+  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v1.7.0</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
+  html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
+  html += '</div></div>';
+  html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
+  html += '<div class="sys-modal" id="logModal"><div class="sys-card"><div class="ch">更新日志<button type="button" data-close="logModal">×</button></div><div class="cb" id="logBody"></div><div class="cf"><button class="sys-btn" type="button" data-close="logModal">关闭</button></div></div></div>';
+  html += '<div class="sys-modal" id="updModal"><div class="sys-card"><div class="ch"><span id="updTitle">发现新版本</span><button type="button" data-close="updModal">×</button></div><div class="cb" id="updBody"></div><div class="cf"><button class="sys-btn primary" type="button" id="updGo">更新版本</button><button class="sys-btn" type="button" id="updIgnore">本次忽略</button><button class="sys-btn" type="button" id="updLater">稍后再提醒我</button></div></div></div>';
+  var wrap = document.createElement("div");
+  wrap.innerHTML = html;
+  while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
+  bindSys();
+}
+
+function bindSys(){
+  function $(id){ return document.getElementById(id); }
+  $("sysMask").onclick = closeSys;
+  $("sysClose").onclick = closeSys;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-close]"), function(b){
+    b.onclick = function(){ document.getElementById(b.getAttribute("data-close")).classList.remove("on"); };
+  });
+  ["updModal", "logModal", "starModal"].forEach(function(id){
+    document.getElementById(id).addEventListener("click", function(e){
+      if(e.target === this) this.classList.remove("on");
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("#sysUI button"), function(b){
+    b.onclick = function(){
+      var m = b.getAttribute("data-ui");
+      try{ localStorage.setItem("xrz-ui-mode", m); }catch(e){}
+      applyUI(m); refreshSysUI();
+    };
+  });
+  $("sysFsMinus").onclick = function(){ stepFS(-1); refreshSysUI(); };
+  $("sysFsPlus").onclick = function(){ stepFS(1); refreshSysUI(); };
+  $("sysFsVal").onclick = function(){ resetFS(); refreshSysUI(); };
+  [["sysZh","zh"],["sysLite","lite"],["sysNote","note"],["sysGram","gram"]].forEach(function(pair){
+    $(pair[0]).onchange = function(e){
+      state.toggles[pair[1]] = e.target.checked;
+      persist(); renderPreview();
+      var top = {zh:"tgZh",lite:"tgLite",note:"tgNote",gram:"tgGram"}[pair[1]];
+      var t = document.getElementById(top); if(t) t.checked = e.target.checked;
+    };
+  });
+  $("sysAutoFloat").onchange = function(e){ sysSet.autoFloat = e.target.checked; sysSaveSet(); };
+  $("sysAlpha").oninput = function(e){ sysSet.alpha = parseInt(e.target.value, 10) / 100; sysSaveSet(); applyFloatAlpha(); };
+  $("sysOpenStars").onclick = function(){ renderStarList(); $("starModal").classList.add("on"); };
+  $("sysExport").onclick = sysExport;
+  $("sysImportBtn").onclick = function(){ $("sysImportFile").click(); };
+  $("sysImportFile").onchange = function(e){ if(e.target.files && e.target.files[0]) sysImport(e.target.files[0]); };
+  $("sysClear").onclick = function(){
+    if(!confirm("清空本页的答题状态？星标和设置不受影响。")) return;
+    try{ localStorage.removeItem(LS_KEY); localStorage.removeItem(LS_SNAP); }catch(e){}
+    location.reload();
+  };
+  $("sysCheck2").onclick = function(){ sysCheck(false); };
+  $("sysLog").onclick = function(){ openLog(); };
+  $("updGo").onclick = function(){ localStorage.removeItem("xrz-upd-found-v1"); closeAllModals(); forceReload(); };
+  $("updIgnore").onclick = function(){
+    updInfo.ignored = updInfo.found || "";
+    sysStore(UPD_KEY, {ignored:updInfo.ignored});
+    localStorage.removeItem("xrz-upd-found-v1");
+    markUpdateDot(false); closeAllModals(); toast("已忽略这个版本");
+  };
+  $("updLater").onclick = function(){ markUpdateDot(!!updInfo.found); closeAllModals(); toast("稍后再提醒你"); };
+}
+function closeAllModals(){
+  ["updModal","logModal","starModal"].forEach(function(id){
+    var m = document.getElementById(id); if(m) m.classList.remove("on");
+  });
+}
+function openSys(){
+  buildSysDom();
+  refreshSysUI();
+  document.getElementById("sysMask").classList.add("on");
+  document.getElementById("sysDrawer").classList.add("on");
+}
+function closeSys(){
+  var d = document.getElementById("sysDrawer"), m = document.getElementById("sysMask");
+  if(d) d.classList.remove("on");
+  if(m) m.classList.remove("on");
+}
+function refreshSysUI(){
+  var cur = document.documentElement.getAttribute("data-ui") || "auto";
+  Array.prototype.forEach.call(document.querySelectorAll("#sysUI button"), function(b){
+    b.className = b.getAttribute("data-ui") === cur ? "on" : "";
+  });
+  var fv = document.getElementById("sysFsVal");
+  if(fv) fv.textContent = Math.round(FS_STEPS[fsIndex] * 100) + "%";
+  var map = {sysZh:"zh", sysLite:"lite", sysNote:"note", sysGram:"gram"};
+  for(var id in map){
+    var el = document.getElementById(id); if(el) el.checked = !!state.toggles[map[id]];
+  }
+  var af = document.getElementById("sysAutoFloat"); if(af) af.checked = sysSet.autoFloat !== false;
+  var al = document.getElementById("sysAlpha"); if(al) al.value = String(Math.round((sysSet.alpha || 1) * 100));
+  var sc = document.getElementById("starCount"); if(sc) sc.textContent = starCount();
+  var sv = document.getElementById("sysVerSub"); if(sv) sv.textContent = "v" + APP_VERSION + " · " + (SYS_PAGE === "big" ? "大作文" : "小作文");
+}
+
+/* ---- 导出 / 导入 ---- */
+function sysExport(){
+  try{
+    var data = {app:"xrz-essay", page:SYS_PAGE, ver:APP_VERSION, at:new Date().toISOString(), state:state, stars:stars, settings:sysSet};
+    var blob = new Blob([JSON.stringify(data, null, 1)], {type:"application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "考研英语作文备份-" + (SYS_PAGE === "big" ? "大作文" : "小作文") + "-v" + APP_VERSION + ".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    toast("已导出备份文件");
+  }catch(e){ toast("导出失败"); }
+}
+function sysImport(file){
+  var fr = new FileReader();
+  fr.onload = function(){
+    try{
+      var d = JSON.parse(fr.result);
+      if(d.stars && typeof d.stars === "object"){ stars = d.stars; sysStore(STAR_KEY, stars); }
+      if(d.settings){ sysSet.autoFloat = d.settings.autoFloat !== false; sysSet.alpha = d.settings.alpha || 1; sysSaveSet(); }
+      if(d.state && d.state.type){
+        state = d.state;
+        persist(); renderAll();
+      }
+      decorateStars(); renderStarList(); refreshSysUI(); applyFloatAlpha();
+      toast("已导入");
+    }catch(e){ toast("导入失败：文件不是本工具的备份"); }
+  };
+  fr.readAsText(file);
+}
+
+/* ---- 更新日志 ---- */
+function openLog(){
+  var body = document.getElementById("logBody");
+  if(body){
+    body.innerHTML = CHANGELOG.map(function(e){
+      return '<div class="log-v">v' + esc(e.v) + '</div><div class="log-d">' + esc(e.d) + '</div><ul class="log-li">' +
+        e.items.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>';
+    }).join("");
+    document.getElementById("logModal").classList.add("on");
+  }
+}
+function logNotes(v){
+  for(var i = 0; i < CHANGELOG.length; i++){ if(CHANGELOG[i].v === v) return CHANGELOG[i].items; }
+  return ["修复若干问题，提升稳定性"];
+}
+
+/* ---- 检查更新 ---- */
+function markUpdateDot(on){
+  var d = document.getElementById("updDot");
+  if(d) d.classList.toggle("on", !!on);
+}
+function remoteNotes(v, cb){
+  var info = (typeof repoInfo === "function") ? repoInfo() : null;
+  if(!info || typeof fetch !== "function"){ cb(null); return; }
+  var url = "https://raw.githubusercontent.com/" + info.owner + "/" + info.repo + "/" + info.branch + "/changelog.json?t=" + Date.now();
+  fetch(url, {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+    if(!j){ cb(null); return; }
+    var arr = j[SYS_PAGE] || [];
+    for(var i = 0; i < arr.length; i++){ if(arr[i] && arr[i].v === v){ cb(arr[i].items || null); return; } }
+    cb(null);
+  }).catch(function(){ cb(null); });
+}
+function openUpdateDialog(v){
+  if(!v) return;
+  var body = document.getElementById("updBody");
+  var t = document.getElementById("updTitle");
+  if(t) t.textContent = "发现新版本 v" + v;
+  if(body){
+    body.innerHTML = '<div class="log-d">当前版本 v' + APP_VERSION + '，可更新到 v' + v + '。更新会重新加载页面，本机草稿不会丢。</div>' +
+      '<ul class="log-li" id="updNotes">' + logNotes(v).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul>';
+    remoteNotes(v, function(items){
+      var box = document.getElementById("updNotes");
+      if(items && items.length && box){
+        box.innerHTML = items.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("");
+      }
+    });
+  }
+  document.getElementById("updModal").classList.add("on");
+}
+function sysCheck(silent){
+  var info = (typeof repoInfo === "function") ? repoInfo() : null;
+  if(!info){ if(!silent) toast("本地打开，跳过在线检查"); return; }
+  if(typeof fetch !== "function"){ if(!silent) toast("当前浏览器不支持自动检查更新"); return; }
+  var url = "https://raw.githubusercontent.com/" + info.owner + "/" + info.repo + "/" + info.branch + "/" + info.path + "?t=" + Date.now();
+  fetch(url, {cache:"no-store"}).then(function(r){ return r.ok ? r.text() : ""; }).then(function(txt){
+    var m = txt.match(/APP_VERSION\s*=\s*'([0-9.]+)'/);
+    if(!m){ if(!silent) toast("检查失败：没有读到版本号"); return; }
+    var v = m[1];
+    if(compareVer(v, APP_VERSION) > 0){
+      updInfo.found = v;
+      try{ localStorage.setItem("xrz-upd-found-v1", JSON.stringify(v)); }catch(e){}
+      var ignored = (updInfo.ignored === v);
+      markUpdateDot(!ignored);
+      if(silent){
+        if(!ignored && !sessionStorage.getItem("xrz-upd-pop-" + v)){
+          sessionStorage.setItem("xrz-upd-pop-" + v, "1");
+          openUpdateDialog(v);
+        }
+      } else {
+        openUpdateDialog(v);
+      }
+    } else {
+      updInfo.found = "";
+      try{ localStorage.removeItem("xrz-upd-found-v1"); }catch(e){}
+      markUpdateDot(false);
+      if(!silent) toast("已是最新版本 v" + APP_VERSION);
+    }
+  }).catch(function(){ if(!silent) toast("检查更新失败（网络不通）"); });
+}
+function onCheckBtn(){
+  if(updInfo.found){ openUpdateDialog(updInfo.found); return; }
+  sysCheck(false);
+}
+
+/* ---- 初始化 ---- */
+function initSys(){
+  sysLoad();
+  buildSysDom();
+  var _rp = renderPreview;
+  renderPreview = function(){ _rp.apply(null, arguments); decorateStars(); };
+  decorateStars();
+  applyFloatAlpha();
+  var sw = document.getElementById("btnSwitch");
+  if(sw) sw.onclick = function(){ location.href = SYS_SWITCH; };
+  var ck = document.getElementById("btnCheck");
+  if(ck) ck.onclick = onCheckBtn;
+  var st = document.getElementById("btnSettings");
+  if(st) st.onclick = openSys;
+  markUpdateDot(!!updInfo.found && updInfo.found !== updInfo.ignored);
+  setTimeout(function(){ sysCheck(true); }, 2500);
+}
+
 function boot(){
   loadUI();
-  loadFS(); loadAll(); bindUI(); renderAll();
-  setTimeout(function(){ checkUpdate(true); },1800);
+  loadFS(); loadAll(); bindUI(); renderAll(); initSys();
+  setTimeout(function(){ sysCheck(true); },1800);
   document.addEventListener("visibilitychange",function(){
-    if(document.visibilityState==="visible") checkUpdate(true);
+    if(document.visibilityState==="visible") sysCheck(true);
   });
 }
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
