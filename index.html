@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.9.2</title>
+<title>考研英语大作文 · 交互模板 v2.9.3</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -287,6 +287,11 @@ header.top.fold .hdr-btns{margin-top:4px}
 .post .pn{font-weight:700;color:var(--accent)}
 .post .pt{margin-top:4px;font-size:calc(12.5px * var(--fs));line-height:1.7;color:var(--fg);white-space:pre-wrap;word-break:break-word}
 .board-state{font-size:calc(11px * var(--fs));color:var(--dim2);margin:0 0 8px}
+/* 站长标识 */
+.post .pn.owner{color:#d94f8a}
+.tag-owner{display:inline-block;margin-left:6px;padding:0 7px;border-radius:99px;background:#fde6f1;color:#c2306f;
+  font-size:calc(10.5px * var(--fs));font-weight:700}
+.post .pn{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -299,7 +304,7 @@ header.top.fold .hdr-btns{margin-top:4px}
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
           <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换小作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.2</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.3</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -364,7 +369,7 @@ header.top.fold .hdr-btns{margin-top:4px}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.9.2</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.9.3</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     
   </div>
@@ -392,7 +397,7 @@ header.top.fold .hdr-btns{margin-top:4px}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.9.2';
+const APP_VERSION = '2.9.3';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -2794,11 +2799,12 @@ var SYS_PAGE = "big";
 var SYS_SWITCH = "./xiaozuowen.html";
 var SYS_SWITCH_LABEL = "切换小作文";
 var CHANGELOG = [
- {"v": "2.9.2", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够"]},
- {"v": "2.9.2", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因"]},
- {"v": "2.9.2", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠"]},
+ {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏支持站长身份：名字填“残翼渡鸦xsyiiuaaon”发布后显示为粉色「残翼渡鸦 · 站长」", "站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字"]},
+ {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够"]},
+ {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因"]},
+ {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠"]},
  {
-  "v": "2.9.2",
+  "v": "2.9.3",
   "d": "2026年11月6日",
   "items": [
    "题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住",
@@ -2810,7 +2816,7 @@ var CHANGELOG = [
   ]
  },
  {
-  "v": "2.9.2",
+  "v": "2.9.3",
   "d": "2026年11月6日",
   "items": [
    "词库弹窗自动压住题目浮窗，不再挡住选项"
@@ -3000,7 +3006,7 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
   html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
   html += '<h4 id="sysAboutAnchor">关于</h4>';
-  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.2</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
+  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.3</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
   html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
   html += '</div></div>';
   html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
@@ -3245,6 +3251,9 @@ function initSys(){
 var WAKE_KEY = "xrz-wake", FOLD_KEY = "xrz-headfold";
 function b64d(s){ try{ return atob(s); }catch(e){ return ""; } }
 var BOARD_KEY = "xrz-board-local-v1", BOARD_NAME_KEY = "xrz-board-name";
+var BOARD_OWNER_KEY = "残翼渡鸦xsyiiuaaon";      /* 站长暗号（输入时带不带引号都认） */
+var BOARD_OWNER_NAME = "残翼渡鸦";
+var BOARD_OWNER_MARK = "<!--xrz-owner-->";
 var BOARD_MODE = "github";   /* local | github */
 var BOARD_CFG = {owner:"xsyiiu", repo:"aizuowenhtml", token:b64d(["Z2l0aHViX3BhdF8xMUJFR0RPN1kwaFd","xUkhzRUxkMXl0X1FiYU9BaTF3Snp1bG","Q5c2ZlNTVtbW1pQTVqcTBPSFhFTXk3N","jMxM010blpXRjNTNTNNQTViWjBra1pm"].join(""))};
 var wakeSentinel = null, wakeWanted = false, boardCache = [];
@@ -3364,7 +3373,13 @@ function boardLoad(cb){
       (arr || []).forEach(function(it){
         var t = it.title || "";
         if(t.indexOf("建议｜") !== 0) return;
-        list.push({name:t.slice(3) || "匿名", text:it.body || "", at:it.created_at});
+        var raw = it.body || "";
+        var owner = raw.indexOf(BOARD_OWNER_MARK) >= 0;
+        list.push({
+          name: owner ? BOARD_OWNER_NAME : (t.slice(3) || "匿名"),
+          text: raw.split(BOARD_OWNER_MARK).join("").trim(),
+          at: it.created_at, owner: owner
+        });
       });
       boardCache = list;
       cb(list, true);
@@ -3386,14 +3401,20 @@ function boardLoad(cb){
     cb(boardCache, false);
   }
 }
+function boardIsOwner(name){
+  var v = String(name || "").trim().replace(/^["“”']+|["“”']+$/g, "").trim();
+  return v === BOARD_OWNER_KEY;
+}
 function boardAdd(name, text, done){
-  var post = {name:name, text:text, at:new Date().toISOString()};
+  var owner = boardIsOwner(name);
+  var body = text + (owner ? "\n\n" + BOARD_OWNER_MARK : "");
+  var post = {name:(owner ? BOARD_OWNER_NAME : name), text:body, at:new Date().toISOString()};
   if(BOARD_MODE === "github"){
     if(typeof fetch !== "function"){ toast("浏览器不支持 fetch"); done(false); return; }
     ghApi("/repos/" + BOARD_CFG.owner + "/" + BOARD_CFG.repo + "/issues", {
       method:"POST",
       headers:boardHeaders({"Content-Type":"application/json"}),
-      body:JSON.stringify({title:"建议｜" + name, body:text})
+      body:JSON.stringify({title:"建议｜" + (owner ? BOARD_OWNER_NAME : name), body:body})
     }).then(function(){ done(true); }).catch(function(e){ toast("发布失败：" + ((e && e.message) || "网络")); done(false); });
     return;
   }
@@ -3438,7 +3459,9 @@ function renderBoard(){
     list.innerHTML = arr.map(function(p){
       var d = "";
       try{ d = new Date(p.at); d = (d.getMonth()+1) + "月" + d.getDate() + "日 " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0"); }catch(e){}
-      return '<div class="post"><div class="ph"><span class="pn">' + esc(p.name || "匿名") + '</span><span>' + esc(d) + '</span></div>' +
+      var on = p.owner || (String(p.name || "") === BOARD_OWNER_NAME && String(p.text || "").indexOf(BOARD_OWNER_MARK) >= 0);
+      return '<div class="post"><div class="ph"><span class="pn' + (on ? " owner" : "") + '">' + esc(p.name || "匿名") + '</span>' +
+        (on ? '<span class="tag-owner">站长</span>' : '') + '<span>' + esc(d) + '</span></div>' +
         '<div class="pt">' + esc(p.text || "") + '</div></div>';
     }).join("");
     refreshBoardBadge();
@@ -3498,7 +3521,7 @@ function buildBoard(){
     '<div class="ch">建议栏<button type="button" data-close="boardModal">×</button></div>' +
     '<div class="cb">' +
       '<p class="board-state" id="boardState"></p>' +
-      '<input class="board-name" id="boardName" maxlength="16" placeholder="你的名字（不用登录，写个代号就行）">' +
+      '<input class="board-name" id="boardName" maxlength="24" placeholder="你的名字（不用登录，写个代号就行）">' +
       '<textarea class="board-text" id="boardText" maxlength="800" placeholder="想加什么功能、哪里不好用、发现什么错误……直接写"></textarea>' +
       '<div style="display:flex;gap:8px;align-items:center;margin-top:8px">' +
         '<button class="sys-btn primary" type="button" id="boardPostBtn">发布</button>' +
