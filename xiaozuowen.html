@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.5.0</title>
+<title>考研英语小作文 · 交互模板 v1.6.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -141,6 +141,22 @@ preview{display:block}
 .qk{color:var(--dim2);font-weight:600;white-space:nowrap;flex:0 0 auto}
 .qv{flex:1 1 auto;color:var(--fg);word-break:break-word}
 .qv.en{color:#1f4f9e}
+.qfloat{border:1px solid rgba(178,95,22,.45);background:var(--accent-bg);color:var(--accent);border-radius:99px;
+  padding:5px 12px;font-size:calc(12px * var(--fs));margin:0 0 8px;font-family:inherit;cursor:pointer;font-weight:600}
+.qfloat:hover{background:rgba(178,95,22,.16)}
+#float{position:fixed;z-index:350;display:none;flex-direction:column;background:#fffdf7;border:1px solid var(--line2);
+  border-radius:12px;box-shadow:0 16px 40px rgba(40,30,10,.28);overflow:hidden}
+#float.on{display:flex}
+.fhead{display:flex;align-items:center;gap:2px;padding:6px 8px;background:#f3ece0;border-bottom:1px solid var(--line);
+  font-size:12px;color:var(--dim);cursor:move;touch-action:none;flex:0 0 auto;user-select:none}
+.fhead .ftitle{margin-right:auto;font-weight:700;color:var(--fg);font-size:12px}
+.fhead button{border:none;background:transparent;color:var(--dim);font-size:12px;padding:3px 7px;border-radius:6px;
+  font-family:inherit;cursor:pointer}
+.fhead button:hover{background:rgba(0,0,0,.07);color:var(--fg)}
+.fbody{flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;padding:6px;background:#fff}
+.fbody .fimg{display:block;width:100%;height:auto;border-radius:4px;margin-bottom:6px;cursor:zoom-in}
+.fresize{position:absolute;right:0;bottom:0;width:22px;height:22px;cursor:nwse-resize;touch-action:none;
+  background:linear-gradient(135deg,transparent 50%,rgba(150,120,70,.45) 50%);border-bottom-right-radius:12px}
 .qimgs{margin:0 0 8px}
 .qimgwrap{display:block;margin:0 0 8px;border:1px solid #ece0c8;border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
 .qimg{display:block;width:100%;height:auto}
@@ -215,7 +231,7 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.5.0</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.6.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -275,7 +291,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.5.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.6.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
   </div>
@@ -303,7 +319,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.5.0';
+const APP_VERSION = '1.6.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -1377,6 +1393,102 @@ function renderChips(){
 function openQView(src){var v=document.getElementById("qv");if(!v)return;document.getElementById("qvimg").src=src;v.classList.add("on");}
 
 /* ============ 题目卡（预设对应题目） ============ */
+/* ============ 题目浮窗（可拖动 / 可缩放） ============ */
+var FLOAT_KEY = "xrz-float-v1";
+function floatSaved(){
+  try{ var o = JSON.parse(localStorage.getItem(FLOAT_KEY)); return (o && typeof o === "object") ? o : null; }catch(e){ return null; }
+}
+function saveFloat(){
+  var f = document.getElementById("float");
+  if(!f || !f.classList.contains("on")) return;
+  try{
+    localStorage.setItem(FLOAT_KEY, JSON.stringify({
+      l:f.offsetLeft, t:f.offsetTop, w:f.offsetWidth, h:f.offsetHeight
+    }));
+  }catch(e){}
+}
+function openFloat(srcs){
+  if(!srcs || !srcs.length) return;
+  var f = document.getElementById("float"), body = document.getElementById("fbody");
+  body.innerHTML = srcs.map(function(s){
+    return '<img class="fimg" src="' + s + '" alt="题目原图">';
+  }).join("");
+  Array.prototype.forEach.call(body.querySelectorAll(".fimg"), function(img){
+    img.onclick = function(){ openQView(img.getAttribute("src")); };
+  });
+  f.classList.add("on");
+  var vw = window.innerWidth, vh = window.innerHeight, st = floatSaved();
+  var w = st && st.w ? st.w : Math.min(vw * 0.86, 380);
+  var h = st && st.h ? st.h : Math.min(vh * 0.48, 450);
+  w = Math.max(180, Math.min(w, vw - 8));
+  h = Math.max(110, Math.min(h, vh - 8));
+  var l = st && typeof st.l === "number" ? st.l : Math.round(vw - w - 8);
+  var t = st && typeof st.t === "number" ? st.t : 96;
+  l = Math.max(2, Math.min(l, vw - w - 2));
+  t = Math.max(2, Math.min(t, vh - h - 2));
+  f.style.left = l + "px"; f.style.top = t + "px";
+  f.style.width = w + "px"; f.style.height = h + "px";
+}
+function closeFloat(){
+  var f = document.getElementById("float");
+  if(!f) return;
+  saveFloat();
+  f.classList.remove("on");
+}
+(function bindFloatWindow(){
+  var f = document.getElementById("float");
+  if(!f){
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindFloatWindow);
+    else setTimeout(bindFloatWindow, 0);
+    return;
+  }
+  var head = document.getElementById("fhead"), rs = document.getElementById("fresize");
+  var drag = null;
+  function P(e){ return e.touches ? e.touches[0] : e; }
+  head.addEventListener("pointerdown", function(e){
+    if(e.target && e.target.tagName === "BUTTON") return;
+    drag = {mode:"move", x:P(e).clientX, y:P(e).clientY, l:f.offsetLeft, t:f.offsetTop};
+    if(head.setPointerCapture){ try{ head.setPointerCapture(e.pointerId); }catch(err){} }
+    e.preventDefault();
+  });
+  rs.addEventListener("pointerdown", function(e){
+    drag = {mode:"resize", x:P(e).clientX, y:P(e).clientY, w:f.offsetWidth, h:f.offsetHeight};
+    if(rs.setPointerCapture){ try{ rs.setPointerCapture(e.pointerId); }catch(err){} }
+    e.preventDefault();
+  });
+  window.addEventListener("pointermove", function(e){
+    if(!drag) return;
+    var dx = P(e).clientX - drag.x, dy = P(e).clientY - drag.y;
+    if(drag.mode === "resize"){
+      f.style.width = Math.max(180, Math.min(drag.w + dx, window.innerWidth - 8)) + "px";
+      f.style.height = Math.max(110, Math.min(drag.h + dy, window.innerHeight - 8)) + "px";
+    }else{
+      f.style.left = Math.max(2, Math.min(drag.l + dx, window.innerWidth - f.offsetWidth - 2)) + "px";
+      f.style.top = Math.max(2, Math.min(drag.t + dy, window.innerHeight - f.offsetHeight - 2)) + "px";
+    }
+    e.preventDefault();
+  }, {passive:false});
+  window.addEventListener("pointerup", function(){ if(drag){ drag = null; saveFloat(); } });
+  window.addEventListener("pointercancel", function(){ if(drag){ drag = null; saveFloat(); } });
+  head.addEventListener("click", function(e){
+    var b = e.target && e.target.closest ? e.target.closest("button") : null;
+    if(!b) return;
+    var act = b.getAttribute("data-act");
+    if(act === "close"){ closeFloat(); return; }
+    if(act === "minus" || act === "plus"){
+      var k = act === "plus" ? 1.18 : 1 / 1.18;
+      f.style.width = Math.max(180, Math.min(f.offsetWidth * k, window.innerWidth - 8)) + "px";
+      f.style.height = Math.max(110, Math.min(f.offsetHeight * k, window.innerHeight - 8)) + "px";
+      saveFloat();
+      return;
+    }
+    if(act === "full"){
+      var img = f.querySelector(".fimg");
+      if(img) openQView(img.getAttribute("src"));
+    }
+  });
+})();
+
 function qv(v){ return (v===undefined||v===null||v==="")?"":String(v); }
 function presetBrief(p){
   var s=p.slots||{}, rows=[], T=TYPE_MAP[p.type]||{};
@@ -1410,30 +1522,17 @@ function showQPanel(p){
   var rows=presetBrief(p).filter(function(r){ return r[0]!=="题型"; });
   var html="";
   var imgs=(typeof IMGQ!=="undefined"&&IMGQ[p.id])||[];
-  if(imgs.length){
-    html+='<div class="qimgs">'+imgs.map(function(f){
-      return '<a class="qimgwrap" data-zoom="'+f+'" href="'+f+'" target="_blank" rel="noopener"><img class="qimg" src="'+f+'" loading="lazy" alt="题目原图"></a>';
-    }).join("")+'</div>';
-  }
-  if(qMain){
-    html+='<button class="qtoggle" id="qToggle">'+(imgs.length?"看文字版":"看题干文字")+'</button>';
-    html+='<div class="qsrc" id="qsrc"'+(imgs.length?' style="display:none"':'')+'>'+esc(qMain)+'</div>';
-  }
+  if(imgs.length) html+='<button class="qfloat" id="qFloatBtn">题目原图 · 浮窗（可拖动、可缩放）</button>';
+  if(qMain) html+='<div class="qsrc" id="qsrc">'+esc(qMain)+'</div>';
   if(qNote) html+='<div class="qnote">'+esc(qNote)+'</div>';
   html+=rows.map(function(r){
     var en=/[A-Za-z]{3}/.test(r[1])&&/^[\x00-\x7F\s]*$/.test(r[1]);
     return '<div class="qrow"><span class="qk">'+esc(r[0])+'</span><span class="qv'+(en?" en":"")+'">'+esc(r[1])+'</span></div>';
   }).join("");
   document.getElementById("qBody").innerHTML=html;
-  var tg=document.getElementById("qToggle");
-  if(tg) tg.onclick=function(){
-    var box=document.getElementById("qsrc"), open=box.style.display==="none";
-    box.style.display=open?"block":"none";
-    tg.textContent=open?"收起文字":(imgs.length?"看文字版":"看题干文字");
-  };
-  Array.prototype.forEach.call(document.querySelectorAll("#qBody .qimgwrap"),function(a){
-    a.onclick=function(e){ e.preventDefault(); openQView(a.getAttribute("data-zoom")); };
-  });
+  var fb=document.getElementById("qFloatBtn");
+  if(fb) fb.onclick=function(){ openFloat(imgs); };
+  if(imgs.length) openFloat(imgs); else closeFloat();
   document.getElementById("qFoot").textContent = q
     ? "题干来自讲义附带的《考研英语作文真题题目汇总》，2026年11月6日整理；下方各行按预设槽位自动汇总。"
     : "这道预设没有对应真题（讲义改编或大纲样题），下方是按预设数据整理的题目要点（【助手补】）。";
@@ -1900,5 +1999,6 @@ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded"
 else boot();
 </script>
 <div id="qv" onclick="this.classList.remove('on')"><img id="qvimg" alt="题目原图"><div class="qvhint">点任意处关闭</div></div>
+<div id="float"><div class="fhead" id="fhead"><span class="ftitle">题目原图</span><button type="button" data-act="minus">A−</button><button type="button" data-act="plus">A＋</button><button type="button" data-act="full">全屏</button><button type="button" data-act="close">×</button></div><div class="fbody" id="fbody"></div><div class="fresize" id="fresize" title="拖动缩放"></div></div>
 </body>
 </html>
