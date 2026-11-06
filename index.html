@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.4.0</title>
+<title>考研英语大作文 · 交互模板 v2.4.1</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -196,7 +196,7 @@ preview{display:block}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.4.0</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.4.1</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -260,7 +260,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.4.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.4.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./xiaozuowen.html" style="color:var(--dim)">小作文 →</a></div>
   </div>
@@ -288,7 +288,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.4.0';
+const APP_VERSION = '2.4.1';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -2437,7 +2437,11 @@ function bindUI(){
     state = emptyState();
     persist(); renderAll(); toast("已清空，可撤销");
   };
-  document.getElementById("qClose").onclick = hideQPanel;
+  document.getElementById("qClose").onclick = function(){
+    hideQPanel();
+    /* 关掉后把预设下拉复位，再选同一个预设也能重新弹出题目卡 */
+    document.getElementById("presetSel").value = "";
+  };
   document.getElementById("btnCopyAll").onclick = function(){
     var txt = paragraphsOf().map(function(p){
       return p.title + "\n" + paragraphText(p);
