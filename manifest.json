@@ -2,7 +2,7 @@
   "name": "考研英语大作文 · 交互模板",
   "short_name": "作文模板",
   "description": "27版讲义全量拆解：点短语 + 填题干词，逐段拼出完整作答。",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
