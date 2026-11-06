@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.3.1</title>
+<title>考研英语小作文 · 交互模板 v1.4.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -132,15 +132,19 @@ preview{display:block}
 .qhead .qclose{margin-left:auto;border:none;background:transparent;color:var(--dim);font-size:calc(16px * var(--fs));
   line-height:1;padding:2px 7px;border-radius:6px;font-family:inherit}
 .qhead .qclose:hover{background:rgba(0,0,0,.06);color:var(--fg)}
-.qbody{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin-top:8px;
-  font-size:calc(12.5px * var(--fs));line-height:1.75}
-.qbody dt{color:var(--dim2);white-space:nowrap;font-weight:600}
-.qbody dd{margin:0;color:var(--fg)}
-.qbody dd.en{color:#1f4f9e}
+.qbody{margin-top:8px;font-size:calc(12.5px * var(--fs));line-height:1.75}
+.qsrc{white-space:pre-wrap;background:#fff;border:1px solid #ece0c8;border-left:3px solid #c9a86a;border-radius:8px;
+  padding:8px 10px;margin-bottom:8px;color:#22262d;line-height:1.8;font-size:calc(12.5px * var(--fs))}
+.qnote{margin:0 0 8px;color:#7a5c22;background:rgba(178,95,22,.06);border-radius:8px;padding:6px 10px;
+  font-size:calc(12px * var(--fs));line-height:1.7}
+.qrow{display:flex;gap:10px;padding:2px 0}
+.qk{color:var(--dim2);font-weight:600;white-space:nowrap;flex:0 0 auto}
+.qv{flex:1 1 auto;color:var(--fg);word-break:break-word}
+.qv.en{color:#1f4f9e}
 .qfoot{margin-top:8px;padding-top:7px;border-top:1px dashed #e6d7ba;font-size:calc(11px * var(--fs));color:var(--dim2);line-height:1.65}
 @media (max-width:600px){
-  .qbody{grid-template-columns:1fr;gap:1px}
-  .qbody dt{margin-top:5px}
+  .qrow{display:block}
+  .qk{margin-top:5px}
 }
 /* modal */
 #modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-end;justify-content:center;background:rgba(48,42,32,.42);backdrop-filter:blur(3px)}
@@ -201,7 +205,7 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.3.1</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.4.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -233,7 +237,7 @@ preview{display:block}
 <main class="wrap">
   <div class="qpanel" id="qPanel">
     <div class="qhead"><span id="qTitle">本题题目</span><button class="qclose" id="qClose" aria-label="收起题目卡">×</button></div>
-    <dl class="qbody" id="qBody"></dl>
+    <div class="qbody" id="qBody"></div>
     <div class="qfoot" id="qFoot"></div>
   </div>
   <div class="hintbar">用法：先选题型（回复信 / 主动信 / 公务信 / 通知 / 纪要）→ 填题干词 → 点<span class="slotdemo">彩色短语</span>换句。称呼和落款是格式行，也能点。</div>
@@ -261,7 +265,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.3.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.4.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
   </div>
@@ -289,7 +293,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.3.1';
+const APP_VERSION = '1.4.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -1006,6 +1010,24 @@ const PRESETS = [
   },{p2s1:"mo1",p2s2:"ma1",p2s3:"ms1",p2s4:"mg1",p2s5:"md1",p2s6:"mn1"})
 ];
 
+/* ============ 真题题干（据讲义附带《考研英语作文真题题目汇总》PDF 整理，2026年11月6日） ============ */
+const QUESTIONS = {
+  "2025英一·手工展答复": "51. Directions:\nRead the following email from your classmate Paul and write him a reply.\nDear Li Ming,\nI was really excited to hear that you'd invite some young craftsmen to demonstrate their innovative craft-making on campus. May I know more about what they'll show? Also, I'd like to help with your preparation work. Please let me know what I can do.\nYours,\nPaul\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; use “Li Ming” instead. (10 points)",
+  "2025英二·话剧邀请": "47. Directions:\nSuppose you are planning a short play based on a classic Chinese novel. Write your friend John an email to\n1) introduce the play, and\n2) invite him to take part in it.\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; use “Li Ming” instead. (10 points)",
+  "2026英一·家书展": "51. Directions:\nRead the following email from your friend Paul and write him a reply.\nHi Li Ming,\nI was really moved by the Chinese families' handwritten letters you posted yesterday. They are priceless! Could you please tell me a bit more about them? And are they currently on public display somewhere? I'm very keen to see them in person. Thanks.\nYours,\nPaul\nYou should write about 100 words on the ANSWER SHEET.\nDo not use your own name in the email; use “Li Ming” instead. (10 points)",
+  "2026英二·家庭视频": "47. Directions:\nSuppose your friend Jack has shared with you a video of his family's travel in China. Write an email to tell him\n1) how you feel about the video, and\n2) your wish to learn more about their travel.\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; Use “Li Ming” instead. (10 points)",
+  "2023英二·艺术展建议": "47. Directions:\nAn art exhibition and a robot show are to be held on Sunday, and your friend David asks you which one he should go to. Write him an email to\n1) make a suggestion, and\n2) give your reason(s).\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email. Use \"Li Ming\" instead. (10 points)",
+  "2022英一·创新大赛": "51. Directions:\nWrite an e-mail to a professor at a British university, inviting him/her to organize a team for international innovation contest to be held at your university.\nYou should write about 100 words on the ANSWER SHEET.\nDo not use your own name in the email; use “Li Ming” instead. (10 points)",
+  "2022英二·美食节": "47. Directions:\nSuppose you are planning a campus food festival. Write an e-mail to the international students in your university to\n1) introduce the food festival, and\n2) invite them to participate.\nYou should write about 100 words on the ANSWER SHEET.\nDo not use your own name. Use “Li Ming” instead. (10 points)",
+  "2022英二·美食节告示": "47. Directions:\nSuppose you are planning a campus food festival. Write an e-mail to the international students in your university to\n1) introduce the food festival, and\n2) invite them to participate.\nYou should write about 100 words on the ANSWER SHEET.\nDo not use your own name. Use “Li Ming” instead. (10 points)\n（本题真题为邮件；本预设是把同一素材改写成告示／Notice 形式的练习）",
+  "2020英一·歌唱比赛通知": "51. Directions:\nThe student Union of your university has assigned you to inform the international students about an upcoming singing contest. Write a notice in about 100 words.\nWrite your answer on the ANSWER SHEET.\nDo not use your own name in the notice. (10 points)",
+  "2023英一·志愿者招募": "51. Directions:\nWrite a notice to recruit a student for Prof. Smith's research project on campus sports activities. Specify the duties and requirements of the job.\nYou should write about 100 words on the ANSWER SHEET.\nDo not use your own name in the notice. Use \"Li Ming\" instead. (10 points)",
+  "2010英二·感谢+邀请": "47. Directions:\nYou have just come back from the U.S. as a member of a Sino-American cultural exchange program. Write a letter to your American colleague to\n1) express your thanks for his/her warm reception;\n2) welcome him/her to visit China in due course.\nYou should write about 100 words on ANSWER SHEET 2.\nDo not sign your own name at the end of the letter. Use “Zhang Wei” instead.\nDo not write your address. (10 points)",
+  "2019英一·援助乡村小学": "51. Directions:\nSuppose you are working for the “Aiding Rural Primary Schools” project of your university. Write an email to answer the inquiry from an international student volunteer, specifying the details of the project.\nYou should write about 100 words on the ANSWER SHEET.\nDo not use your own name in the email; use “Li Ming” instead. (10 points)",
+  "2007·图书馆建议": "51. Directions:\nWrite a letter to your university library, making suggestions for improving its service.\nYou should write about 100 words on ANSWER SHEET 2.\nDo not sign your own name at the end of the letter. Use “Li Ming” instead.\nDo not write the address. (10 points)",
+  "2024英一·建议信": "51. Directions:\nRead the following email from an international student and write a reply.\nDear Li Ming,\nI've got a class assignment to make an oral report on an ancient Chinese scientist, but I'm not sure how to prepare for it. Can you give me some advice? Thank you for your help.\nYours,\nPaul\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; use “Li Ming” instead. (10 points)",
+  "2024英二·宏村建议": "47. Directions:\nSuppose you and Jack are going to do a survey on the protection of old houses in an ancient town. Write him an email to\n1) put forward your plan, and\n2) ask for his opinion.\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; use “Li Ming” instead. (10 points)",
+};
 /* ============ 小作文运行状态 ============ */
 const LS_KEY = "xrz-xzw-state-v1";
 const LS_SNAP = "xrz-xzw-snaps-v1";
@@ -1346,13 +1368,27 @@ function presetBrief(p){
 }
 function showQPanel(p){
   if(!p) return;
-  document.getElementById("qTitle").textContent="本题题目 · "+p.name;
-  document.getElementById("qBody").innerHTML=presetBrief(p).map(function(r){
+  var q=p.q||((typeof QUESTIONS!=="undefined"&&QUESTIONS[p.id])||""), qMain=q, qNote="";
+  if(q){
+    var ls=q.split("\n");
+    while(ls.length && /^（.*）$/.test(ls[ls.length-1].trim())){
+      qNote=ls.pop().trim()+(qNote?" "+qNote:"");
+    }
+    qMain=ls.join("\n");
+  }
+  document.getElementById("qTitle").textContent="本题 · "+p.name;
+  var rows=presetBrief(p).filter(function(r){ return r[0]!=="题型"; });
+  var html="";
+  if(qMain) html+='<div class="qsrc">'+esc(qMain)+'</div>';
+  if(qNote) html+='<div class="qnote">'+esc(qNote)+'</div>';
+  html+=rows.map(function(r){
     var en=/[A-Za-z]{3}/.test(r[1])&&/^[\x00-\x7F\s]*$/.test(r[1]);
-    return "<dt>"+esc(r[0])+"</dt><dd"+(en?' class="en"':"")+">"+esc(r[1])+"</dd>";
+    return '<div class="qrow"><span class="qk">'+esc(r[0])+'</span><span class="qv'+(en?" en":"")+'">'+esc(r[1])+'</span></div>';
   }).join("");
-  document.getElementById("qFoot").textContent=
-    "讲义里没有收录这道真题的题干原文，以上是按预设数据整理的题目要点（【助手补】）；把题干原文给我就能换成原文。";
+  document.getElementById("qBody").innerHTML=html;
+  document.getElementById("qFoot").textContent = q
+    ? "题干来自讲义附带的《考研英语作文真题题目汇总》，2026年11月6日整理；下方各行按预设槽位自动汇总。"
+    : "这道预设没有对应真题（讲义改编或大纲样题），下方是按预设数据整理的题目要点（【助手补】）。";
   document.getElementById("qPanel").classList.add("on");
 }
 function hideQPanel(){ document.getElementById("qPanel").classList.remove("on"); }
