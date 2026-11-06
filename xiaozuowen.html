@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.4.1</title>
+<title>考研英语小作文 · 交互模板 v1.5.0</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -141,6 +141,16 @@ preview{display:block}
 .qk{color:var(--dim2);font-weight:600;white-space:nowrap;flex:0 0 auto}
 .qv{flex:1 1 auto;color:var(--fg);word-break:break-word}
 .qv.en{color:#1f4f9e}
+.qimgs{margin:0 0 8px}
+.qimgwrap{display:block;margin:0 0 8px;border:1px solid #ece0c8;border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in}
+.qimg{display:block;width:100%;height:auto}
+.qtoggle{border:1px solid var(--line);background:var(--card);color:var(--dim);border-radius:99px;
+  padding:3px 10px;font-size:calc(11.5px * var(--fs));margin:0 0 8px;font-family:inherit;cursor:pointer}
+.qtoggle:hover{color:var(--fg);border-color:var(--line2)}
+#qv{position:fixed;inset:0;z-index:400;background:rgba(20,18,14,.95);display:none;overflow:auto;padding:10px}
+#qv.on{display:block}
+#qv img{display:block;margin:0 auto;border-radius:6px;max-width:none}
+#qv .qvhint{position:fixed;left:0;right:0;bottom:8px;text-align:center;color:#e6ddcb;font-size:12px;opacity:.8}
 .qfoot{margin-top:8px;padding-top:7px;border-top:1px dashed #e6d7ba;font-size:calc(11px * var(--fs));color:var(--dim2);line-height:1.65}
 @media (max-width:600px){
   .qrow{display:block}
@@ -205,7 +215,7 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.4.1</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.5.0</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -265,7 +275,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.4.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.5.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
   </div>
@@ -293,7 +303,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.4.1';
+const APP_VERSION = '1.5.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -1011,6 +1021,24 @@ const PRESETS = [
 ];
 
 /* ============ 真题题干（据讲义附带《考研英语作文真题题目汇总》PDF 整理，2026年11月6日） ============ */
+/* 题目原图（qs/*.webp） */
+const IMGQ = {
+  "2025英一·手工展答复": ["qs/y2025a_2.webp"],
+  "2025英二·话剧邀请": ["qs/y2025b_2.webp"],
+  "2026英一·家书展": ["qs/y2026a_2.webp"],
+  "2026英二·家庭视频": ["qs/y2026b_2.webp"],
+  "2023英二·艺术展建议": ["qs/y2023b_2.webp"],
+  "2022英一·创新大赛": ["qs/y2022a_3.webp"],
+  "2022英二·美食节": ["qs/y2022b_2.webp"],
+  "2022英二·美食节告示": ["qs/y2022b_2.webp"],
+  "2020英一·歌唱比赛通知": ["qs/y2020a_2.webp"],
+  "2023英一·志愿者招募": ["qs/y2023a_2.webp"],
+  "2010英二·感谢+邀请": ["qs/y2010b_2.webp"],
+  "2019英一·援助乡村小学": ["qs/y2019a_2.webp"],
+  "2007·图书馆建议": ["qs/y2007.webp"],
+  "2024英一·建议信": ["qs/y2024a_2.webp"],
+  "2024英二·宏村建议": ["qs/y2024b_2.webp"],
+};
 const QUESTIONS = {
   "2025英一·手工展答复": "51. Directions:\nRead the following email from your classmate Paul and write him a reply.\nDear Li Ming,\nI was really excited to hear that you'd invite some young craftsmen to demonstrate their innovative craft-making on campus. May I know more about what they'll show? Also, I'd like to help with your preparation work. Please let me know what I can do.\nYours,\nPaul\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; use “Li Ming” instead. (10 points)",
   "2025英二·话剧邀请": "47. Directions:\nSuppose you are planning a short play based on a classic Chinese novel. Write your friend John an email to\n1) introduce the play, and\n2) invite him to take part in it.\nWrite your answer in about 100 words on the ANSWER SHEET.\nDo not use your own name in your email; use “Li Ming” instead. (10 points)",
@@ -1346,6 +1374,8 @@ function renderChips(){
     box.appendChild(b);
   });
 }
+function openQView(src){var v=document.getElementById("qv");if(!v)return;document.getElementById("qvimg").src=src;v.classList.add("on");}
+
 /* ============ 题目卡（预设对应题目） ============ */
 function qv(v){ return (v===undefined||v===null||v==="")?"":String(v); }
 function presetBrief(p){
@@ -1379,13 +1409,31 @@ function showQPanel(p){
   document.getElementById("qTitle").textContent="本题 · "+p.name;
   var rows=presetBrief(p).filter(function(r){ return r[0]!=="题型"; });
   var html="";
-  if(qMain) html+='<div class="qsrc">'+esc(qMain)+'</div>';
+  var imgs=(typeof IMGQ!=="undefined"&&IMGQ[p.id])||[];
+  if(imgs.length){
+    html+='<div class="qimgs">'+imgs.map(function(f){
+      return '<a class="qimgwrap" data-zoom="'+f+'" href="'+f+'" target="_blank" rel="noopener"><img class="qimg" src="'+f+'" loading="lazy" alt="题目原图"></a>';
+    }).join("")+'</div>';
+  }
+  if(qMain){
+    html+='<button class="qtoggle" id="qToggle">'+(imgs.length?"看文字版":"看题干文字")+'</button>';
+    html+='<div class="qsrc" id="qsrc"'+(imgs.length?' style="display:none"':'')+'>'+esc(qMain)+'</div>';
+  }
   if(qNote) html+='<div class="qnote">'+esc(qNote)+'</div>';
   html+=rows.map(function(r){
     var en=/[A-Za-z]{3}/.test(r[1])&&/^[\x00-\x7F\s]*$/.test(r[1]);
     return '<div class="qrow"><span class="qk">'+esc(r[0])+'</span><span class="qv'+(en?" en":"")+'">'+esc(r[1])+'</span></div>';
   }).join("");
   document.getElementById("qBody").innerHTML=html;
+  var tg=document.getElementById("qToggle");
+  if(tg) tg.onclick=function(){
+    var box=document.getElementById("qsrc"), open=box.style.display==="none";
+    box.style.display=open?"block":"none";
+    tg.textContent=open?"收起文字":(imgs.length?"看文字版":"看题干文字");
+  };
+  Array.prototype.forEach.call(document.querySelectorAll("#qBody .qimgwrap"),function(a){
+    a.onclick=function(e){ e.preventDefault(); openQView(a.getAttribute("data-zoom")); };
+  });
   document.getElementById("qFoot").textContent = q
     ? "题干来自讲义附带的《考研英语作文真题题目汇总》，2026年11月6日整理；下方各行按预设槽位自动汇总。"
     : "这道预设没有对应真题（讲义改编或大纲样题），下方是按预设数据整理的题目要点（【助手补】）。";
@@ -1851,5 +1899,6 @@ function boot(){
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
 else boot();
 </script>
+<div id="qv" onclick="this.classList.remove('on')"><img id="qvimg" alt="题目原图"><div class="qvhint">点任意处关闭</div></div>
 </body>
 </html>
