@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.4.0</title>
+<title>考研英语小作文 · 交互模板 v1.4.1</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -205,7 +205,7 @@ preview{display:block}
         <div class="logo">小</div>
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.4.0</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.4.1</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -265,7 +265,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.4.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.4.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./" style="color:var(--dim)">← 回到大作文</a></div>
   </div>
@@ -293,7 +293,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.4.0';
+const APP_VERSION = '1.4.1';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -325,7 +325,7 @@ B("event","事件/事由","题干里的那件事",[
   {en:"the campus food festival",zh:"校园美食节",note:"22英二"},
   {en:"the singing contest",zh:"歌唱比赛",note:"20英一"},
   {en:"the cultural exchange program",zh:"文化交流项目",note:"10英二"},
-  {en:"the “Aiding Rural Primary School” project",zh:"帮扶乡村小学项目",note:"19英一"},
+  {en:"the “Aiding Rural Primary Schools” project",zh:"帮扶乡村小学项目",note:"19英一"},
   {en:"the library service",zh:"图书馆服务",note:"07·建议信"}
 ]);
 
@@ -907,7 +907,7 @@ const PRESETS = [
   },{p1s1:"bg1",p1s2:"in1",p2s1:"t4",p2s2:"b1",p2s3:"e5",p2s4:"c2",p3s1:"ef4",p3s2:"er3"}),
 
   P("2026英二·家庭视频","2026 英二 · 家庭旅行视频（回复信）","reply",{
-    salutation:"Dear Jane,", event:"the video of your family's trip in China",
+    salutation:"Dear Jack,", event:"the video of your family's trip in China",
     activity:"the video", theme:"family values", intent:"share my feelings about the video",
     noun:"reply", benefit:"experience the happiness of your family trip",
     do:"tell me more about your trip", do2:"visit the same places with my parents"
@@ -966,12 +966,12 @@ const PRESETS = [
     theme:"traditional Chinese culture", intent:"express my gratitude for your generous help",
     noun:"gratitude", quality:"unselfish assistance", field:"cross-cultural communication",
     do:"learn more about Chinese culture", do2:"experience the charm of Chinese culture",
-    recommend:"China"
+    recommend:"China", sign:"Zhang Wei"
   },{p1s1:"in1",p1s2:"ab3",p2s1:"t4",p2s2:"i1",p2s3:"i4",p2s4:"j3",p3s1:"ef5",p3s2:"er3"}),
 
   P("2019英一·援助乡村小学","2019 英一 · 帮扶乡村小学（回复信）","reply",{
-    salutation:"Dear Sir or Madam,", event:"the “Aiding Rural Primary School” project",
-    activity:"the “Aiding Rural Primary School” project", theme:"volunteer service",
+    salutation:"Dear Sir or Madam,", event:"the “Aiding Rural Primary Schools” project",
+    activity:"the “Aiding Rural Primary Schools” project", theme:"volunteer service",
     purpose:"provide a platform for people who want to spread love",
     intent:"answer your questions about the project", noun:"reply",
     thing:"more volunteers", do:"teach English there", do2:"help the children",
