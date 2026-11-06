@@ -2,7 +2,7 @@
   "name": "考研英语小作文 · 交互模板",
   "short_name": "小作文",
   "description": "27版小作文讲义全量拆解：书信 / 通知 / 纪要，点短语拼出 100 词。",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "start_url": "./xiaozuowen.html",
   "scope": "./",
   "display": "standalone",
