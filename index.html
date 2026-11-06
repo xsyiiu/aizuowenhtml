@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.5.0</title>
+<title>考研英语大作文 · 交互模板 v2.5.1</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -200,7 +200,7 @@ preview{display:block}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.5.0</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.5.1</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -264,7 +264,7 @@ preview{display:block}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.5.0</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.5.1</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     <div style="margin-top:6px"><button class="mini" id="btnForce">强制刷新（清缓存取新版）</button> · <a href="./xiaozuowen.html" style="color:var(--dim)">小作文 →</a></div>
   </div>
@@ -292,7 +292,7 @@ preview{display:block}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.5.0';
+const APP_VERSION = '2.5.1';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -1435,23 +1435,25 @@ const PRESETS = [
     egResult:"his parents have noticed his growing curiosity about nature"
   },{p1a:0,p1b:0,p1c:0,p2a:0,p2b:0,p2c:2,p2d:4,p3a:1,p3b:0,p3c:3,p3d:2}),
 
-  P("2022英二·快递与包装","2022 英二 · 快递量与包装处理（动静双图）","chart_dual",{
-    theme:"the express delivery industry", left:"the changes in express delivery volume from 2018 to 2020",
-    right:"the distribution of packaging disposal methods",
-    item1:"the express delivery volume", n1:"50 billion", n2:"83 billion", y1:"2018", y2:"2020",
-    item2:"recycling", n3:"50%", n4:"60%", item3:"reuse", n5:"20%",
+  P("2022英二·快递与包装","2022 英二 · 快递业务量（动态图·总体与农村）","chart_dynN",{
+    theme:"the express delivery industry",
+    item1:"the rural express delivery volume", item2:"the overall express delivery volume",
+    n1:"12 billion", n2:"30 billion", n3:"51 billion", n4:"83 billion", y1:"2018", y2:"2020",
+    delta:"18 billion", mult:"nearly three times",
     adv1:"dramatically", adv2:"steadily",
-    actor:"the public", doX:"recycle packaging", cond:"they have free time",
-    aspect:"environmental protection", aspect2:"sustainable development", aspect3:"social progress",
+    actor:"the public", doX:"shop online", cond:"they have free time",
+    aspect:"economic development", aspect2:"sustainable development", aspect3:"social progress",
     trans:"It is apparent from the statistics that",
     phenom:"{theme} has been developing rapidly in recent years.",
-    govAction:"improve the recycling system for express packaging"
-  },{p1a:0,p1b:1,p1c:0,p2a:4,p2b:1,p2c:2,p2d:6,p3a:2,p3b:0,p3c:0,p3d:2}),
+    govAction:"improve the rural delivery network",
+    govAction2:"expand logistics services in remote areas"
+  },{p1a:0,p1b:2,p1c:0,p2a:4,p2b:1,p2c:2,p2d:6,p3a:2,p3b:0,p3c:0,p3d:2}),
 
   P("2012·员工满意度","2012 · 员工满意度（静态图·例外）","chart_stat",{
-    theme:"employees' satisfaction", item1:"employees under 40", item2:"employees over 50",
-    item3:"employees aged 41-50", item4:"dissatisfied employees", n1:"50%", n2:"50%", n3:"64%", n4:"64%",
-    low:"50%", high:"64%", y1:"2012",
+    theme:"employees' job satisfaction", item1:"employees who feel unclear about their satisfaction",
+    item2:"employees aged 41-50 who are dissatisfied", item3:"employees over 50 who are satisfied",
+    item4:"employees under 40 who are dissatisfied",
+    n1:"50.0%", n2:"64.0%", n3:"40.0%", n4:"33.3%", low:"0.0%", high:"64.0%", y1:"2012",
     actor:"employees", doX:"improve their job satisfaction", cond:"they face pressure",
     aspect:"quality of life", aspect2:"personal growth", aspect3:"social harmony",
     trans:"These data lead us to the conclusion that",
@@ -1476,7 +1478,7 @@ const PRESETS = [
   P("2023英一·龙舟","2023 英一 · 龙舟与传统文化（图画）","pic_single",{
     theme:"traditional culture", subject:"several young people", basicV:"sit", env:"on the river",
     mainV:"rowing in unison", detail:"with excited expressions on their faces",
-    env:"in a dragon boat on the river", caption:"A dragon boat race, a shared dream",
+    env:"in a dragon boat on the river", caption:"How wonderful! Traditional culture is becoming increasingly popular",
     adjPair:"passionate as well as aggressive", aspect:"cultural inheritance",
     aspect2:"teamwork and cooperation", aspect3:"cultural confidence",
     actor:"teenagers and youngsters", doX:"take part in traditional cultural activities",
@@ -1575,9 +1577,9 @@ const PRESETS = [
   },{p1a:0,p1b:2,p1c:0,p2a:6,p2b:2,p2c:3,p2d:4,p3a:2,p3b:0,p3c:2,p3d:2}),
 
   P("2013英二·兼职","2013 英二 · 大学生兼职（静态图·争议）","chart_stat",{
-    theme:"part-time jobs", item1:"students with part-time jobs", item2:"students without part-time jobs",
-    item3:"students doing internships", item4:"students doing volunteer work",
-    n1:"60%", n2:"40%", n3:"30%", n4:"20%", low:"20%", high:"60%", y1:"2013",
+    theme:"students' engagement in part-time jobs", item1:"the senior group", item2:"the junior group",
+    item3:"the sophomore group", item4:"the freshman group",
+    n1:"88.24%", n2:"71.93%", n3:"71.13%", n4:"67.77%", low:"67.77%", high:"88.24%", y1:"2013",
     actor:"undergraduates", doX:"take part-time jobs", cond:"they have free time",
     aspect:"practical skills", aspect2:"personal growth", aspect3:"social progress",
     trans:"It is apparent from the statistics that",
@@ -1601,18 +1603,12 @@ const PRESETS = [
     govAction:"provide more public spaces for children"
   },{p1a:3,p1b:0,p1c:2,p2a:0,p2b:2,p2c:2,p2d:4,p3a:1,p3b:4,p3c:3,p3d:2}),
 
-  P("2023英一·合作","2023 英一 · 合作（图画·双图）","pic_double",{
-    theme:"teamwork and cooperation", leftSub:"a group of students", leftV:"are working together",
-    leftExtra:"with confident smiles on their faces", rightSub:"a single student",
-    rightV:"is struggling alone", rightExtra:"with a worried look on his face",
-    aspect:"personal growth", aspect2:"social progress", aspect3:"communication efficiency",
-    actor:"youngsters", doX:"cooperate with others", govAction:"encourage team-based learning"
-  },{p1a:0,p1b:2,p1c:0,p2a:0,p2b:1,p2c:2,p2d:2,p3a:1,p3b:4,p3c:2,p3d:2}),
-
   P("2008英一·合作","2008 英一 · 合作（图画）","pic_single",{
-    theme:"teamwork and cooperation", subject:"two young men", basicV:"stand", env:"in front of us",
-    mainV:"helping an elderly man cross the road", detail:"with a warm smile on his face",
-    adjPair:"amiable as well as friendly", aspect:"social harmony", aspect2:"personal growth",
+    theme:"teamwork and cooperation", subject:"two disabled young men", basicV:"are walking", env:"shoulder to shoulder",
+    mainV:"supporting each other along the way", detail:"with confident smiles on their faces",
+    adjPair:"determined as well as optimistic",
+    caption:"You have one leg, and I have one leg. Together we can travel far and wide",
+    aspect:"social harmony", aspect2:"personal growth",
     aspect3:"communication efficiency", actor:"the public", doX:"help those in need",
     govAction:"encourage volunteer service in communities"
   },{p1a:0,p1b:3,p1c:0,p2a:0,p2b:1,p2c:2,p2d:4,p3a:2,p3b:0,p3c:2,p3d:2}),
@@ -1655,7 +1651,7 @@ const QUESTIONS = {
   "2023英二·居民健康素养": "48. Directions:\nWrite an essay based on the chart below. In your writing, you should\n1) interpret the chart, and\n2) give your comments.\nYou should write about 150 words on the ANSWER SHEET. (15 points)\n（图名：2012—2021年我国居民健康素养水平）",
   "2024英一·公园建设": "52. Directions:\nWrite an essay based on the picture and the chart below. In your essay, you should\n1) describe the picture and the chart briefly,\n2) interpret the implied meaning, and\n3) give your comments.\nWrite your answer in 160-200 words on the ANSWER SHEET. (20 points)\n（图：市民健身区，气泡“家门口新建的小公园真不错！”；柱状图：某市近三年公园数量（单位：座）2020 年 406、2021 年 532、2022 年 670）",
   "2024英二·劳动实践": "48. Directions:\nWrite an essay based on the chart below. In your essay, you should\n1) describe and interpret the chart, and\n2) give your comments.\nWrite your answer in about 150 words on the ANSWER SHEET. (15 points)\n（图名：某高校劳动实践课学生主要收获调查）",
-  "2025英一·家电表格": "52. Directions:\nWrite an essay of 160-200 based on the following table. In your essay, you should\n1) describe the table briefly,\n2) explain its intended meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（表名：近年来全国居民平均每百户年末主要耐用消费品拥有量；表头：年份 / 空调(台) / 洗衣机(台) / 电冰箱(台)）",
+  "2025英一·家电表格": "52. Directions:\nWrite an essay of 160-200 based on the following table. In your essay, you should\n1) describe the table briefly,\n2) explain its intended meaning, and\n3) give your comments.\nYou should write neatly on the ANSWER SHEET. (20 points)\n（表名：近年来全国居民平均每百户年末主要耐用消费品拥有量；2014 年 空调 75.2、洗衣机 83.7、冰箱 85.5；2017 年 96.1 / 91.7 / 95.3；2020 年 117.7 / 96.7 / 101.8；2023 年 145.9 / 98.2 / 103.4，单位：台）",
   "2025英二·老人休闲": "48. Directions:\nWrite an essay based on the chart below. In your essay, you should\n1) describe and interpret the chart, and\n2) give your comments.\nWrite your answer in about 150 words on the ANSWER SHEET. (15 points)\n（图名：某社区老年人主要日常休闲活动调查）",
   "2026英一·养老机器人": "52. Directions:\nWrite an essay based on the charts below. In your essay, you should\n1) describe the drawing briefly,\n2) interpret the charts, and\n3) give your comments.\nWrite your answer in 160-200 words on the ANSWER SHEET. (20 points)\n（图名：一项关于养老机器人的消费者接受度和首要关注点的调查）",
   "2026英二·户外活动": "48. Directions:\nWrite an essay based on the chart below. In your essay, you should\n1) describe and interpret the chart, and\n2) give your comments.\nWrite your answer in about 150 words on the ANSWER SHEET. (15 points)\n（图名：某项关于儿童户外活动看法的调查）",
