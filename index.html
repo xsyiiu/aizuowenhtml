@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语大作文 · 交互模板 v2.9.3</title>
+<title>考研英语大作文 · 交互模板 v2.9.4</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -304,7 +304,7 @@ header.top.fold .hdr-btns{margin-top:4px}
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
           <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换小作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.3</span> · 点短语即换</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.4</span> · 点短语即换</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -369,7 +369,7 @@ header.top.fold .hdr-btns{margin-top:4px}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v2.9.3</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v2.9.4</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语大作文模板（英一英二通用）》 · 交互层为自制，例句与公式均按原文收录</div>
     
   </div>
@@ -397,7 +397,7 @@ header.top.fold .hdr-btns{margin-top:4px}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.9.3';
+const APP_VERSION = '2.9.4';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -2798,88 +2798,7 @@ function renderSnapPanel(){
 var SYS_PAGE = "big";
 var SYS_SWITCH = "./xiaozuowen.html";
 var SYS_SWITCH_LABEL = "切换小作文";
-var CHANGELOG = [
- {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏支持站长身份：名字填“残翼渡鸦xsyiiuaaon”发布后显示为粉色「残翼渡鸦 · 站长」", "站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字"]},
- {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够"]},
- {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因"]},
- {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠"]},
- {
-  "v": "2.9.3",
-  "d": "2026年11月6日",
-  "items": [
-   "题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住",
-   "新增句子星标：每句方案旁一颗星，收藏的句子在下拉里带 ★，设置里有收藏夹",
-   "新增设置面板：界面、字号、显示开关、浮窗、数据备份与恢复集中在一处",
-   "新增更新日志与「检查更新」按钮，有新版本时按钮右上角出现小红点",
-   "切换大/小作文按钮从页脚移到标题旁",
-   "设置里可导出/导入全部数据（草稿 + 星标 + 设置）"
-  ]
- },
- {
-  "v": "2.9.3",
-  "d": "2026年11月6日",
-  "items": [
-   "词库弹窗自动压住题目浮窗，不再挡住选项"
-  ]
- },
- {
-  "v": "2.7.0",
-  "d": "2026年11月6日",
-  "items": [
-   "题目原图改为浮窗：拖动移动、右下角缩放、A−/A＋、全屏"
-  ]
- },
- {
-  "v": "2.6.0",
-  "d": "2026年11月6日",
-  "items": [
-   "题目卡开始显示真题原图（40 张 WebP，按需加载）"
-  ]
- },
- {
-  "v": "2.5.1",
-  "d": "2026年11月6日",
-  "items": [
-   "按真题校正预设数据：2013英二兼职、2022英二快递、2012员工满意度、2008英一画面、2023龙舟配文、2026英二 Jack、2010英二署名",
-   "删除无真题对应的「2023英一·合作」"
-  ]
- },
- {
-  "v": "2.5.0",
-  "d": "2026年11月6日",
-  "items": [
-   "内置真题题干原文（25/27 条），题目卡显示原文与数据"
-  ]
- },
- {
-  "v": "2.4.1",
-  "d": "2026年11月6日",
-  "items": [
-   "点标签不再自动弹出键盘；关掉题目卡可重新选同一预设"
-  ]
- },
- {
-  "v": "2.4.0",
-  "d": "2026年11月6日",
-  "items": [
-   "新增预设对应的题目卡"
-  ]
- },
- {
-  "v": "2.1.0",
-  "d": "2026年11月3日",
-  "items": [
-   "换成暖米白纸感配色（白天模式）"
-  ]
- },
- {
-  "v": "2.0.0",
-  "d": "2026年11月3日",
-  "items": [
-   "首个完整版：10 题型、真题预设、点选换句、自动语法、撤销/快照、复制"
-  ]
- }
-];
+var CHANGELOG = [{"v": "2.9.4", "d": "2026年11月7日", "items": ["修复：更新日志里误把站长口令写出来了，已删除", "站长口令改成编码存放，翻源码不再一眼看到"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住", "新增句子星标：每句方案旁一颗星，收藏的句子在下拉里带 ★，设置里有收藏夹", "新增设置面板：界面、字号、显示开关、浮窗、数据备份与恢复集中在一处", "新增更新日志与「检查更新」按钮，有新版本时按钮右上角出现小红点", "切换大/小作文按钮从页脚移到标题旁", "设置里可导出/导入全部数据（草稿 + 星标 + 设置）", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["词库弹窗自动压住题目浮窗，不再挡住选项", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.7.0", "d": "2026年11月6日", "items": ["题目原图改为浮窗：拖动移动、右下角缩放、A−/A＋、全屏"]}, {"v": "2.6.0", "d": "2026年11月6日", "items": ["题目卡开始显示真题原图（40 张 WebP，按需加载）"]}, {"v": "2.5.1", "d": "2026年11月6日", "items": ["按真题校正预设数据：2013英二兼职、2022英二快递、2012员工满意度、2008英一画面、2023龙舟配文、2026英二 Jack、2010英二署名", "删除无真题对应的「2023英一·合作」"]}, {"v": "2.5.0", "d": "2026年11月6日", "items": ["内置真题题干原文（25/27 条），题目卡显示原文与数据"]}, {"v": "2.4.1", "d": "2026年11月6日", "items": ["点标签不再自动弹出键盘；关掉题目卡可重新选同一预设"]}, {"v": "2.4.0", "d": "2026年11月6日", "items": ["新增预设对应的题目卡"]}, {"v": "2.1.0", "d": "2026年11月3日", "items": ["换成暖米白纸感配色（白天模式）"]}, {"v": "2.0.0", "d": "2026年11月3日", "items": ["首个完整版：10 题型、真题预设、点选换句、自动语法、撤销/快照、复制"]}];
 var STAR_KEY = "xrz-stars-v1", SET_KEY = "xrz-settings-v1", UPD_KEY = "xrz-upd-v1";
 var stars = {}, sysSet = {autoFloat:true, alpha:1}, updInfo = {ignored:"", found:""};
 var VARTEXT = {};
@@ -3006,7 +2925,7 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
   html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
   html += '<h4 id="sysAboutAnchor">关于</h4>';
-  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.3</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
+  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.4</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
   html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
   html += '</div></div>';
   html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
@@ -3249,9 +3168,10 @@ function initSys(){
 
 /* ===== 附加：持久化存储 · 屏幕常亮 · 顶栏折叠 · 建议栏 ===== */
 var WAKE_KEY = "xrz-wake", FOLD_KEY = "xrz-headfold";
+function b64u(s){ try{ return decodeURIComponent(escape(atob(s))); }catch(e){ try{ return atob(s); }catch(e2){ return ""; } } }
 function b64d(s){ try{ return atob(s); }catch(e){ return ""; } }
 var BOARD_KEY = "xrz-board-local-v1", BOARD_NAME_KEY = "xrz-board-name";
-var BOARD_OWNER_KEY = "残翼渡鸦xsyiiuaaon";      /* 站长暗号（输入时带不带引号都认） */
+var BOARD_OWNER_KEY = b64u(["5q6L57+8","5rih6bim","eHN5aWl1","YWFvbg=="].join(""));      /* 站长暗号（输入时带不带引号都认） */
 var BOARD_OWNER_NAME = "残翼渡鸦";
 var BOARD_OWNER_MARK = "<!--xrz-owner-->";
 var BOARD_MODE = "github";   /* local | github */
