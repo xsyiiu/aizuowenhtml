@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>考研英语小作文 · 交互模板 v1.8.3</title>
+<title>考研英语小作文 · 交互模板 v1.8.4</title>
 <link rel="manifest" href="manifest-xzw.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -309,7 +309,7 @@ header.top.fold .hdr-btns{margin-top:4px}
         <div>
           <h1>考研英语小作文 · 交互模板</h1>
           <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换大作文</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
-          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.8.3</span> · 书信 / 通知 / 纪要</p>
+          <p>27版讲义全量拆解 · <span class="ver" id="verChip">v1.8.4</span> · 书信 / 通知 / 纪要</p>
         </div>
       </div>
       <div class="bar-actions">
@@ -370,7 +370,7 @@ header.top.fold .hdr-btns{margin-top:4px}
     <section id="preview"></section>
   </div>
   <div class="foot">
-    <div>版本 <b id="footVer">v1.8.3</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
+    <div>版本 <b id="footVer">v1.8.4</b> · 构建 2026-11-06 · 数据仅存本机浏览器（localStorage）</div>
     <div>讲义来源：《27考研英语小作文模板（英一英二通用）》 · 交互层为自制，例句均按原文收录</div>
     
   </div>
@@ -398,7 +398,7 @@ header.top.fold .hdr-btns{margin-top:4px}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '1.8.3';
+const APP_VERSION = '1.8.4';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 小作文词库 ============ */
@@ -2072,87 +2072,7 @@ function renderSnapPanel(){
 var SYS_PAGE = "small";
 var SYS_SWITCH = "./";
 var SYS_SWITCH_LABEL = "切换大作文";
-var CHANGELOG = [
- {"v": "1.8.3", "d": "2026年11月6日", "items": ["建议栏支持站长身份（粉色「残翼渡鸦 · 站长」）", "名字输入框上限放宽到 24 字"]},
- {"v": "1.8.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues，起名即可发布、所有人可见", "自检按钮改查读取与仓库权限"]},
- {"v": "1.8.3", "d": "2026年11月6日", "items": ["修复：忽略版本后更新说明丢失的问题", "建议栏接上共享存储，起名即可发布、所有人可见", "建议栏新增「自检」按钮"]},
- {"v": "1.8.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式）", "新增「常亮」按钮：背诵时屏幕不自动锁", "新增「收起顶栏」开关", "申请持久化存储，设置里可查看状态", "设置面板补：本机存储、屏幕常亮、顶栏折叠"]},
- {
-  "v": "1.8.3",
-  "d": "2026年11月6日",
-  "items": [
-   "题目卡不再铺图，改成可拖动、可缩放的浮窗",
-   "新增句子星标与收藏夹",
-   "新增设置面板（界面、字号、显示开关、浮窗、数据备份）",
-   "新增更新日志与「检查更新」按钮（带小红点）",
-   "切换大/小作文按钮移到标题旁"
-  ]
- },
- {
-  "v": "1.8.3",
-  "d": "2026年11月6日",
-  "items": [
-   "词库弹窗自动压住题目浮窗"
-  ]
- },
- {
-  "v": "1.6.0",
-  "d": "2026年11月6日",
-  "items": [
-   "题目原图改为浮窗（拖动 / 缩放 / 全屏）"
-  ]
- },
- {
-  "v": "1.5.0",
-  "d": "2026年11月6日",
-  "items": [
-   "题目卡显示真题原图（15 条预设）"
-  ]
- },
- {
-  "v": "1.4.1",
-  "d": "2026年11月6日",
-  "items": [
-   "按真题校正：2026英二收信人改 Jack、2010英二署名改 Zhang Wei、2019英一项目名复数"
-  ]
- },
- {
-  "v": "1.4.0",
-  "d": "2026年11月6日",
-  "items": [
-   "内置真题题干原文（15/16 条）"
-  ]
- },
- {
-  "v": "1.3.1",
-  "d": "2026年11月6日",
-  "items": [
-   "点标签不再自动弹出键盘"
-  ]
- },
- {
-  "v": "1.3.0",
-  "d": "2026年11月6日",
-  "items": [
-   "新增预设对应的题目卡"
-  ]
- },
- {
-  "v": "1.2.2",
-  "d": "2026年11月3日",
-  "items": [
-   "字号全站生效",
-   "白天配色"
-  ]
- },
- {
-  "v": "1.1.0",
-  "d": "2026年11月3日",
-  "items": [
-   "小作文页面上线：5 题型 / 16 套预设"
-  ]
- }
-];
+var CHANGELOG = [{"v": "1.8.4", "d": "2026年11月7日", "items": ["修复：更新日志里误把站长口令写出来了，已删除", "站长口令改成编码存放，翻源码不再一眼看到"]}, {"v": "1.8.3", "d": "2026年11月6日", "items": ["建议栏支持站长身份（粉色「残翼渡鸦 · 站长」）", "名字输入框上限放宽到 24 字", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "1.8.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues，起名即可发布、所有人可见", "自检按钮改查读取与仓库权限", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "1.8.3", "d": "2026年11月6日", "items": ["修复：忽略版本后更新说明丢失的问题", "建议栏接上共享存储，起名即可发布、所有人可见", "建议栏新增「自检」按钮", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "1.8.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式）", "新增「常亮」按钮：背诵时屏幕不自动锁", "新增「收起顶栏」开关", "申请持久化存储，设置里可查看状态", "设置面板补：本机存储、屏幕常亮、顶栏折叠", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "1.8.3", "d": "2026年11月6日", "items": ["题目卡不再铺图，改成可拖动、可缩放的浮窗", "新增句子星标与收藏夹", "新增设置面板（界面、字号、显示开关、浮窗、数据备份）", "新增更新日志与「检查更新」按钮（带小红点）", "切换大/小作文按钮移到标题旁", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "1.8.3", "d": "2026年11月6日", "items": ["词库弹窗自动压住题目浮窗", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "1.6.0", "d": "2026年11月6日", "items": ["题目原图改为浮窗（拖动 / 缩放 / 全屏）"]}, {"v": "1.5.0", "d": "2026年11月6日", "items": ["题目卡显示真题原图（15 条预设）"]}, {"v": "1.4.1", "d": "2026年11月6日", "items": ["按真题校正：2026英二收信人改 Jack、2010英二署名改 Zhang Wei、2019英一项目名复数"]}, {"v": "1.4.0", "d": "2026年11月6日", "items": ["内置真题题干原文（15/16 条）"]}, {"v": "1.3.1", "d": "2026年11月6日", "items": ["点标签不再自动弹出键盘"]}, {"v": "1.3.0", "d": "2026年11月6日", "items": ["新增预设对应的题目卡"]}, {"v": "1.2.2", "d": "2026年11月3日", "items": ["字号全站生效", "白天配色"]}, {"v": "1.1.0", "d": "2026年11月3日", "items": ["小作文页面上线：5 题型 / 16 套预设"]}];
 var STAR_KEY = "xrz-stars-v1", SET_KEY = "xrz-settings-v1", UPD_KEY = "xrz-upd-v1";
 var stars = {}, sysSet = {autoFloat:true, alpha:1}, updInfo = {ignored:"", found:""};
 var VARTEXT = {};
@@ -2279,7 +2199,7 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
   html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
   html += '<h4 id="sysAboutAnchor">关于</h4>';
-  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v1.8.3</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
+  html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v1.8.4</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
   html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
   html += '</div></div>';
   html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
@@ -2522,9 +2442,10 @@ function initSys(){
 
 /* ===== 附加：持久化存储 · 屏幕常亮 · 顶栏折叠 · 建议栏 ===== */
 var WAKE_KEY = "xrz-wake", FOLD_KEY = "xrz-headfold";
+function b64u(s){ try{ return decodeURIComponent(escape(atob(s))); }catch(e){ try{ return atob(s); }catch(e2){ return ""; } } }
 function b64d(s){ try{ return atob(s); }catch(e){ return ""; } }
 var BOARD_KEY = "xrz-board-local-v1", BOARD_NAME_KEY = "xrz-board-name";
-var BOARD_OWNER_KEY = "残翼渡鸦xsyiiuaaon";      /* 站长暗号（输入时带不带引号都认） */
+var BOARD_OWNER_KEY = b64u(["5q6L57+8","5rih6bim","eHN5aWl1","YWFvbg=="].join(""));      /* 站长暗号（输入时带不带引号都认） */
 var BOARD_OWNER_NAME = "残翼渡鸦";
 var BOARD_OWNER_MARK = "<!--xrz-owner-->";
 var BOARD_MODE = "github";   /* local | github */
