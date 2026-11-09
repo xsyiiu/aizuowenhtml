@@ -397,7 +397,7 @@ header.top.fold .hdr-btns{margin-top:4px}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.9.4';
+const APP_VERSION = '2.10.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -2798,7 +2798,7 @@ function renderSnapPanel(){
 var SYS_PAGE = "big";
 var SYS_SWITCH = "./xiaozuowen.html";
 var SYS_SWITCH_LABEL = "切换小作文";
-var CHANGELOG = [{"v": "2.9.4", "d": "2026年11月7日", "items": ["修复：更新日志里误把站长口令写出来了，已删除", "站长口令改成编码存放，翻源码不再一眼看到"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住", "新增句子星标：每句方案旁一颗星，收藏的句子在下拉里带 ★，设置里有收藏夹", "新增设置面板：界面、字号、显示开关、浮窗、数据备份与恢复集中在一处", "新增更新日志与「检查更新」按钮，有新版本时按钮右上角出现小红点", "切换大/小作文按钮从页脚移到标题旁", "设置里可导出/导入全部数据（草稿 + 星标 + 设置）", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["词库弹窗自动压住题目浮窗，不再挡住选项", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.7.0", "d": "2026年11月6日", "items": ["题目原图改为浮窗：拖动移动、右下角缩放、A−/A＋、全屏"]}, {"v": "2.6.0", "d": "2026年11月6日", "items": ["题目卡开始显示真题原图（40 张 WebP，按需加载）"]}, {"v": "2.5.1", "d": "2026年11月6日", "items": ["按真题校正预设数据：2013英二兼职、2022英二快递、2012员工满意度、2008英一画面、2023龙舟配文、2026英二 Jack、2010英二署名", "删除无真题对应的「2023英一·合作」"]}, {"v": "2.5.0", "d": "2026年11月6日", "items": ["内置真题题干原文（25/27 条），题目卡显示原文与数据"]}, {"v": "2.4.1", "d": "2026年11月6日", "items": ["点标签不再自动弹出键盘；关掉题目卡可重新选同一预设"]}, {"v": "2.4.0", "d": "2026年11月6日", "items": ["新增预设对应的题目卡"]}, {"v": "2.1.0", "d": "2026年11月3日", "items": ["换成暖米白纸感配色（白天模式）"]}, {"v": "2.0.0", "d": "2026年11月3日", "items": ["首个完整版：10 题型、真题预设、点选换句、自动语法、撤销/快照、复制"]}];
+var CHANGELOG = [{"v": "2.10.0", "d": "2026年11月9日", "items": ["新增云端存档：设置里填用户名，一键把整站（两页草稿与快照、收藏句子、设置、字号、界面、浮窗位置）传到云端", "上传按用户名覆盖同一条云端存档，不会越传越多；换设备填同一个名字点「下载」就拉回来", "下载前自动把本机这一份另存，设置里有「撤销上次下载」可还原", "新增「云端存档说明」，写了规则和用法，可直接给同学看", "用户名与建议栏共用，两边改哪边都同步"]}, {"v": "2.9.4", "d": "2026年11月7日", "items": ["修复：更新日志里误把站长口令写出来了，已删除", "站长口令改成编码存放，翻源码不再一眼看到"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住", "新增句子星标：每句方案旁一颗星，收藏的句子在下拉里带 ★，设置里有收藏夹", "新增设置面板：界面、字号、显示开关、浮窗、数据备份与恢复集中在一处", "新增更新日志与「检查更新」按钮，有新版本时按钮右上角出现小红点", "切换大/小作文按钮从页脚移到标题旁", "设置里可导出/导入全部数据（草稿 + 星标 + 设置）", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["词库弹窗自动压住题目浮窗，不再挡住选项", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.7.0", "d": "2026年11月6日", "items": ["题目原图改为浮窗：拖动移动、右下角缩放、A−/A＋、全屏"]}, {"v": "2.6.0", "d": "2026年11月6日", "items": ["题目卡开始显示真题原图（40 张 WebP，按需加载）"]}, {"v": "2.5.1", "d": "2026年11月6日", "items": ["按真题校正预设数据：2013英二兼职、2022英二快递、2012员工满意度、2008英一画面、2023龙舟配文、2026英二 Jack、2010英二署名", "删除无真题对应的「2023英一·合作」"]}, {"v": "2.5.0", "d": "2026年11月6日", "items": ["内置真题题干原文（25/27 条），题目卡显示原文与数据"]}, {"v": "2.4.1", "d": "2026年11月6日", "items": ["点标签不再自动弹出键盘；关掉题目卡可重新选同一预设"]}, {"v": "2.4.0", "d": "2026年11月6日", "items": ["新增预设对应的题目卡"]}, {"v": "2.1.0", "d": "2026年11月3日", "items": ["换成暖米白纸感配色（白天模式）"]}, {"v": "2.0.0", "d": "2026年11月3日", "items": ["首个完整版：10 题型、真题预设、点选换句、自动语法、撤销/快照、复制"]}];
 var STAR_KEY = "xrz-stars-v1", SET_KEY = "xrz-settings-v1", UPD_KEY = "xrz-upd-v1";
 var stars = {}, sysSet = {autoFloat:true, alpha:1}, updInfo = {ignored:"", found:""};
 var VARTEXT = {};
@@ -2920,6 +2920,12 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">透明度<span class="sub">调低后能透过浮窗看到正文</span></div><input type="range" id="sysAlpha" min="40" max="100" step="5" style="width:120px"></div>';
   html += '<h4>我的收藏</h4>';
   html += '<div class="sys-row"><div class="lbl">已收藏句子<span class="sub" id="starCount">0</span></div><button class="sys-btn" type="button" id="sysOpenStars">打开收藏夹</button></div>';
+  html += '<h4>云端存档</h4>';
+  html += '<div class="sys-row"><div class="lbl">用户名<span class="sub">与建议栏共用同一个名字；换设备填同一个名字就能拉回存档</span></div><input class="board-name" id="sysUserName" maxlength="24" placeholder="填个代号" style="flex:0 0 118px;width:118px;padding:6px 8px"></div>';
+  html += '<div class="sys-row"><div class="lbl">我的云端存档<span class="sub" id="cloudState">还没检查</span></div><div style="display:flex;gap:6px"><button class="sys-btn" type="button" id="cloudUp">上传</button><button class="sys-btn" type="button" id="cloudDown">下载</button></div></div>';
+  html += '<div class="sys-row"><div class="lbl">撤销上次下载<span class="sub">还原成下载前的本机内容</span></div><button class="sys-btn" type="button" id="cloudUndo">还原</button></div>';
+  html += '<div class="sys-row"><div class="lbl">云端存档怎么用<span class="sub">规则、覆盖、隐私，看一遍就会</span></div><button class="sys-btn" type="button" id="cloudHelp">说明</button></div>';
+  html += '<div class="sys-row"><div class="lbl">删除云端存档<span class="sub">只关掉你这名字下的一条</span></div><button class="sys-btn danger" type="button" id="cloudDel">删除</button></div>';
   html += '<h4>数据</h4>';
   html += '<div class="sys-row"><div class="lbl">导出备份<span class="sub">草稿 + 星标 + 设置，存成 JSON 文件</span></div><button class="sys-btn" type="button" id="sysExport">导出</button></div>';
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
@@ -2931,9 +2937,11 @@ function buildSysDom(){
   html += '<div class="sys-modal" id="starModal"><div class="sys-card"><div class="ch">我的收藏<span id="starCloseWrap"></span><button type="button" data-close="starModal">×</button></div><div class="cb" id="starList"></div><div class="cf"><button class="sys-btn" type="button" data-close="starModal">关闭</button></div></div></div>';
   html += '<div class="sys-modal" id="logModal"><div class="sys-card"><div class="ch">更新日志<button type="button" data-close="logModal">×</button></div><div class="cb" id="logBody"></div><div class="cf"><button class="sys-btn" type="button" data-close="logModal">关闭</button></div></div></div>';
   html += '<div class="sys-modal" id="updModal"><div class="sys-card"><div class="ch"><span id="updTitle">发现新版本</span><button type="button" data-close="updModal">×</button></div><div class="cb" id="updBody"></div><div class="cf"><button class="sys-btn primary" type="button" id="updGo">更新版本</button><button class="sys-btn" type="button" id="updIgnore">本次忽略</button><button class="sys-btn" type="button" id="updLater">稍后再提醒我</button></div></div></div>';
+  html += '<div class="sys-modal" id="cloudModal"><div class="sys-card"><div class="ch">云端存档说明<button type="button" data-close="cloudModal">×</button></div><div class="cb" id="cloudHelpBody"></div><div class="cf"><button class="sys-btn primary" type="button" data-close="cloudModal">知道了</button></div></div></div>';
   var wrap = document.createElement("div");
   wrap.innerHTML = html;
   while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
+  try{ cloudBind(); }catch(e){}
   bindSys();
 }
 
@@ -2996,6 +3004,7 @@ function closeAllModals(){
 }
 function openSys(){
   buildSysDom();
+  try{ cloudSyncNameInput(); }catch(e){}
   refreshSysUI();
   document.getElementById("sysMask").classList.add("on");
   document.getElementById("sysDrawer").classList.add("on");
@@ -3391,7 +3400,7 @@ function openBoard(){
   var m = document.getElementById("boardModal");
   if(!m) return;
   var nameEl = document.getElementById("boardName");
-  if(nameEl && !nameEl.value){ try{ nameEl.value = localStorage.getItem(BOARD_NAME_KEY) || ""; }catch(e){} }
+  if(nameEl){ try{ var _bn = localStorage.getItem(BOARD_NAME_KEY) || ""; if(_bn) nameEl.value = _bn; }catch(e){} }
   m.classList.add("on");
   renderBoard();
 }
@@ -3441,7 +3450,7 @@ function buildBoard(){
     '<div class="ch">建议栏<button type="button" data-close="boardModal">×</button></div>' +
     '<div class="cb">' +
       '<p class="board-state" id="boardState"></p>' +
-      '<input class="board-name" id="boardName" maxlength="24" placeholder="你的名字（不用登录，写个代号就行）">' +
+      '<input class="board-name" id="boardName" maxlength="24" placeholder="你的名字（不用登录，写个代号；云端存档也用这个名字）">' +
       '<textarea class="board-text" id="boardText" maxlength="800" placeholder="想加什么功能、哪里不好用、发现什么错误……直接写"></textarea>' +
       '<div style="display:flex;gap:8px;align-items:center;margin-top:8px">' +
         '<button class="sys-btn primary" type="button" id="boardPostBtn">发布</button>' +
@@ -3456,6 +3465,8 @@ function buildBoard(){
   wrap.innerHTML = html;
   while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
   document.getElementById("boardPostBtn").onclick = boardSubmit;
+  var bnEl = document.getElementById("boardName");
+  if(bnEl) bnEl.addEventListener("input", function(){ try{ localStorage.setItem(BOARD_NAME_KEY, (bnEl.value || "").trim()); }catch(e){} });
   document.getElementById("boardReload").onclick = renderBoard;
   document.getElementById("boardDiag").onclick = boardDiag;
   document.querySelector('[data-close="boardModal"]').onclick = function(){ document.getElementById("boardModal").classList.remove("on"); };
@@ -3463,6 +3474,294 @@ function buildBoard(){
   refreshBoardBadge();
 }
 
+/* ===== 云端存档：GitHub Issues · 标题「存档｜用户名」，同名覆盖 ===== */
+var CLOUD_TAG = "存档｜";
+var CLOUD_MARK = "<!--xrz-save-v1-->";
+var CLOUD_KEY = "xrz-cloud-v1";
+var CLOUD_PREV_KEY = "xrz-cloud-prev-v1";
+var CLOUD_MAX = 60000;          /* GitHub issue 正文上限 65536，留点余量 */
+var CLOUD_KEYS = ["xrz-essay-state-v2","xrz-essay-snaps-v2","xrz-xzw-state-v1","xrz-xzw-snaps-v1",
+                  "xrz-stars-v1","xrz-settings-v1","xrz-ui-mode","xrz-font-scale","xrz-float-v1"];
+
+function cloudName(){
+  try{ return String(localStorage.getItem(BOARD_NAME_KEY) || "").trim(); }catch(e){ return ""; }
+}
+function cloudSetName(v){
+  var s = String(v == null ? "" : v).trim();
+  try{ localStorage.setItem(BOARD_NAME_KEY, s); }catch(e){}
+  var a = document.getElementById("boardName");
+  if(a && a !== document.activeElement && a.value !== s) a.value = s;
+  var b = document.getElementById("sysUserName");
+  if(b && b !== document.activeElement && b.value !== s) b.value = s;
+  return s;
+}
+function cloudPtr(){
+  try{ var o = JSON.parse(localStorage.getItem(CLOUD_KEY) || "null"); return (o && o.name) ? o : null; }catch(e){ return null; }
+}
+function cloudStorePtr(o){ try{ localStorage.setItem(CLOUD_KEY, JSON.stringify(o)); }catch(e){} }
+function cloudText(t, color){
+  var el = document.getElementById("cloudState");
+  if(el){ el.textContent = t; el.style.color = color || ""; }
+}
+function cloudWhen(iso){
+  if(!iso) return "时间未知";
+  var d = new Date(iso);
+  if(isNaN(d.getTime())) return "时间未知";
+  return (d.getMonth() + 1) + "月" + d.getDate() + "日 " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+}
+function cloudIssuesPath(){ return "/repos/" + BOARD_CFG.owner + "/" + BOARD_CFG.repo + "/issues"; }
+function cloudIssuePath(n){ return cloudIssuesPath() + "/" + n; }
+function u8bin(u8){
+  var s = "", i = 0;
+  for(; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+  return s;
+}
+function binU8(bin){
+  var u = new Uint8Array(bin.length);
+  for(var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+  return u;
+}
+/* 编码：优先 gzip 压缩（整站含 8 条快照约 120 KB，压缩后 10 KB 左右），不支持时退回明文 base64 */
+function cloudUtf8(s){
+  if(typeof TextEncoder !== "undefined") return new TextEncoder().encode(String(s));
+  var b = unescape(encodeURIComponent(String(s))), u = new Uint8Array(b.length);
+  for(var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
+  return u;
+}
+function cloudUnUtf8(u){
+  if(typeof TextDecoder !== "undefined") return new TextDecoder().decode(u);
+  var s = "";
+  for(var i = 0; i < u.length; i++) s += String.fromCharCode(u[i]);
+  try{ return decodeURIComponent(escape(s)); }catch(e){ return s; }
+}
+function cloudEncode(text){
+  var bytes = cloudUtf8(text);
+  var plain = function(){ return "p:" + btoa(u8bin(bytes)); };
+  try{
+    if(typeof CompressionStream === "undefined" || typeof Response === "undefined") return Promise.resolve(plain());
+    var cs = new CompressionStream("gzip");
+    var src = (typeof Blob !== "undefined" && Blob.prototype.stream) ? new Blob([bytes]).stream() : new Response(bytes).body;
+    return new Response(src.pipeThrough(cs)).arrayBuffer().then(function(ab){
+      return "z:" + btoa(u8bin(new Uint8Array(ab)));
+    }).catch(function(){ return plain(); });
+  }catch(e){ return Promise.resolve(plain()); }
+}
+function cloudDecode(body){
+  var raw = String(body || "");
+  var i = raw.indexOf(CLOUD_MARK);
+  if(i >= 0) raw = raw.slice(i + CLOUD_MARK.length);
+  raw = raw.replace(/```/g, "").replace(/\s+/g, "");
+  var tag = raw.slice(0, 2), data = raw.slice(2);
+  if(tag !== "z:" && tag !== "p:"){ tag = "p:"; data = raw; }
+  var bytes;
+  try{ bytes = binU8(atob(data)); }catch(e){ return Promise.reject(new Error("存档内容不完整")); }
+  if(tag === "p:") return Promise.resolve(cloudUnUtf8(bytes));
+  if(typeof DecompressionStream === "undefined") return Promise.reject(new Error("这个浏览器不支持解压存档"));
+  try{
+    var ds = new DecompressionStream("gzip");
+    var src = (typeof Blob !== "undefined" && Blob.prototype.stream) ? new Blob([bytes]).stream() : new Response(bytes).body;
+    return new Response(src.pipeThrough(ds)).arrayBuffer().then(function(ab){
+      return cloudUnUtf8(new Uint8Array(ab));
+    });
+  }catch(e){ return Promise.reject(new Error("解压失败")); }
+}
+function cloudPack(){
+  var pack = {};
+  CLOUD_KEYS.forEach(function(k){
+    try{ var v = localStorage.getItem(k); if(v !== null && v !== undefined) pack[k] = v; }catch(e){}
+  });
+  return {v:1, at:new Date().toISOString(), ver:APP_VERSION, page:(SYS_PAGE === "big" ? "big" : "xzw"), keys:pack};
+}
+/* 打包 + 编码；太大就把快照砍到最新 2 条再试 */
+function cloudEncoded(){
+  return cloudEncode(JSON.stringify(cloudPack())).then(function(enc){
+    if(CLOUD_MARK.length + enc.length + 2 <= CLOUD_MAX) return enc;
+    var p = cloudPack();
+    ["xrz-essay-snaps-v2","xrz-xzw-snaps-v1"].forEach(function(k){
+      if(!p.keys[k]) return;
+      try{ var a = JSON.parse(p.keys[k]); if(Array.isArray(a)) p.keys[k] = JSON.stringify(a.slice(0, 2)); }catch(e){}
+    });
+    return cloudEncode(JSON.stringify(p)).then(function(enc2){
+      if(CLOUD_MARK.length + enc2.length + 2 <= CLOUD_MAX) return enc2;
+      throw new Error("单条放不下（约 " + Math.round(enc2.length / 1024) + " KB），先清掉一些草稿快照再传");
+    });
+  });
+}
+/* 先按标题找自己的存档，列表里没有就试本机记过的编号 */
+function cloudFind(name, ok, fail){
+  if(BOARD_MODE !== "github"){ fail(new Error("还没接共享存储")); return; }
+  if(typeof fetch !== "function"){ fail(new Error("浏览器不支持 fetch")); return; }
+  var path = cloudIssuesPath() + "?state=open&sort=updated&direction=desc&per_page=100";
+  ghApi(path, {headers:boardHeaders()}).then(function(arr){
+    var hit = null;
+    (arr || []).forEach(function(it){ if(!hit && it.title === CLOUD_TAG + name) hit = it; });
+    if(!hit){
+      var p = cloudPtr();
+      if(p && p.name === name && p.number) hit = {number:p.number, body:"", virtual:true};
+    }
+    ok(hit);
+  }).catch(fail);
+}
+function cloudUpload(){
+  var name = cloudName();
+  if(!name){ toast("先在设置里填用户名，再上传"); var u0 = document.getElementById("sysUserName"); if(u0) u0.focus(); return; }
+  var btn = document.getElementById("cloudUp");
+  if(btn){ btn.disabled = true; btn.textContent = "打包中…"; }
+  var reset = function(){ if(btn){ btn.disabled = false; btn.textContent = "上传"; } };
+  cloudText("正在打包整站数据…");
+  cloudEncoded().then(function(enc){
+    var body = CLOUD_MARK + "\n" + enc;
+    if(btn) btn.textContent = "上传中…";
+    cloudText("正在上传…");
+    cloudFind(name, function(hit){
+      var done = function(err, num){
+        reset();
+        if(err){ cloudText("上传失败：" + ((err && err.message) || "网络"), "#b3261e"); toast("上传失败：" + ((err && err.message) || "网络")); return; }
+        cloudStorePtr({name:name, number:num, at:new Date().toISOString()});
+        cloudText("已上传：" + name + " · 刚刚 · 约 " + Math.max(1, Math.round(body.length / 1024)) + " KB");
+        toast(hit ? "已覆盖云端存档" : "已上传到云端");
+      };
+      if(hit && hit.number){
+        ghApi(cloudIssuePath(hit.number), {
+          method:"PATCH",
+          headers:boardHeaders({"Content-Type":"application/json"}),
+          body:JSON.stringify({body:body})
+        }).then(function(j){ done(null, (j && j.number) || hit.number); }).catch(function(e){ done(e); });
+      } else {
+        ghApi(cloudIssuesPath(), {
+          method:"POST",
+          headers:boardHeaders({"Content-Type":"application/json"}),
+          body:JSON.stringify({title:CLOUD_TAG + name, body:body})
+        }).then(function(j){ done(null, j.number); }).catch(function(e){ done(e); });
+      }
+    }, function(e){ reset(); cloudText("连不上云端：" + ((e && e.message) || "网络"), "#b3261e"); toast("连不上，检查网络后再试"); });
+  }).catch(function(e){ reset(); cloudText((e && e.message) || "打包失败", "#b3261e"); toast((e && e.message) || "打包失败"); });
+}
+function cloudDownload(){
+  var name = cloudName();
+  if(!name){ toast("先在设置里填用户名（换设备就填原来那个名字）"); return; }
+  var btn = document.getElementById("cloudDown");
+  if(btn){ btn.disabled = true; btn.textContent = "查找中…"; }
+  var reset = function(){ if(btn){ btn.disabled = false; btn.textContent = "下载"; } };
+  cloudText("正在找云端存档…");
+  cloudFind(name, function(hit){
+    if(!hit){ reset(); cloudText("云端没有「" + name + "」的存档"); toast("云端还没找到你的存档"); return; }
+    var use = function(it){
+      cloudDecode(it.body || "").then(function(txt){
+        reset();
+        var d = JSON.parse(txt);
+        if(!d || !d.keys) throw new Error("存档格式不对");
+        var kb = Math.max(1, Math.round(String(it.body || "").length / 1024));
+        var ask = "云端存档：" + cloudWhen(it.updated_at || it.created_at || d.at) + "（v" + (d.ver || "?") + "，约 " + kb + " KB）\n\n" +
+          "下载会用云端内容覆盖本机：\n· 大/小作文草稿与快照\n· 收藏的句子、设置、字号、界面\n\n" +
+          "覆盖前会把本机这一份另存起来，下载后可用「撤销上次下载」还原。继续？";
+        if(!confirm(ask)){ cloudText("已取消下载"); return; }
+        cloudRestore(d, it.number);
+      }).catch(function(e){ reset(); cloudText("存档解不开：" + ((e && e.message) || "格式不对"), "#b3261e"); toast("存档解不开"); });
+    };
+    if(hit.body) use(hit);
+    else ghApi(cloudIssuePath(hit.number), {headers:boardHeaders()}).then(use).catch(function(e){
+      reset(); cloudText("读取失败：" + ((e && e.message) || "网络"), "#b3261e"); toast("读取失败");
+    });
+  }, function(e){ reset(); cloudText("连不上云端：" + ((e && e.message) || "网络"), "#b3261e"); toast("连不上，检查网络后再试"); });
+}
+function cloudApply(d, keepPrev){
+  if(!keepPrev){ try{ localStorage.setItem(CLOUD_PREV_KEY, JSON.stringify(cloudPack())); }catch(e){} }
+  var keys = d.keys, n = 0;
+  CLOUD_KEYS.forEach(function(k){
+    try{
+      if(keys[k] !== undefined && keys[k] !== null){ localStorage.setItem(k, keys[k]); n++; }
+      else localStorage.removeItem(k);
+    }catch(e){}
+  });
+  return n;
+}
+function cloudRestore(d, number){
+  cloudApply(d, false);
+  cloudStorePtr({name:cloudName(), number:number, at:d.at || ""});
+  cloudText("已写入本机，正在重载…");
+  toast("已下载云端存档");
+  setTimeout(function(){ try{ location.reload(); }catch(e){} }, 700);
+}
+function cloudUndo(){
+  var raw = null;
+  try{ raw = localStorage.getItem(CLOUD_PREV_KEY); }catch(e){}
+  if(!raw){ toast("没有可还原的上一份"); return; }
+  if(!confirm("把本机数据还原成上次下载之前的状态？当前内容会被替换。")) return;
+  var d = null;
+  try{ d = JSON.parse(raw); }catch(e){}
+  if(!d || !d.keys){ toast("上一份备份读不出来"); return; }
+  cloudApply(d, true);
+  cloudText("已还原，正在重载…");
+  setTimeout(function(){ try{ location.reload(); }catch(e){} }, 600);
+}
+function cloudDelete(){
+  var name = cloudName();
+  if(!name){ toast("先在设置里填用户名"); return; }
+  if(!confirm("删除云端「" + name + "」的存档？\n\n只会把这条云端记录关掉（列表里不再显示），本机数据不受影响。")) return;
+  cloudText("正在删除…");
+  cloudFind(name, function(hit){
+    if(!hit){ cloudText("云端没有可删的存档"); toast("云端没有你的存档"); return; }
+    ghApi(cloudIssuePath(hit.number), {
+      method:"PATCH",
+      headers:boardHeaders({"Content-Type":"application/json"}),
+      body:JSON.stringify({state:"closed"})
+    }).then(function(){
+      try{ localStorage.removeItem(CLOUD_KEY); }catch(e){}
+      cloudText("云端存档已删除");
+      toast("已从云端列表移除");
+    }).catch(function(e){ cloudText("删除失败：" + ((e && e.message) || "网络"), "#b3261e"); });
+  }, function(e){ cloudText("连不上云端：" + ((e && e.message) || "网络"), "#b3261e"); toast("连不上，检查网络后再试"); });
+}
+function cloudCheck(){
+  var name = cloudName();
+  if(!name){ cloudText("先填用户名：上传和下载都用这个名字"); return; }
+  cloudText("检查中…");
+  cloudFind(name, function(hit){
+    if(!hit){ cloudText("云端还没有「" + name + "」的存档，点上传即可"); return; }
+    var kb = Math.max(1, Math.round(String(hit.body || "").length / 1024));
+    cloudText("云端已有：" + cloudWhen(hit.updated_at || hit.created_at) + " · 约 " + kb + " KB");
+  }, function(e){ cloudText("连不上云端：" + ((e && e.message) || "网络"), "#b3261e"); });
+}
+function cloudHelpHtml(){
+  return '<div style="line-height:1.9">' +
+    '<p><b>一句话：用户名就是钥匙。这台设备上传，换设备填同一个名字下载。</b></p>' +
+    '<p><b>1. 先填用户名</b><br>设置里「云端存档」这一栏，跟建议栏的名字是同一个。两边改哪边都行，改完自动同步。</p>' +
+    '<p><b>2. 上传</b><br>把整站打包传上去：大作文和小作文的草稿、自动快照、收藏的句子、设置、字号、界面模式、浮窗位置，一次全带。<br>上传会<b>覆盖</b>云端同名的旧存档，不会越传越多。</p>' +
+    '<p><b>3. 换设备下载</b><br>新设备打开页面 → 设置 → 填同一个用户名 → 点「下载」。<br>下载会覆盖本机内容，覆盖前会把本机这一份另存，点「撤销上次下载」就能还原。</p>' +
+    '<p><b>4. 要注意</b><br>· 名字别太大众：同名的人共用同一条存档，会互相覆盖，也别冒用别人的名字。<br>· 云端内容放在公开仓库的 Issues 里（做过压缩和编码，但懂技术的人能解出来），别放自己的隐私。<br>· 上传、下载都要联网，走 GitHub，连不上会提示。<br>· 每个名字只保留<b>一条</b>存档；想留多个版本，用设置里的「导出备份」。</p>' +
+  '</div>';
+}
+function cloudBind(){
+  var u = document.getElementById("sysUserName");
+  if(!u || u.getAttribute("data-bound") === "1") return;
+  u.setAttribute("data-bound", "1");
+  try{ u.value = localStorage.getItem(BOARD_NAME_KEY) || ""; }catch(e){}
+  u.addEventListener("input", function(){
+    cloudSetName(u.value);
+    cloudText("名字改了，点上传或下载就按这个名字来");
+  });
+  var up = document.getElementById("cloudUp"); if(up) up.onclick = cloudUpload;
+  var dn = document.getElementById("cloudDown"); if(dn) dn.onclick = cloudDownload;
+  var del = document.getElementById("cloudDel"); if(del) del.onclick = cloudDelete;
+  var un = document.getElementById("cloudUndo"); if(un) un.onclick = cloudUndo;
+  var hp = document.getElementById("cloudHelp");
+  if(hp) hp.onclick = function(){
+    var b = document.getElementById("cloudHelpBody");
+    if(b && !b.innerHTML) b.innerHTML = cloudHelpHtml();
+    var m = document.getElementById("cloudModal");
+    if(m) m.classList.add("on");
+  };
+  var m2 = document.getElementById("cloudModal");
+  if(m2) m2.addEventListener("click", function(e){ if(e.target === this) this.classList.remove("on"); });
+  cloudCheck();
+}
+function cloudSyncNameInput(){
+  var u = document.getElementById("sysUserName");
+  if(!u) return;
+  try{ u.value = localStorage.getItem(BOARD_NAME_KEY) || ""; }catch(e){}
+  cloudCheck();
+}
 /* ---- 初始化 ---- */
 function initExtra(){
   /* 持久化存储：开机顺手申请一次 */
