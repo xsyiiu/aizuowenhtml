@@ -261,6 +261,16 @@ preview{display:block}
 .sys-card .ch button{margin-left:auto;border:none;background:transparent;font-size:calc(18px * var(--fs));color:var(--dim);cursor:pointer;font-family:inherit}
 .sys-card .cb{overflow:auto;padding:12px 16px;font-size:calc(12.5px * var(--fs));line-height:1.75;color:var(--fg)}
 .sys-card .cf{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid var(--line);justify-content:flex-end}
+.help-lede{background:var(--accent-bg);border-radius:10px;padding:8px 10px;margin:0 0 6px;color:var(--fg)}
+.help-tag{display:inline-block;margin-right:6px;padding:0 8px;border-radius:99px;background:#fff;color:var(--accent);font-weight:700;font-size:calc(10.5px * var(--fs))}
+.sys-card .cb h3{font-size:calc(13px * var(--fs));margin:14px 0 4px;color:var(--fg)}
+.sys-card .cb p{margin:0 0 8px}
+.sys-card .cb ol{margin:0 0 8px;padding-left:20px;list-style:decimal}
+.sys-card .cb ul{margin:0 0 8px;padding-left:20px;list-style:disc}
+.sys-card .cb li{margin:3px 0;color:var(--dim)}
+.sys-card .cb dt{font-weight:700;margin-top:7px;color:var(--fg)}
+.sys-card .cb dd{margin:1px 0 0;padding:0;color:var(--dim)}
+.help-hr{height:1px;background:var(--line);margin:16px 0 6px}
 .log-v{font-weight:700;margin:14px 0 2px}
 .log-d{color:var(--dim2);font-size:calc(11px * var(--fs));margin-bottom:6px}
 .log-li{list-style:none;padding:0;margin:0 0 10px}
@@ -303,7 +313,7 @@ header.top.fold .hdr-btns{margin-top:4px}
         <div class="logo">作</div>
         <div>
           <h1>考研英语大作文 · 交互模板</h1>
-          <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换小作文</button><button class="hbtn" type="button" id="btnZZ" title="考研政治 · 史纲时间线 / 会议 / 口诀">考研政治</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
+          <div class="hdr-btns"><button class="hbtn" type="button" id="btnSwitch">切换小作文</button><button class="hbtn" type="button" id="btnHelp">使用说明</button><button class="hbtn" type="button" id="btnZZ" title="考研政治 · 史纲时间线 / 会议 / 口诀">考研政治</button><button class="hbtn" type="button" id="btnCheck">检查更新<i class="rdot" id="updDot"></i></button><button class="hbtn" type="button" id="btnBoard">建议栏<i class="badge" id="boardBadge" style="display:none"></i></button><button class="hbtn" type="button" id="btnWake">常亮：关</button><button class="hbtn" type="button" id="btnFold">收起顶栏</button></div>
           <p>27版讲义全量拆解 · <span class="ver" id="verChip">v2.9.4</span> · 点短语即换</p>
         </div>
       </div>
@@ -397,7 +407,7 @@ header.top.fold .hdr-btns{margin-top:4px}
 <div id="toast"></div>
 <script>
 /* ============ 版本 ============ */
-const APP_VERSION = '2.11.0';
+const APP_VERSION = '2.12.0';
 const BUILD_DATE  = '2026-11-03';
 
 /* ============ 词库（全部来自讲义；note 标注适用语境） ============ */
@@ -2798,7 +2808,7 @@ function renderSnapPanel(){
 var SYS_PAGE = "big";
 var SYS_SWITCH = "./xiaozuowen.html";
 var SYS_SWITCH_LABEL = "切换小作文";
-var CHANGELOG = [{"v": "2.11.0", "d": "2026年11月15日", "items": ["标题旁新增「考研政治」按钮：一键跳到政治史纲页面（时空地图 / 重大会议 / 一页纸口诀 / 刷题）", "政治页顶部有「↩ 作文模板」按钮，可以跳回来"]}, {"v": "2.10.1", "d": "2026年11月10日", "items": ["字号、界面模式、题目浮窗的位置和大小改为只在本机：上传时不传，下载时也不覆盖，手机和平板各留各的", "下载确认框和「云端存档说明」同步写清哪些会覆盖、哪些不动"]}, {"v": "2.10.0", "d": "2026年11月9日", "items": ["新增云端存档：设置里填用户名，一键把内容（两页草稿与快照、收藏句子、设置）传到云端；字号、界面模式、浮窗位置只在本机，不传也不覆盖", "上传按用户名覆盖同一条云端存档，不会越传越多；换设备填同一个名字点「下载」就拉回来", "下载前自动把本机这一份另存，设置里有「撤销上次下载」可还原", "新增「云端存档说明」，写了规则和用法，可直接给同学看", "用户名与建议栏共用，两边改哪边都同步"]}, {"v": "2.9.4", "d": "2026年11月7日", "items": ["修复：更新日志里误把站长口令写出来了，已删除", "站长口令改成编码存放，翻源码不再一眼看到"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住", "新增句子星标：每句方案旁一颗星，收藏的句子在下拉里带 ★，设置里有收藏夹", "新增设置面板：界面、字号、显示开关、浮窗、数据备份与恢复集中在一处", "新增更新日志与「检查更新」按钮，有新版本时按钮右上角出现小红点", "切换大/小作文按钮从页脚移到标题旁", "设置里可导出/导入全部数据（草稿 + 星标 + 设置）", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["词库弹窗自动压住题目浮窗，不再挡住选项", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.7.0", "d": "2026年11月6日", "items": ["题目原图改为浮窗：拖动移动、右下角缩放、A−/A＋、全屏"]}, {"v": "2.6.0", "d": "2026年11月6日", "items": ["题目卡开始显示真题原图（40 张 WebP，按需加载）"]}, {"v": "2.5.1", "d": "2026年11月6日", "items": ["按真题校正预设数据：2013英二兼职、2022英二快递、2012员工满意度、2008英一画面、2023龙舟配文、2026英二 Jack、2010英二署名", "删除无真题对应的「2023英一·合作」"]}, {"v": "2.5.0", "d": "2026年11月6日", "items": ["内置真题题干原文（25/27 条），题目卡显示原文与数据"]}, {"v": "2.4.1", "d": "2026年11月6日", "items": ["点标签不再自动弹出键盘；关掉题目卡可重新选同一预设"]}, {"v": "2.4.0", "d": "2026年11月6日", "items": ["新增预设对应的题目卡"]}, {"v": "2.1.0", "d": "2026年11月3日", "items": ["换成暖米白纸感配色（白天模式）"]}, {"v": "2.0.0", "d": "2026年11月3日", "items": ["首个完整版：10 题型、真题预设、点选换句、自动语法、撤销/快照、复制"]}];
+var CHANGELOG = [{"v": "2.12.0", "d": "2026年11月15日", "items": ["顶栏新增「使用说明」：按钮逐个解释、设置项、云端存档规则、建议栏、常见问题；一直往下滚，最下面就是全部更新记录", "设置面板「关于」上方也加了使用说明入口", "新增仓库首页 README：三个页面地址、用法、功能一览"]}, {"v": "2.11.0", "d": "2026年11月15日", "items": ["标题旁新增「考研政治」按钮：一键跳到政治史纲页面（时空地图 / 重大会议 / 一页纸口诀 / 刷题）", "政治页顶部有「↩ 作文模板」按钮，可以跳回来"]}, {"v": "2.10.1", "d": "2026年11月10日", "items": ["字号、界面模式、题目浮窗的位置和大小改为只在本机：上传时不传，下载时也不覆盖，手机和平板各留各的", "下载确认框和「云端存档说明」同步写清哪些会覆盖、哪些不动"]}, {"v": "2.10.0", "d": "2026年11月9日", "items": ["新增云端存档：设置里填用户名，一键把内容（两页草稿与快照、收藏句子、设置）传到云端；字号、界面模式、浮窗位置只在本机，不传也不覆盖", "上传按用户名覆盖同一条云端存档，不会越传越多；换设备填同一个名字点「下载」就拉回来", "下载前自动把本机这一份另存，设置里有「撤销上次下载」可还原", "新增「云端存档说明」，写了规则和用法，可直接给同学看", "用户名与建议栏共用，两边改哪边都同步"]}, {"v": "2.9.4", "d": "2026年11月7日", "items": ["修复：更新日志里误把站长口令写出来了，已删除", "站长口令改成编码存放，翻源码不再一眼看到"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["站长标识写在帖子内容里，别人手动写“残翼渡鸦”不会冒充成功", "名字输入框上限放宽到 24 字", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["建议栏改走 GitHub Issues（Supabase 域名在国内不通）：起个名字就能发，所有人可见，只显示「建议｜」开头的帖子", "点「自检」可检查读取是否正常、仓库权限是否够", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["修复：忽略某个版本后再点「检查更新」，更新说明会退回「修复若干问题」——现在直接读远端页面自带的更新日志，不再额外请求", "建议栏接上共享存储（Supabase）：起个名字就能发，所有人可见；只能发和看，不能改删", "建议栏新增「自检」：一键测读 / 写 / 删，排查连不上的原因", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["新增「建议栏」：起个名字就能发建议，所有建议都能看（当前为本机模式，共享存储待接）", "新增「常亮」按钮：背诵时屏幕不自动锁，iOS Safari 不支持", "新增「收起顶栏」开关：把题型条和开关藏起来，正文多出两屏", "申请持久化存储：减少浏览器清掉草稿的概率，设置里可查看状态与占用", "设置面板补三行：本机存储、屏幕常亮、顶栏折叠", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["题目卡不再铺图，改成可拖动、可缩放的浮窗；右下角缩放手柄加大，四角都能抓住", "新增句子星标：每句方案旁一颗星，收藏的句子在下拉里带 ★，设置里有收藏夹", "新增设置面板：界面、字号、显示开关、浮窗、数据备份与恢复集中在一处", "新增更新日志与「检查更新」按钮，有新版本时按钮右上角出现小红点", "切换大/小作文按钮从页脚移到标题旁", "设置里可导出/导入全部数据（草稿 + 星标 + 设置）", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.9.3", "d": "2026年11月6日", "items": ["词库弹窗自动压住题目浮窗，不再挡住选项", "站长身份口令不再写进更新日志（原来误写在里面了）"]}, {"v": "2.7.0", "d": "2026年11月6日", "items": ["题目原图改为浮窗：拖动移动、右下角缩放、A−/A＋、全屏"]}, {"v": "2.6.0", "d": "2026年11月6日", "items": ["题目卡开始显示真题原图（40 张 WebP，按需加载）"]}, {"v": "2.5.1", "d": "2026年11月6日", "items": ["按真题校正预设数据：2013英二兼职、2022英二快递、2012员工满意度、2008英一画面、2023龙舟配文、2026英二 Jack、2010英二署名", "删除无真题对应的「2023英一·合作」"]}, {"v": "2.5.0", "d": "2026年11月6日", "items": ["内置真题题干原文（25/27 条），题目卡显示原文与数据"]}, {"v": "2.4.1", "d": "2026年11月6日", "items": ["点标签不再自动弹出键盘；关掉题目卡可重新选同一预设"]}, {"v": "2.4.0", "d": "2026年11月6日", "items": ["新增预设对应的题目卡"]}, {"v": "2.1.0", "d": "2026年11月3日", "items": ["换成暖米白纸感配色（白天模式）"]}, {"v": "2.0.0", "d": "2026年11月3日", "items": ["首个完整版：10 题型、真题预设、点选换句、自动语法、撤销/快照、复制"]}];
 var STAR_KEY = "xrz-stars-v1", SET_KEY = "xrz-settings-v1", UPD_KEY = "xrz-upd-v1";
 var stars = {}, sysSet = {autoFloat:true, alpha:1}, updInfo = {ignored:"", found:""};
 var VARTEXT = {};
@@ -2930,6 +2940,7 @@ function buildSysDom(){
   html += '<div class="sys-row"><div class="lbl">导出备份<span class="sub">草稿 + 星标 + 设置，存成 JSON 文件</span></div><button class="sys-btn" type="button" id="sysExport">导出</button></div>';
   html += '<div class="sys-row"><div class="lbl">导入备份</div><button class="sys-btn" type="button" id="sysImportBtn">选择文件</button><input type="file" id="sysImportFile" accept=".json,application/json" style="display:none"></div>';
   html += '<div class="sys-row"><div class="lbl">清空本页草稿<span class="sub">只清当前页面的答题状态</span></div><button class="sys-btn danger" type="button" id="sysClear">清空</button></div>';
+  html += '<div class="sys-row"><div class="lbl">使用说明<span class="sub">按钮怎么用、云端存档、常见问题、全部更新记录</span></div><button class="sys-btn" type="button" id="helpFromSys">查看</button></div>';
   html += '<h4 id="sysAboutAnchor">关于</h4>';
   html += '<div class="sys-row"><div class="lbl">当前版本<span class="sub" id="sysVerSub">v2.9.4</span></div><button class="sys-btn" type="button" id="sysCheck2">检查更新</button></div>';
   html += '<div class="sys-row"><div class="lbl">更新日志</div><button class="sys-btn" type="button" id="sysLog">查看</button></div>';
@@ -2938,6 +2949,7 @@ function buildSysDom(){
   html += '<div class="sys-modal" id="logModal"><div class="sys-card"><div class="ch">更新日志<button type="button" data-close="logModal">×</button></div><div class="cb" id="logBody"></div><div class="cf"><button class="sys-btn" type="button" data-close="logModal">关闭</button></div></div></div>';
   html += '<div class="sys-modal" id="updModal"><div class="sys-card"><div class="ch"><span id="updTitle">发现新版本</span><button type="button" data-close="updModal">×</button></div><div class="cb" id="updBody"></div><div class="cf"><button class="sys-btn primary" type="button" id="updGo">更新版本</button><button class="sys-btn" type="button" id="updIgnore">本次忽略</button><button class="sys-btn" type="button" id="updLater">稍后再提醒我</button></div></div></div>';
   html += '<div class="sys-modal" id="cloudModal"><div class="sys-card"><div class="ch">云端存档说明<button type="button" data-close="cloudModal">×</button></div><div class="cb" id="cloudHelpBody"></div><div class="cf"><button class="sys-btn primary" type="button" data-close="cloudModal">知道了</button></div></div></div>';
+  html += '<div class="sys-modal" id="helpModal"><div class="sys-card"><div class="ch">使用说明<button type="button" data-close="helpModal">×</button></div><div class="cb" id="helpBody"></div><div class="cf"><button class="sys-btn primary" type="button" data-close="helpModal">知道了</button></div></div></div>';
   var wrap = document.createElement("div");
   wrap.innerHTML = html;
   while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
@@ -2949,10 +2961,12 @@ function bindSys(){
   function $(id){ return document.getElementById(id); }
   $("sysMask").onclick = closeSys;
   $("sysClose").onclick = closeSys;
+  var hfs = $("helpFromSys");
+  if(hfs) hfs.onclick = openHelp;
   Array.prototype.forEach.call(document.querySelectorAll("[data-close]"), function(b){
     b.onclick = function(){ document.getElementById(b.getAttribute("data-close")).classList.remove("on"); };
   });
-  ["updModal", "logModal", "starModal"].forEach(function(id){
+  ["updModal", "logModal", "starModal", "helpModal"].forEach(function(id){
     document.getElementById(id).addEventListener("click", function(e){
       if(e.target === this) this.classList.remove("on");
     });
@@ -3062,6 +3076,56 @@ function sysImport(file){
   fr.readAsText(file);
 }
 
+/* ---- 使用说明 ---- */
+function helpHTML(){
+  var page = (typeof SYS_PAGE !== "undefined" && SYS_PAGE === "big") ? "大作文" : "小作文";
+  var h = "";
+  h += '<p class="help-lede"><span class="help-tag">' + page + ' · v' + APP_VERSION + '</span>把 27 版讲义拆成能点的模板：正文里点带虚线的短语就换句，方框里填题干里的词，边点边长成整篇，最后「复制全文」贴到答题纸上。</p>';
+  h += '<h3>三分钟上手</h3><ol>';
+  h += '<li>顶上选题型；带真题的预设点一下，题干里的人名、数字、地点会自己填好。</li>';
+  h += '<li>正文里带虚线的短语都能点，弹出几句同类表达，选一句就替换进去。</li>';
+  h += '<li>方框里补题干信息（谁、多少、哪儿），填完句子自动连起来；留空就用通用说法。</li>';
+  h += '<li>点「复制全文」整篇按段落复制，粘到答题纸或备忘录都行，手机上也能直接长按粘贴。</li>';
+  h += '</ol>';
+  h += '<h3>顶栏按钮</h3><dl>';
+  h += '<dt>使用说明</dt><dd>就是这一页，一直往下滚，最下面能看到全部更新记录。</dd>';
+  h += '<dt>切换小作文 / 切换大作文</dt><dd>两个模板来回跳，草稿各存各的，互不影响。</dd>';
+  h += '<dt>考研政治</dt><dd>跳到史纲页面：时空地图、重大会议、一页纸口诀、刷题。</dd>';
+  h += '<dt>检查更新</dt><dd>有新版本时按钮右上角出现小红点，点开能看到这版改了什么。</dd>';
+  h += '<dt>建议栏</dt><dd>不用注册，写个代号就能提建议，别人也能看到。</dd>';
+  h += '<dt>常亮</dt><dd>背诵时屏幕不自动锁；iOS 的 Safari 不支持。</dd>';
+  h += '<dt>收起顶栏</dt><dd>把题型条和这一排按钮收起来，正文多出两屏。</dd>';
+  h += '</dl>';
+  h += '<h3>设置里有什么</h3><p>界面（自动 / 手机 / 电脑）、字号、显示开关、题目浮窗、数据备份与恢复、云端存档、更新日志，都在「设置」里。</p>';
+  h += '<h3>云端存档（换设备用这个）</h3><ul>';
+  h += '<li>先在设置里填一个名字当用户名；它和建议栏共用一个名字，两边改哪边都同步。</li>';
+  h += '<li>点「上传」：大作文和小作文的草稿、自动快照、收藏的句子传到云端，按名字覆盖，不会越传越多。</li>';
+  h += '<li>换设备填同一个名字点「下载」就拉回来；下载前会自动把本机这份另存，设置里能「撤销上次下载」。</li>';
+  h += '<li>字号、界面模式、题目浮窗的位置和大小只在这台设备，不上传也不覆盖，手机和平板各调各的。</li>';
+  h += '</ul>';
+  h += '<h3>建议栏怎么用</h3><p>起个代号、写建议、发送。所有人都能看，也都能看到别人的；只显示「建议」开头的帖子，云端存档不会混进来。</p>';
+  h += '<h3>常见问题</h3><dl>';
+  h += '<dt>草稿会丢吗</dt><dd>不会，自动存在这台设备的浏览器里；换设备用云端存档，或者设置里导出备份。</dd>';
+  h += '<dt>题目图打不开</dt><dd>题目卡是按需加载的图片，网络慢时等几秒；还不行就刷新一次。</dd>';
+  h += '<dt>字太小 / 太大</dt><dd>设置 → 字号，拖滑块，只在这台设备生效，不影响别人。</dd>';
+  h += '<dt>浏览器清过数据</dt><dd>设置 → 导入备份，或者云端存档点「下载」。</dd>';
+  h += '<dt>政治页地图空白</dt><dd>地图用的是在线地图库，网络不稳时会空着；会议和刷题照常能用。</dd>';
+  h += '</dl>';
+  h += '<div class="help-hr"></div><h3>更新记录</h3><p class="log-d" style="margin:0 0 4px">最新的在最上面，共 ' + CHANGELOG.length + ' 个版本。</p>';
+  h += CHANGELOG.map(function(e){
+    return '<div class="log-v">v' + esc(e.v) + '</div><div class="log-d">' + esc(e.d) + '</div><ul class="log-li">' +
+      e.items.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>';
+  }).join("");
+  return h;
+}
+function openHelp(){
+  var b = document.getElementById("helpBody");
+  if(!b) return;
+  b.innerHTML = helpHTML();
+  b.scrollTop = 0;
+  document.getElementById("helpModal").classList.add("on");
+}
+
 /* ---- 更新日志 ---- */
 function openLog(){
   var body = document.getElementById("logBody");
@@ -3169,6 +3233,8 @@ function initSys(){
   if(sw) sw.onclick = function(){ location.href = SYS_SWITCH; };
   var zz = document.getElementById("btnZZ");
   if(zz) zz.onclick = function(){ location.href = "zhengzhi.html"; };
+  var hp = document.getElementById("btnHelp");
+  if(hp) hp.onclick = openHelp;
   var ck = document.getElementById("btnCheck");
   if(ck) ck.onclick = onCheckBtn;
   var st = document.getElementById("btnSettings");
