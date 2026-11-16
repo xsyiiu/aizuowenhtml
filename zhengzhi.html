@@ -2313,7 +2313,7 @@ setTimeout(function(){map.invalidateSize();render(idx,true);},300);
 </script>
 <script>
 (function(){
-  var S=[0.85,1,1.15,1.3,1.5,1.75,2], K="zz-fs-v1", i=1;
+  var S=[0.85,1,1.15,1.3,1.5,1.75,2,2.5,3], K="zz-fs-v1", i=1;
   function ap(){
     var v=S[i]; document.documentElement.style.setProperty("--fs",String(v));
     var e=document.getElementById("fsVal"); if(e) e.textContent=Math.round(v*100)+"%";
