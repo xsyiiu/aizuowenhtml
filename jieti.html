@@ -118,12 +118,31 @@ a{color:var(--accent)}
 /* 分组 */
 .grp{margin-bottom:18px}
 .grp h2.sec{font:700 calc(15px * var(--fs))/1.5 var(--serif);margin:0 0 10px;color:var(--ink);
-  display:flex;align-items:center;gap:8px}
+  display:flex;align-items:center;gap:8px;padding-left:10px;border-left:3px solid var(--accent)}
+.grp[data-grp="出题老头命题手法"] h2.sec{border-left-color:var(--gold)}
+.grp[data-grp="墓碑词"] h2.sec{border-left-color:var(--key)}
 .grp h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* 墓碑词总览 */
+.chmap{border:1px solid var(--line);border-radius:12px;background:var(--surface-2);margin:0 0 12px}
+.chmap>summary{cursor:pointer;list-style:none;padding:9px 13px;font-size:calc(13px * var(--fs));
+  font-weight:700;color:var(--mute)}
+.chmap>summary::-webkit-details-marker{display:none}
+.chmap>summary::after{content:"＋";float:right;font-weight:400}
+.chmap[open]>summary::after{content:"－"}
+.chgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:2px 6px;
+  padding:0 10px 11px}
+.chgrid a{display:flex;align-items:baseline;gap:6px;padding:3px 6px;border-radius:6px;
+  text-decoration:none;color:var(--ink);font-size:calc(12.5px * var(--fs));min-width:0}
+.chgrid a:hover{background:var(--surface);color:var(--accent)}
+.chgrid a b{flex:none;font:700 calc(10.5px * var(--fs))/1 var(--sans);color:var(--key);
+  background:var(--key-soft);border-radius:999px;padding:2px 6px}
+.chgrid a i{font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:420px){.chgrid{grid-template-columns:1fr 1fr;gap:1px 4px}}
 
 /* 卡片 */
 .card{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px;
-  background:var(--surface-2);scroll-margin-top:140px}
+  background:var(--surface-2);scroll-margin-top:calc(140px * var(--fs))}
 .card:target{outline:2px solid var(--accent);outline-offset:2px;animation:flash 1.1s ease}
 @keyframes flash{0%{background:var(--accent-soft)}100%{background:var(--surface-2)}}
 .ch{display:flex;align-items:baseline;gap:8px}
@@ -140,8 +159,8 @@ b.v{color:var(--ok);font-weight:700}
 b.w{color:var(--gold);font-weight:700}
 
 /* 题目 */
-.q{border:1px solid var(--line);border-radius:12px;background:var(--surface-2);
-  margin:0 0 10px;padding:10px 13px 11px;scroll-margin-top:calc(140px * var(--fs));
+.q{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;
+  background:var(--surface);margin:0 0 10px;padding:10px 13px 11px;scroll-margin-top:calc(140px * var(--fs));
   content-visibility:auto;contain-intrinsic-size:auto 190px}
 .q:target{outline:2px solid var(--accent);outline-offset:2px}
 .qhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
@@ -152,23 +171,24 @@ b.w{color:var(--gold);font-weight:700}
 .qt p{margin:6px 0 2px;font-size:calc(15px * var(--fs));line-height:1.75;word-break:break-word}
 .qo{margin:7px 0 2px;padding-left:0;list-style:none}
 .qo li{font-size:calc(14.5px * var(--fs));padding:3px 9px;margin:3px 0;border-radius:6px;
-  background:var(--surface);border-left:2px solid var(--line);line-height:1.65}
+  background:var(--surface-2);border-left:2px solid var(--line);line-height:1.65}
 .ansbox{margin:10px 0 0;border-top:1px dashed var(--line);padding-top:8px}
 .ansbox>summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;
   font-size:calc(13px * var(--fs));font-weight:700;color:var(--accent);
-  border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 12px}
+  border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:3px 12px}
 .ansbox>summary::-webkit-details-marker{display:none}
 .ansbox>summary::before{content:"▸";font-size:calc(11px * var(--fs));transition:transform .18s;display:inline-block}
 .ansbox[open]>summary::before{transform:rotate(90deg)}
 .ansbox>summary .acc{margin-left:4px;font-size:calc(11px * var(--fs));font-weight:600;color:var(--mute)}
 .ansbox[open]>summary .acc{display:none}
-.ansline{margin:10px 0 6px;font-size:calc(14px * var(--fs));display:flex;align-items:baseline;gap:8px}
+.ansline{margin:10px 0 6px;font-size:calc(14px * var(--fs));display:flex;align-items:baseline;gap:8px;
+  background:var(--ok-soft);border-radius:8px;padding:6px 10px}
 .ansline b{font-size:calc(11.5px * var(--fs));background:var(--ok-soft);border-radius:99px;padding:1px 8px;color:var(--ok)}
 .ansline em{font:700 calc(20px * var(--fs))/1 var(--serif);font-style:normal;letter-spacing:.06em;color:var(--ok)}
-.sol{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.sol{background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;padding:8px 12px}
 .sol p{margin:3px 0;font-size:calc(14px * var(--fs));line-height:1.72;word-break:break-word}
 .mk{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
-.mkbtn{border:1px solid var(--line);background:var(--surface);border-radius:999px;
+.mkbtn{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;
   padding:4px 13px;font-size:calc(12.5px * var(--fs));color:var(--mute)}
 .mkbtn:hover{border-color:var(--ink);color:var(--ink)}
 .mkbtn.ok.on{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:700}
@@ -229,6 +249,7 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
 <article class="card" id="k009" data-sec="出题老头命题手法" data-kind="card"><div class="ch"><span class="num">009</span><h3>墓碑词</h3><span class="pg">P11</span></div><div class="crumb">出题老头命题手法 › 墓碑词</div><p>😯很喜欢在某些词语上面做文章，刻意在这些词语上埋雷，我们称这些词为“墓碑词”命题老头这里整理归纳起来，科学刺激大家的大脑，帮助大家提高敏感度</p><p>墓碑词≠一定错，墓碑词为高风险词，优先警惕！以后在遇到这些特定的词语要有意识的去思考是否正确</p><p><b class="w">⚠️</b>三令五申，墓碑词不是百分百错误，只是出错的概率很高，不要犯教条主义的错误，要具体问题具体分析，至于哪些是对，哪些是错，有几种命题角度，请详细品鉴下</p><p>面的墓碑词大观</p><p>本册最后一页为墓碑词速查索引表，请大家务必随时翻阅。</p></article>
 </div>
 <div class="grp" data-grp="墓碑词"><h2 class="sec">墓碑词<span style="font-size:calc(11.5px * var(--fs));font-weight:400;color:var(--mute);margin-left:6px">64 张</span></h2>
+<details class="chmap"><summary>本章 64 张卡片 · 点标题跳过去</summary><div class="chgrid"><a href="#k010"><b>010</b><i>这是个好词啊</i></a><a href="#k011"><b>011</b><i>重要</i></a><a href="#k012"><b>012</b><i>正在，不断，逐步，进一步</i></a><a href="#k013"><b>013</b><i>有利于</i></a><a href="#k014"><b>014</b><i>绝对化词</i></a><a href="#k015"><b>015</b><i>必须</i></a><a href="#k016"><b>016</b><i>一定</i></a><a href="#k017"><b>017</b><i>绝对</i></a><a href="#k018"><b>018</b><i>所有</i></a><a href="#k019"><b>019</b><i>一切</i></a><a href="#k020"><b>020</b><i>总是，始终</i></a><a href="#k021"><b>021</b><i>任何</i></a><a href="#k022"><b>022</b><i>任意</i></a><a href="#k023"><b>023</b><i>简单化词</i></a><a href="#k024"><b>024</b><i>窄化词</i></a><a href="#k025"><b>025</b><i>单纯，纯粹</i></a><a href="#k026"><b>026</b><i>唯一</i></a><a href="#k027"><b>027</b><i>一元</i></a><a href="#k028"><b>028</b><i>一种，一套，一条</i></a><a href="#k029"><b>029</b><i>无差别</i></a><a href="#k030"><b>030</b><i>只，只能，只是，只有</i></a><a href="#k031"><b>031</b><i>叠加词➕</i></a><a href="#k032"><b>032</b><i>形而上学词</i></a><a href="#k033"><b>033</b><i>时态表示词</i></a><a href="#k034"><b>034</b><i>已经，实现了，完成了</i></a><a href="#k035"><b>035</b><i>一开始就</i></a><a href="#k036"><b>036</b><i>同时，同步</i></a><a href="#k037"><b>037</b><i>夸张词⭐️⭐️⭐️</i></a><a href="#k038"><b>038</b><i>显性考察</i></a><a href="#k039"><b>039</b><i>根本</i></a><a href="#k040"><b>040</b><i>决定，取决于</i></a><a href="#k041"><b>041</b><i>取代，代替</i></a><a href="#k042"><b>042</b><i>主导，主体，主要，主线</i></a><a href="#k043"><b>043</b><i>解决了，破解了</i></a><a href="#k044"><b>044</b><i>全面</i></a><a href="#k045"><b>045</b><i>完整</i></a><a href="#k046"><b>046</b><i>隐性考察⭐️⭐️⭐️</i></a><a href="#k047"><b>047</b><i>否定词🙅‍♂️</i></a><a href="#k048"><b>048</b><i>不再，不包含，不可能</i></a><a href="#k049"><b>049</b><i>没有</i></a><a href="#k050"><b>050</b><i>比较词</i></a><a href="#k051"><b>051</b><i>一脉相承</i></a><a href="#k052"><b>052</b><i>一样，一致，惊人相似</i></a><a href="#k053"><b>053</b><i>自发（自然）</i></a><a href="#k054"><b>054</b><i>马原中的直接</i></a><a href="#k055"><b>055</b><i>简化因果关系</i></a><a href="#k056"><b>056</b><i>张冠李戴</i></a><a href="#k057"><b>057</b><i>民主相关</i></a><a href="#k058"><b>058</b><i>政府对经济的宏观调控</i></a><a href="#k059"><b>059</b><i>💰有关</i></a><a href="#k060"><b>060</b><i>其他</i></a><a href="#k061"><b>061</b><i>具体，细致</i></a><a href="#k062"><b>062</b><i>贬低词</i></a><a href="#k063"><b>063</b><i>唯人独有</i></a><a href="#k064"><b>064</b><i>唯心</i></a><a href="#k065"><b>065</b><i>唯物史观</i></a><a href="#k066"><b>066</b><i>创造改变</i></a><a href="#k067"><b>067</b><i>看似对却不对的说法</i></a><a href="#k068"><b>068</b><i>教条主义和本本主义</i></a><a href="#k069"><b>069</b><i>资本主义太坏了</i></a><a href="#k070"><b>070</b><i>自由</i></a><a href="#k071"><b>071</b><i>认识相关</i></a><a href="#k072"><b>072</b><i>生涩迷惑干扰项</i></a><a href="#k073"><b>073</b><i>时政干扰项</i></a></div></details>
 <article class="card" id="k010" data-sec="墓碑词" data-kind="card"><div class="ch"><span class="num">010</span><h3>这是个好词啊</h3><span class="pg">P12</span></div><div class="crumb">墓碑词 › 这是个好词啊</div><p>以下这些词语的词性都比较好，一般不会出错，但是一定要具体问题具体分析，也有可能说法本身正确但是不合题意</p><p>maybe 可能，或许</p><p>sometime 有时ing正在</p><p>important重要</p><p>help有助于，有利于</p><p>infulence影响</p><p>further进一步</p><p>gradually逐步</p><p>continuously不断</p></article>
 <article class="card" id="k011" data-sec="墓碑词" data-kind="card"><div class="ch"><span class="num">011</span><h3>重要</h3><span class="pg">P12</span></div><div class="crumb">墓碑词 › 这是个好词啊 › 重要</div><p>重要真的是一个非常好的词，万事万物皆重要，基本上不会出现错误，下面这个真题就是一个很好的例子（2019-23）民营经济已成为</p><p class="opt">A.建设现代化经济体系的重要主体<b class="v">✅</b></p><p class="opt">B.推动社会主义市场经济发展的重要力量<b class="v">✅</b></p><p class="opt">C.实现中华民族伟大复兴中国梦的重要力量<b class="v">✅</b></p><p class="opt">D.控制国民经济命脉的主导力量<b class="x">❌</b></p><p>民营经济不会是主导，排除D，答案选ABC</p></article>
 <article class="card" id="k012" data-sec="墓碑词" data-kind="card"><div class="ch"><span class="num">012</span><h3>正在，不断，逐步，进一步</h3><span class="pg">P12</span></div><div class="crumb">墓碑词 › 这是个好词啊 › 正在，不断，逐步，进一步</div><p>看到正在、不断、逐步这种动态趋势描述，大多是对的，可以阅读一遍下面的正确说法培养感觉</p><p>人类对宇宙的认识正在不断深化<b class="v">✅</b>文1995-11C人类对于物质的认识是一个不断深化的过程<b class="v">✅</b>2022-18C联合国大会的召开表明国际力量对比正在发生深刻变化，百年变局正在深入发展演进<b class="v">✅</b> 2024-16D数字经济正在成为新一轮国际竞争的重点领域<b class="v">✅</b>2024-26B</p><p>我国吸引外资的结构和质量正在不断优化<b class="v">✅</b>2018-26C我国经济结构不断优化升级<b class="v">✅</b>2015-25A我国吸引外资的结构和质量正在不断优化<b class="v">✅</b>2018-26C人的全面发展是一个逐步提高、永无止境的历史过程<b class="v">✅</b></p><p>理2002-18B</p><p>废止《农业税条例》有利于逐步清除城乡差别，推进城乡统筹</p><p>发展<b class="v">✅</b> 2007-32C</p><p>😋看完我的一页纸，你的应试能力进一步提高我国国际投资合作水平进一步提高<b class="v">✅</b>2018-26A创新驱动引领作用进一步增强<b class="v">✅</b>2021-23C会议进一步推动了全球治理体系的改善<b class="v">✅</b>2018-33B</p></article>
@@ -438,7 +459,7 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
 <details class="fold" data-sec="附录" data-kind="app"><summary>附词壮志</summary><div class="fbody"><p>【附词壮志】</p><p>考研之路恰似闯关攻坚，把毛主席《渔家傲・反第一次大 “围剿”》赠予</p><p>大家，愿诸位不畏险阻、沉着应战，一路奋进，旗开得胜。</p><p>《渔家傲・反第一次大“围剿”》</p><p>毛泽东（1931 年春）</p><p>万木霜天红烂漫，</p><p>天兵怒气冲霄汉。</p><p>雾满龙冈千嶂暗，</p><p>齐声唤，</p><p>前头捉了张辉瓒。</p><p>二十万军重入赣，</p><p>风烟滚滚来天半。</p><p>唤起工农千百万，</p><p>同心干，</p><p>不周山下红旗乱。</p></div></details>
 </div></section>
 <p class="empty hide" id="empty">没有匹配的条目，换个词试试。</p>
-<footer>资料：<b>2027 这就是一页纸 · 解题方法手册</b>（澄潇宇 整理）· 由 PDF 文字层转写，原文错字与版式照录<br>网页版 v1.0.4 · 记录只存在这台设备，不上传
+<footer>资料：<b>2027 这就是一页纸 · 解题方法手册</b>（澄潇宇 整理）· 由 PDF 文字层转写，原文错字与版式照录<br>网页版 v1.0.5 · 记录只存在这台设备，不上传
 <br><a href="./index.html">大作文模板</a> · <a href="./xiaozuowen.html">小作文模板</a> · <a href="./zhengzhi.html">史纲时间线</a></footer>
 </main><script>
 (function(){
