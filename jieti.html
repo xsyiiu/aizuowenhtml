@@ -94,6 +94,19 @@ a{color:var(--accent)}
 .badge.b3{background:var(--accent-soft);color:var(--accent)}
 .statline{margin-left:auto;font-size:calc(12px * var(--fs));color:var(--mute)}
 
+/* 总览折叠 */
+.ov>summary.ph{list-style:none;cursor:pointer;margin-bottom:0;padding-bottom:4px;border-bottom:0}
+.ov>summary::-webkit-details-marker{display:none}
+.ov>summary:hover h2{color:var(--accent)}
+.ov-brief{margin-left:auto;font-size:calc(12.5px * var(--fs));color:var(--mute)}
+.ov-brief b{color:var(--ink)}
+.ov>summary .chev{margin-left:8px;width:7px;height:7px;flex:none;
+  border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .18s}
+.ov[open]>summary .chev{transform:rotate(-135deg) translate(-2px,-2px)}
+.ov[open]>summary.ph{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.ov .stats{margin-top:2px}
+
 /* 统计条 */
 .stats{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:calc(13px * var(--fs));color:var(--mute)}
 .stats b{color:var(--ink)}
@@ -200,7 +213,7 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
 <div class="chips gut"><button class="chip on" type="button" data-cat="all">全部</button><button class="chip" type="button" data-cat="高正确率解题思维">高正确率解题思维</button><button class="chip" type="button" data-cat="出题老头命题手法">出题老头命题手法</button><button class="chip" type="button" data-cat="墓碑词">墓碑词</button><button class="chip" type="button" data-cat="遴选题">遴选题</button><button class="chip" type="button" data-cat="附录">前言 / 目录</button></div>
 </header>
 <main class="page gut">
-<section class="panel" id="sec-stat"><div class="ph"><span class="badge b3">总览</span><h2>这本手册怎么用</h2></div><div class="stats"><span>知识点 <b>73</b></span><span>遴选题 <b>133</b></span><span>墓碑词 <b>122</b></span><span>当前显示 <b id="cntShow">0</b> 条</span><span>标记 <b id="cntMarked">0</b> / 133（✅ <b id="cntOk">0</b>　❌ <b id="cntBad">0</b>）</span><label class="cbx"><input type="checkbox" id="onlyBad"> 只看没做对</label><button class="btnxs" type="button" id="expandAll">展开全部答案</button><button class="btnxs" type="button" id="collapseAll">收起全部答案</button><button class="btnxs" type="button" id="resetMark">清空标记</button></div><p class="sub" style="margin:8px 0 0;font-size:calc(12.5px * var(--fs));color:var(--mute)">先翻卡片记墓碑词，再做遴选题：答案默认折叠，点标题展开；做完点「做对了 / 做错了」记在这台设备上，下次回来能接着刷。搜索框里可以直接搜真题年份，比如 <b>2024-16</b>。</p></section>
+<section class="panel" id="sec-stat"><details class="ov" id="ovBox"><summary class="ph"><span class="badge b3">总览</span><h2>这本手册怎么用</h2><span class="ov-brief">73 卡 · 133 题 · 标记 <b id="cntMarkedSm">0</b>/133</span><span class="chev" aria-hidden="true"></span></summary><div class="stats"><span>知识点 <b>73</b></span><span>遴选题 <b>133</b></span><span>墓碑词 <b>122</b></span><span>当前显示 <b id="cntShow">0</b> 条</span><span>标记 <b id="cntMarked">0</b> / 133（✅ <b id="cntOk">0</b>　❌ <b id="cntBad">0</b>）</span><label class="cbx"><input type="checkbox" id="onlyBad"> 只看没做对</label><button class="btnxs" type="button" id="expandAll">展开全部答案</button><button class="btnxs" type="button" id="collapseAll">收起全部答案</button><button class="btnxs" type="button" id="resetMark">清空标记</button></div><p class="sub" style="margin:8px 0 0;font-size:calc(12.5px * var(--fs));color:var(--mute)">先翻卡片记墓碑词，再做遴选题：答案默认折叠，点标题展开；做完点「做对了 / 做错了」记在这台设备上，下次回来能接着刷。搜索框里可以直接搜真题年份，比如 <b>2024-16</b>。</p></details></section>
 <section class="panel" id="sec-card"><div class="ph"><span class="badge">模块一</span><h2>知识点卡片</h2><span class="statline">按书内三章顺序 · 共 73 张</span></div>
 <div class="grp" data-grp="高正确率解题思维"><h2 class="sec">高正确率解题思维<span style="font-size:calc(11.5px * var(--fs));font-weight:400;color:var(--mute);margin-left:6px">3 张</span></h2>
 <article class="card" id="k001" data-sec="高正确率解题思维" data-kind="card"><div class="ch"><span class="num">001</span><h3>单选</h3><span class="pg">P9</span></div><div class="crumb">高正确率解题思维 › 单选</div><p>核心：选一个最对的</p><p>1️⃣读题，画圈圈⭕，勾出题干和选项的关键词/墓碑词</p><p>2️⃣排除最错的，伯分伯💯<b class="x">❌</b>错误的</p><p>（简单题：排除三个明显错的，就可以选出正确答案）</p><p>3️⃣考虑其余选项，选出最对的</p><p>核心原则：选项本身正确➕符合题意<b class="v">✅</b></p><p>把答案利用夹逼准则出来</p><p>4️⃣特殊情况：</p><p>遇到时政或从未见过的单选题</p><p>考虑三项解题法</p><p>找和材料有相同词的选项或意思和材料相近的选项</p></article>
@@ -425,7 +438,7 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
 <details class="fold" data-sec="附录" data-kind="app"><summary>附词壮志</summary><div class="fbody"><p>【附词壮志】</p><p>考研之路恰似闯关攻坚，把毛主席《渔家傲・反第一次大 “围剿”》赠予</p><p>大家，愿诸位不畏险阻、沉着应战，一路奋进，旗开得胜。</p><p>《渔家傲・反第一次大“围剿”》</p><p>毛泽东（1931 年春）</p><p>万木霜天红烂漫，</p><p>天兵怒气冲霄汉。</p><p>雾满龙冈千嶂暗，</p><p>齐声唤，</p><p>前头捉了张辉瓒。</p><p>二十万军重入赣，</p><p>风烟滚滚来天半。</p><p>唤起工农千百万，</p><p>同心干，</p><p>不周山下红旗乱。</p></div></details>
 </div></section>
 <p class="empty hide" id="empty">没有匹配的条目，换个词试试。</p>
-<footer>资料：<b>2027 这就是一页纸 · 解题方法手册</b>（澄潇宇 整理）· 由 PDF 文字层转写，原文错字与版式照录<br>网页版 v1.0.3 · 记录只存在这台设备，不上传
+<footer>资料：<b>2027 这就是一页纸 · 解题方法手册</b>（澄潇宇 整理）· 由 PDF 文字层转写，原文错字与版式照录<br>网页版 v1.0.4 · 记录只存在这台设备，不上传
 <br><a href="./index.html">大作文模板</a> · <a href="./xiaozuowen.html">小作文模板</a> · <a href="./zhengzhi.html">史纲时间线</a></footer>
 </main><script>
 (function(){
@@ -466,8 +479,9 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
       if(m==="ok")ok++; else if(m==="bad")bad++;
     });
     var a=document.getElementById("cntOk"), b=document.getElementById("cntBad"),
-        c=document.getElementById("cntMarked");
+        c=document.getElementById("cntMarked"), sm=document.getElementById("cntMarkedSm");
     if(a)a.textContent=ok; if(b)b.textContent=bad; if(c)c.textContent=ok+bad;
+    if(sm)sm.textContent=ok+bad;
   }
   document.querySelectorAll(".mkbtn").forEach(function(btn){
     btn.onclick=function(e){
@@ -519,6 +533,16 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
   var eo=document.getElementById("expandAll"), ec=document.getElementById("collapseAll");
   if(eo) eo.onclick=function(){ document.querySelectorAll(".ansbox").forEach(function(x){x.open=true}) };
   if(ec) ec.onclick=function(){ document.querySelectorAll(".ansbox").forEach(function(x){x.open=false}) };
+
+  /* ---------- 总览折叠：默认收起，记住选择 ---------- */
+  var ov=document.getElementById("ovBox");
+  if(ov){
+    var ovk="jieti-ov-v1";
+    try{ if(localStorage.getItem(ovk)==="1") ov.open=true; }catch(e){}
+    ov.addEventListener("toggle",function(){
+      try{ localStorage.setItem(ovk, ov.open?"1":"0"); }catch(e){}
+    });
+  }
 
   /* ---------- 字号（与作文页同一套：A− / 百分比 / A＋） ---------- */
   var FS_STEPS=[0.85,1,1.15,1.3,1.5,1.75,2,2.5,3], FSKEY="jieti-fs-v1", fsIndex=1;
