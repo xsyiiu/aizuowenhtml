@@ -10,7 +10,7 @@
 | 大作文 · 交互模板 | <https://xsyiiu.github.io/aizuowenhtml/> | 英一英二通用，10 种题型 + 真题预设 |
 | 小作文 · 交互模板 | <https://xsyiiu.github.io/aizuowenhtml/xiaozuowen.html> | 书信 / 通知 / 纪要，100 词 |
 | 考研政治 · 史纲 | <https://xsyiiu.github.io/aizuowenhtml/zhengzhi.html> | 时空地图、重大会议、一页纸口诀、刷题 |
-| 考研政治 · 解题方法 | <https://xsyiiu.github.io/aizuowenhtml/jieti.html> | 一页纸解题手册：73 张知识卡、133 道真题带解析、122 条墓碑词索引 |
+| 考研政治 · 解题方法 | <https://xsyiiu.github.io/aizuowenhtml/jieti.html> | 一页纸解题手册：73 张知识卡、133 道真题带解析、122 条墓碑词 |
 
 四个页面顶栏都有「切换 ▾」菜单，一处跳转，当前页会打勾。两个作文模板的草稿各存各的，互不影响。
 
@@ -53,7 +53,7 @@
 | `index.html` | 大作文页面（单文件，样式和逻辑都在里面） |
 | `xiaozuowen.html` | 小作文页面 |
 | `zhengzhi.html` | 考研政治史纲页面（地图、会议时间轴、记忆卡、刷题） |
-| `jieti.html` | 考研政治解题方法页面（知识卡、真题、解析、索引；做题标记存本机） |
+| `jieti.html` | 考研政治解题方法页面（知识卡、真题、解析；做题标记与字号存本机） |
 | `changelog.json` | 更新日志数据，「检查更新」会读它；作文与手册各一条版本线 |
 | `manifest.json` / `manifest-xzw.json` | 添加到主屏幕用的配置 |
 | `icon.svg` | 图标 |
