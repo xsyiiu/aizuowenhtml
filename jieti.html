@@ -24,7 +24,7 @@
   }
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(128px * var(--fs))}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:min(calc(128px * var(--fs)),45vh)}
 body{margin:0;background:var(--bg);color:var(--ink);font:calc(16px * var(--fs))/1.72 var(--sans)}
 button,input{font:inherit;color:inherit;font-family:inherit}
 button{cursor:pointer}
@@ -179,8 +179,8 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
 .hide{display:none!important}
 .empty{color:var(--mute);font-size:calc(13px * var(--fs));padding:10px 2px}
 @media (max-width:640px){
-  html{scroll-padding-top:calc(164px * var(--fs))}
-  .card,.q,.panel{scroll-margin-top:calc(170px * var(--fs))}
+  html{scroll-padding-top:min(calc(164px * var(--fs)),45vh)}
+  .card,.q,.panel{scroll-margin-top:min(calc(170px * var(--fs)),45vh)}
   .brand h1{font-size:calc(14px * var(--fs))}
   .brand .sub{display:none}
   .top-in{gap:6px}
@@ -425,7 +425,7 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
 <details class="fold" data-sec="附录" data-kind="app"><summary>附词壮志</summary><div class="fbody"><p>【附词壮志】</p><p>考研之路恰似闯关攻坚，把毛主席《渔家傲・反第一次大 “围剿”》赠予</p><p>大家，愿诸位不畏险阻、沉着应战，一路奋进，旗开得胜。</p><p>《渔家傲・反第一次大“围剿”》</p><p>毛泽东（1931 年春）</p><p>万木霜天红烂漫，</p><p>天兵怒气冲霄汉。</p><p>雾满龙冈千嶂暗，</p><p>齐声唤，</p><p>前头捉了张辉瓒。</p><p>二十万军重入赣，</p><p>风烟滚滚来天半。</p><p>唤起工农千百万，</p><p>同心干，</p><p>不周山下红旗乱。</p></div></details>
 </div></section>
 <p class="empty hide" id="empty">没有匹配的条目，换个词试试。</p>
-<footer>资料：<b>2027 这就是一页纸 · 解题方法手册</b>（澄潇宇 整理）· 由 PDF 文字层转写，原文错字与版式照录<br>网页版 v1.0.2 · 记录只存在这台设备，不上传
+<footer>资料：<b>2027 这就是一页纸 · 解题方法手册</b>（澄潇宇 整理）· 由 PDF 文字层转写，原文错字与版式照录<br>网页版 v1.0.3 · 记录只存在这台设备，不上传
 <br><a href="./index.html">大作文模板</a> · <a href="./xiaozuowen.html">小作文模板</a> · <a href="./zhengzhi.html">史纲时间线</a></footer>
 </main><script>
 (function(){
@@ -521,7 +521,7 @@ footer{margin:24px 0 0;text-align:center;font-size:calc(11.5px * var(--fs));colo
   if(ec) ec.onclick=function(){ document.querySelectorAll(".ansbox").forEach(function(x){x.open=false}) };
 
   /* ---------- 字号（与作文页同一套：A− / 百分比 / A＋） ---------- */
-  var FS_STEPS=[0.85,1,1.15,1.3,1.5,1.75,2], FSKEY="jieti-fs-v1", fsIndex=1;
+  var FS_STEPS=[0.85,1,1.15,1.3,1.5,1.75,2,2.5,3], FSKEY="jieti-fs-v1", fsIndex=1;
   function applyFS(){
     var v=FS_STEPS[fsIndex];
     document.documentElement.style.setProperty("--fs", String(v));
